@@ -11,22 +11,23 @@ import java.util.Properties;
  */
 public class PhoenixConnectionTest {
 
-    public static void main(String[] args) {
-        Properties phoenixPro = new Properties();
-        //phoenix内部本身有连接池，不需要使用Druid初始化
-        phoenixPro.setProperty("hbase.rpc.timeout","600000");
-        phoenixPro.setProperty("hbase.client.scanner.timeout.period","600000");
-        phoenixPro.setProperty("dfs.client.socket-timeout","600000");
-        phoenixPro.setProperty("phoenix.query.keepAliveMs","600000");
-        phoenixPro.setProperty("phoenix.query.timeoutMs","3600000");
-        try {
-            Class.forName("org.apache.phoenix.jdbc.PhoenixDriver");
-            Connection connection = DriverManager.getConnection("jdbc:phoenix:zookeeper01,zookeeper02,zookeeper03:2181:/hbase/db", phoenixPro);
-            System.out.println(connection);
-            connection.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+  public static void main(String[] args) {
+    Properties phoenixPro = new Properties();
+    //phoenix内部本身有连接池，不需要使用Druid初始化
+    phoenixPro.setProperty("hbase.rpc.timeout", "600000");
+    phoenixPro.setProperty("hbase.client.scanner.timeout.period", "600000");
+    phoenixPro.setProperty("dfs.client.socket-timeout", "600000");
+    phoenixPro.setProperty("phoenix.query.keepAliveMs", "600000");
+    phoenixPro.setProperty("phoenix.query.timeoutMs", "3600000");
+    try {
+      Class.forName("org.apache.phoenix.jdbc.PhoenixDriver");
+      Connection connection = DriverManager.getConnection(
+          "jdbc:phoenix:zookeeper01,zookeeper02,zookeeper03:2181:/hbase/db", phoenixPro);
+      System.out.println(connection);
+      connection.close();
+    } catch (Exception e) {
+      e.printStackTrace();
     }
+
+  }
 }

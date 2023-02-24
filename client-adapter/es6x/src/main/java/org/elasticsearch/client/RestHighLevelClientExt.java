@@ -15,15 +15,15 @@ import org.elasticsearch.action.admin.indices.mapping.get.GetMappingsResponse;
  */
 public class RestHighLevelClientExt {
 
-    public static GetMappingsResponse getMapping(RestHighLevelClient restHighLevelClient,
-                                                 GetMappingsRequest getMappingsRequest,
-                                                 RequestOptions options) throws IOException {
-        return restHighLevelClient.performRequestAndParseEntity(getMappingsRequest,
-            RequestConvertersExt::getMappings,
-            options,
-            GetMappingsResponse::fromXContent,
-            emptySet());
+  public static GetMappingsResponse getMapping(RestHighLevelClient restHighLevelClient,
+      GetMappingsRequest getMappingsRequest,
+      RequestOptions options) throws IOException {
+    return restHighLevelClient.performRequestAndParseEntity(getMappingsRequest,
+        RequestConvertersExt::getMappings,
+        options,
+        GetMappingsResponse::fromXContent,
+        emptySet());
 
-    }
+  }
 
 }

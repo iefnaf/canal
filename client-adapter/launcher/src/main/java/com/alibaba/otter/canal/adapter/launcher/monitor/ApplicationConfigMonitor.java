@@ -26,67 +26,68 @@ import com.alibaba.otter.canal.client.adapter.support.Util;
 @Component
 public class ApplicationConfigMonitor {
 
-    private static final Logger   logger = LoggerFactory.getLogger(ApplicationConfigMonitor.class);
+  private static final Logger logger = LoggerFactory.getLogger(ApplicationConfigMonitor.class);
 
-    @Resource
-    private ContextRefresher      contextRefresher;
+  @Resource
+  private ContextRefresher contextRefresher;
 
-    @Resource
-    private CanalAdapterService   canalAdapterService;
+  @Resource
+  private CanalAdapterService canalAdapterService;
 
-    private FileAlterationMonitor fileMonitor;
+  private FileAlterationMonitor fileMonitor;
 
-    @PostConstruct
-    public void init() {
-        File confDir = Util.getConfDirPath();
+  @PostConstruct
+  public void init() {
+    File confDir = Util.getConfDirPath();
+    try {
+      FileAlterationObserver observer = new FileAlterationObserver(confDir,
+          FileFilterUtils.and(FileFilterUtils.fileFileFilter(),
+              FileFilterUtils.prefixFileFilter("application"),
+              FileFilterUtils.suffixFileFilter("yml")));
+      FileListener listener = new FileListener();
+      observer.addListener(listener);
+      fileMonitor = new FileAlterationMonitor(3000, observer);
+      fileMonitor.start();
+
+    } catch (Exception e) {
+      logger.error(e.getMessage(), e);
+    }
+  }
+
+  @PreDestroy
+  public void destroy() {
+    try {
+      fileMonitor.stop();
+    } catch (Exception e) {
+      logger.error(e.getMessage(), e);
+    }
+  }
+
+  private class FileListener extends FileAlterationListenerAdaptor {
+
+    @Override
+    public void onFileChange(File file) {
+      super.onFileChange(file);
+      try {
+        // 检查yml格式
+        new Yaml().loadAs(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8),
+            Map.class);
+
+        canalAdapterService.destroy();
+
+        // refresh context
+        contextRefresher.refresh();
+
         try {
-            FileAlterationObserver observer = new FileAlterationObserver(confDir,
-                FileFilterUtils.and(FileFilterUtils.fileFileFilter(),
-                    FileFilterUtils.prefixFileFilter("application"),
-                    FileFilterUtils.suffixFileFilter("yml")));
-            FileListener listener = new FileListener();
-            observer.addListener(listener);
-            fileMonitor = new FileAlterationMonitor(3000, observer);
-            fileMonitor.start();
-
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
+          Thread.sleep(2000);
+        } catch (InterruptedException e) {
+          // ignore
         }
+        canalAdapterService.init();
+        logger.info("## adapter application config reloaded.");
+      } catch (Exception e) {
+        logger.error(e.getMessage(), e);
+      }
     }
-
-    @PreDestroy
-    public void destroy() {
-        try {
-            fileMonitor.stop();
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-        }
-    }
-
-    private class FileListener extends FileAlterationListenerAdaptor {
-
-        @Override
-        public void onFileChange(File file) {
-            super.onFileChange(file);
-            try {
-                // 检查yml格式
-                new Yaml().loadAs(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8), Map.class);
-
-                canalAdapterService.destroy();
-
-                // refresh context
-                contextRefresher.refresh();
-
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    // ignore
-                }
-                canalAdapterService.init();
-                logger.info("## adapter application config reloaded.");
-            } catch (Exception e) {
-                logger.error(e.getMessage(), e);
-            }
-        }
-    }
+  }
 }

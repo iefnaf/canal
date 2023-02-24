@@ -19,32 +19,33 @@ import com.alibaba.otter.canal.instance.core.CanalInstanceGenerator;
 @Ignore
 public class DefaultSpringInstanceTest {
 
-    private ApplicationContext context;
+  private ApplicationContext context;
 
-    @Before
-    public void start() {
-        System.setProperty("canal.instance.destination", "retl");
-        context = new ClassPathXmlApplicationContext(new String[] { "spring/default-instance.xml" });
+  @Before
+  public void start() {
+    System.setProperty("canal.instance.destination", "retl");
+    context = new ClassPathXmlApplicationContext(new String[]{"spring/default-instance.xml"});
+  }
+
+  @After
+  public void close() {
+    if (context != null && context instanceof AbstractApplicationContext) {
+      ((AbstractApplicationContext) context).close();
     }
+  }
 
-    @After
-    public void close() {
-        if (context != null && context instanceof AbstractApplicationContext) {
-            ((AbstractApplicationContext) context).close();
-        }
+  @Test
+  public void testInstance() {
+    CanalInstanceGenerator generator = (CanalInstanceGenerator) context.getBean(
+        "canalInstanceGenerator");
+    CanalInstance canalInstance = generator.generate("instance");
+    Assert.notNull(canalInstance);
+
+    canalInstance.start();
+    try {
+      Thread.sleep(10 * 1000);
+    } catch (InterruptedException e) {
     }
-
-    @Test
-    public void testInstance() {
-        CanalInstanceGenerator generator = (CanalInstanceGenerator) context.getBean("canalInstanceGenerator");
-        CanalInstance canalInstance = generator.generate("instance");
-        Assert.notNull(canalInstance);
-
-        canalInstance.start();
-        try {
-            Thread.sleep(10 * 1000);
-        } catch (InterruptedException e) {
-        }
-        canalInstance.stop();
-    }
+    canalInstance.stop();
+  }
 }

@@ -46,289 +46,301 @@ import com.google.common.collect.Maps;
  */
 public class ZooKeeperMetaManager extends AbstractCanalLifeCycle implements CanalMetaManager {
 
-    private static final String ENCODE = "UTF-8";
-    private ZkClientx           zkClientx;
+  private static final String ENCODE = "UTF-8";
+  private ZkClientx zkClientx;
 
-    public void start() {
-        super.start();
+  public void start() {
+    super.start();
 
-        Assert.notNull(zkClientx);
+    Assert.notNull(zkClientx);
+  }
+
+  public void stop() {
+    zkClientx = null; //关闭时置空
+    super.stop();
+  }
+
+  public void subscribe(ClientIdentity clientIdentity) throws CanalMetaManagerException {
+    String path = ZookeeperPathUtils.getClientIdNodePath(clientIdentity.getDestination(),
+        clientIdentity.getClientId());
+
+    try {
+      zkClientx.createPersistent(path, true);
+    } catch (ZkNodeExistsException e) {
+      // ignore
+    }
+    if (clientIdentity.hasFilter()) {
+      String filterPath = ZookeeperPathUtils.getFilterPath(clientIdentity.getDestination(),
+          clientIdentity.getClientId());
+
+      byte[] bytes = null;
+      try {
+        bytes = clientIdentity.getFilter().getBytes(ENCODE);
+      } catch (UnsupportedEncodingException e) {
+        throw new CanalMetaManagerException(e);
+      }
+
+      try {
+        zkClientx.createPersistent(filterPath, bytes);
+      } catch (ZkNodeExistsException e) {
+        // ignore
+        zkClientx.writeData(filterPath, bytes);
+      }
+    }
+  }
+
+  public boolean hasSubscribe(ClientIdentity clientIdentity) throws CanalMetaManagerException {
+    String path = ZookeeperPathUtils.getClientIdNodePath(clientIdentity.getDestination(),
+        clientIdentity.getClientId());
+    return zkClientx.exists(path);
+  }
+
+  public void unsubscribe(ClientIdentity clientIdentity) throws CanalMetaManagerException {
+    String path = ZookeeperPathUtils.getClientIdNodePath(clientIdentity.getDestination(),
+        clientIdentity.getClientId());
+    zkClientx.deleteRecursive(path); // 递归删除所有信息
+  }
+
+  public List<ClientIdentity> listAllSubscribeInfo(String destination)
+      throws CanalMetaManagerException {
+    if (zkClientx == null) { //重新加载时可能为空
+      return new ArrayList<>();
+    }
+    String path = ZookeeperPathUtils.getDestinationPath(destination);
+    List<String> childs = null;
+    try {
+      childs = zkClientx.getChildren(path);
+    } catch (ZkNoNodeException e) {
+      // ignore
     }
 
-    public void stop() {
-        zkClientx = null; //关闭时置空
-        super.stop();
+    if (CollectionUtils.isEmpty(childs)) {
+      return new ArrayList<>();
+    }
+    List<Short> clientIds = new ArrayList<>();
+    for (String child : childs) {
+      if (StringUtils.isNumeric(child)) {
+        clientIds.add(ZookeeperPathUtils.getClientId(child));
+      }
     }
 
-    public void subscribe(ClientIdentity clientIdentity) throws CanalMetaManagerException {
-        String path = ZookeeperPathUtils.getClientIdNodePath(clientIdentity.getDestination(),
-            clientIdentity.getClientId());
-
+    Collections.sort(clientIds); // 进行一个排序
+    List<ClientIdentity> clientIdentities = Lists.newArrayList();
+    for (Short clientId : clientIds) {
+      path = ZookeeperPathUtils.getFilterPath(destination, clientId);
+      byte[] bytes = zkClientx.readData(path, true);
+      String filter = null;
+      if (bytes != null) {
         try {
-            zkClientx.createPersistent(path, true);
-        } catch (ZkNodeExistsException e) {
-            // ignore
+          filter = new String(bytes, ENCODE);
+        } catch (UnsupportedEncodingException e) {
+          throw new CanalMetaManagerException(e);
         }
-        if (clientIdentity.hasFilter()) {
-            String filterPath = ZookeeperPathUtils.getFilterPath(clientIdentity.getDestination(),
-                clientIdentity.getClientId());
-
-            byte[] bytes = null;
-            try {
-                bytes = clientIdentity.getFilter().getBytes(ENCODE);
-            } catch (UnsupportedEncodingException e) {
-                throw new CanalMetaManagerException(e);
-            }
-
-            try {
-                zkClientx.createPersistent(filterPath, bytes);
-            } catch (ZkNodeExistsException e) {
-                // ignore
-                zkClientx.writeData(filterPath, bytes);
-            }
-        }
+      }
+      clientIdentities.add(new ClientIdentity(destination, clientId, filter));
     }
 
-    public boolean hasSubscribe(ClientIdentity clientIdentity) throws CanalMetaManagerException {
-        String path = ZookeeperPathUtils.getClientIdNodePath(clientIdentity.getDestination(),
-            clientIdentity.getClientId());
-        return zkClientx.exists(path);
+    return clientIdentities;
+  }
+
+  public Position getCursor(ClientIdentity clientIdentity) throws CanalMetaManagerException {
+    String path = ZookeeperPathUtils.getCursorPath(clientIdentity.getDestination(),
+        clientIdentity.getClientId());
+
+    byte[] data = zkClientx.readData(path, true);
+    if (data == null || data.length == 0) {
+      return null;
     }
 
-    public void unsubscribe(ClientIdentity clientIdentity) throws CanalMetaManagerException {
-        String path = ZookeeperPathUtils.getClientIdNodePath(clientIdentity.getDestination(),
-            clientIdentity.getClientId());
-        zkClientx.deleteRecursive(path); // 递归删除所有信息
+    return JsonUtils.unmarshalFromByte(data, Position.class);
+  }
+
+  public void updateCursor(ClientIdentity clientIdentity, Position position)
+      throws CanalMetaManagerException {
+    String path = ZookeeperPathUtils.getCursorPath(clientIdentity.getDestination(),
+        clientIdentity.getClientId());
+    byte[] data = JsonUtils.marshalToByte(position, JSONWriter.Feature.WriteClassName);
+    try {
+      zkClientx.writeData(path, data);
+    } catch (ZkNoNodeException e) {
+      zkClientx.createPersistent(path, data, true);// 第一次节点不存在，则尝试重建
+    }
+  }
+
+  public Long addBatch(ClientIdentity clientIdentity, PositionRange positionRange)
+      throws CanalMetaManagerException {
+    String path = ZookeeperPathUtils.getBatchMarkPath(clientIdentity.getDestination(),
+        clientIdentity.getClientId());
+    byte[] data = JsonUtils.marshalToByte(positionRange, JSONWriter.Feature.WriteClassName);
+    String batchPath = zkClientx
+        .createPersistentSequential(path + ZookeeperPathUtils.ZOOKEEPER_SEPARATOR, data, true);
+    String batchIdString = StringUtils.substringAfterLast(batchPath,
+        ZookeeperPathUtils.ZOOKEEPER_SEPARATOR);
+    return ZookeeperPathUtils.getBatchMarkId(batchIdString);
+  }
+
+  public void addBatch(ClientIdentity clientIdentity, PositionRange positionRange,
+      Long batchId) throws CanalMetaManagerException {
+    String path = ZookeeperPathUtils
+        .getBatchMarkWithIdPath(clientIdentity.getDestination(), clientIdentity.getClientId(),
+            batchId);
+    byte[] data = JsonUtils.marshalToByte(positionRange, JSONWriter.Feature.WriteClassName);
+    zkClientx.createPersistent(path, data, true);
+  }
+
+  public PositionRange removeBatch(ClientIdentity clientIdentity, Long batchId)
+      throws CanalMetaManagerException {
+    String batchsPath = ZookeeperPathUtils.getBatchMarkPath(clientIdentity.getDestination(),
+        clientIdentity.getClientId());
+    List<String> nodes = zkClientx.getChildren(batchsPath);
+    if (CollectionUtils.isEmpty(nodes)) {
+      // 没有batch记录
+      return null;
     }
 
-    public List<ClientIdentity> listAllSubscribeInfo(String destination) throws CanalMetaManagerException {
-        if (zkClientx == null) { //重新加载时可能为空
-            return new ArrayList<>();
-        }
-        String path = ZookeeperPathUtils.getDestinationPath(destination);
-        List<String> childs = null;
-        try {
-            childs = zkClientx.getChildren(path);
-        } catch (ZkNoNodeException e) {
-            // ignore
-        }
-
-        if (CollectionUtils.isEmpty(childs)) {
-            return new ArrayList<>();
-        }
-        List<Short> clientIds = new ArrayList<>();
-        for (String child : childs) {
-            if (StringUtils.isNumeric(child)) {
-                clientIds.add(ZookeeperPathUtils.getClientId(child));
-            }
-        }
-
-        Collections.sort(clientIds); // 进行一个排序
-        List<ClientIdentity> clientIdentities = Lists.newArrayList();
-        for (Short clientId : clientIds) {
-            path = ZookeeperPathUtils.getFilterPath(destination, clientId);
-            byte[] bytes = zkClientx.readData(path, true);
-            String filter = null;
-            if (bytes != null) {
-                try {
-                    filter = new String(bytes, ENCODE);
-                } catch (UnsupportedEncodingException e) {
-                    throw new CanalMetaManagerException(e);
-                }
-            }
-            clientIdentities.add(new ClientIdentity(destination, clientId, filter));
-        }
-
-        return clientIdentities;
+    // 找到最小的Id
+    ArrayList<Long> batchIds = new ArrayList<>(nodes.size());
+    for (String batchIdString : nodes) {
+      batchIds.add(Long.valueOf(batchIdString));
+    }
+    Long minBatchId = Collections.min(batchIds);
+    if (!minBatchId.equals(batchId)) {
+      // 检查一下提交的ack/rollback，必须按batchId分出去的顺序提交，否则容易出现丢数据
+      throw new CanalMetaManagerException(
+          String.format("batchId:%d is not the firstly:%d", batchId, minBatchId));
     }
 
-    public Position getCursor(ClientIdentity clientIdentity) throws CanalMetaManagerException {
-        String path = ZookeeperPathUtils.getCursorPath(clientIdentity.getDestination(), clientIdentity.getClientId());
-
-        byte[] data = zkClientx.readData(path, true);
-        if (data == null || data.length == 0) {
-            return null;
-        }
-
-        return JsonUtils.unmarshalFromByte(data, Position.class);
+    if (!batchIds.contains(batchId)) {
+      // 不存在对应的batchId
+      return null;
+    }
+    PositionRange positionRange = getBatch(clientIdentity, batchId);
+    if (positionRange != null) {
+      String path = ZookeeperPathUtils
+          .getBatchMarkWithIdPath(clientIdentity.getDestination(), clientIdentity.getClientId(),
+              batchId);
+      zkClientx.delete(path);
     }
 
-    public void updateCursor(ClientIdentity clientIdentity, Position position) throws CanalMetaManagerException {
-        String path = ZookeeperPathUtils.getCursorPath(clientIdentity.getDestination(), clientIdentity.getClientId());
-        byte[] data = JsonUtils.marshalToByte(position, JSONWriter.Feature.WriteClassName);
-        try {
-            zkClientx.writeData(path, data);
-        } catch (ZkNoNodeException e) {
-            zkClientx.createPersistent(path, data, true);// 第一次节点不存在，则尝试重建
-        }
+    return positionRange;
+  }
+
+  public PositionRange getBatch(ClientIdentity clientIdentity, Long batchId)
+      throws CanalMetaManagerException {
+    String path = ZookeeperPathUtils
+        .getBatchMarkWithIdPath(clientIdentity.getDestination(), clientIdentity.getClientId(),
+            batchId);
+    byte[] data = zkClientx.readData(path, true);
+    if (data == null) {
+      return null;
     }
 
-    public Long addBatch(ClientIdentity clientIdentity, PositionRange positionRange) throws CanalMetaManagerException {
-        String path = ZookeeperPathUtils.getBatchMarkPath(clientIdentity.getDestination(),
-            clientIdentity.getClientId());
-        byte[] data = JsonUtils.marshalToByte(positionRange, JSONWriter.Feature.WriteClassName);
-        String batchPath = zkClientx
-            .createPersistentSequential(path + ZookeeperPathUtils.ZOOKEEPER_SEPARATOR, data, true);
-        String batchIdString = StringUtils.substringAfterLast(batchPath, ZookeeperPathUtils.ZOOKEEPER_SEPARATOR);
-        return ZookeeperPathUtils.getBatchMarkId(batchIdString);
+    PositionRange positionRange = JsonUtils.unmarshalFromByte(data, PositionRange.class);
+    return positionRange;
+  }
+
+  public void clearAllBatchs(ClientIdentity clientIdentity) throws CanalMetaManagerException {
+    String path = ZookeeperPathUtils.getBatchMarkPath(clientIdentity.getDestination(),
+        clientIdentity.getClientId());
+    List<String> batchChilds = zkClientx.getChildren(path);
+
+    for (String batchChild : batchChilds) {
+      String batchPath = path + ZookeeperPathUtils.ZOOKEEPER_SEPARATOR + batchChild;
+      zkClientx.delete(batchPath);
+    }
+  }
+
+  public PositionRange getLastestBatch(ClientIdentity clientIdentity) {
+    String path = ZookeeperPathUtils.getBatchMarkPath(clientIdentity.getDestination(),
+        clientIdentity.getClientId());
+    List<String> nodes = null;
+    try {
+      nodes = zkClientx.getChildren(path);
+    } catch (ZkNoNodeException e) {
+      // ignore
     }
 
-    public void addBatch(ClientIdentity clientIdentity, PositionRange positionRange,
-                         Long batchId) throws CanalMetaManagerException {
-        String path = ZookeeperPathUtils
-            .getBatchMarkWithIdPath(clientIdentity.getDestination(), clientIdentity.getClientId(), batchId);
-        byte[] data = JsonUtils.marshalToByte(positionRange, JSONWriter.Feature.WriteClassName);
-        zkClientx.createPersistent(path, data, true);
+    if (CollectionUtils.isEmpty(nodes)) {
+      return null;
+    }
+    // 找到最大的Id
+    ArrayList<Long> batchIds = new ArrayList<>(nodes.size());
+    for (String batchIdString : nodes) {
+      batchIds.add(Long.valueOf(batchIdString));
+    }
+    Long maxBatchId = Collections.max(batchIds);
+    PositionRange result = getBatch(clientIdentity, maxBatchId);
+    if (result == null) { // 出现为null，说明zk节点有变化，重新获取
+      return getLastestBatch(clientIdentity);
+    } else {
+      return result;
+    }
+  }
+
+  public PositionRange getFirstBatch(ClientIdentity clientIdentity) {
+    String path = ZookeeperPathUtils.getBatchMarkPath(clientIdentity.getDestination(),
+        clientIdentity.getClientId());
+    List<String> nodes = null;
+    try {
+      nodes = zkClientx.getChildren(path);
+    } catch (ZkNoNodeException e) {
+      // ignore
     }
 
-    public PositionRange removeBatch(ClientIdentity clientIdentity, Long batchId) throws CanalMetaManagerException {
-        String batchsPath = ZookeeperPathUtils.getBatchMarkPath(clientIdentity.getDestination(),
-            clientIdentity.getClientId());
-        List<String> nodes = zkClientx.getChildren(batchsPath);
-        if (CollectionUtils.isEmpty(nodes)) {
-            // 没有batch记录
-            return null;
-        }
+    if (CollectionUtils.isEmpty(nodes)) {
+      return null;
+    }
+    // 找到最小的Id
+    ArrayList<Long> batchIds = new ArrayList<>(nodes.size());
+    for (String batchIdString : nodes) {
+      batchIds.add(Long.valueOf(batchIdString));
+    }
+    Long minBatchId = Collections.min(batchIds);
+    PositionRange result = getBatch(clientIdentity, minBatchId);
+    if (result == null) { // 出现为null，说明zk节点有变化，重新获取
+      return getFirstBatch(clientIdentity);
+    } else {
+      return result;
+    }
+  }
 
-        // 找到最小的Id
-        ArrayList<Long> batchIds = new ArrayList<>(nodes.size());
-        for (String batchIdString : nodes) {
-            batchIds.add(Long.valueOf(batchIdString));
-        }
-        Long minBatchId = Collections.min(batchIds);
-        if (!minBatchId.equals(batchId)) {
-            // 检查一下提交的ack/rollback，必须按batchId分出去的顺序提交，否则容易出现丢数据
-            throw new CanalMetaManagerException(String.format("batchId:%d is not the firstly:%d", batchId, minBatchId));
-        }
-
-        if (!batchIds.contains(batchId)) {
-            // 不存在对应的batchId
-            return null;
-        }
-        PositionRange positionRange = getBatch(clientIdentity, batchId);
-        if (positionRange != null) {
-            String path = ZookeeperPathUtils
-                .getBatchMarkWithIdPath(clientIdentity.getDestination(), clientIdentity.getClientId(), batchId);
-            zkClientx.delete(path);
-        }
-
-        return positionRange;
+  public Map<Long, PositionRange> listAllBatchs(ClientIdentity clientIdentity) {
+    String path = ZookeeperPathUtils.getBatchMarkPath(clientIdentity.getDestination(),
+        clientIdentity.getClientId());
+    List<String> nodes = null;
+    try {
+      nodes = zkClientx.getChildren(path);
+    } catch (ZkNoNodeException e) {
+      // ignore
     }
 
-    public PositionRange getBatch(ClientIdentity clientIdentity, Long batchId) throws CanalMetaManagerException {
-        String path = ZookeeperPathUtils
-            .getBatchMarkWithIdPath(clientIdentity.getDestination(), clientIdentity.getClientId(), batchId);
-        byte[] data = zkClientx.readData(path, true);
-        if (data == null) {
-            return null;
-        }
-
-        PositionRange positionRange = JsonUtils.unmarshalFromByte(data, PositionRange.class);
-        return positionRange;
+    if (CollectionUtils.isEmpty(nodes)) {
+      return Maps.newHashMap();
+    }
+    // 找到最大的Id
+    ArrayList<Long> batchIds = new ArrayList<>(nodes.size());
+    for (String batchIdString : nodes) {
+      batchIds.add(Long.valueOf(batchIdString));
     }
 
-    public void clearAllBatchs(ClientIdentity clientIdentity) throws CanalMetaManagerException {
-        String path = ZookeeperPathUtils.getBatchMarkPath(clientIdentity.getDestination(),
-            clientIdentity.getClientId());
-        List<String> batchChilds = zkClientx.getChildren(path);
-
-        for (String batchChild : batchChilds) {
-            String batchPath = path + ZookeeperPathUtils.ZOOKEEPER_SEPARATOR + batchChild;
-            zkClientx.delete(batchPath);
-        }
+    Collections.sort(batchIds); // 从小到大排序
+    Map<Long, PositionRange> positionRanges = Maps.newLinkedHashMap();
+    for (Long batchId : batchIds) {
+      PositionRange result = getBatch(clientIdentity, batchId);
+      if (result == null) {// 出现为null，说明zk节点有变化，重新获取
+        return listAllBatchs(clientIdentity);
+      } else {
+        positionRanges.put(batchId, result);
+      }
     }
 
-    public PositionRange getLastestBatch(ClientIdentity clientIdentity) {
-        String path = ZookeeperPathUtils.getBatchMarkPath(clientIdentity.getDestination(),
-            clientIdentity.getClientId());
-        List<String> nodes = null;
-        try {
-            nodes = zkClientx.getChildren(path);
-        } catch (ZkNoNodeException e) {
-            // ignore
-        }
+    return positionRanges;
+  }
 
-        if (CollectionUtils.isEmpty(nodes)) {
-            return null;
-        }
-        // 找到最大的Id
-        ArrayList<Long> batchIds = new ArrayList<>(nodes.size());
-        for (String batchIdString : nodes) {
-            batchIds.add(Long.valueOf(batchIdString));
-        }
-        Long maxBatchId = Collections.max(batchIds);
-        PositionRange result = getBatch(clientIdentity, maxBatchId);
-        if (result == null) { // 出现为null，说明zk节点有变化，重新获取
-            return getLastestBatch(clientIdentity);
-        } else {
-            return result;
-        }
-    }
+  // =========== setter ==========
 
-    public PositionRange getFirstBatch(ClientIdentity clientIdentity) {
-        String path = ZookeeperPathUtils.getBatchMarkPath(clientIdentity.getDestination(),
-            clientIdentity.getClientId());
-        List<String> nodes = null;
-        try {
-            nodes = zkClientx.getChildren(path);
-        } catch (ZkNoNodeException e) {
-            // ignore
-        }
-
-        if (CollectionUtils.isEmpty(nodes)) {
-            return null;
-        }
-        // 找到最小的Id
-        ArrayList<Long> batchIds = new ArrayList<>(nodes.size());
-        for (String batchIdString : nodes) {
-            batchIds.add(Long.valueOf(batchIdString));
-        }
-        Long minBatchId = Collections.min(batchIds);
-        PositionRange result = getBatch(clientIdentity, minBatchId);
-        if (result == null) { // 出现为null，说明zk节点有变化，重新获取
-            return getFirstBatch(clientIdentity);
-        } else {
-            return result;
-        }
-    }
-
-    public Map<Long, PositionRange> listAllBatchs(ClientIdentity clientIdentity) {
-        String path = ZookeeperPathUtils.getBatchMarkPath(clientIdentity.getDestination(),
-            clientIdentity.getClientId());
-        List<String> nodes = null;
-        try {
-            nodes = zkClientx.getChildren(path);
-        } catch (ZkNoNodeException e) {
-            // ignore
-        }
-
-        if (CollectionUtils.isEmpty(nodes)) {
-            return Maps.newHashMap();
-        }
-        // 找到最大的Id
-        ArrayList<Long> batchIds = new ArrayList<>(nodes.size());
-        for (String batchIdString : nodes) {
-            batchIds.add(Long.valueOf(batchIdString));
-        }
-
-        Collections.sort(batchIds); // 从小到大排序
-        Map<Long, PositionRange> positionRanges = Maps.newLinkedHashMap();
-        for (Long batchId : batchIds) {
-            PositionRange result = getBatch(clientIdentity, batchId);
-            if (result == null) {// 出现为null，说明zk节点有变化，重新获取
-                return listAllBatchs(clientIdentity);
-            } else {
-                positionRanges.put(batchId, result);
-            }
-        }
-
-        return positionRanges;
-    }
-
-    // =========== setter ==========
-
-    public void setZkClientx(ZkClientx zkClientx) {
-        this.zkClientx = zkClientx;
-    }
+  public void setZkClientx(ZkClientx zkClientx) {
+    this.zkClientx = zkClientx;
+  }
 
 }

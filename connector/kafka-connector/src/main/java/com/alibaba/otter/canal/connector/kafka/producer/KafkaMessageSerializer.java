@@ -12,17 +12,17 @@ import org.apache.kafka.common.serialization.Serializer;
  */
 public class KafkaMessageSerializer implements Serializer<byte[]> {
 
-    @Override
-    public void configure(Map<String, ?> configs, boolean isKey) {
-    }
+  @Override
+  public void configure(Map<String, ?> configs, boolean isKey) {
+  }
 
-    @Override
-    public byte[] serialize(String topic, byte[] data) {
-        return data;
-    }
+  @Override
+  public byte[] serialize(String topic, byte[] data) {
+    return data;
+  }
 
-    @Override
-    public void close() {
-        // nothing to do
-    }
+  @Override
+  public void close() {
+    // nothing to do
+  }
 }

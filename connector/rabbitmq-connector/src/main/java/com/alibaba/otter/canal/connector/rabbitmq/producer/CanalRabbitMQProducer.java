@@ -40,150 +40,156 @@ import com.rabbitmq.client.ConnectionFactory;
 @SPI("rabbitmq")
 public class CanalRabbitMQProducer extends AbstractMQProducer implements CanalMQProducer {
 
-    private static final Logger logger = LoggerFactory.getLogger(CanalRabbitMQProducer.class);
+  private static final Logger logger = LoggerFactory.getLogger(CanalRabbitMQProducer.class);
 
-    private Connection          connect;
-    private Channel             channel;
+  private Connection connect;
+  private Channel channel;
 
-    @Override
-    public void init(Properties properties) {
-        RabbitMQProducerConfig rabbitMQProperties = new RabbitMQProducerConfig();
-        this.mqProperties = rabbitMQProperties;
-        super.init(properties);
-        loadRabbitMQProperties(properties);
+  @Override
+  public void init(Properties properties) {
+    RabbitMQProducerConfig rabbitMQProperties = new RabbitMQProducerConfig();
+    this.mqProperties = rabbitMQProperties;
+    super.init(properties);
+    loadRabbitMQProperties(properties);
 
-        ConnectionFactory factory = new ConnectionFactory();
-        String servers = rabbitMQProperties.getHost();
-        if (servers.contains(":")) {
-            String[] serverHostAndPort = servers.split(":");
-            factory.setHost(serverHostAndPort[0]);
-            factory.setPort(Integer.parseInt(serverHostAndPort[1]));
-        } else {
-            factory.setHost(servers);
-        }
-
-        if (mqProperties.getAliyunAccessKey().length() > 0 && mqProperties.getAliyunSecretKey().length() > 0
-            && mqProperties.getAliyunUid() > 0) {
-            factory.setCredentialsProvider(new AliyunCredentialsProvider(mqProperties.getAliyunAccessKey(),
-                mqProperties.getAliyunSecretKey(),
-                mqProperties.getAliyunUid()));
-        } else {
-            factory.setUsername(rabbitMQProperties.getUsername());
-            factory.setPassword(rabbitMQProperties.getPassword());
-        }
-        factory.setVirtualHost(rabbitMQProperties.getVirtualHost());
-        try {
-            connect = factory.newConnection();
-            channel = connect.createChannel();
-            // channel.exchangeDeclare(mqProperties.getExchange(), "topic");
-        } catch (IOException | TimeoutException ex) {
-            throw new CanalException("Start RabbitMQ producer error", ex);
-        }
+    ConnectionFactory factory = new ConnectionFactory();
+    String servers = rabbitMQProperties.getHost();
+    if (servers.contains(":")) {
+      String[] serverHostAndPort = servers.split(":");
+      factory.setHost(serverHostAndPort[0]);
+      factory.setPort(Integer.parseInt(serverHostAndPort[1]));
+    } else {
+      factory.setHost(servers);
     }
 
-    private void loadRabbitMQProperties(Properties properties) {
-        RabbitMQProducerConfig rabbitMQProperties = (RabbitMQProducerConfig) this.mqProperties;
-        // 兼容下<=1.1.4的mq配置
-        doMoreCompatibleConvert("canal.mq.servers", "rabbitmq.host", properties);
+    if (mqProperties.getAliyunAccessKey().length() > 0
+        && mqProperties.getAliyunSecretKey().length() > 0
+        && mqProperties.getAliyunUid() > 0) {
+      factory.setCredentialsProvider(
+          new AliyunCredentialsProvider(mqProperties.getAliyunAccessKey(),
+              mqProperties.getAliyunSecretKey(),
+              mqProperties.getAliyunUid()));
+    } else {
+      factory.setUsername(rabbitMQProperties.getUsername());
+      factory.setPassword(rabbitMQProperties.getPassword());
+    }
+    factory.setVirtualHost(rabbitMQProperties.getVirtualHost());
+    try {
+      connect = factory.newConnection();
+      channel = connect.createChannel();
+      // channel.exchangeDeclare(mqProperties.getExchange(), "topic");
+    } catch (IOException | TimeoutException ex) {
+      throw new CanalException("Start RabbitMQ producer error", ex);
+    }
+  }
 
-        String host = PropertiesUtils.getProperty(properties, RabbitMQConstants.RABBITMQ_HOST);
-        if (!StringUtils.isEmpty(host)) {
-            rabbitMQProperties.setHost(host);
+  private void loadRabbitMQProperties(Properties properties) {
+    RabbitMQProducerConfig rabbitMQProperties = (RabbitMQProducerConfig) this.mqProperties;
+    // 兼容下<=1.1.4的mq配置
+    doMoreCompatibleConvert("canal.mq.servers", "rabbitmq.host", properties);
+
+    String host = PropertiesUtils.getProperty(properties, RabbitMQConstants.RABBITMQ_HOST);
+    if (!StringUtils.isEmpty(host)) {
+      rabbitMQProperties.setHost(host);
+    }
+    String vhost = PropertiesUtils.getProperty(properties, RabbitMQConstants.RABBITMQ_VIRTUAL_HOST);
+    if (!StringUtils.isEmpty(vhost)) {
+      rabbitMQProperties.setVirtualHost(vhost);
+    }
+    String exchange = PropertiesUtils.getProperty(properties, RabbitMQConstants.RABBITMQ_EXCHANGE);
+    if (!StringUtils.isEmpty(exchange)) {
+      rabbitMQProperties.setExchange(exchange);
+    }
+    String username = PropertiesUtils.getProperty(properties, RabbitMQConstants.RABBITMQ_USERNAME);
+    if (!StringUtils.isEmpty(username)) {
+      rabbitMQProperties.setUsername(username);
+    }
+    String password = PropertiesUtils.getProperty(properties, RabbitMQConstants.RABBITMQ_PASSWORD);
+    if (!StringUtils.isEmpty(password)) {
+      rabbitMQProperties.setPassword(password);
+    }
+  }
+
+  @Override
+  public void send(final MQDestination destination, Message message, Callback callback) {
+    ExecutorTemplate template = new ExecutorTemplate(sendExecutor);
+    try {
+      if (!StringUtils.isEmpty(destination.getDynamicTopic())) {
+        // 动态topic
+        Map<String, Message> messageMap = MQMessageUtils.messageTopics(message,
+            destination.getTopic(),
+            destination.getDynamicTopic());
+
+        for (Map.Entry<String, com.alibaba.otter.canal.protocol.Message> entry : messageMap.entrySet()) {
+          final String topicName = entry.getKey().replace('.', '_');
+          final com.alibaba.otter.canal.protocol.Message messageSub = entry.getValue();
+
+          template.submit(() -> send(destination, topicName, messageSub));
         }
-        String vhost = PropertiesUtils.getProperty(properties, RabbitMQConstants.RABBITMQ_VIRTUAL_HOST);
-        if (!StringUtils.isEmpty(vhost)) {
-            rabbitMQProperties.setVirtualHost(vhost);
+
+        template.waitForResult();
+      } else {
+        send(destination, destination.getTopic(), message);
+      }
+      callback.commit();
+    } catch (Throwable e) {
+      logger.error(e.getMessage(), e);
+      callback.rollback();
+    } finally {
+      template.clear();
+    }
+  }
+
+  private void send(MQDestination canalDestination, String topicName, Message messageSub) {
+    if (!mqProperties.isFlatMessage()) {
+      byte[] message = CanalMessageSerializerUtil.serializer(messageSub,
+          mqProperties.isFilterTransactionEntry());
+      if (logger.isDebugEnabled()) {
+        logger.debug("send message:{} to destination:{}", message,
+            canalDestination.getCanalDestination());
+      }
+      sendMessage(topicName, message);
+    } else {
+      // 并发构造
+      MQMessageUtils.EntryRowData[] datas = MQMessageUtils.buildMessageData(messageSub,
+          buildExecutor);
+      // 串行分区
+      List<FlatMessage> flatMessages = MQMessageUtils.messageConverter(datas, messageSub.getId());
+      for (FlatMessage flatMessage : flatMessages) {
+        byte[] message = JSON.toJSONBytes(flatMessage, JSONWriter.Feature.WriteNulls);
+        if (logger.isDebugEnabled()) {
+          logger.debug("send message:{} to destination:{}", message,
+              canalDestination.getCanalDestination());
         }
-        String exchange = PropertiesUtils.getProperty(properties, RabbitMQConstants.RABBITMQ_EXCHANGE);
-        if (!StringUtils.isEmpty(exchange)) {
-            rabbitMQProperties.setExchange(exchange);
-        }
-        String username = PropertiesUtils.getProperty(properties, RabbitMQConstants.RABBITMQ_USERNAME);
-        if (!StringUtils.isEmpty(username)) {
-            rabbitMQProperties.setUsername(username);
-        }
-        String password = PropertiesUtils.getProperty(properties, RabbitMQConstants.RABBITMQ_PASSWORD);
-        if (!StringUtils.isEmpty(password)) {
-            rabbitMQProperties.setPassword(password);
-        }
+        sendMessage(topicName, message);
+      }
     }
 
-    @Override
-    public void send(final MQDestination destination, Message message, Callback callback) {
-        ExecutorTemplate template = new ExecutorTemplate(sendExecutor);
-        try {
-            if (!StringUtils.isEmpty(destination.getDynamicTopic())) {
-                // 动态topic
-                Map<String, Message> messageMap = MQMessageUtils.messageTopics(message,
-                    destination.getTopic(),
-                    destination.getDynamicTopic());
+  }
 
-                for (Map.Entry<String, com.alibaba.otter.canal.protocol.Message> entry : messageMap.entrySet()) {
-                    final String topicName = entry.getKey().replace('.', '_');
-                    final com.alibaba.otter.canal.protocol.Message messageSub = entry.getValue();
+  private void sendMessage(String queueName, byte[] message) {
+    // tips: 目前逻辑中暂不处理对exchange处理，请在Console后台绑定 才可使用routekey
+    try {
+      RabbitMQProducerConfig rabbitMQProperties = (RabbitMQProducerConfig) this.mqProperties;
+      channel.basicPublish(rabbitMQProperties.getExchange(), queueName, null, message);
+    } catch (Throwable e) {
+      throw new RuntimeException(e);
+    }
+  }
 
-                    template.submit(() -> send(destination, topicName, messageSub));
-                }
-
-                template.waitForResult();
-            } else {
-                send(destination, destination.getTopic(), message);
-            }
-            callback.commit();
-        } catch (Throwable e) {
-            logger.error(e.getMessage(), e);
-            callback.rollback();
-        } finally {
-            template.clear();
-        }
+  @Override
+  public void stop() {
+    logger.info("## Stop RabbitMQ producer##");
+    try {
+      this.channel.close();
+      this.connect.close();
+      super.stop();
+    } catch (AlreadyClosedException ex) {
+      logger.error("Connection is already closed", ex);
+    } catch (IOException | TimeoutException ex) {
+      throw new CanalException("Stop RabbitMQ producer error", ex);
     }
 
-    private void send(MQDestination canalDestination, String topicName, Message messageSub) {
-        if (!mqProperties.isFlatMessage()) {
-            byte[] message = CanalMessageSerializerUtil.serializer(messageSub, mqProperties.isFilterTransactionEntry());
-            if (logger.isDebugEnabled()) {
-                logger.debug("send message:{} to destination:{}", message, canalDestination.getCanalDestination());
-            }
-            sendMessage(topicName, message);
-        } else {
-            // 并发构造
-            MQMessageUtils.EntryRowData[] datas = MQMessageUtils.buildMessageData(messageSub, buildExecutor);
-            // 串行分区
-            List<FlatMessage> flatMessages = MQMessageUtils.messageConverter(datas, messageSub.getId());
-            for (FlatMessage flatMessage : flatMessages) {
-                byte[] message = JSON.toJSONBytes(flatMessage, JSONWriter.Feature.WriteNulls);
-                if (logger.isDebugEnabled()) {
-                    logger.debug("send message:{} to destination:{}", message, canalDestination.getCanalDestination());
-                }
-                sendMessage(topicName, message);
-            }
-        }
-
-    }
-
-    private void sendMessage(String queueName, byte[] message) {
-        // tips: 目前逻辑中暂不处理对exchange处理，请在Console后台绑定 才可使用routekey
-        try {
-            RabbitMQProducerConfig rabbitMQProperties = (RabbitMQProducerConfig) this.mqProperties;
-            channel.basicPublish(rabbitMQProperties.getExchange(), queueName, null, message);
-        } catch (Throwable e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public void stop() {
-        logger.info("## Stop RabbitMQ producer##");
-        try {
-            this.channel.close();
-            this.connect.close();
-            super.stop();
-        } catch (AlreadyClosedException ex) {
-            logger.error("Connection is already closed", ex);
-        } catch (IOException | TimeoutException ex) {
-            throw new CanalException("Stop RabbitMQ producer error", ex);
-        }
-
-        super.stop();
-    }
+    super.stop();
+  }
 }

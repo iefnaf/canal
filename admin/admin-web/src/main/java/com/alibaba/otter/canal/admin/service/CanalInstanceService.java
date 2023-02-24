@@ -14,21 +14,22 @@ import com.alibaba.otter.canal.admin.model.Pager;
  */
 public interface CanalInstanceService {
 
-    Pager<CanalInstanceConfig> findList(CanalInstanceConfig canalInstanceConfig, Pager<CanalInstanceConfig> pager);
+  Pager<CanalInstanceConfig> findList(CanalInstanceConfig canalInstanceConfig,
+      Pager<CanalInstanceConfig> pager);
 
-    void save(CanalInstanceConfig canalInstanceConfig);
+  void save(CanalInstanceConfig canalInstanceConfig);
 
-    CanalInstanceConfig detail(Long id);
+  CanalInstanceConfig detail(Long id);
 
-    void updateContent(CanalInstanceConfig canalInstanceConfig);
+  void updateContent(CanalInstanceConfig canalInstanceConfig);
 
-    void delete(Long id);
+  void delete(Long id);
 
-    Map<String, String> remoteInstanceLog(Long id, Long nodeId);
+  Map<String, String> remoteInstanceLog(Long id, Long nodeId);
 
-    boolean remoteOperation(Long id, Long nodeId, String option);
+  boolean remoteOperation(Long id, Long nodeId, String option);
 
-    boolean instanceOperation(Long id, String option);
+  boolean instanceOperation(Long id, String option);
 
-    List<CanalInstanceConfig> findActiveInstanceByServerId(Long serverId);
+  List<CanalInstanceConfig> findActiveInstanceByServerId(Long serverId);
 }

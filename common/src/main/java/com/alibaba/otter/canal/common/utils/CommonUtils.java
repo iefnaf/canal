@@ -10,44 +10,44 @@ import java.io.File;
  */
 public class CommonUtils {
 
-    /**
-     * 获取conf文件夹所在路径
-     *
-     * @return 路径地址
-     */
-    public static String getConfPath() {
-        String classpath = CommonUtils.class.getResource("/").getPath();
-        String confPath = classpath + "../conf/";
-        if (new File(confPath).exists()) {
-            return confPath;
-        } else {
-            return classpath;
-        }
+  /**
+   * 获取conf文件夹所在路径
+   *
+   * @return 路径地址
+   */
+  public static String getConfPath() {
+    String classpath = CommonUtils.class.getResource("/").getPath();
+    String confPath = classpath + "../conf/";
+    if (new File(confPath).exists()) {
+      return confPath;
+    } else {
+      return classpath;
+    }
+  }
+
+  /**
+   * 删除文件夹
+   *
+   * @param dirFile 文件夹对象
+   * @return 是否删除成功
+   */
+  public static boolean deleteDir(File dirFile) {
+    if (!dirFile.exists()) {
+      return false;
     }
 
-    /**
-     * 删除文件夹
-     *
-     * @param dirFile 文件夹对象
-     * @return 是否删除成功
-     */
-    public static boolean deleteDir(File dirFile) {
-        if (!dirFile.exists()) {
-            return false;
-        }
-
-        if (dirFile.isFile()) {
-            return dirFile.delete();
-        } else {
-            File[] files = dirFile.listFiles();
-            if (files == null || files.length == 0) {
-                return dirFile.delete();
-            }
-            for (File file : files) {
-                deleteDir(file);
-            }
-        }
-
+    if (dirFile.isFile()) {
+      return dirFile.delete();
+    } else {
+      File[] files = dirFile.listFiles();
+      if (files == null || files.length == 0) {
         return dirFile.delete();
+      }
+      for (File file : files) {
+        deleteDir(file);
+      }
     }
+
+    return dirFile.delete();
+  }
 }

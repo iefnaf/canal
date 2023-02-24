@@ -14,17 +14,19 @@ import org.elasticsearch.common.Strings;
  */
 public class RequestConvertersExt {
 
-    /**
-     * 修改 getMappings 去掉request参数
-     *
-     * @param getMappingsRequest
-     * @return
-     * @throws IOException
-     */
-    static Request getMappings(GetMappingsRequest getMappingsRequest) throws IOException {
-        String[] indices = getMappingsRequest.indices() == null ? Strings.EMPTY_ARRAY : getMappingsRequest.indices();
-        String[] types = getMappingsRequest.types() == null ? Strings.EMPTY_ARRAY : getMappingsRequest.types();
+  /**
+   * 修改 getMappings 去掉request参数
+   *
+   * @param getMappingsRequest
+   * @return
+   * @throws IOException
+   */
+  static Request getMappings(GetMappingsRequest getMappingsRequest) throws IOException {
+    String[] indices =
+        getMappingsRequest.indices() == null ? Strings.EMPTY_ARRAY : getMappingsRequest.indices();
+    String[] types =
+        getMappingsRequest.types() == null ? Strings.EMPTY_ARRAY : getMappingsRequest.types();
 
-        return new Request(HttpGet.METHOD_NAME, RequestConverters.endpoint(indices, "_mapping", types));
-    }
+    return new Request(HttpGet.METHOD_NAME, RequestConverters.endpoint(indices, "_mapping", types));
+  }
 }

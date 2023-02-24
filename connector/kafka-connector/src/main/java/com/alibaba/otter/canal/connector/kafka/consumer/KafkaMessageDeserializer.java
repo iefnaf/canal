@@ -15,17 +15,17 @@ import com.alibaba.otter.canal.protocol.Message;
  */
 public class KafkaMessageDeserializer implements Deserializer<Message> {
 
-    @Override
-    public void configure(Map<String, ?> configs, boolean isKey) {
-    }
+  @Override
+  public void configure(Map<String, ?> configs, boolean isKey) {
+  }
 
-    @Override
-    public Message deserialize(String topic1, byte[] data) {
-        return CanalMessageSerializerUtil.deserializer(data);
-    }
+  @Override
+  public Message deserialize(String topic1, byte[] data) {
+    return CanalMessageSerializerUtil.deserializer(data);
+  }
 
-    @Override
-    public void close() {
-        // nothing to do
-    }
+  @Override
+  public void close() {
+    // nothing to do
+  }
 }

@@ -17,25 +17,25 @@ import com.alibaba.otter.canal.adapter.launcher.monitor.remote.RemoteConfigLoade
  */
 public class BootstrapConfiguration {
 
-    @Autowired
-    private Environment        env;
+  @Autowired
+  private Environment env;
 
-    private RemoteConfigLoader remoteConfigLoader = null;
+  private RemoteConfigLoader remoteConfigLoader = null;
 
-    @PostConstruct
-    public void loadRemoteConfig() {
-        remoteConfigLoader = RemoteConfigLoaderFactory.getRemoteConfigLoader(env);
-        if (remoteConfigLoader != null) {
-            remoteConfigLoader.loadRemoteConfig();
-            remoteConfigLoader.loadRemoteAdapterConfigs();
-            remoteConfigLoader.startMonitor(); // 启动监听
-        }
+  @PostConstruct
+  public void loadRemoteConfig() {
+    remoteConfigLoader = RemoteConfigLoaderFactory.getRemoteConfigLoader(env);
+    if (remoteConfigLoader != null) {
+      remoteConfigLoader.loadRemoteConfig();
+      remoteConfigLoader.loadRemoteAdapterConfigs();
+      remoteConfigLoader.startMonitor(); // 启动监听
     }
+  }
 
-    @PreDestroy
-    public synchronized void destroy() {
-        if (remoteConfigLoader != null) {
-            remoteConfigLoader.destroy();
-        }
+  @PreDestroy
+  public synchronized void destroy() {
+    if (remoteConfigLoader != null) {
+      remoteConfigLoader.destroy();
     }
+  }
 }

@@ -12,13 +12,14 @@ package com.alibaba.otter.canal.spi;
  *     }
  * }
  * </pre>
+ *
  * @author Chuanyi Li
  */
 public interface CanalMetricsProvider {
 
-    /**
-     * @return Impl of {@link CanalMetricsService}
-     */
-    CanalMetricsService getService();
+  /**
+   * @return Impl of {@link CanalMetricsService}
+   */
+  CanalMetricsService getService();
 
 }

@@ -7,8 +7,8 @@ import com.alibaba.otter.canal.instance.core.CanalInstance;
  */
 public interface InstanceRegistry {
 
-    void register(CanalInstance instance);
+  void register(CanalInstance instance);
 
-    void unregister(CanalInstance instance);
+  void unregister(CanalInstance instance);
 
 }

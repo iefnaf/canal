@@ -20,218 +20,219 @@ import com.alibaba.otter.canal.protocol.CanalEntry.Entry;
 import com.alibaba.otter.canal.protocol.position.EntryPosition;
 import com.alibaba.otter.canal.protocol.position.LogPosition;
 import com.alibaba.otter.canal.sink.exception.CanalSinkException;
+
 @Ignore
 public class LocalBinlogEventParserTest {
 
-    private static final String MYSQL_ADDRESS = "127.0.0.1";
-    private static final String USERNAME      = "canal";
-    private static final String PASSWORD      = "canal";
-    private String              directory;
+  private static final String MYSQL_ADDRESS = "127.0.0.1";
+  private static final String USERNAME = "canal";
+  private static final String PASSWORD = "canal";
+  private String directory;
 
-    @Before
-    public void setUp() {
-        URL url = Thread.currentThread().getContextClassLoader().getResource("dummy.txt");
-        File dummyFile = new File(url.getFile());
-        directory = new File(dummyFile + "/binlog/tsdb").getPath();
-    }
+  @Before
+  public void setUp() {
+    URL url = Thread.currentThread().getContextClassLoader().getResource("dummy.txt");
+    File dummyFile = new File(url.getFile());
+    directory = new File(dummyFile + "/binlog/tsdb").getPath();
+  }
 
-    @Test
-    public void test_position() throws InterruptedException {
-        final TimeoutChecker timeoutChecker = new TimeoutChecker();
-        final AtomicLong entryCount = new AtomicLong(0);
-        final EntryPosition entryPosition = new EntryPosition();
+  @Test
+  public void test_position() throws InterruptedException {
+    final TimeoutChecker timeoutChecker = new TimeoutChecker();
+    final AtomicLong entryCount = new AtomicLong(0);
+    final EntryPosition entryPosition = new EntryPosition();
 
-        final EntryPosition defaultPosition = buildPosition("mysql-bin.000003", 219L, 1505467103000L);
-        final LocalBinlogEventParser controller = new LocalBinlogEventParser();
-        controller.setMasterPosition(defaultPosition);
-        controller.setMasterInfo(buildAuthentication());
-        controller.setDirectory(directory);
-        controller.setEventSink(new AbstractCanalEventSinkTest<List<Entry>>() {
+    final EntryPosition defaultPosition = buildPosition("mysql-bin.000003", 219L, 1505467103000L);
+    final LocalBinlogEventParser controller = new LocalBinlogEventParser();
+    controller.setMasterPosition(defaultPosition);
+    controller.setMasterInfo(buildAuthentication());
+    controller.setDirectory(directory);
+    controller.setEventSink(new AbstractCanalEventSinkTest<List<Entry>>() {
 
-            public boolean sink(List<Entry> entrys, InetSocketAddress remoteAddress, String destination)
-                                                                                                        throws CanalSinkException {
-                entryCount.incrementAndGet();
+      public boolean sink(List<Entry> entrys, InetSocketAddress remoteAddress, String destination)
+          throws CanalSinkException {
+        entryCount.incrementAndGet();
 
-                for (Entry entry : entrys) {
-                    String logfilename = entry.getHeader().getLogfileName();
-                    long logfileoffset = entry.getHeader().getLogfileOffset();
-                    long executeTime = entry.getHeader().getExecuteTime();
+        for (Entry entry : entrys) {
+          String logfilename = entry.getHeader().getLogfileName();
+          long logfileoffset = entry.getHeader().getLogfileOffset();
+          long executeTime = entry.getHeader().getExecuteTime();
 
-                    entryPosition.setJournalName(logfilename);
-                    entryPosition.setPosition(logfileoffset);
-                    entryPosition.setTimestamp(executeTime);
-                    break;
-                }
-
-                controller.stop();
-                timeoutChecker.stop();
-                timeoutChecker.touch();
-                return true;
-            }
-
-        });
-
-        controller.setLogPositionManager(new AbstractLogPositionManager() {
-
-            public void persistLogPosition(String destination, LogPosition logPosition) {
-                System.out.println(logPosition);
-            }
-
-            @Override
-            public LogPosition getLatestIndexBy(String destination) {
-                return null;
-            }
-        });
-
-        controller.start();
-
-        timeoutChecker.waitForIdle();
-
-        if (controller.isStart()) {
-            controller.stop();
+          entryPosition.setJournalName(logfilename);
+          entryPosition.setPosition(logfileoffset);
+          entryPosition.setTimestamp(executeTime);
+          break;
         }
 
-        // check
-        Assert.assertTrue(entryCount.get() > 0);
+        controller.stop();
+        timeoutChecker.stop();
+        timeoutChecker.touch();
+        return true;
+      }
 
-        // 对比第一条数据和起始的position相同
-        Assert.assertEquals(entryPosition, defaultPosition);
+    });
+
+    controller.setLogPositionManager(new AbstractLogPositionManager() {
+
+      public void persistLogPosition(String destination, LogPosition logPosition) {
+        System.out.println(logPosition);
+      }
+
+      @Override
+      public LogPosition getLatestIndexBy(String destination) {
+        return null;
+      }
+    });
+
+    controller.start();
+
+    timeoutChecker.waitForIdle();
+
+    if (controller.isStart()) {
+      controller.stop();
     }
 
-    @Test
-    public void test_timestamp() throws InterruptedException {
-        final TimeoutChecker timeoutChecker = new TimeoutChecker(300 * 1000);
-        final AtomicLong entryCount = new AtomicLong(0);
-        final EntryPosition entryPosition = new EntryPosition();
+    // check
+    Assert.assertTrue(entryCount.get() > 0);
 
-        final EntryPosition defaultPosition = buildPosition("mysql-bin.000003", null, 1505467103000L);
-        final LocalBinlogEventParser controller = new LocalBinlogEventParser();
-        controller.setMasterPosition(defaultPosition);
-        controller.setMasterInfo(buildAuthentication());
-        controller.setDirectory(directory);
-        controller.setEventSink(new AbstractCanalEventSinkTest<List<Entry>>() {
+    // 对比第一条数据和起始的position相同
+    Assert.assertEquals(entryPosition, defaultPosition);
+  }
 
-            @Override
-            public boolean sink(List<Entry> entrys, InetSocketAddress remoteAddress, String destination)
-                                                                                                        throws CanalSinkException {
-                for (Entry entry : entrys) {
-                    entryCount.incrementAndGet();
+  @Test
+  public void test_timestamp() throws InterruptedException {
+    final TimeoutChecker timeoutChecker = new TimeoutChecker(300 * 1000);
+    final AtomicLong entryCount = new AtomicLong(0);
+    final EntryPosition entryPosition = new EntryPosition();
 
-                    String logfilename = entry.getHeader().getLogfileName();
-                    long logfileoffset = entry.getHeader().getLogfileOffset();
-                    long executeTime = entry.getHeader().getExecuteTime();
+    final EntryPosition defaultPosition = buildPosition("mysql-bin.000003", null, 1505467103000L);
+    final LocalBinlogEventParser controller = new LocalBinlogEventParser();
+    controller.setMasterPosition(defaultPosition);
+    controller.setMasterInfo(buildAuthentication());
+    controller.setDirectory(directory);
+    controller.setEventSink(new AbstractCanalEventSinkTest<List<Entry>>() {
 
-                    entryPosition.setJournalName(logfilename);
-                    entryPosition.setPosition(logfileoffset);
-                    entryPosition.setTimestamp(executeTime);
-                    break;
-                }
+      @Override
+      public boolean sink(List<Entry> entrys, InetSocketAddress remoteAddress, String destination)
+          throws CanalSinkException {
+        for (Entry entry : entrys) {
+          entryCount.incrementAndGet();
 
-                controller.stop();
-                timeoutChecker.stop();
-                timeoutChecker.touch();
-                return true;
-            }
-        });
+          String logfilename = entry.getHeader().getLogfileName();
+          long logfileoffset = entry.getHeader().getLogfileOffset();
+          long executeTime = entry.getHeader().getExecuteTime();
 
-        controller.setLogPositionManager(new AbstractLogPositionManager() {
-
-            public void persistLogPosition(String destination, LogPosition logPosition) {
-                System.out.println(logPosition);
-            }
-
-            @Override
-            public LogPosition getLatestIndexBy(String destination) {
-                return null;
-            }
-        });
-
-        controller.start();
-        timeoutChecker.waitForIdle();
-
-        if (controller.isStart()) {
-            controller.stop();
+          entryPosition.setJournalName(logfilename);
+          entryPosition.setPosition(logfileoffset);
+          entryPosition.setTimestamp(executeTime);
+          break;
         }
 
-        // check
-        Assert.assertTrue(entryCount.get() > 0);
+        controller.stop();
+        timeoutChecker.stop();
+        timeoutChecker.touch();
+        return true;
+      }
+    });
 
-        // 对比第一条数据和起始的position相同
-        Assert.assertEquals(entryPosition.getJournalName(), "mysql-bin.000003");
-        Assert.assertTrue(entryPosition.getPosition() <= 300L);
-        Assert.assertTrue(entryPosition.getTimestamp() <= defaultPosition.getTimestamp());
+    controller.setLogPositionManager(new AbstractLogPositionManager() {
+
+      public void persistLogPosition(String destination, LogPosition logPosition) {
+        System.out.println(logPosition);
+      }
+
+      @Override
+      public LogPosition getLatestIndexBy(String destination) {
+        return null;
+      }
+    });
+
+    controller.start();
+    timeoutChecker.waitForIdle();
+
+    if (controller.isStart()) {
+      controller.stop();
     }
 
-    @Test
-    public void test_no_position() throws InterruptedException {
-        final TimeoutChecker timeoutChecker = new TimeoutChecker(3 * 1000);
-        final EntryPosition defaultPosition = buildPosition("mysql-bin.000003",
-            null,
-            new Date().getTime() + 1000 * 1000L);
-        final AtomicLong entryCount = new AtomicLong(0);
-        final EntryPosition entryPosition = new EntryPosition();
+    // check
+    Assert.assertTrue(entryCount.get() > 0);
 
-        final LocalBinlogEventParser controller = new LocalBinlogEventParser();
-        controller.setMasterPosition(defaultPosition);
-        controller.setMasterInfo(buildAuthentication());
-        controller.setDirectory(directory);
-        controller.setEventSink(new AbstractCanalEventSinkTest<List<Entry>>() {
+    // 对比第一条数据和起始的position相同
+    Assert.assertEquals(entryPosition.getJournalName(), "mysql-bin.000003");
+    Assert.assertTrue(entryPosition.getPosition() <= 300L);
+    Assert.assertTrue(entryPosition.getTimestamp() <= defaultPosition.getTimestamp());
+  }
 
-            public boolean sink(List<Entry> entrys, InetSocketAddress remoteAddress, String destination)
-                                                                                                        throws CanalSinkException {
-                for (Entry entry : entrys) {
-                    entryCount.incrementAndGet();
+  @Test
+  public void test_no_position() throws InterruptedException {
+    final TimeoutChecker timeoutChecker = new TimeoutChecker(3 * 1000);
+    final EntryPosition defaultPosition = buildPosition("mysql-bin.000003",
+        null,
+        new Date().getTime() + 1000 * 1000L);
+    final AtomicLong entryCount = new AtomicLong(0);
+    final EntryPosition entryPosition = new EntryPosition();
 
-                    String logfilename = entry.getHeader().getLogfileName();
-                    long logfileoffset = entry.getHeader().getLogfileOffset();
-                    long executeTime = entry.getHeader().getExecuteTime();
+    final LocalBinlogEventParser controller = new LocalBinlogEventParser();
+    controller.setMasterPosition(defaultPosition);
+    controller.setMasterInfo(buildAuthentication());
+    controller.setDirectory(directory);
+    controller.setEventSink(new AbstractCanalEventSinkTest<List<Entry>>() {
 
-                    entryPosition.setJournalName(logfilename);
-                    entryPosition.setPosition(logfileoffset);
-                    entryPosition.setTimestamp(executeTime);
-                    break;
-                }
+      public boolean sink(List<Entry> entrys, InetSocketAddress remoteAddress, String destination)
+          throws CanalSinkException {
+        for (Entry entry : entrys) {
+          entryCount.incrementAndGet();
 
-                controller.stop();
-                timeoutChecker.stop();
-                timeoutChecker.touch();
-                return true;
-            }
-        });
+          String logfilename = entry.getHeader().getLogfileName();
+          long logfileoffset = entry.getHeader().getLogfileOffset();
+          long executeTime = entry.getHeader().getExecuteTime();
 
-        controller.setLogPositionManager(new AbstractLogPositionManager() {
-
-            public void persistLogPosition(String destination, LogPosition logPosition) {
-                System.out.println(logPosition);
-            }
-
-            @Override
-            public LogPosition getLatestIndexBy(String destination) {
-                return null;
-            }
-        });
-
-        controller.start();
-
-        timeoutChecker.waitForIdle();
-
-        if (controller.isStart()) {
-            controller.stop();
+          entryPosition.setJournalName(logfilename);
+          entryPosition.setPosition(logfileoffset);
+          entryPosition.setTimestamp(executeTime);
+          break;
         }
 
-        // check
-        Assert.assertTrue(entryCount.get() > 0);
+        controller.stop();
+        timeoutChecker.stop();
+        timeoutChecker.touch();
+        return true;
+      }
+    });
 
-        // 对比第一条数据和起始的position相同
-        // assertEquals(entryPosition.getJournalName(), "mysql-bin.000002");
-        Assert.assertTrue(entryPosition.getTimestamp() <= defaultPosition.getTimestamp());
+    controller.setLogPositionManager(new AbstractLogPositionManager() {
+
+      public void persistLogPosition(String destination, LogPosition logPosition) {
+        System.out.println(logPosition);
+      }
+
+      @Override
+      public LogPosition getLatestIndexBy(String destination) {
+        return null;
+      }
+    });
+
+    controller.start();
+
+    timeoutChecker.waitForIdle();
+
+    if (controller.isStart()) {
+      controller.stop();
     }
 
-    private EntryPosition buildPosition(String binlogFile, Long offest, Long timestamp) {
-        return new EntryPosition(binlogFile, offest, timestamp);
-    }
+    // check
+    Assert.assertTrue(entryCount.get() > 0);
 
-    private AuthenticationInfo buildAuthentication() {
-        return new AuthenticationInfo(new InetSocketAddress(MYSQL_ADDRESS, 3306), USERNAME, PASSWORD);
-    }
+    // 对比第一条数据和起始的position相同
+    // assertEquals(entryPosition.getJournalName(), "mysql-bin.000002");
+    Assert.assertTrue(entryPosition.getTimestamp() <= defaultPosition.getTimestamp());
+  }
+
+  private EntryPosition buildPosition(String binlogFile, Long offest, Long timestamp) {
+    return new EntryPosition(binlogFile, offest, timestamp);
+  }
+
+  private AuthenticationInfo buildAuthentication() {
+    return new AuthenticationInfo(new InetSocketAddress(MYSQL_ADDRESS, 3306), USERNAME, PASSWORD);
+  }
 }

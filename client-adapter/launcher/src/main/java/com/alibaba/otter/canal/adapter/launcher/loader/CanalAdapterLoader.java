@@ -31,110 +31,112 @@ import com.alibaba.otter.canal.client.adapter.support.Util;
  */
 public class CanalAdapterLoader {
 
-    private static final Logger           logger                 = LoggerFactory.getLogger(CanalAdapterLoader.class);
+  private static final Logger logger = LoggerFactory.getLogger(CanalAdapterLoader.class);
 
-    private CanalClientConfig             canalClientConfig;
+  private CanalClientConfig canalClientConfig;
 
-    private Map<String, AdapterProcessor> canalAdapterProcessors = new HashMap<>();
+  private Map<String, AdapterProcessor> canalAdapterProcessors = new HashMap<>();
 
-    private ExtensionLoader<OuterAdapter> loader;
+  private ExtensionLoader<OuterAdapter> loader;
 
-    public CanalAdapterLoader(CanalClientConfig canalClientConfig){
-        this.canalClientConfig = canalClientConfig;
-    }
+  public CanalAdapterLoader(CanalClientConfig canalClientConfig) {
+    this.canalClientConfig = canalClientConfig;
+  }
 
-    /**
-     * 初始化canal-client
-     */
-    public void init() {
-        loader = ExtensionLoader.getExtensionLoader(OuterAdapter.class);
+  /**
+   * 初始化canal-client
+   */
+  public void init() {
+    loader = ExtensionLoader.getExtensionLoader(OuterAdapter.class);
 
-        for (CanalClientConfig.CanalAdapter canalAdapter : canalClientConfig.getCanalAdapters()) {
-            for (CanalClientConfig.Group group : canalAdapter.getGroups()) {
-                int autoGenId = 0;
-                List<List<OuterAdapter>> canalOuterAdapterGroups = new CopyOnWriteArrayList<>();
-                List<OuterAdapter> canalOuterAdapters = new CopyOnWriteArrayList<>();
+    for (CanalClientConfig.CanalAdapter canalAdapter : canalClientConfig.getCanalAdapters()) {
+      for (CanalClientConfig.Group group : canalAdapter.getGroups()) {
+        int autoGenId = 0;
+        List<List<OuterAdapter>> canalOuterAdapterGroups = new CopyOnWriteArrayList<>();
+        List<OuterAdapter> canalOuterAdapters = new CopyOnWriteArrayList<>();
 
-                for (OuterAdapterConfig config : group.getOuterAdapters()) {
-                    // 保证一定有key
-                    if (StringUtils.isEmpty(config.getKey())) {
-                        String key = StringUtils.join(
-                            new String[] { Util.AUTO_GENERATED_PREFIX, canalAdapter.getInstance(), group.getGroupId(),
-                                           String.valueOf(autoGenId) },
-                            '-');
-                        //gen keyId
-                        config.setKey(key);
-                    }
-                    autoGenId++;
-                    loadAdapter(config, canalOuterAdapters);
-                }
-                canalOuterAdapterGroups.add(canalOuterAdapters);
-
-                AdapterProcessor adapterProcessor = canalAdapterProcessors.computeIfAbsent(
-                    canalAdapter.getInstance() + "|" + StringUtils.trimToEmpty(group.getGroupId()),
-                    f -> new AdapterProcessor(canalClientConfig,
-                        canalAdapter.getInstance(),
-                        group.getGroupId(),
-                        canalOuterAdapterGroups));
-                adapterProcessor.start();
-
-                logger.info("Start adapter for canal-client mq topic: {} succeed",
-                    canalAdapter.getInstance() + "-" + group.getGroupId());
-            }
+        for (OuterAdapterConfig config : group.getOuterAdapters()) {
+          // 保证一定有key
+          if (StringUtils.isEmpty(config.getKey())) {
+            String key = StringUtils.join(
+                new String[]{Util.AUTO_GENERATED_PREFIX, canalAdapter.getInstance(),
+                    group.getGroupId(),
+                    String.valueOf(autoGenId)},
+                '-');
+            //gen keyId
+            config.setKey(key);
+          }
+          autoGenId++;
+          loadAdapter(config, canalOuterAdapters);
         }
+        canalOuterAdapterGroups.add(canalOuterAdapters);
+
+        AdapterProcessor adapterProcessor = canalAdapterProcessors.computeIfAbsent(
+            canalAdapter.getInstance() + "|" + StringUtils.trimToEmpty(group.getGroupId()),
+            f -> new AdapterProcessor(canalClientConfig,
+                canalAdapter.getInstance(),
+                group.getGroupId(),
+                canalOuterAdapterGroups));
+        adapterProcessor.start();
+
+        logger.info("Start adapter for canal-client mq topic: {} succeed",
+            canalAdapter.getInstance() + "-" + group.getGroupId());
+      }
     }
+  }
 
-    private void loadAdapter(OuterAdapterConfig config, List<OuterAdapter> canalOutConnectors) {
-        try {
-            OuterAdapter adapter;
-            adapter = loader.getExtension(config.getName(), config.getKey());
+  private void loadAdapter(OuterAdapterConfig config, List<OuterAdapter> canalOutConnectors) {
+    try {
+      OuterAdapter adapter;
+      adapter = loader.getExtension(config.getName(), config.getKey());
 
-            ClassLoader cl = Thread.currentThread().getContextClassLoader();
-            // 替换ClassLoader
-            Thread.currentThread().setContextClassLoader(adapter.getClass().getClassLoader());
-            Environment env = (Environment) SpringContext.getBean(Environment.class);
-            Properties evnProperties = null;
-            if (env instanceof StandardEnvironment) {
-                evnProperties = new Properties();
-                for (PropertySource<?> propertySource : ((StandardEnvironment) env).getPropertySources()) {
-                    if (propertySource instanceof EnumerablePropertySource) {
-                        String[] names = ((EnumerablePropertySource<?>) propertySource).getPropertyNames();
-                        for (String name : names) {
-                            Object val = env.getProperty(name);
-                            if (val != null) {
-                                evnProperties.put(name, val);
-                            }
-                        }
-                    }
-                }
+      ClassLoader cl = Thread.currentThread().getContextClassLoader();
+      // 替换ClassLoader
+      Thread.currentThread().setContextClassLoader(adapter.getClass().getClassLoader());
+      Environment env = (Environment) SpringContext.getBean(Environment.class);
+      Properties evnProperties = null;
+      if (env instanceof StandardEnvironment) {
+        evnProperties = new Properties();
+        for (PropertySource<?> propertySource : ((StandardEnvironment) env).getPropertySources()) {
+          if (propertySource instanceof EnumerablePropertySource) {
+            String[] names = ((EnumerablePropertySource<?>) propertySource).getPropertyNames();
+            for (String name : names) {
+              Object val = env.getProperty(name);
+              if (val != null) {
+                evnProperties.put(name, val);
+              }
             }
-            adapter.init(config, evnProperties);
-            Thread.currentThread().setContextClassLoader(cl);
-            canalOutConnectors.add(adapter);
-            logger.info("Load canal adapter: {} succeed", config.getName());
-        } catch (Exception e) {
-            logger.error("Load canal adapter: {} failed", config.getName(), e);
+          }
         }
+      }
+      adapter.init(config, evnProperties);
+      Thread.currentThread().setContextClassLoader(cl);
+      canalOutConnectors.add(adapter);
+      logger.info("Load canal adapter: {} succeed", config.getName());
+    } catch (Exception e) {
+      logger.error("Load canal adapter: {} failed", config.getName(), e);
     }
+  }
 
-    /**
-     * 销毁所有适配器 为防止canal实例太多造成销毁阻塞, 并行销毁
-     */
-    public void destroy() {
-        if (!canalAdapterProcessors.isEmpty()) {
-            ExecutorService stopExecutorService = Executors.newFixedThreadPool(canalAdapterProcessors.size());
-            for (AdapterProcessor adapterProcessor : canalAdapterProcessors.values()) {
-                stopExecutorService.execute(adapterProcessor::stop);
-            }
-            stopExecutorService.shutdown();
-            try {
-                while (!stopExecutorService.awaitTermination(1, TimeUnit.SECONDS)) {
-                    // ignore
-                }
-            } catch (InterruptedException e) {
-                // ignore
-            }
+  /**
+   * 销毁所有适配器 为防止canal实例太多造成销毁阻塞, 并行销毁
+   */
+  public void destroy() {
+    if (!canalAdapterProcessors.isEmpty()) {
+      ExecutorService stopExecutorService = Executors.newFixedThreadPool(
+          canalAdapterProcessors.size());
+      for (AdapterProcessor adapterProcessor : canalAdapterProcessors.values()) {
+        stopExecutorService.execute(adapterProcessor::stop);
+      }
+      stopExecutorService.shutdown();
+      try {
+        while (!stopExecutorService.awaitTermination(1, TimeUnit.SECONDS)) {
+          // ignore
         }
-        logger.info("All canal adapters destroyed");
+      } catch (InterruptedException e) {
+        // ignore
+      }
     }
+    logger.info("All canal adapters destroyed");
+  }
 }

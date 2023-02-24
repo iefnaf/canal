@@ -29,91 +29,95 @@ import com.alibaba.otter.canal.sink.exception.CanalSinkException;
 @Ignore
 public class RdsLocalBinlogDumpTest {
 
-    @Test
-    public void testSimple() {
-        String directory = "/tmp/rds";
-        final RdsLocalBinlogEventParser controller = new RdsLocalBinlogEventParser();
-        controller.setMasterInfo(new AuthenticationInfo(new InetSocketAddress("127.0.0.1", 3306), "root", "hello"));
-        controller.setConnectionCharsetStd(Charset.forName("UTF-8"));
-        controller.setDirectory(directory);
-        controller.setAccesskey("");
-        controller.setSecretkey("");
-        controller.setInstanceId("");
-        controller.setStartTime(1507860498350L);
-        controller.setEventSink(new AbstractCanalEventSinkTest<List<Entry>>() {
+  @Test
+  public void testSimple() {
+    String directory = "/tmp/rds";
+    final RdsLocalBinlogEventParser controller = new RdsLocalBinlogEventParser();
+    controller.setMasterInfo(
+        new AuthenticationInfo(new InetSocketAddress("127.0.0.1", 3306), "root", "hello"));
+    controller.setConnectionCharsetStd(Charset.forName("UTF-8"));
+    controller.setDirectory(directory);
+    controller.setAccesskey("");
+    controller.setSecretkey("");
+    controller.setInstanceId("");
+    controller.setStartTime(1507860498350L);
+    controller.setEventSink(new AbstractCanalEventSinkTest<List<Entry>>() {
 
-            public boolean sink(List<Entry> entrys, InetSocketAddress remoteAddress, String destination)
-                                                                                                        throws CanalSinkException,
-                                                                                                        InterruptedException {
+      public boolean sink(List<Entry> entrys, InetSocketAddress remoteAddress, String destination)
+          throws CanalSinkException,
+          InterruptedException {
 
-                for (Entry entry : entrys) {
-                    if (entry.getEntryType() == EntryType.TRANSACTIONBEGIN
-                        || entry.getEntryType() == EntryType.TRANSACTIONEND) {
-                        continue;
-                    }
+        for (Entry entry : entrys) {
+          if (entry.getEntryType() == EntryType.TRANSACTIONBEGIN
+              || entry.getEntryType() == EntryType.TRANSACTIONEND) {
+            continue;
+          }
 
-                    if (entry.getEntryType() == EntryType.ROWDATA) {
-                        RowChange rowChange = null;
-                        try {
-                            rowChange = RowChange.parseFrom(entry.getStoreValue());
-                        } catch (Exception e) {
-                            throw new RuntimeException("ERROR ## parser of eromanga-event has an error , data:"
-                                                       + entry.toString(), e);
-                        }
-
-                        EventType eventType = rowChange.getEventType();
-                        System.out.println(String.format("================> binlog[%s:%s] , name[%s,%s] , eventType : %s",
-                            entry.getHeader().getLogfileName(),
-                            entry.getHeader().getLogfileOffset(),
-                            entry.getHeader().getSchemaName(),
-                            entry.getHeader().getTableName(),
-                            eventType));
-
-                        for (RowData rowData : rowChange.getRowDatasList()) {
-                            if (eventType == EventType.DELETE) {
-                                print(rowData.getBeforeColumnsList());
-                            } else if (eventType == EventType.INSERT) {
-                                print(rowData.getAfterColumnsList());
-                            } else {
-                                System.out.println("-------> before");
-                                print(rowData.getBeforeColumnsList());
-                                System.out.println("-------> after");
-                                print(rowData.getAfterColumnsList());
-                            }
-                        }
-                    }
-                }
-
-                return true;
+          if (entry.getEntryType() == EntryType.ROWDATA) {
+            RowChange rowChange = null;
+            try {
+              rowChange = RowChange.parseFrom(entry.getStoreValue());
+            } catch (Exception e) {
+              throw new RuntimeException("ERROR ## parser of eromanga-event has an error , data:"
+                  + entry.toString(), e);
             }
 
-        });
-        controller.setLogPositionManager(new AbstractLogPositionManager() {
+            EventType eventType = rowChange.getEventType();
+            System.out.println(
+                String.format("================> binlog[%s:%s] , name[%s,%s] , eventType : %s",
+                    entry.getHeader().getLogfileName(),
+                    entry.getHeader().getLogfileOffset(),
+                    entry.getHeader().getSchemaName(),
+                    entry.getHeader().getTableName(),
+                    eventType));
 
-            @Override
-            public LogPosition getLatestIndexBy(String destination) {
-                return null;
+            for (RowData rowData : rowChange.getRowDatasList()) {
+              if (eventType == EventType.DELETE) {
+                print(rowData.getBeforeColumnsList());
+              } else if (eventType == EventType.INSERT) {
+                print(rowData.getAfterColumnsList());
+              } else {
+                System.out.println("-------> before");
+                print(rowData.getBeforeColumnsList());
+                System.out.println("-------> after");
+                print(rowData.getAfterColumnsList());
+              }
             }
-
-            @Override
-            public void persistLogPosition(String destination, LogPosition logPosition) throws CanalParseException {
-                System.out.println(logPosition);
-            }
-        });
-
-        controller.start();
-
-        try {
-            Thread.sleep(100 * 1000 * 1000L);
-        } catch (InterruptedException e) {
-            Assert.fail(e.getMessage());
+          }
         }
-        controller.stop();
-    }
 
-    private void print(List<Column> columns) {
-        for (Column column : columns) {
-            System.out.println(column.getName() + " : " + column.getValue() + "    update=" + column.getUpdated());
-        }
+        return true;
+      }
+
+    });
+    controller.setLogPositionManager(new AbstractLogPositionManager() {
+
+      @Override
+      public LogPosition getLatestIndexBy(String destination) {
+        return null;
+      }
+
+      @Override
+      public void persistLogPosition(String destination, LogPosition logPosition)
+          throws CanalParseException {
+        System.out.println(logPosition);
+      }
+    });
+
+    controller.start();
+
+    try {
+      Thread.sleep(100 * 1000 * 1000L);
+    } catch (InterruptedException e) {
+      Assert.fail(e.getMessage());
     }
+    controller.stop();
+  }
+
+  private void print(List<Column> columns) {
+    for (Column column : columns) {
+      System.out.println(
+          column.getName() + " : " + column.getValue() + "    update=" + column.getUpdated());
+    }
+  }
 }

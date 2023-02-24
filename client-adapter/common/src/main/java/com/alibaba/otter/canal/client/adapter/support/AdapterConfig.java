@@ -1,11 +1,13 @@
 package com.alibaba.otter.canal.client.adapter.support;
 
 public interface AdapterConfig {
-    String getDataSourceKey();
 
-    AdapterMapping getMapping();
+  String getDataSourceKey();
 
-    interface AdapterMapping {
-        String getEtlCondition();
-    }
+  AdapterMapping getMapping();
+
+  interface AdapterMapping {
+
+    String getEtlCondition();
+  }
 }

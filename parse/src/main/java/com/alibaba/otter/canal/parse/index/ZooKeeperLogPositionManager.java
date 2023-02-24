@@ -13,36 +13,37 @@ import com.alibaba.otter.canal.protocol.position.LogPosition;
  */
 public class ZooKeeperLogPositionManager extends AbstractLogPositionManager {
 
-    private final ZkClientx zkClientx;
+  private final ZkClientx zkClientx;
 
-    public ZooKeeperLogPositionManager(ZkClientx zkClient){
-        if (zkClient == null) {
-            throw new NullPointerException("null zkClient");
-        }
-
-        this.zkClientx = zkClient;
+  public ZooKeeperLogPositionManager(ZkClientx zkClient) {
+    if (zkClient == null) {
+      throw new NullPointerException("null zkClient");
     }
 
-    @Override
-    public LogPosition getLatestIndexBy(String destination) {
-        String path = ZookeeperPathUtils.getParsePath(destination);
-        byte[] data = zkClientx.readData(path, true);
-        if (data == null || data.length == 0) {
-            return null;
-        }
+    this.zkClientx = zkClient;
+  }
 
-        return JsonUtils.unmarshalFromByte(data, LogPosition.class);
+  @Override
+  public LogPosition getLatestIndexBy(String destination) {
+    String path = ZookeeperPathUtils.getParsePath(destination);
+    byte[] data = zkClientx.readData(path, true);
+    if (data == null || data.length == 0) {
+      return null;
     }
 
-    @Override
-    public void persistLogPosition(String destination, LogPosition logPosition) throws CanalParseException {
-        String path = ZookeeperPathUtils.getParsePath(destination);
-        byte[] data = JsonUtils.marshalToByte(logPosition);
-        try {
-            zkClientx.writeData(path, data);
-        } catch (ZkNoNodeException e) {
-            zkClientx.createPersistent(path, data, true);
-        }
+    return JsonUtils.unmarshalFromByte(data, LogPosition.class);
+  }
+
+  @Override
+  public void persistLogPosition(String destination, LogPosition logPosition)
+      throws CanalParseException {
+    String path = ZookeeperPathUtils.getParsePath(destination);
+    byte[] data = JsonUtils.marshalToByte(logPosition);
+    try {
+      zkClientx.writeData(path, data);
+    } catch (ZkNoNodeException e) {
+      zkClientx.createPersistent(path, data, true);
     }
+  }
 
 }

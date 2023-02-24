@@ -23,78 +23,80 @@ import com.alibaba.otter.canal.parse.inbound.mysql.rds.request.DescribeBinlogFil
  */
 public class RdsBinlogOpenApi {
 
-    protected static final Logger logger = LoggerFactory.getLogger(RdsBinlogOpenApi.class);
+  protected static final Logger logger = LoggerFactory.getLogger(RdsBinlogOpenApi.class);
 
-    public static List<BinlogFile> listBinlogFiles(String url, String ak, String sk, String dbInstanceId,
-                                                   Date startTime, Date endTime) {
-        DescribeBinlogFilesRequest request = new DescribeBinlogFilesRequest();
-        if (StringUtils.isNotEmpty(url)) {
-            try {
-                URI uri = new URI(url);
-                request.setEndPoint(uri.getHost());
-            } catch (URISyntaxException e) {
-                logger.error("resolve url host failed, will use default rds endpoint!");
-            }
-        }
-        request.setStartDate(startTime);
-        request.setEndDate(endTime);
-        request.setPageNumber(1);
-        request.setPageSize(100);
-        request.setRdsInstanceId(dbInstanceId);
-        request.setAccessKeyId(ak);
-        request.setAccessKeySecret(sk);
-        DescribeBinlogFileResult result = null;
-        int retryTime = 3;
-        while (true) {
-            try {
-                result = request.doAction();
-                break;
-            } catch (Exception e) {
-                if (retryTime-- <= 0) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    Thread.sleep(100L);
-                } catch (InterruptedException e1) {
-                }
-            }
-        }
-        if (result == null) {
-            return Collections.EMPTY_LIST;
-        }
-        RdsItem rdsItem = result.getItems();
-        if (rdsItem != null) {
-            return rdsItem.getBinLogFile();
-        }
-        return Collections.EMPTY_LIST;
+  public static List<BinlogFile> listBinlogFiles(String url, String ak, String sk,
+      String dbInstanceId,
+      Date startTime, Date endTime) {
+    DescribeBinlogFilesRequest request = new DescribeBinlogFilesRequest();
+    if (StringUtils.isNotEmpty(url)) {
+      try {
+        URI uri = new URI(url);
+        request.setEndPoint(uri.getHost());
+      } catch (URISyntaxException e) {
+        logger.error("resolve url host failed, will use default rds endpoint!");
+      }
     }
+    request.setStartDate(startTime);
+    request.setEndDate(endTime);
+    request.setPageNumber(1);
+    request.setPageSize(100);
+    request.setRdsInstanceId(dbInstanceId);
+    request.setAccessKeyId(ak);
+    request.setAccessKeySecret(sk);
+    DescribeBinlogFileResult result = null;
+    int retryTime = 3;
+    while (true) {
+      try {
+        result = request.doAction();
+        break;
+      } catch (Exception e) {
+        if (retryTime-- <= 0) {
+          throw new RuntimeException(e);
+        }
+        try {
+          Thread.sleep(100L);
+        } catch (InterruptedException e1) {
+        }
+      }
+    }
+    if (result == null) {
+      return Collections.EMPTY_LIST;
+    }
+    RdsItem rdsItem = result.getItems();
+    if (rdsItem != null) {
+      return rdsItem.getBinLogFile();
+    }
+    return Collections.EMPTY_LIST;
+  }
 
-    public static RdsBackupPolicy queryBinlogBackupPolicy(String url, String ak, String sk, String dbInstanceId) {
-        DescribeBackupPolicyRequest request = new DescribeBackupPolicyRequest();
-        if (StringUtils.isNotEmpty(url)) {
-            try {
-                URI uri = new URI(url);
-                request.setEndPoint(uri.getHost());
-            } catch (URISyntaxException e) {
-                logger.error("resolve url host failed, will use default rds endpoint!");
-            }
-        }
-        request.setRdsInstanceId(dbInstanceId);
-        request.setAccessKeyId(ak);
-        request.setAccessKeySecret(sk);
-        int retryTime = 3;
-        while (true) {
-            try {
-                return request.doAction();
-            } catch (Exception e) {
-                if (retryTime-- <= 0) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    Thread.sleep(100L);
-                } catch (InterruptedException e1) {
-                }
-            }
-        }
+  public static RdsBackupPolicy queryBinlogBackupPolicy(String url, String ak, String sk,
+      String dbInstanceId) {
+    DescribeBackupPolicyRequest request = new DescribeBackupPolicyRequest();
+    if (StringUtils.isNotEmpty(url)) {
+      try {
+        URI uri = new URI(url);
+        request.setEndPoint(uri.getHost());
+      } catch (URISyntaxException e) {
+        logger.error("resolve url host failed, will use default rds endpoint!");
+      }
     }
+    request.setRdsInstanceId(dbInstanceId);
+    request.setAccessKeyId(ak);
+    request.setAccessKeySecret(sk);
+    int retryTime = 3;
+    while (true) {
+      try {
+        return request.doAction();
+      } catch (Exception e) {
+        if (retryTime-- <= 0) {
+          throw new RuntimeException(e);
+        }
+        try {
+          Thread.sleep(100L);
+        } catch (InterruptedException e1) {
+        }
+      }
+    }
+  }
 }

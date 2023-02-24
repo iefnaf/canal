@@ -8,19 +8,19 @@ import java.util.List;
  */
 public class RdsItem {
 
-    private List<BinlogFile> BinLogFile;
+  private List<BinlogFile> BinLogFile;
 
-    public List<BinlogFile> getBinLogFile() {
-        return BinLogFile;
-    }
+  public List<BinlogFile> getBinLogFile() {
+    return BinLogFile;
+  }
 
-    public void setBinLogFile(List<BinlogFile> binLogFile) {
-        BinLogFile = binLogFile;
-    }
+  public void setBinLogFile(List<BinlogFile> binLogFile) {
+    BinLogFile = binLogFile;
+  }
 
-    @Override
-    public String toString() {
-        return "RdsItem [BinLogFile=" + BinLogFile + "]";
-    }
+  @Override
+  public String toString() {
+    return "RdsItem [BinLogFile=" + BinLogFile + "]";
+  }
 
 }

@@ -18,33 +18,34 @@ import com.alibaba.otter.canal.client.adapter.support.MappingConfigsLoader;
  */
 public class ConfigLoader {
 
-    private static Logger logger = LoggerFactory.getLogger(ConfigLoader.class);
+  private static Logger logger = LoggerFactory.getLogger(ConfigLoader.class);
 
-    /**
-     * 加载RDB表映射配置
-     *
-     * @return 配置名/配置文件名--对象
-     */
-    public static Map<String, MappingConfig> load(Properties envProperties) {
-        logger.info("## Start loading rdb mapping config ... ");
+  /**
+   * 加载RDB表映射配置
+   *
+   * @return 配置名/配置文件名--对象
+   */
+  public static Map<String, MappingConfig> load(Properties envProperties) {
+    logger.info("## Start loading rdb mapping config ... ");
 
-        Map<String, MappingConfig> result = new LinkedHashMap<>();
+    Map<String, MappingConfig> result = new LinkedHashMap<>();
 
-        Map<String, String> configContentMap = MappingConfigsLoader.loadConfigs("rdb");
-        configContentMap.forEach((fileName, content) -> {
-            MappingConfig config = YamlUtils.ymlToObj(null, content, MappingConfig.class, null, envProperties);
-            if (config == null) {
-                return;
-            }
-            try {
-                config.validate();
-            } catch (Exception e) {
-                throw new RuntimeException("ERROR Config: " + fileName + " " + e.getMessage(), e);
-            }
-            result.put(fileName, config);
-        });
+    Map<String, String> configContentMap = MappingConfigsLoader.loadConfigs("rdb");
+    configContentMap.forEach((fileName, content) -> {
+      MappingConfig config = YamlUtils.ymlToObj(null, content, MappingConfig.class, null,
+          envProperties);
+      if (config == null) {
+        return;
+      }
+      try {
+        config.validate();
+      } catch (Exception e) {
+        throw new RuntimeException("ERROR Config: " + fileName + " " + e.getMessage(), e);
+      }
+      result.put(fileName, config);
+    });
 
-        logger.info("## Rdb mapping config loaded");
-        return result;
-    }
+    logger.info("## Rdb mapping config loaded");
+    return result;
+  }
 }

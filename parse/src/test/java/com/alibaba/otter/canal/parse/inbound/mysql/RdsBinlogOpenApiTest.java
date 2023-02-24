@@ -18,19 +18,22 @@ import com.alibaba.otter.canal.parse.inbound.mysql.rds.data.RdsBackupPolicy;
 @Ignore
 public class RdsBinlogOpenApiTest {
 
-    @Test
-    public void testSimple() throws Throwable {
-        Date startTime = DateUtils.parseDate("2018-08-10 12:00:00", new String[] { "yyyy-MM-dd HH:mm:ss" });
-        Date endTime = DateUtils.parseDate("2018-08-11 12:00:00", new String[] { "yyyy-MM-dd HH:mm:ss" });
-        String url = "https://rds.aliyuncs.com/";
-        String ak = "";
-        String sk = "";
-        String dbInstanceId = "";
+  @Test
+  public void testSimple() throws Throwable {
+    Date startTime = DateUtils.parseDate("2018-08-10 12:00:00",
+        new String[]{"yyyy-MM-dd HH:mm:ss"});
+    Date endTime = DateUtils.parseDate("2018-08-11 12:00:00", new String[]{"yyyy-MM-dd HH:mm:ss"});
+    String url = "https://rds.aliyuncs.com/";
+    String ak = "";
+    String sk = "";
+    String dbInstanceId = "";
 
-        RdsBackupPolicy backupPolicy = RdsBinlogOpenApi.queryBinlogBackupPolicy(url, ak, sk, dbInstanceId);
-        System.out.println(backupPolicy);
+    RdsBackupPolicy backupPolicy = RdsBinlogOpenApi.queryBinlogBackupPolicy(url, ak, sk,
+        dbInstanceId);
+    System.out.println(backupPolicy);
 
-        List<BinlogFile> binlogFiles = RdsBinlogOpenApi.listBinlogFiles(url, ak, sk, dbInstanceId, startTime, endTime);
-        System.out.println(binlogFiles);
-    }
+    List<BinlogFile> binlogFiles = RdsBinlogOpenApi.listBinlogFiles(url, ak, sk, dbInstanceId,
+        startTime, endTime);
+    System.out.println(binlogFiles);
+  }
 }

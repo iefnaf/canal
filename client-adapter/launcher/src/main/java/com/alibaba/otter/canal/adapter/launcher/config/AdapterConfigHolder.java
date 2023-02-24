@@ -11,31 +11,31 @@ import com.alibaba.otter.canal.adapter.launcher.monitor.remote.ConfigItem;
  */
 public class AdapterConfigHolder {
 
-    private volatile long adapterConfigTimestamp = 0;
+  private volatile long adapterConfigTimestamp = 0;
 
-    private final Map<String, ConfigItem> adapterConfigs = new ConcurrentHashMap<>();
+  private final Map<String, ConfigItem> adapterConfigs = new ConcurrentHashMap<>();
 
-    private static AdapterConfigHolder adapterConfigHolder;
+  private static AdapterConfigHolder adapterConfigHolder;
 
-    private AdapterConfigHolder() {
+  private AdapterConfigHolder() {
+  }
+
+  public synchronized static AdapterConfigHolder getInstance() {
+    if (adapterConfigHolder == null) {
+      adapterConfigHolder = new AdapterConfigHolder();
     }
+    return adapterConfigHolder;
+  }
 
-    public synchronized static AdapterConfigHolder getInstance() {
-        if (adapterConfigHolder == null) {
-            adapterConfigHolder = new AdapterConfigHolder();
-        }
-        return adapterConfigHolder;
-    }
+  public void setAdapterConfigTimestamp(long configTimestamp) {
+    this.adapterConfigTimestamp = configTimestamp;
+  }
 
-    public void setAdapterConfigTimestamp(long configTimestamp) {
-        this.adapterConfigTimestamp = configTimestamp;
-    }
+  public long getAdapterConfigTimestamp() {
+    return adapterConfigTimestamp;
+  }
 
-    public long getAdapterConfigTimestamp() {
-        return adapterConfigTimestamp;
-    }
-
-    public Map<String, ConfigItem> getAdapterConfigs() {
-        return this.adapterConfigs;
-    }
+  public Map<String, ConfigItem> getAdapterConfigs() {
+    return this.adapterConfigs;
+  }
 }

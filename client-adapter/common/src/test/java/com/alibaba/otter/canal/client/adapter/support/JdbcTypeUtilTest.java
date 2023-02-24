@@ -11,9 +11,11 @@ import org.powermock.modules.junit4.PowerMockRunner;
 @RunWith(PowerMockRunner.class)
 public class JdbcTypeUtilTest {
 
-  @Rule public final ExpectedException thrown = ExpectedException.none();
+  @Rule
+  public final ExpectedException thrown = ExpectedException.none();
 
-  @Rule public final Timeout globalTimeout = new Timeout(10000);
+  @Rule
+  public final Timeout globalTimeout = new Timeout(10000);
 
   /* testedClasses: JdbcTypeUtil */
   // Test written by Diffblue Cover.
@@ -32,7 +34,7 @@ public class JdbcTypeUtilTest {
         JdbcTypeUtil.typeConvert(tableName, columnName, value, sqlType, mysqlType);
 
     // Assert result
-    Assert.assertArrayEquals(new byte[] {(byte)102, (byte)111, (byte)111}, ((byte[])actual));
+    Assert.assertArrayEquals(new byte[]{(byte) 102, (byte) 111, (byte) 111}, ((byte[]) actual));
   }
 
   // Test written by Diffblue Cover.
@@ -89,7 +91,7 @@ public class JdbcTypeUtilTest {
         JdbcTypeUtil.typeConvert(tableName, columnName, value, sqlType, mysqlType);
 
     // Assert result
-    Assert.assertFalse((boolean)actual);
+    Assert.assertFalse((boolean) actual);
   }
 
   // Test written by Diffblue Cover.
@@ -146,7 +148,7 @@ public class JdbcTypeUtilTest {
         JdbcTypeUtil.typeConvert(tableName, columnName, value, sqlType, mysqlType);
 
     // Assert result
-    Assert.assertTrue((boolean)actual);
+    Assert.assertTrue((boolean) actual);
   }
 
   // Test written by Diffblue Cover.
@@ -165,7 +167,7 @@ public class JdbcTypeUtilTest {
         JdbcTypeUtil.typeConvert(tableName, columnName, value, sqlType, mysqlType);
 
     // Assert result
-    Assert.assertEquals(0.0f, (float)actual, 0.0f);
+    Assert.assertEquals(0.0f, (float) actual, 0.0f);
   }
 
   // Test written by Diffblue Cover.
@@ -184,6 +186,6 @@ public class JdbcTypeUtilTest {
         JdbcTypeUtil.typeConvert(tableName, columnName, value, sqlType, mysqlType);
 
     // Assert result
-    Assert.assertEquals((short)0, actual);
+    Assert.assertEquals((short) 0, actual);
   }
 }

@@ -21,182 +21,185 @@ import com.taobao.tddl.dbsync.binlog.event.TableMapLogEvent;
  */
 public class TableMeta {
 
-    private String          schema;
-    private String          table;
-    private List<FieldMeta> fields = new ArrayList<>();
-    private String          ddl;                                          // 表结构的DDL语句
+  private String schema;
+  private String table;
+  private List<FieldMeta> fields = new ArrayList<>();
+  private String ddl;                                          // 表结构的DDL语句
 
-    public TableMeta(){
+  public TableMeta() {
+
+  }
+
+  public TableMeta(String schema, String table, List<FieldMeta> fields) {
+    this.schema = schema;
+    this.table = table;
+    this.fields = fields;
+  }
+
+  public String getFullName() {
+    return schema + "." + table;
+  }
+
+  public String getSchema() {
+    return schema;
+  }
+
+  public void setSchema(String schema) {
+    this.schema = schema;
+  }
+
+  public String getTable() {
+    return table;
+  }
+
+  public void setTable(String table) {
+    this.table = table;
+  }
+
+  public List<FieldMeta> getFields() {
+    return fields;
+  }
+
+  public void setFields(List<FieldMeta> fileds) {
+    this.fields = fileds;
+  }
+
+  public FieldMeta getFieldMetaByName(String name) {
+    for (FieldMeta meta : fields) {
+      if (meta.getColumnName().equalsIgnoreCase(name)) {
+        return meta;
+      }
+    }
+
+    throw new RuntimeException("unknow column : " + name);
+  }
+
+  public List<FieldMeta> getPrimaryFields() {
+    List<FieldMeta> primarys = new ArrayList<>();
+    for (FieldMeta meta : fields) {
+      if (meta.isKey()) {
+        primarys.add(meta);
+      }
+    }
+
+    return primarys;
+  }
+
+  public String getDdl() {
+    return ddl;
+  }
+
+  public void setDdl(String ddl) {
+    this.ddl = ddl;
+  }
+
+  public void addFieldMeta(FieldMeta fieldMeta) {
+    this.fields.add(fieldMeta);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder data = new StringBuilder();
+    data.append("TableMeta [schema=" + schema + ", table=" + table + ", fileds=");
+    for (FieldMeta field : fields) {
+      data.append("\n\t").append(field.toString());
+    }
+    data.append("\n]");
+    return data.toString();
+  }
+
+  public static class FieldMeta {
+
+    public FieldMeta() {
 
     }
 
-    public TableMeta(String schema, String table, List<FieldMeta> fields){
-        this.schema = schema;
-        this.table = table;
-        this.fields = fields;
+    public FieldMeta(String columnName, String columnType, boolean nullable, boolean key,
+        String defaultValue) {
+      this.columnName = columnName;
+      this.columnType = columnType;
+      this.nullable = nullable;
+      this.key = key;
+      this.defaultValue = defaultValue;
     }
 
-    public String getFullName() {
-        return schema + "." + table;
+    private String columnName;
+    private String columnType;
+    private boolean nullable;
+    private boolean key;
+    private String defaultValue;
+    private String extra;
+    private boolean unique;
+
+    public String getColumnName() {
+      return columnName;
     }
 
-    public String getSchema() {
-        return schema;
+    public void setColumnName(String columnName) {
+      this.columnName = columnName;
     }
 
-    public void setSchema(String schema) {
-        this.schema = schema;
+    public String getColumnType() {
+      return columnType;
     }
 
-    public String getTable() {
-        return table;
+    public void setColumnType(String columnType) {
+      this.columnType = columnType;
     }
 
-    public void setTable(String table) {
-        this.table = table;
+    public void setNullable(boolean nullable) {
+      this.nullable = nullable;
     }
 
-    public List<FieldMeta> getFields() {
-        return fields;
+    public String getDefaultValue() {
+      return defaultValue;
     }
 
-    public void setFields(List<FieldMeta> fileds) {
-        this.fields = fileds;
+    public void setDefaultValue(String defaultValue) {
+      this.defaultValue = defaultValue;
     }
 
-    public FieldMeta getFieldMetaByName(String name) {
-        for (FieldMeta meta : fields) {
-            if (meta.getColumnName().equalsIgnoreCase(name)) {
-                return meta;
-            }
-        }
-
-        throw new RuntimeException("unknow column : " + name);
+    public boolean isUnsigned() {
+      return StringUtils.containsIgnoreCase(columnType, "unsigned");
     }
 
-    public List<FieldMeta> getPrimaryFields() {
-        List<FieldMeta> primarys = new ArrayList<>();
-        for (FieldMeta meta : fields) {
-            if (meta.isKey()) {
-                primarys.add(meta);
-            }
-        }
-
-        return primarys;
+    public boolean isNullable() {
+      return nullable;
     }
 
-    public String getDdl() {
-        return ddl;
+    public boolean isKey() {
+      return key;
     }
 
-    public void setDdl(String ddl) {
-        this.ddl = ddl;
+    public void setKey(boolean key) {
+      this.key = key;
     }
 
-    public void addFieldMeta(FieldMeta fieldMeta) {
-        this.fields.add(fieldMeta);
+    public String getExtra() {
+      return extra;
+    }
+
+    public void setExtra(String extra) {
+      this.extra = extra;
+    }
+
+    public boolean isUnique() {
+      return unique;
+    }
+
+    public void setUnique(boolean unique) {
+      this.unique = unique;
     }
 
     @Override
     public String toString() {
-        StringBuilder data = new StringBuilder();
-        data.append("TableMeta [schema=" + schema + ", table=" + table + ", fileds=");
-        for (FieldMeta field : fields) {
-            data.append("\n\t").append(field.toString());
-        }
-        data.append("\n]");
-        return data.toString();
+      return "FieldMeta [columnName=" + columnName + ", columnType=" + columnType + ", nullable="
+          + nullable
+          + ", key=" + key + ", defaultValue=" + defaultValue + ", extra=" + extra + ", unique="
+          + unique
+          + "]";
     }
 
-    public static class FieldMeta {
-
-        public FieldMeta(){
-
-        }
-
-        public FieldMeta(String columnName, String columnType, boolean nullable, boolean key, String defaultValue){
-            this.columnName = columnName;
-            this.columnType = columnType;
-            this.nullable = nullable;
-            this.key = key;
-            this.defaultValue = defaultValue;
-        }
-
-        private String  columnName;
-        private String  columnType;
-        private boolean nullable;
-        private boolean key;
-        private String  defaultValue;
-        private String  extra;
-        private boolean unique;
-
-        public String getColumnName() {
-            return columnName;
-        }
-
-        public void setColumnName(String columnName) {
-            this.columnName = columnName;
-        }
-
-        public String getColumnType() {
-            return columnType;
-        }
-
-        public void setColumnType(String columnType) {
-            this.columnType = columnType;
-        }
-
-        public void setNullable(boolean nullable) {
-            this.nullable = nullable;
-        }
-
-        public String getDefaultValue() {
-            return defaultValue;
-        }
-
-        public void setDefaultValue(String defaultValue) {
-            this.defaultValue = defaultValue;
-        }
-
-        public boolean isUnsigned() {
-            return StringUtils.containsIgnoreCase(columnType, "unsigned");
-        }
-
-        public boolean isNullable() {
-            return nullable;
-        }
-
-        public boolean isKey() {
-            return key;
-        }
-
-        public void setKey(boolean key) {
-            this.key = key;
-        }
-
-        public String getExtra() {
-            return extra;
-        }
-
-        public void setExtra(String extra) {
-            this.extra = extra;
-        }
-
-        public boolean isUnique() {
-            return unique;
-        }
-
-        public void setUnique(boolean unique) {
-            this.unique = unique;
-        }
-
-        @Override
-        public String toString() {
-            return "FieldMeta [columnName=" + columnName + ", columnType=" + columnType + ", nullable=" + nullable
-                   + ", key=" + key + ", defaultValue=" + defaultValue + ", extra=" + extra + ", unique=" + unique
-                   + "]";
-        }
-
-    }
+  }
 
 }

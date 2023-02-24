@@ -5,11 +5,11 @@ import java.util.concurrent.ThreadFactory;
 
 public class DaemonThreadFactory implements ThreadFactory {
 
-    public static final ThreadFactory daemonThreadFactory = new DaemonThreadFactory();
+  public static final ThreadFactory daemonThreadFactory = new DaemonThreadFactory();
 
-    public Thread newThread(Runnable r) {
-        Thread t = Executors.defaultThreadFactory().newThread(r);
-        t.setDaemon(true);
-        return t;
-    }
+  public Thread newThread(Runnable r) {
+    Thread t = Executors.defaultThreadFactory().newThread(r);
+    t.setDaemon(true);
+    return t;
+  }
 }

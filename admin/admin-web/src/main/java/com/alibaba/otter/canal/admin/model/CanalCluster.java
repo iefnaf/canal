@@ -19,55 +19,55 @@ import javax.persistence.Table;
 @Table(name = "canal_cluster")
 public class CanalCluster extends Model {
 
-    public static final CanalClusterFinder find = new CanalClusterFinder();
+  public static final CanalClusterFinder find = new CanalClusterFinder();
 
-    public static class CanalClusterFinder extends Finder<Long, CanalCluster> {
+  public static class CanalClusterFinder extends Finder<Long, CanalCluster> {
 
-        /**
-         * Construct using the default EbeanServer.
-         */
-        public CanalClusterFinder(){
-            super(CanalCluster.class);
-        }
-
+    /**
+     * Construct using the default EbeanServer.
+     */
+    public CanalClusterFinder() {
+      super(CanalCluster.class);
     }
 
-    @Id
-    private Long   id;
-    private String name;
-    private String zkHosts;
-    @WhenModified
-    private Date   modifiedTime;
+  }
 
-    public Long getId() {
-        return id;
-    }
+  @Id
+  private Long id;
+  private String name;
+  private String zkHosts;
+  @WhenModified
+  private Date modifiedTime;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public String getZkHosts() {
-        return zkHosts;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setZkHosts(String zkHosts) {
-        this.zkHosts = zkHosts;
-    }
+  public String getZkHosts() {
+    return zkHosts;
+  }
 
-    public Date getModifiedTime() {
-        return modifiedTime;
-    }
+  public void setZkHosts(String zkHosts) {
+    this.zkHosts = zkHosts;
+  }
 
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
-    }
+  public Date getModifiedTime() {
+    return modifiedTime;
+  }
+
+  public void setModifiedTime(Date modifiedTime) {
+    this.modifiedTime = modifiedTime;
+  }
 }

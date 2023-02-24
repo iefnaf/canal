@@ -9,8 +9,8 @@ import com.alibaba.otter.canal.protocol.position.LogPosition;
  */
 public interface CanalLogPositionManager extends CanalLifeCycle {
 
-    LogPosition getLatestIndexBy(String destination);
+  LogPosition getLatestIndexBy(String destination);
 
-    void persistLogPosition(String destination, LogPosition logPosition) throws CanalParseException;
+  void persistLogPosition(String destination, LogPosition logPosition) throws CanalParseException;
 
 }

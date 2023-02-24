@@ -10,76 +10,76 @@ import com.alibaba.otter.canal.connector.core.config.MQProperties;
  */
 public class RocketMQProducerConfig extends MQProperties {
 
-    private String  producerGroup;
-    private boolean enableMessageTrace       = false;
-    private String  customizedTraceTopic;
-    private String  namespace;
-    private String  namesrvAddr;
-    private int     retryTimesWhenSendFailed = 0;
-    private boolean vipChannelEnabled        = false;
-    private String  tag;
+  private String producerGroup;
+  private boolean enableMessageTrace = false;
+  private String customizedTraceTopic;
+  private String namespace;
+  private String namesrvAddr;
+  private int retryTimesWhenSendFailed = 0;
+  private boolean vipChannelEnabled = false;
+  private String tag;
 
-    public String getProducerGroup() {
-        return producerGroup;
-    }
+  public String getProducerGroup() {
+    return producerGroup;
+  }
 
-    public void setProducerGroup(String producerGroup) {
-        this.producerGroup = producerGroup;
-    }
+  public void setProducerGroup(String producerGroup) {
+    this.producerGroup = producerGroup;
+  }
 
-    public boolean isEnableMessageTrace() {
-        return enableMessageTrace;
-    }
+  public boolean isEnableMessageTrace() {
+    return enableMessageTrace;
+  }
 
-    public void setEnableMessageTrace(boolean enableMessageTrace) {
-        this.enableMessageTrace = enableMessageTrace;
-    }
+  public void setEnableMessageTrace(boolean enableMessageTrace) {
+    this.enableMessageTrace = enableMessageTrace;
+  }
 
-    public String getCustomizedTraceTopic() {
-        return customizedTraceTopic;
-    }
+  public String getCustomizedTraceTopic() {
+    return customizedTraceTopic;
+  }
 
-    public void setCustomizedTraceTopic(String customizedTraceTopic) {
-        this.customizedTraceTopic = customizedTraceTopic;
-    }
+  public void setCustomizedTraceTopic(String customizedTraceTopic) {
+    this.customizedTraceTopic = customizedTraceTopic;
+  }
 
-    public String getNamespace() {
-        return namespace;
-    }
+  public String getNamespace() {
+    return namespace;
+  }
 
-    public void setNamespace(String namespace) {
-        this.namespace = namespace;
-    }
+  public void setNamespace(String namespace) {
+    this.namespace = namespace;
+  }
 
-    public String getNamesrvAddr() {
-        return namesrvAddr;
-    }
+  public String getNamesrvAddr() {
+    return namesrvAddr;
+  }
 
-    public void setNamesrvAddr(String namesrvAddr) {
-        this.namesrvAddr = namesrvAddr;
-    }
+  public void setNamesrvAddr(String namesrvAddr) {
+    this.namesrvAddr = namesrvAddr;
+  }
 
-    public int getRetryTimesWhenSendFailed() {
-        return retryTimesWhenSendFailed;
-    }
+  public int getRetryTimesWhenSendFailed() {
+    return retryTimesWhenSendFailed;
+  }
 
-    public void setRetryTimesWhenSendFailed(int retryTimesWhenSendFailed) {
-        this.retryTimesWhenSendFailed = retryTimesWhenSendFailed;
-    }
+  public void setRetryTimesWhenSendFailed(int retryTimesWhenSendFailed) {
+    this.retryTimesWhenSendFailed = retryTimesWhenSendFailed;
+  }
 
-    public boolean isVipChannelEnabled() {
-        return vipChannelEnabled;
-    }
+  public boolean isVipChannelEnabled() {
+    return vipChannelEnabled;
+  }
 
-    public void setVipChannelEnabled(boolean vipChannelEnabled) {
-        this.vipChannelEnabled = vipChannelEnabled;
-    }
+  public void setVipChannelEnabled(boolean vipChannelEnabled) {
+    this.vipChannelEnabled = vipChannelEnabled;
+  }
 
-    public String getTag() {
-        return tag;
-    }
+  public String getTag() {
+    return tag;
+  }
 
-    public void setTag(String tag) {
-        this.tag = tag;
-    }
+  public void setTag(String tag) {
+    this.tag = tag;
+  }
 }

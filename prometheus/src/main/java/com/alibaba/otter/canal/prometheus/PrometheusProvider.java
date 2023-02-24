@@ -8,8 +8,8 @@ import com.alibaba.otter.canal.spi.CanalMetricsService;
  */
 public class PrometheusProvider implements CanalMetricsProvider {
 
-    @Override
-    public CanalMetricsService getService() {
-        return PrometheusService.getInstance();
-    }
+  @Override
+  public CanalMetricsService getService() {
+    return PrometheusService.getInstance();
+  }
 }

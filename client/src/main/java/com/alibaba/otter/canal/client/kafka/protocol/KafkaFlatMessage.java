@@ -12,24 +12,24 @@ import org.springframework.beans.BeanUtils;
  */
 public class KafkaFlatMessage extends FlatMessage {
 
-    private static final long serialVersionUID = 5748024400508080710L;
+  private static final long serialVersionUID = 5748024400508080710L;
 
-    /**
-     * Kafka 消息 offset
-     */
-    private long              offset;
+  /**
+   * Kafka 消息 offset
+   */
+  private long offset;
 
-    public KafkaFlatMessage(FlatMessage message, long offset){
-        super(message.getId());
-        BeanUtils.copyProperties(message, this);
-        this.offset = offset;
-    }
+  public KafkaFlatMessage(FlatMessage message, long offset) {
+    super(message.getId());
+    BeanUtils.copyProperties(message, this);
+    this.offset = offset;
+  }
 
-    public long getOffset() {
-        return offset;
-    }
+  public long getOffset() {
+    return offset;
+  }
 
-    public void setOffset(long offset) {
-        this.offset = offset;
-    }
+  public void setOffset(long offset) {
+    this.offset = offset;
+  }
 }

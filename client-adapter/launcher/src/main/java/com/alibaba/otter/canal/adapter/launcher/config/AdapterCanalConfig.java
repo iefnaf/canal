@@ -23,57 +23,57 @@ import com.alibaba.otter.canal.client.adapter.support.DatasourceConfig;
 @ConfigurationProperties(prefix = "canal.conf")
 public class AdapterCanalConfig extends CanalClientConfig {
 
-    public final Set<String>              DESTINATIONS = new LinkedHashSet<>();
+  public final Set<String> DESTINATIONS = new LinkedHashSet<>();
 
-    private Map<String, DatasourceConfig> srcDataSources;
+  private Map<String, DatasourceConfig> srcDataSources;
 
-    @Override
-    public void setCanalAdapters(List<CanalAdapter> canalAdapters) {
-        super.setCanalAdapters(canalAdapters);
+  @Override
+  public void setCanalAdapters(List<CanalAdapter> canalAdapters) {
+    super.setCanalAdapters(canalAdapters);
 
-        if (canalAdapters != null) {
-            synchronized (DESTINATIONS) {
-                DESTINATIONS.clear();
-                for (CanalAdapter canalAdapter : canalAdapters) {
-                    if (canalAdapter.getInstance() != null) {
-                        DESTINATIONS.add(canalAdapter.getInstance());
-                    }
-                }
-            }
+    if (canalAdapters != null) {
+      synchronized (DESTINATIONS) {
+        DESTINATIONS.clear();
+        for (CanalAdapter canalAdapter : canalAdapters) {
+          if (canalAdapter.getInstance() != null) {
+            DESTINATIONS.add(canalAdapter.getInstance());
+          }
         }
+      }
     }
+  }
 
-    public Map<String, DatasourceConfig> getSrcDataSources() {
-        return srcDataSources;
-    }
+  public Map<String, DatasourceConfig> getSrcDataSources() {
+    return srcDataSources;
+  }
 
-    @SuppressWarnings("resource")
-    public void setSrcDataSources(Map<String, DatasourceConfig> srcDataSources) {
-        this.srcDataSources = srcDataSources;
+  @SuppressWarnings("resource")
+  public void setSrcDataSources(Map<String, DatasourceConfig> srcDataSources) {
+    this.srcDataSources = srcDataSources;
 
-        if (srcDataSources != null) {
-            for (Map.Entry<String, DatasourceConfig> entry : srcDataSources.entrySet()) {
-                DatasourceConfig datasourceConfig = entry.getValue();
-                // 加载数据源连接池
-                DruidDataSource ds = new DruidDataSource();
-                ds.setDriverClassName(datasourceConfig.getDriver());
-                ds.setUrl(datasourceConfig.getUrl());
-                ds.setUsername(datasourceConfig.getUsername());
-                ds.setPassword(datasourceConfig.getPassword());
-                ds.setInitialSize(1);
-                ds.setMinIdle(1);
-                ds.setMaxActive(datasourceConfig.getMaxActive());
-                ds.setMaxWait(60000);
-                ds.setTimeBetweenEvictionRunsMillis(60000);
-                ds.setMinEvictableIdleTimeMillis(300000);
-                ds.setValidationQuery("select 1");
-                try {
-                    ds.init();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e.getMessage(), e);
-                }
-                DatasourceConfig.DATA_SOURCES.put(entry.getKey(), ds);
-            }
+    if (srcDataSources != null) {
+      for (Map.Entry<String, DatasourceConfig> entry : srcDataSources.entrySet()) {
+        DatasourceConfig datasourceConfig = entry.getValue();
+        // 加载数据源连接池
+        DruidDataSource ds = new DruidDataSource();
+        ds.setDriverClassName(datasourceConfig.getDriver());
+        ds.setUrl(datasourceConfig.getUrl());
+        ds.setUsername(datasourceConfig.getUsername());
+        ds.setPassword(datasourceConfig.getPassword());
+        ds.setInitialSize(1);
+        ds.setMinIdle(1);
+        ds.setMaxActive(datasourceConfig.getMaxActive());
+        ds.setMaxWait(60000);
+        ds.setTimeBetweenEvictionRunsMillis(60000);
+        ds.setMinEvictableIdleTimeMillis(300000);
+        ds.setValidationQuery("select 1");
+        try {
+          ds.init();
+        } catch (SQLException e) {
+          throw new RuntimeException(e.getMessage(), e);
         }
+        DatasourceConfig.DATA_SOURCES.put(entry.getKey(), ds);
+      }
     }
+  }
 }

@@ -12,12 +12,13 @@ import com.alibaba.druid.support.http.StatViewServlet;
 @Configuration
 public class DruidConfig {
 
-    @Bean
-    public ServletRegistrationBean<StatViewServlet> statViewServlet(){
-        ServletRegistrationBean<StatViewServlet> bean = new ServletRegistrationBean<>( new StatViewServlet(),"/druid/*");
-        Map<String,String> initParams = new HashMap<>();
-        initParams.put("allow","");
-        bean.setInitParameters(initParams);
-        return  bean;
-    }
+  @Bean
+  public ServletRegistrationBean<StatViewServlet> statViewServlet() {
+    ServletRegistrationBean<StatViewServlet> bean = new ServletRegistrationBean<>(
+        new StatViewServlet(), "/druid/*");
+    Map<String, String> initParams = new HashMap<>();
+    initParams.put("allow", "");
+    bean.setInitParameters(initParams);
+    return bean;
+  }
 }

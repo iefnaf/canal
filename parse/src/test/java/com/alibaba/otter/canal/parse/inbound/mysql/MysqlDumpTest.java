@@ -24,127 +24,132 @@ import com.alibaba.otter.canal.protocol.CanalEntry.RowData;
 import com.alibaba.otter.canal.protocol.position.EntryPosition;
 import com.alibaba.otter.canal.protocol.position.LogPosition;
 import com.alibaba.otter.canal.sink.exception.CanalSinkException;
+
 @Ignore
 public class MysqlDumpTest {
 
-    @Test
-    public void testSimple() {
-        final MysqlEventParser controller = new MysqlEventParser();
-        final EntryPosition startPosition = new EntryPosition("mysql-bin.000001", 4L);
-        // startPosition.setGtid("f1ceb61a-a5d5-11e7-bdee-107c3dbcf8a7:1-17");
-        controller.setConnectionCharsetStd(Charset.forName("UTF-8"));
-        controller.setSlaveId(3344L);
-        controller.setDetectingEnable(false);
-        controller.setMasterInfo(new AuthenticationInfo(new InetSocketAddress("127.0.0.1", 3306), "root", "hello"));
-        controller.setMasterPosition(startPosition);
-        controller.setEnableTsdb(true);
-        controller.setDestination("example");
-        controller.setTsdbSpringXml("classpath:tsdb/h2-tsdb.xml");
-        controller.setEventFilter(new AviaterRegexFilter("test\\..*"));
-        controller.setEventBlackFilter(new AviaterRegexFilter("canal_tsdb\\..*"));
-        controller.setParallel(true);
-        controller.setParallelBufferSize(256);
-        controller.setParallelThreadSize(2);
-        controller.setIsGTIDMode(false);
-        controller.setEventSink(new AbstractCanalEventSinkTest<List<Entry>>() {
+  @Test
+  public void testSimple() {
+    final MysqlEventParser controller = new MysqlEventParser();
+    final EntryPosition startPosition = new EntryPosition("mysql-bin.000001", 4L);
+    // startPosition.setGtid("f1ceb61a-a5d5-11e7-bdee-107c3dbcf8a7:1-17");
+    controller.setConnectionCharsetStd(Charset.forName("UTF-8"));
+    controller.setSlaveId(3344L);
+    controller.setDetectingEnable(false);
+    controller.setMasterInfo(
+        new AuthenticationInfo(new InetSocketAddress("127.0.0.1", 3306), "root", "hello"));
+    controller.setMasterPosition(startPosition);
+    controller.setEnableTsdb(true);
+    controller.setDestination("example");
+    controller.setTsdbSpringXml("classpath:tsdb/h2-tsdb.xml");
+    controller.setEventFilter(new AviaterRegexFilter("test\\..*"));
+    controller.setEventBlackFilter(new AviaterRegexFilter("canal_tsdb\\..*"));
+    controller.setParallel(true);
+    controller.setParallelBufferSize(256);
+    controller.setParallelThreadSize(2);
+    controller.setIsGTIDMode(false);
+    controller.setEventSink(new AbstractCanalEventSinkTest<List<Entry>>() {
 
-            public boolean sink(List<Entry> entrys, InetSocketAddress remoteAddress, String destination)
-                                                                                                        throws CanalSinkException,
-                                                                                                        InterruptedException {
+      public boolean sink(List<Entry> entrys, InetSocketAddress remoteAddress, String destination)
+          throws CanalSinkException,
+          InterruptedException {
 
-                for (Entry entry : entrys) {
-                    if (entry.getEntryType() == EntryType.TRANSACTIONBEGIN
-                        || entry.getEntryType() == EntryType.TRANSACTIONEND
-                        || entry.getEntryType() == EntryType.HEARTBEAT) {
-                        continue;
-                    }
+        for (Entry entry : entrys) {
+          if (entry.getEntryType() == EntryType.TRANSACTIONBEGIN
+              || entry.getEntryType() == EntryType.TRANSACTIONEND
+              || entry.getEntryType() == EntryType.HEARTBEAT) {
+            continue;
+          }
 
-                    RowChange rowChange = null;
-                    try {
-                        rowChange = RowChange.parseFrom(entry.getStoreValue());
-                    } catch (Exception e) {
-                        throw new RuntimeException("ERROR ## parser of eromanga-event has an error , data:"
-                                                   + entry.toString(), e);
-                    }
+          RowChange rowChange = null;
+          try {
+            rowChange = RowChange.parseFrom(entry.getStoreValue());
+          } catch (Exception e) {
+            throw new RuntimeException("ERROR ## parser of eromanga-event has an error , data:"
+                + entry.toString(), e);
+          }
 
-                    EventType eventType = rowChange.getEventType();
-                    System.out.println(String.format("================> binlog[%s:%s] , name[%s,%s] , eventType : %s",
-                        entry.getHeader().getLogfileName(),
-                        entry.getHeader().getLogfileOffset(),
-                        entry.getHeader().getSchemaName(),
-                        entry.getHeader().getTableName(),
-                        eventType));
+          EventType eventType = rowChange.getEventType();
+          System.out.println(
+              String.format("================> binlog[%s:%s] , name[%s,%s] , eventType : %s",
+                  entry.getHeader().getLogfileName(),
+                  entry.getHeader().getLogfileOffset(),
+                  entry.getHeader().getSchemaName(),
+                  entry.getHeader().getTableName(),
+                  eventType));
 
-                    if (eventType == EventType.QUERY || rowChange.getIsDdl()) {
-                        System.out.println(" sql ----> " + rowChange.getSql());
-                    }
+          if (eventType == EventType.QUERY || rowChange.getIsDdl()) {
+            System.out.println(" sql ----> " + rowChange.getSql());
+          }
 
-                    printXAInfo(rowChange.getPropsList());
-                    for (RowData rowData : rowChange.getRowDatasList()) {
-                        if (eventType == EventType.DELETE) {
-                            print(rowData.getBeforeColumnsList());
-                        } else if (eventType == EventType.INSERT) {
-                            print(rowData.getAfterColumnsList());
-                        } else {
-                            System.out.println("-------> before");
-                            print(rowData.getBeforeColumnsList());
-                            System.out.println("-------> after");
-                            print(rowData.getAfterColumnsList());
-                        }
-                    }
-                }
-
-                return true;
+          printXAInfo(rowChange.getPropsList());
+          for (RowData rowData : rowChange.getRowDatasList()) {
+            if (eventType == EventType.DELETE) {
+              print(rowData.getBeforeColumnsList());
+            } else if (eventType == EventType.INSERT) {
+              print(rowData.getAfterColumnsList());
+            } else {
+              System.out.println("-------> before");
+              print(rowData.getBeforeColumnsList());
+              System.out.println("-------> after");
+              print(rowData.getAfterColumnsList());
             }
-
-        });
-        controller.setLogPositionManager(new AbstractLogPositionManager() {
-
-            @Override
-            public LogPosition getLatestIndexBy(String destination) {
-                return null;
-            }
-
-            @Override
-            public void persistLogPosition(String destination, LogPosition logPosition) throws CanalParseException {
-                System.out.println(logPosition);
-            }
-        });
-
-        controller.start();
-
-        try {
-            Thread.sleep(100 * 1000 * 1000L);
-        } catch (InterruptedException e) {
-            Assert.fail(e.getMessage());
+          }
         }
-        controller.stop();
+
+        return true;
+      }
+
+    });
+    controller.setLogPositionManager(new AbstractLogPositionManager() {
+
+      @Override
+      public LogPosition getLatestIndexBy(String destination) {
+        return null;
+      }
+
+      @Override
+      public void persistLogPosition(String destination, LogPosition logPosition)
+          throws CanalParseException {
+        System.out.println(logPosition);
+      }
+    });
+
+    controller.start();
+
+    try {
+      Thread.sleep(100 * 1000 * 1000L);
+    } catch (InterruptedException e) {
+      Assert.fail(e.getMessage());
+    }
+    controller.stop();
+  }
+
+  private void print(List<Column> columns) {
+    for (Column column : columns) {
+      System.out.println(
+          column.getName() + " : " + column.getValue() + "    update=" + column.getUpdated());
+    }
+  }
+
+  private void printXAInfo(List<Pair> pairs) {
+    if (pairs == null) {
+      return;
     }
 
-    private void print(List<Column> columns) {
-        for (Column column : columns) {
-            System.out.println(column.getName() + " : " + column.getValue() + "    update=" + column.getUpdated());
-        }
+    String xaType = null;
+    String xaXid = null;
+    for (Pair pair : pairs) {
+      String key = pair.getKey();
+      if (StringUtils.endsWithIgnoreCase(key, "XA_TYPE")) {
+        xaType = pair.getValue();
+      } else if (StringUtils.endsWithIgnoreCase(key, "XA_XID")) {
+        xaXid = pair.getValue();
+      }
     }
 
-    private void printXAInfo(List<Pair> pairs) {
-        if (pairs == null) {
-            return;
-        }
-
-        String xaType = null;
-        String xaXid = null;
-        for (Pair pair : pairs) {
-            String key = pair.getKey();
-            if (StringUtils.endsWithIgnoreCase(key, "XA_TYPE")) {
-                xaType = pair.getValue();
-            } else if (StringUtils.endsWithIgnoreCase(key, "XA_XID")) {
-                xaXid = pair.getValue();
-            }
-        }
-
-        if (xaType != null && xaXid != null) {
-            System.out.println(" ------> " + xaType + " " + xaXid);
-        }
+    if (xaType != null && xaXid != null) {
+      System.out.println(" ------> " + xaType + " " + xaXid);
     }
+  }
 }

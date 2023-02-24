@@ -7,21 +7,21 @@ import com.alibaba.otter.canal.admin.model.Pager;
 
 public interface NodeServerService {
 
-    void save(NodeServer nodeServer);
+  void save(NodeServer nodeServer);
 
-    NodeServer detail(Long id);
+  NodeServer detail(Long id);
 
-    void update(NodeServer nodeServer);
+  void update(NodeServer nodeServer);
 
-    void delete(Long id);
+  void delete(Long id);
 
-    List<NodeServer> findAll(NodeServer nodeServer);
+  List<NodeServer> findAll(NodeServer nodeServer);
 
-    Pager<NodeServer> findList(NodeServer nodeServer, Pager<NodeServer> pager);
+  Pager<NodeServer> findList(NodeServer nodeServer, Pager<NodeServer> pager);
 
-    int remoteNodeStatus(String ip, Integer port);
+  int remoteNodeStatus(String ip, Integer port);
 
-    String remoteCanalLog(Long id);
+  String remoteCanalLog(Long id);
 
-    boolean remoteOperation(Long id, String option);
+  boolean remoteOperation(Long id, String option);
 }

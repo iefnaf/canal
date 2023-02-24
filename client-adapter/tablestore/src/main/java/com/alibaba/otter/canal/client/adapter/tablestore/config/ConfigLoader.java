@@ -18,34 +18,36 @@ import java.util.Properties;
  */
 public class ConfigLoader {
 
-    private static Logger logger = LoggerFactory.getLogger(ConfigLoader.class);
+  private static Logger logger = LoggerFactory.getLogger(ConfigLoader.class);
 
-    /**
-     * 加载RDB表映射配置
-     *
-     * @return 配置名/配置文件名--对象
-     */
-    public static Map<String, MappingConfig> load(Properties envProperties) {
-        logger.info("## Start loading tablestore mapping config ... ");
+  /**
+   * 加载RDB表映射配置
+   *
+   * @return 配置名/配置文件名--对象
+   */
+  public static Map<String, MappingConfig> load(Properties envProperties) {
+    logger.info("## Start loading tablestore mapping config ... ");
 
-        Map<String, MappingConfig> result = new LinkedHashMap<>();
+    Map<String, MappingConfig> result = new LinkedHashMap<>();
 
-        Map<String, String> configContentMap = MappingConfigsLoader.loadConfigs("tablestore");
-        configContentMap.forEach((fileName, content) -> {
-            MappingConfig config = YamlUtils.ymlToObj(null, content, MappingConfig.class, null, envProperties);
-            if (config == null) {
-                return;
-            }
-            try {
-                config.validate();
-            } catch (Exception e) {
-                throw new RuntimeException("ERROR Config: " + fileName + " " + e.getMessage(), e);
-            }
-            result.put(fileName, config);
-        });
+    Map<String, String> configContentMap = MappingConfigsLoader.loadConfigs("tablestore");
+    configContentMap.forEach((fileName, content) -> {
+      MappingConfig config = YamlUtils.ymlToObj(null, content, MappingConfig.class, null,
+          envProperties);
+      if (config == null) {
+        return;
+      }
+      try {
+        config.validate();
+      } catch (Exception e) {
+        throw new RuntimeException("ERROR Config: " + fileName + " " + e.getMessage(), e);
+      }
+      result.put(fileName, config);
+    });
 
-        logger.info(
-            "## Tablestore mapping config loaded:" + StringUtils.collectionToCommaDelimitedString(result.keySet()));
-        return result;
-    }
+    logger.info(
+        "## Tablestore mapping config loaded:" + StringUtils.collectionToCommaDelimitedString(
+            result.keySet()));
+    return result;
+  }
 }

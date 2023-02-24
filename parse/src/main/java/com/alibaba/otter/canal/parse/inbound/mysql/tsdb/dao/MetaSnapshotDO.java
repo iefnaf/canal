@@ -8,103 +8,105 @@ import java.util.Date;
  */
 public class MetaSnapshotDO {
 
-    private Long   id;
-    private Date   gmtCreate;
-    private Date   gmtModified;
-    private String destination;
-    private String binlogFile;
-    private Long   binlogOffest;
-    private String binlogMasterId;
-    private Long   binlogTimestamp;
-    private String data;
-    private String extra;
+  private Long id;
+  private Date gmtCreate;
+  private Date gmtModified;
+  private String destination;
+  private String binlogFile;
+  private Long binlogOffest;
+  private String binlogMasterId;
+  private Long binlogTimestamp;
+  private String data;
+  private String extra;
 
-    public Long getId() {
-        return id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public Date getGmtCreate() {
-        return gmtCreate;
-    }
+  public Date getGmtCreate() {
+    return gmtCreate;
+  }
 
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
+  public void setGmtCreate(Date gmtCreate) {
+    this.gmtCreate = gmtCreate;
+  }
 
-    public Date getGmtModified() {
-        return gmtModified;
-    }
+  public Date getGmtModified() {
+    return gmtModified;
+  }
 
-    public void setGmtModified(Date gmtModified) {
-        this.gmtModified = gmtModified;
-    }
+  public void setGmtModified(Date gmtModified) {
+    this.gmtModified = gmtModified;
+  }
 
-    public String getBinlogFile() {
-        return binlogFile;
-    }
+  public String getBinlogFile() {
+    return binlogFile;
+  }
 
-    public void setBinlogFile(String binlogFile) {
-        this.binlogFile = binlogFile;
-    }
+  public void setBinlogFile(String binlogFile) {
+    this.binlogFile = binlogFile;
+  }
 
-    public Long getBinlogOffest() {
-        return binlogOffest;
-    }
+  public Long getBinlogOffest() {
+    return binlogOffest;
+  }
 
-    public void setBinlogOffest(Long binlogOffest) {
-        this.binlogOffest = binlogOffest;
-    }
+  public void setBinlogOffest(Long binlogOffest) {
+    this.binlogOffest = binlogOffest;
+  }
 
-    public String getBinlogMasterId() {
-        return binlogMasterId;
-    }
+  public String getBinlogMasterId() {
+    return binlogMasterId;
+  }
 
-    public void setBinlogMasterId(String binlogMasterId) {
-        this.binlogMasterId = binlogMasterId;
-    }
+  public void setBinlogMasterId(String binlogMasterId) {
+    this.binlogMasterId = binlogMasterId;
+  }
 
-    public Long getBinlogTimestamp() {
-        return binlogTimestamp;
-    }
+  public Long getBinlogTimestamp() {
+    return binlogTimestamp;
+  }
 
-    public void setBinlogTimestamp(Long binlogTimestamp) {
-        this.binlogTimestamp = binlogTimestamp;
-    }
+  public void setBinlogTimestamp(Long binlogTimestamp) {
+    this.binlogTimestamp = binlogTimestamp;
+  }
 
-    public String getData() {
-        return data;
-    }
+  public String getData() {
+    return data;
+  }
 
-    public void setData(String data) {
-        this.data = data;
-    }
+  public void setData(String data) {
+    this.data = data;
+  }
 
-    public String getExtra() {
-        return extra;
-    }
+  public String getExtra() {
+    return extra;
+  }
 
-    public void setExtra(String extra) {
-        this.extra = extra;
-    }
+  public void setExtra(String extra) {
+    this.extra = extra;
+  }
 
-    public String getDestination() {
-        return destination;
-    }
+  public String getDestination() {
+    return destination;
+  }
 
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
+  public void setDestination(String destination) {
+    this.destination = destination;
+  }
 
-    @Override
-    public String toString() {
-        return "MetaSnapshotDO [id=" + id + ", gmtCreate=" + gmtCreate + ", gmtModified=" + gmtModified
-               + ", destination=" + destination + ", binlogFile=" + binlogFile + ", binlogOffest=" + binlogOffest
-               + ", binlogMasterId=" + binlogMasterId + ", binlogTimestamp=" + binlogTimestamp + ", data=" + data
-               + ", extra=" + extra + "]";
-    }
+  @Override
+  public String toString() {
+    return "MetaSnapshotDO [id=" + id + ", gmtCreate=" + gmtCreate + ", gmtModified=" + gmtModified
+        + ", destination=" + destination + ", binlogFile=" + binlogFile + ", binlogOffest="
+        + binlogOffest
+        + ", binlogMasterId=" + binlogMasterId + ", binlogTimestamp=" + binlogTimestamp + ", data="
+        + data
+        + ", extra=" + extra + "]";
+  }
 
 }

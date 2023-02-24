@@ -8,6 +8,6 @@ import com.alibaba.otter.canal.server.netty.listener.ChannelFutureAggregator.Cli
  */
 public interface ClientInstanceProfiler extends CanalLifeCycle {
 
-    void profiling(ClientRequestResult result);
+  void profiling(ClientRequestResult result);
 
 }

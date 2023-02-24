@@ -11,47 +11,47 @@ import java.util.Date;
  */
 public class Result implements Serializable {
 
-    private static final long serialVersionUID = -3276409502352405716L;
-    private Integer           code             = 20000;
-    private Object            data;
-    private String            message;
-    private Date              sysTime;
+  private static final long serialVersionUID = -3276409502352405716L;
+  private Integer code = 20000;
+  private Object data;
+  private String message;
+  private Date sysTime;
 
-    public static Result createSuccess(String message) {
-        Result result = new Result();
-        result.setMessage(message);
-        return result;
-    }
+  public static Result createSuccess(String message) {
+    Result result = new Result();
+    result.setMessage(message);
+    return result;
+  }
 
-    public Integer getCode() {
-        return code;
-    }
+  public Integer getCode() {
+    return code;
+  }
 
-    public void setCode(Integer code) {
-        this.code = code;
-    }
+  public void setCode(Integer code) {
+    this.code = code;
+  }
 
-    public Object getData() {
-        return data;
-    }
+  public Object getData() {
+    return data;
+  }
 
-    public void setData(Object data) {
-        this.data = data;
-    }
+  public void setData(Object data) {
+    this.data = data;
+  }
 
-    public String getMessage() {
-        return message;
-    }
+  public String getMessage() {
+    return message;
+  }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
+  public void setMessage(String message) {
+    this.message = message;
+  }
 
-    public Date getSysTime() {
-        return sysTime;
-    }
+  public Date getSysTime() {
+    return sysTime;
+  }
 
-    public void setSysTime(Date sysTime) {
-        this.sysTime = sysTime;
-    }
+  public void setSysTime(Date sysTime) {
+    this.sysTime = sysTime;
+  }
 }

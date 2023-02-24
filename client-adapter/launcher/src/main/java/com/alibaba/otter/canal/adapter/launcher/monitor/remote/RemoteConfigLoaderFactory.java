@@ -13,22 +13,22 @@ import org.springframework.core.env.Environment;
  */
 public class RemoteConfigLoaderFactory {
 
-    private static final Logger logger = LoggerFactory.getLogger(RemoteConfigLoaderFactory.class);
+  private static final Logger logger = LoggerFactory.getLogger(RemoteConfigLoaderFactory.class);
 
-    public static RemoteConfigLoader getRemoteConfigLoader(Environment env) {
-        try {
-            String jdbcUrl = env.getProperty("canal.manager.jdbc.url");
-            if (!StringUtils.isEmpty(jdbcUrl)) {
-                // load remote config
-                String driverName = env.getProperty("canal.manager.jdbc.driverName");
-                String jdbcUsername = env.getProperty("canal.manager.jdbc.username");
-                String jdbcPassword = env.getProperty("canal.manager.jdbc.password");
-                return new DbRemoteConfigLoader(driverName, jdbcUrl, jdbcUsername, jdbcPassword);
-            }
-            // 可扩展其它远程配置加载器
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-        }
-        return null;
+  public static RemoteConfigLoader getRemoteConfigLoader(Environment env) {
+    try {
+      String jdbcUrl = env.getProperty("canal.manager.jdbc.url");
+      if (!StringUtils.isEmpty(jdbcUrl)) {
+        // load remote config
+        String driverName = env.getProperty("canal.manager.jdbc.driverName");
+        String jdbcUsername = env.getProperty("canal.manager.jdbc.username");
+        String jdbcPassword = env.getProperty("canal.manager.jdbc.password");
+        return new DbRemoteConfigLoader(driverName, jdbcUrl, jdbcUsername, jdbcPassword);
+      }
+      // 可扩展其它远程配置加载器
+    } catch (Exception e) {
+      logger.error(e.getMessage(), e);
     }
+    return null;
+  }
 }

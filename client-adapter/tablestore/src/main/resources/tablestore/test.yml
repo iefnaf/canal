@@ -15,7 +15,7 @@ dbMapping:
     c_id:
     p_price:
     p_count:
-  etlCondition: 
+  etlCondition:
   commitBatch: 1 # 批量提交的大小
 
 

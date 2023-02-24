@@ -9,41 +9,43 @@ import org.junit.Test;
 import com.alibaba.otter.canal.common.zookeeper.ZkClientx;
 import com.alibaba.otter.canal.common.zookeeper.ZookeeperPathUtils;
 import com.alibaba.otter.canal.protocol.position.LogPosition;
+
 @Ignore
 public class MixedLogPositionManagerTest extends AbstractLogPositionManagerTest {
 
-    private ZkClientx zkclientx = new ZkClientx(cluster1 + ";" + cluster2);
+  private ZkClientx zkclientx = new ZkClientx(cluster1 + ";" + cluster2);
 
-    @Before
-    public void setUp() {
-        String path = ZookeeperPathUtils.getDestinationPath(destination);
-        zkclientx.deleteRecursive(path);
-    }
+  @Before
+  public void setUp() {
+    String path = ZookeeperPathUtils.getDestinationPath(destination);
+    zkclientx.deleteRecursive(path);
+  }
 
-    @After
-    public void tearDown() {
-        String path = ZookeeperPathUtils.getDestinationPath(destination);
-        zkclientx.deleteRecursive(path);
-    }
+  @After
+  public void tearDown() {
+    String path = ZookeeperPathUtils.getDestinationPath(destination);
+    zkclientx.deleteRecursive(path);
+  }
 
-    @Test
-    public void testAll() {
-        MemoryLogPositionManager memoryLogPositionManager = new MemoryLogPositionManager();
-        ZooKeeperLogPositionManager zookeeperLogPositionManager = new ZooKeeperLogPositionManager(zkclientx);
+  @Test
+  public void testAll() {
+    MemoryLogPositionManager memoryLogPositionManager = new MemoryLogPositionManager();
+    ZooKeeperLogPositionManager zookeeperLogPositionManager = new ZooKeeperLogPositionManager(
+        zkclientx);
 
-        MixedLogPositionManager logPositionManager = new MixedLogPositionManager(zkclientx);
-        logPositionManager.start();
+    MixedLogPositionManager logPositionManager = new MixedLogPositionManager(zkclientx);
+    logPositionManager.start();
 
-        LogPosition position2 = doTest(logPositionManager);
-        sleep(1000);
+    LogPosition position2 = doTest(logPositionManager);
+    sleep(1000);
 
-        MixedLogPositionManager logPositionManager2 = new MixedLogPositionManager(zkclientx);
-        logPositionManager2.start();
+    MixedLogPositionManager logPositionManager2 = new MixedLogPositionManager(zkclientx);
+    logPositionManager2.start();
 
-        LogPosition getPosition2 = logPositionManager2.getLatestIndexBy(destination);
-        Assert.assertEquals(position2, getPosition2);
+    LogPosition getPosition2 = logPositionManager2.getLatestIndexBy(destination);
+    Assert.assertEquals(position2, getPosition2);
 
-        logPositionManager.stop();
-        logPositionManager2.stop();
-    }
+    logPositionManager.stop();
+    logPositionManager2.stop();
+  }
 }

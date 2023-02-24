@@ -17,48 +17,48 @@ import com.alibaba.otter.canal.store.model.Event;
 
 /**
  * 基于spring容器启动canal实例，方便独立于manager启动
- * 
+ *
  * @author jianghang 2012-7-12 下午01:21:26
  * @author zebin.xuzb
  * @version 1.0.0
  */
 public class CanalInstanceWithSpring extends AbstractCanalInstance {
 
-    private static final Logger logger = LoggerFactory.getLogger(CanalInstanceWithSpring.class);
+  private static final Logger logger = LoggerFactory.getLogger(CanalInstanceWithSpring.class);
 
-    public void start() {
-        logger.info("start CannalInstance for {}-{} ", new Object[] { 1, destination });
-        super.start();
-    }
+  public void start() {
+    logger.info("start CannalInstance for {}-{} ", new Object[]{1, destination});
+    super.start();
+  }
 
-    // ======== setter ========
+  // ======== setter ========
 
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
+  public void setDestination(String destination) {
+    this.destination = destination;
+  }
 
-    public void setEventParser(CanalEventParser eventParser) {
-        this.eventParser = eventParser;
-    }
+  public void setEventParser(CanalEventParser eventParser) {
+    this.eventParser = eventParser;
+  }
 
-    public void setEventSink(CanalEventSink<List<CanalEntry.Entry>> eventSink) {
-        this.eventSink = eventSink;
-    }
+  public void setEventSink(CanalEventSink<List<CanalEntry.Entry>> eventSink) {
+    this.eventSink = eventSink;
+  }
 
-    public void setEventStore(CanalEventStore<Event> eventStore) {
-        this.eventStore = eventStore;
-    }
+  public void setEventStore(CanalEventStore<Event> eventStore) {
+    this.eventStore = eventStore;
+  }
 
-    public void setMetaManager(CanalMetaManager metaManager) {
-        this.metaManager = metaManager;
-    }
+  public void setMetaManager(CanalMetaManager metaManager) {
+    this.metaManager = metaManager;
+  }
 
-    public void setAlarmHandler(CanalAlarmHandler alarmHandler) {
-        this.alarmHandler = alarmHandler;
-    }
+  public void setAlarmHandler(CanalAlarmHandler alarmHandler) {
+    this.alarmHandler = alarmHandler;
+  }
 
-    public void setMqConfig(CanalMQConfig mqConfig) {
-        this.mqConfig = mqConfig;
-    }
+  public void setMqConfig(CanalMQConfig mqConfig) {
+    this.mqConfig = mqConfig;
+  }
 
 }

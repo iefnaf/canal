@@ -4,7 +4,10 @@
 package com.alibaba.otter.canal.protocol;
 
 public final class AdminPacket {
-  private AdminPacket() {}
+
+  private AdminPacket() {
+  }
+
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistryLite registry) {
   }
@@ -14,6 +17,7 @@ public final class AdminPacket {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
+
   /**
    * Protobuf enum {@code com.alibaba.otter.canal.protocol.PacketType}
    */
@@ -21,7 +25,7 @@ public final class AdminPacket {
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <pre>
-     *compatible
+     * compatible
      * </pre>
      *
      * <code>PACKAGETYPECOMPATIBLEPROTO2 = 0;</code>
@@ -56,7 +60,7 @@ public final class AdminPacket {
 
     /**
      * <pre>
-     *compatible
+     * compatible
      * </pre>
      *
      * <code>PACKAGETYPECOMPATIBLEPROTO2 = 0;</code>
@@ -106,39 +110,50 @@ public final class AdminPacket {
 
     public static PacketType forNumber(int value) {
       switch (value) {
-        case 0: return PACKAGETYPECOMPATIBLEPROTO2;
-        case 1: return HANDSHAKE;
-        case 2: return CLIENTAUTHENTICATION;
-        case 3: return ACK;
-        case 4: return SERVER;
-        case 5: return INSTANCE;
-        case 6: return LOG;
-        default: return null;
+        case 0:
+          return PACKAGETYPECOMPATIBLEPROTO2;
+        case 1:
+          return HANDSHAKE;
+        case 2:
+          return CLIENTAUTHENTICATION;
+        case 3:
+          return ACK;
+        case 4:
+          return SERVER;
+        case 5:
+          return INSTANCE;
+        case 6:
+          return LOG;
+        default:
+          return null;
       }
     }
 
     public static com.google.protobuf.Internal.EnumLiteMap<PacketType>
-        internalGetValueMap() {
+    internalGetValueMap() {
       return internalValueMap;
     }
+
     private static final com.google.protobuf.Internal.EnumLiteMap<
         PacketType> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<PacketType>() {
-            public PacketType findValueByNumber(int number) {
-              return PacketType.forNumber(number);
-            }
-          };
+        new com.google.protobuf.Internal.EnumLiteMap<PacketType>() {
+          public PacketType findValueByNumber(int number) {
+            return PacketType.forNumber(number);
+          }
+        };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
-        getValueDescriptor() {
+    getValueDescriptor() {
       return getDescriptor().getValues().get(ordinal());
     }
+
     public final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptorForType() {
+    getDescriptorForType() {
       return getDescriptor();
     }
+
     public static final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptor() {
+    getDescriptor() {
       return com.alibaba.otter.canal.protocol.AdminPacket.getDescriptor().getEnumTypes().get(0);
     }
 
@@ -148,7 +163,7 @@ public final class AdminPacket {
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
         throw new java.lang.IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
+            "EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
         return UNRECOGNIZED;
@@ -183,6 +198,7 @@ public final class AdminPacket {
      * <code>.com.alibaba.otter.canal.protocol.PacketType type = 3;</code>
      */
     int getTypeValue();
+
     /**
      * <code>.com.alibaba.otter.canal.protocol.PacketType type = 3;</code>
      */
@@ -197,18 +213,22 @@ public final class AdminPacket {
 
     public com.alibaba.otter.canal.protocol.AdminPacket.Packet.VersionPresentCase getVersionPresentCase();
   }
+
   /**
    * Protobuf type {@code com.alibaba.otter.canal.protocol.Packet}
    */
-  public  static final class Packet extends
+  public static final class Packet extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:com.alibaba.otter.canal.protocol.Packet)
       PacketOrBuilder {
-  private static final long serialVersionUID = 0L;
+
+    private static final long serialVersionUID = 0L;
+
     // Use Packet.newBuilder() to construct.
     private Packet(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private Packet() {
       type_ = 0;
       body_ = com.google.protobuf.ByteString.EMPTY;
@@ -219,6 +239,7 @@ public final class AdminPacket {
     getUnknownFields() {
       return this.unknownFields;
     }
+
     private Packet(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -278,29 +299,34 @@ public final class AdminPacket {
         makeExtensionsImmutable();
       }
     }
+
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    getDescriptor() {
       return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_Packet_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    internalGetFieldAccessorTable() {
       return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_Packet_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.alibaba.otter.canal.protocol.AdminPacket.Packet.class, com.alibaba.otter.canal.protocol.AdminPacket.Packet.Builder.class);
+              com.alibaba.otter.canal.protocol.AdminPacket.Packet.class,
+              com.alibaba.otter.canal.protocol.AdminPacket.Packet.Builder.class);
     }
 
     private int magicNumberPresentCase_ = 0;
     private java.lang.Object magicNumberPresent_;
+
     public enum MagicNumberPresentCase
         implements com.google.protobuf.Internal.EnumLite {
       MAGIC_NUMBER(1),
       MAGICNUMBERPRESENT_NOT_SET(0);
       private final int value;
+
       private MagicNumberPresentCase(int value) {
         this.value = value;
       }
+
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
@@ -311,15 +337,21 @@ public final class AdminPacket {
 
       public static MagicNumberPresentCase forNumber(int value) {
         switch (value) {
-          case 1: return MAGIC_NUMBER;
-          case 0: return MAGICNUMBERPRESENT_NOT_SET;
-          default: return null;
+          case 1:
+            return MAGIC_NUMBER;
+          case 0:
+            return MAGICNUMBERPRESENT_NOT_SET;
+          default:
+            return null;
         }
       }
+
       public int getNumber() {
         return this.value;
       }
-    };
+    }
+
+    ;
 
     public MagicNumberPresentCase
     getMagicNumberPresentCase() {
@@ -329,14 +361,17 @@ public final class AdminPacket {
 
     private int versionPresentCase_ = 0;
     private java.lang.Object versionPresent_;
+
     public enum VersionPresentCase
         implements com.google.protobuf.Internal.EnumLite {
       VERSION(2),
       VERSIONPRESENT_NOT_SET(0);
       private final int value;
+
       private VersionPresentCase(int value) {
         this.value = value;
       }
+
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
@@ -347,15 +382,21 @@ public final class AdminPacket {
 
       public static VersionPresentCase forNumber(int value) {
         switch (value) {
-          case 2: return VERSION;
-          case 0: return VERSIONPRESENT_NOT_SET;
-          default: return null;
+          case 2:
+            return VERSION;
+          case 0:
+            return VERSIONPRESENT_NOT_SET;
+          default:
+            return null;
         }
       }
+
       public int getNumber() {
         return this.value;
       }
-    };
+    }
+
+    ;
 
     public VersionPresentCase
     getVersionPresentCase() {
@@ -364,6 +405,7 @@ public final class AdminPacket {
     }
 
     public static final int MAGIC_NUMBER_FIELD_NUMBER = 1;
+
     /**
      * <code>int32 magic_number = 1;</code>
      */
@@ -375,6 +417,7 @@ public final class AdminPacket {
     }
 
     public static final int VERSION_FIELD_NUMBER = 2;
+
     /**
      * <code>int32 version = 2;</code>
      */
@@ -387,23 +430,28 @@ public final class AdminPacket {
 
     public static final int TYPE_FIELD_NUMBER = 3;
     private int type_;
+
     /**
      * <code>.com.alibaba.otter.canal.protocol.PacketType type = 3;</code>
      */
     public int getTypeValue() {
       return type_;
     }
+
     /**
      * <code>.com.alibaba.otter.canal.protocol.PacketType type = 3;</code>
      */
     public com.alibaba.otter.canal.protocol.AdminPacket.PacketType getType() {
       @SuppressWarnings("deprecation")
-      com.alibaba.otter.canal.protocol.AdminPacket.PacketType result = com.alibaba.otter.canal.protocol.AdminPacket.PacketType.valueOf(type_);
-      return result == null ? com.alibaba.otter.canal.protocol.AdminPacket.PacketType.UNRECOGNIZED : result;
+      com.alibaba.otter.canal.protocol.AdminPacket.PacketType result = com.alibaba.otter.canal.protocol.AdminPacket.PacketType.valueOf(
+          type_);
+      return result == null ? com.alibaba.otter.canal.protocol.AdminPacket.PacketType.UNRECOGNIZED
+          : result;
     }
 
     public static final int BODY_FIELD_NUMBER = 4;
     private com.google.protobuf.ByteString body_;
+
     /**
      * <code>bytes body = 4;</code>
      */
@@ -412,11 +460,16 @@ public final class AdminPacket {
     }
 
     private byte memoizedIsInitialized = -1;
+
     @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized == 1) {
+        return true;
+      }
+      if (isInitialized == 0) {
+        return false;
+      }
 
       memoizedIsInitialized = 1;
       return true;
@@ -424,16 +477,17 @@ public final class AdminPacket {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+        throws java.io.IOException {
       if (magicNumberPresentCase_ == 1) {
         output.writeInt32(
-            1, (int)((java.lang.Integer) magicNumberPresent_));
+            1, (int) ((java.lang.Integer) magicNumberPresent_));
       }
       if (versionPresentCase_ == 2) {
         output.writeInt32(
-            2, (int)((java.lang.Integer) versionPresent_));
+            2, (int) ((java.lang.Integer) versionPresent_));
       }
-      if (type_ != com.alibaba.otter.canal.protocol.AdminPacket.PacketType.PACKAGETYPECOMPATIBLEPROTO2.getNumber()) {
+      if (type_
+          != com.alibaba.otter.canal.protocol.AdminPacket.PacketType.PACKAGETYPECOMPATIBLEPROTO2.getNumber()) {
         output.writeEnum(3, type_);
       }
       if (!body_.isEmpty()) {
@@ -445,26 +499,29 @@ public final class AdminPacket {
     @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
-      if (size != -1) return size;
+      if (size != -1) {
+        return size;
+      }
 
       size = 0;
       if (magicNumberPresentCase_ == 1) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(
-              1, (int)((java.lang.Integer) magicNumberPresent_));
+            .computeInt32Size(
+                1, (int) ((java.lang.Integer) magicNumberPresent_));
       }
       if (versionPresentCase_ == 2) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(
-              2, (int)((java.lang.Integer) versionPresent_));
+            .computeInt32Size(
+                2, (int) ((java.lang.Integer) versionPresent_));
       }
-      if (type_ != com.alibaba.otter.canal.protocol.AdminPacket.PacketType.PACKAGETYPECOMPATIBLEPROTO2.getNumber()) {
+      if (type_
+          != com.alibaba.otter.canal.protocol.AdminPacket.PacketType.PACKAGETYPECOMPATIBLEPROTO2.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(3, type_);
+            .computeEnumSize(3, type_);
       }
       if (!body_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, body_);
+            .computeBytesSize(4, body_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -474,7 +531,7 @@ public final class AdminPacket {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof com.alibaba.otter.canal.protocol.AdminPacket.Packet)) {
         return super.equals(obj);
@@ -487,7 +544,9 @@ public final class AdminPacket {
           .equals(other.getBody());
       result = result && getMagicNumberPresentCase().equals(
           other.getMagicNumberPresentCase());
-      if (!result) return false;
+      if (!result) {
+        return false;
+      }
       switch (magicNumberPresentCase_) {
         case 1:
           result = result && (getMagicNumber()
@@ -498,7 +557,9 @@ public final class AdminPacket {
       }
       result = result && getVersionPresentCase().equals(
           other.getVersionPresentCase());
-      if (!result) return false;
+      if (!result) {
+        return false;
+      }
       switch (versionPresentCase_) {
         case 2:
           result = result && (getVersion()
@@ -548,38 +609,46 @@ public final class AdminPacket {
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Packet parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Packet parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Packet parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Packet parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Packet parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.AdminPacket.Packet parseFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.AdminPacket.Packet parseFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Packet parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -587,11 +656,14 @@ public final class AdminPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.AdminPacket.Packet parseDelimitedFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.AdminPacket.Packet parseDelimitedFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Packet parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -599,12 +671,14 @@ public final class AdminPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Packet parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Packet parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -614,13 +688,19 @@ public final class AdminPacket {
     }
 
     @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() {
+      return newBuilder();
+    }
+
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.alibaba.otter.canal.protocol.AdminPacket.Packet prototype) {
+
+    public static Builder newBuilder(
+        com.alibaba.otter.canal.protocol.AdminPacket.Packet prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
@@ -633,6 +713,7 @@ public final class AdminPacket {
       Builder builder = new Builder(parent);
       return builder;
     }
+
     /**
      * Protobuf type {@code com.alibaba.otter.canal.protocol.Packet}
      */
@@ -640,17 +721,19 @@ public final class AdminPacket {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.alibaba.otter.canal.protocol.Packet)
         com.alibaba.otter.canal.protocol.AdminPacket.PacketOrBuilder {
+
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      getDescriptor() {
         return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_Packet_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
         return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_Packet_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.alibaba.otter.canal.protocol.AdminPacket.Packet.class, com.alibaba.otter.canal.protocol.AdminPacket.Packet.Builder.class);
+                com.alibaba.otter.canal.protocol.AdminPacket.Packet.class,
+                com.alibaba.otter.canal.protocol.AdminPacket.Packet.Builder.class);
       }
 
       // Construct using com.alibaba.otter.canal.protocol.AdminPacket.Packet.newBuilder()
@@ -663,11 +746,13 @@ public final class AdminPacket {
         super(parent);
         maybeForceBuilderInitialization();
       }
+
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+            .alwaysUseFieldBuilders) {
         }
       }
+
       @java.lang.Override
       public Builder clear() {
         super.clear();
@@ -684,7 +769,7 @@ public final class AdminPacket {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_Packet_descriptor;
       }
 
@@ -704,7 +789,8 @@ public final class AdminPacket {
 
       @java.lang.Override
       public com.alibaba.otter.canal.protocol.AdminPacket.Packet buildPartial() {
-        com.alibaba.otter.canal.protocol.AdminPacket.Packet result = new com.alibaba.otter.canal.protocol.AdminPacket.Packet(this);
+        com.alibaba.otter.canal.protocol.AdminPacket.Packet result = new com.alibaba.otter.canal.protocol.AdminPacket.Packet(
+            this);
         if (magicNumberPresentCase_ == 1) {
           result.magicNumberPresent_ = magicNumberPresent_;
         }
@@ -723,38 +809,44 @@ public final class AdminPacket {
       public Builder clone() {
         return (Builder) super.clone();
       }
+
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
+
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
+
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
+
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
+
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.alibaba.otter.canal.protocol.AdminPacket.Packet) {
-          return mergeFrom((com.alibaba.otter.canal.protocol.AdminPacket.Packet)other);
+          return mergeFrom((com.alibaba.otter.canal.protocol.AdminPacket.Packet) other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -762,7 +854,9 @@ public final class AdminPacket {
       }
 
       public Builder mergeFrom(com.alibaba.otter.canal.protocol.AdminPacket.Packet other) {
-        if (other == com.alibaba.otter.canal.protocol.AdminPacket.Packet.getDefaultInstance()) return this;
+        if (other == com.alibaba.otter.canal.protocol.AdminPacket.Packet.getDefaultInstance()) {
+          return this;
+        }
         if (other.type_ != 0) {
           setTypeValue(other.getTypeValue());
         }
@@ -815,10 +909,12 @@ public final class AdminPacket {
         }
         return this;
       }
+
       private int magicNumberPresentCase_ = 0;
       private java.lang.Object magicNumberPresent_;
+
       public MagicNumberPresentCase
-          getMagicNumberPresentCase() {
+      getMagicNumberPresentCase() {
         return MagicNumberPresentCase.forNumber(
             magicNumberPresentCase_);
       }
@@ -832,8 +928,9 @@ public final class AdminPacket {
 
       private int versionPresentCase_ = 0;
       private java.lang.Object versionPresent_;
+
       public VersionPresentCase
-          getVersionPresentCase() {
+      getVersionPresentCase() {
         return VersionPresentCase.forNumber(
             versionPresentCase_);
       }
@@ -855,6 +952,7 @@ public final class AdminPacket {
         }
         return 0;
       }
+
       /**
        * <code>int32 magic_number = 1;</code>
        */
@@ -864,6 +962,7 @@ public final class AdminPacket {
         onChanged();
         return this;
       }
+
       /**
        * <code>int32 magic_number = 1;</code>
        */
@@ -885,6 +984,7 @@ public final class AdminPacket {
         }
         return 0;
       }
+
       /**
        * <code>int32 version = 2;</code>
        */
@@ -894,6 +994,7 @@ public final class AdminPacket {
         onChanged();
         return this;
       }
+
       /**
        * <code>int32 version = 2;</code>
        */
@@ -907,12 +1008,14 @@ public final class AdminPacket {
       }
 
       private int type_ = 0;
+
       /**
        * <code>.com.alibaba.otter.canal.protocol.PacketType type = 3;</code>
        */
       public int getTypeValue() {
         return type_;
       }
+
       /**
        * <code>.com.alibaba.otter.canal.protocol.PacketType type = 3;</code>
        */
@@ -921,14 +1024,18 @@ public final class AdminPacket {
         onChanged();
         return this;
       }
+
       /**
        * <code>.com.alibaba.otter.canal.protocol.PacketType type = 3;</code>
        */
       public com.alibaba.otter.canal.protocol.AdminPacket.PacketType getType() {
         @SuppressWarnings("deprecation")
-        com.alibaba.otter.canal.protocol.AdminPacket.PacketType result = com.alibaba.otter.canal.protocol.AdminPacket.PacketType.valueOf(type_);
-        return result == null ? com.alibaba.otter.canal.protocol.AdminPacket.PacketType.UNRECOGNIZED : result;
+        com.alibaba.otter.canal.protocol.AdminPacket.PacketType result = com.alibaba.otter.canal.protocol.AdminPacket.PacketType.valueOf(
+            type_);
+        return result == null ? com.alibaba.otter.canal.protocol.AdminPacket.PacketType.UNRECOGNIZED
+            : result;
       }
+
       /**
        * <code>.com.alibaba.otter.canal.protocol.PacketType type = 3;</code>
        */
@@ -936,49 +1043,54 @@ public final class AdminPacket {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+
         type_ = value.getNumber();
         onChanged();
         return this;
       }
+
       /**
        * <code>.com.alibaba.otter.canal.protocol.PacketType type = 3;</code>
        */
       public Builder clearType() {
-        
+
         type_ = 0;
         onChanged();
         return this;
       }
 
       private com.google.protobuf.ByteString body_ = com.google.protobuf.ByteString.EMPTY;
+
       /**
        * <code>bytes body = 4;</code>
        */
       public com.google.protobuf.ByteString getBody() {
         return body_;
       }
+
       /**
        * <code>bytes body = 4;</code>
        */
       public Builder setBody(com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         body_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>bytes body = 4;</code>
        */
       public Builder clearBody() {
-        
+
         body_ = getDefaultInstance().getBody();
         onChanged();
         return this;
       }
+
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -991,12 +1103,12 @@ public final class AdminPacket {
         return super.mergeUnknownFields(unknownFields);
       }
 
-
       // @@protoc_insertion_point(builder_scope:com.alibaba.otter.canal.protocol.Packet)
     }
 
     // @@protoc_insertion_point(class_scope:com.alibaba.otter.canal.protocol.Packet)
     private static final com.alibaba.otter.canal.protocol.AdminPacket.Packet DEFAULT_INSTANCE;
+
     static {
       DEFAULT_INSTANCE = new com.alibaba.otter.canal.protocol.AdminPacket.Packet();
     }
@@ -1049,6 +1161,7 @@ public final class AdminPacket {
      * <code>string message = 2;</code>
      */
     java.lang.String getMessage();
+
     /**
      * <pre>
      * if something like compression is not supported, erorr_message will tell about it.
@@ -1057,22 +1170,26 @@ public final class AdminPacket {
      * <code>string message = 2;</code>
      */
     com.google.protobuf.ByteString
-        getMessageBytes();
+    getMessageBytes();
 
     public com.alibaba.otter.canal.protocol.AdminPacket.Ack.ErrorCodePresentCase getErrorCodePresentCase();
   }
+
   /**
    * Protobuf type {@code com.alibaba.otter.canal.protocol.Ack}
    */
-  public  static final class Ack extends
+  public static final class Ack extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:com.alibaba.otter.canal.protocol.Ack)
       AckOrBuilder {
-  private static final long serialVersionUID = 0L;
+
+    private static final long serialVersionUID = 0L;
+
     // Use Ack.newBuilder() to construct.
     private Ack(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private Ack() {
       message_ = "";
     }
@@ -1082,6 +1199,7 @@ public final class AdminPacket {
     getUnknownFields() {
       return this.unknownFields;
     }
+
     private Ack(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1131,29 +1249,34 @@ public final class AdminPacket {
         makeExtensionsImmutable();
       }
     }
+
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    getDescriptor() {
       return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_Ack_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    internalGetFieldAccessorTable() {
       return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_Ack_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.alibaba.otter.canal.protocol.AdminPacket.Ack.class, com.alibaba.otter.canal.protocol.AdminPacket.Ack.Builder.class);
+              com.alibaba.otter.canal.protocol.AdminPacket.Ack.class,
+              com.alibaba.otter.canal.protocol.AdminPacket.Ack.Builder.class);
     }
 
     private int errorCodePresentCase_ = 0;
     private java.lang.Object errorCodePresent_;
+
     public enum ErrorCodePresentCase
         implements com.google.protobuf.Internal.EnumLite {
       CODE(1),
       ERRORCODEPRESENT_NOT_SET(0);
       private final int value;
+
       private ErrorCodePresentCase(int value) {
         this.value = value;
       }
+
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
@@ -1164,15 +1287,21 @@ public final class AdminPacket {
 
       public static ErrorCodePresentCase forNumber(int value) {
         switch (value) {
-          case 1: return CODE;
-          case 0: return ERRORCODEPRESENT_NOT_SET;
-          default: return null;
+          case 1:
+            return CODE;
+          case 0:
+            return ERRORCODEPRESENT_NOT_SET;
+          default:
+            return null;
         }
       }
+
       public int getNumber() {
         return this.value;
       }
-    };
+    }
+
+    ;
 
     public ErrorCodePresentCase
     getErrorCodePresentCase() {
@@ -1181,6 +1310,7 @@ public final class AdminPacket {
     }
 
     public static final int CODE_FIELD_NUMBER = 1;
+
     /**
      * <code>int32 code = 1;</code>
      */
@@ -1193,6 +1323,7 @@ public final class AdminPacket {
 
     public static final int MESSAGE_FIELD_NUMBER = 2;
     private volatile java.lang.Object message_;
+
     /**
      * <pre>
      * if something like compression is not supported, erorr_message will tell about it.
@@ -1205,13 +1336,14 @@ public final class AdminPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         message_ = s;
         return s;
       }
     }
+
     /**
      * <pre>
      * if something like compression is not supported, erorr_message will tell about it.
@@ -1220,10 +1352,10 @@ public final class AdminPacket {
      * <code>string message = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getMessageBytes() {
+    getMessageBytes() {
       java.lang.Object ref = message_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         message_ = b;
@@ -1234,11 +1366,16 @@ public final class AdminPacket {
     }
 
     private byte memoizedIsInitialized = -1;
+
     @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized == 1) {
+        return true;
+      }
+      if (isInitialized == 0) {
+        return false;
+      }
 
       memoizedIsInitialized = 1;
       return true;
@@ -1246,10 +1383,10 @@ public final class AdminPacket {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+        throws java.io.IOException {
       if (errorCodePresentCase_ == 1) {
         output.writeInt32(
-            1, (int)((java.lang.Integer) errorCodePresent_));
+            1, (int) ((java.lang.Integer) errorCodePresent_));
       }
       if (!getMessageBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, message_);
@@ -1260,13 +1397,15 @@ public final class AdminPacket {
     @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
-      if (size != -1) return size;
+      if (size != -1) {
+        return size;
+      }
 
       size = 0;
       if (errorCodePresentCase_ == 1) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(
-              1, (int)((java.lang.Integer) errorCodePresent_));
+            .computeInt32Size(
+                1, (int) ((java.lang.Integer) errorCodePresent_));
       }
       if (!getMessageBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, message_);
@@ -1279,7 +1418,7 @@ public final class AdminPacket {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof com.alibaba.otter.canal.protocol.AdminPacket.Ack)) {
         return super.equals(obj);
@@ -1291,7 +1430,9 @@ public final class AdminPacket {
           .equals(other.getMessage());
       result = result && getErrorCodePresentCase().equals(
           other.getErrorCodePresentCase());
-      if (!result) return false;
+      if (!result) {
+        return false;
+      }
       switch (errorCodePresentCase_) {
         case 1:
           result = result && (getCode()
@@ -1331,38 +1472,46 @@ public final class AdminPacket {
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Ack parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Ack parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Ack parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Ack parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Ack parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.AdminPacket.Ack parseFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.AdminPacket.Ack parseFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Ack parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1370,11 +1519,14 @@ public final class AdminPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.AdminPacket.Ack parseDelimitedFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.AdminPacket.Ack parseDelimitedFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Ack parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1382,12 +1534,14 @@ public final class AdminPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Ack parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Ack parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1397,13 +1551,18 @@ public final class AdminPacket {
     }
 
     @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() {
+      return newBuilder();
+    }
+
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
+
     public static Builder newBuilder(com.alibaba.otter.canal.protocol.AdminPacket.Ack prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
@@ -1416,6 +1575,7 @@ public final class AdminPacket {
       Builder builder = new Builder(parent);
       return builder;
     }
+
     /**
      * Protobuf type {@code com.alibaba.otter.canal.protocol.Ack}
      */
@@ -1423,17 +1583,19 @@ public final class AdminPacket {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.alibaba.otter.canal.protocol.Ack)
         com.alibaba.otter.canal.protocol.AdminPacket.AckOrBuilder {
+
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      getDescriptor() {
         return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_Ack_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
         return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_Ack_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.alibaba.otter.canal.protocol.AdminPacket.Ack.class, com.alibaba.otter.canal.protocol.AdminPacket.Ack.Builder.class);
+                com.alibaba.otter.canal.protocol.AdminPacket.Ack.class,
+                com.alibaba.otter.canal.protocol.AdminPacket.Ack.Builder.class);
       }
 
       // Construct using com.alibaba.otter.canal.protocol.AdminPacket.Ack.newBuilder()
@@ -1446,11 +1608,13 @@ public final class AdminPacket {
         super(parent);
         maybeForceBuilderInitialization();
       }
+
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+            .alwaysUseFieldBuilders) {
         }
       }
+
       @java.lang.Override
       public Builder clear() {
         super.clear();
@@ -1463,7 +1627,7 @@ public final class AdminPacket {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_Ack_descriptor;
       }
 
@@ -1483,7 +1647,8 @@ public final class AdminPacket {
 
       @java.lang.Override
       public com.alibaba.otter.canal.protocol.AdminPacket.Ack buildPartial() {
-        com.alibaba.otter.canal.protocol.AdminPacket.Ack result = new com.alibaba.otter.canal.protocol.AdminPacket.Ack(this);
+        com.alibaba.otter.canal.protocol.AdminPacket.Ack result = new com.alibaba.otter.canal.protocol.AdminPacket.Ack(
+            this);
         if (errorCodePresentCase_ == 1) {
           result.errorCodePresent_ = errorCodePresent_;
         }
@@ -1497,38 +1662,44 @@ public final class AdminPacket {
       public Builder clone() {
         return (Builder) super.clone();
       }
+
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
+
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
+
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
+
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
+
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.alibaba.otter.canal.protocol.AdminPacket.Ack) {
-          return mergeFrom((com.alibaba.otter.canal.protocol.AdminPacket.Ack)other);
+          return mergeFrom((com.alibaba.otter.canal.protocol.AdminPacket.Ack) other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -1536,7 +1707,9 @@ public final class AdminPacket {
       }
 
       public Builder mergeFrom(com.alibaba.otter.canal.protocol.AdminPacket.Ack other) {
-        if (other == com.alibaba.otter.canal.protocol.AdminPacket.Ack.getDefaultInstance()) return this;
+        if (other == com.alibaba.otter.canal.protocol.AdminPacket.Ack.getDefaultInstance()) {
+          return this;
+        }
         if (!other.getMessage().isEmpty()) {
           message_ = other.message_;
           onChanged();
@@ -1578,10 +1751,12 @@ public final class AdminPacket {
         }
         return this;
       }
+
       private int errorCodePresentCase_ = 0;
       private java.lang.Object errorCodePresent_;
+
       public ErrorCodePresentCase
-          getErrorCodePresentCase() {
+      getErrorCodePresentCase() {
         return ErrorCodePresentCase.forNumber(
             errorCodePresentCase_);
       }
@@ -1603,6 +1778,7 @@ public final class AdminPacket {
         }
         return 0;
       }
+
       /**
        * <code>int32 code = 1;</code>
        */
@@ -1612,6 +1788,7 @@ public final class AdminPacket {
         onChanged();
         return this;
       }
+
       /**
        * <code>int32 code = 1;</code>
        */
@@ -1625,6 +1802,7 @@ public final class AdminPacket {
       }
 
       private java.lang.Object message_ = "";
+
       /**
        * <pre>
        * if something like compression is not supported, erorr_message will tell about it.
@@ -1644,6 +1822,7 @@ public final class AdminPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <pre>
        * if something like compression is not supported, erorr_message will tell about it.
@@ -1652,10 +1831,10 @@ public final class AdminPacket {
        * <code>string message = 2;</code>
        */
       public com.google.protobuf.ByteString
-          getMessageBytes() {
+      getMessageBytes() {
         java.lang.Object ref = message_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           message_ = b;
@@ -1664,6 +1843,7 @@ public final class AdminPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <pre>
        * if something like compression is not supported, erorr_message will tell about it.
@@ -1674,13 +1854,14 @@ public final class AdminPacket {
       public Builder setMessage(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         message_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <pre>
        * if something like compression is not supported, erorr_message will tell about it.
@@ -1689,11 +1870,12 @@ public final class AdminPacket {
        * <code>string message = 2;</code>
        */
       public Builder clearMessage() {
-        
+
         message_ = getDefaultInstance().getMessage();
         onChanged();
         return this;
       }
+
       /**
        * <pre>
        * if something like compression is not supported, erorr_message will tell about it.
@@ -1704,14 +1886,15 @@ public final class AdminPacket {
       public Builder setMessageBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         message_ = value;
         onChanged();
         return this;
       }
+
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -1724,12 +1907,12 @@ public final class AdminPacket {
         return super.mergeUnknownFields(unknownFields);
       }
 
-
       // @@protoc_insertion_point(builder_scope:com.alibaba.otter.canal.protocol.Ack)
     }
 
     // @@protoc_insertion_point(class_scope:com.alibaba.otter.canal.protocol.Ack)
     private static final com.alibaba.otter.canal.protocol.AdminPacket.Ack DEFAULT_INSTANCE;
+
     static {
       DEFAULT_INSTANCE = new com.alibaba.otter.canal.protocol.AdminPacket.Ack();
     }
@@ -1773,11 +1956,12 @@ public final class AdminPacket {
      * <code>string communication_encoding = 1;</code>
      */
     java.lang.String getCommunicationEncoding();
+
     /**
      * <code>string communication_encoding = 1;</code>
      */
     com.google.protobuf.ByteString
-        getCommunicationEncodingBytes();
+    getCommunicationEncodingBytes();
 
     /**
      * <code>bytes seeds = 2;</code>
@@ -1786,18 +1970,22 @@ public final class AdminPacket {
 
     public com.alibaba.otter.canal.protocol.AdminPacket.Handshake.CommunicationEncodingPresentCase getCommunicationEncodingPresentCase();
   }
+
   /**
    * Protobuf type {@code com.alibaba.otter.canal.protocol.Handshake}
    */
-  public  static final class Handshake extends
+  public static final class Handshake extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:com.alibaba.otter.canal.protocol.Handshake)
       HandshakeOrBuilder {
-  private static final long serialVersionUID = 0L;
+
+    private static final long serialVersionUID = 0L;
+
     // Use Handshake.newBuilder() to construct.
     private Handshake(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private Handshake() {
       seeds_ = com.google.protobuf.ByteString.EMPTY;
     }
@@ -1807,6 +1995,7 @@ public final class AdminPacket {
     getUnknownFields() {
       return this.unknownFields;
     }
+
     private Handshake(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1856,29 +2045,34 @@ public final class AdminPacket {
         makeExtensionsImmutable();
       }
     }
+
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    getDescriptor() {
       return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_Handshake_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    internalGetFieldAccessorTable() {
       return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_Handshake_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.alibaba.otter.canal.protocol.AdminPacket.Handshake.class, com.alibaba.otter.canal.protocol.AdminPacket.Handshake.Builder.class);
+              com.alibaba.otter.canal.protocol.AdminPacket.Handshake.class,
+              com.alibaba.otter.canal.protocol.AdminPacket.Handshake.Builder.class);
     }
 
     private int communicationEncodingPresentCase_ = 0;
     private java.lang.Object communicationEncodingPresent_;
+
     public enum CommunicationEncodingPresentCase
         implements com.google.protobuf.Internal.EnumLite {
       COMMUNICATION_ENCODING(1),
       COMMUNICATIONENCODINGPRESENT_NOT_SET(0);
       private final int value;
+
       private CommunicationEncodingPresentCase(int value) {
         this.value = value;
       }
+
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
@@ -1889,15 +2083,21 @@ public final class AdminPacket {
 
       public static CommunicationEncodingPresentCase forNumber(int value) {
         switch (value) {
-          case 1: return COMMUNICATION_ENCODING;
-          case 0: return COMMUNICATIONENCODINGPRESENT_NOT_SET;
-          default: return null;
+          case 1:
+            return COMMUNICATION_ENCODING;
+          case 0:
+            return COMMUNICATIONENCODINGPRESENT_NOT_SET;
+          default:
+            return null;
         }
       }
+
       public int getNumber() {
         return this.value;
       }
-    };
+    }
+
+    ;
 
     public CommunicationEncodingPresentCase
     getCommunicationEncodingPresentCase() {
@@ -1906,6 +2106,7 @@ public final class AdminPacket {
     }
 
     public static final int COMMUNICATION_ENCODING_FIELD_NUMBER = 1;
+
     /**
      * <code>string communication_encoding = 1;</code>
      */
@@ -1917,7 +2118,7 @@ public final class AdminPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         if (communicationEncodingPresentCase_ == 1) {
@@ -1926,17 +2127,18 @@ public final class AdminPacket {
         return s;
       }
     }
+
     /**
      * <code>string communication_encoding = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getCommunicationEncodingBytes() {
+    getCommunicationEncodingBytes() {
       java.lang.Object ref = "";
       if (communicationEncodingPresentCase_ == 1) {
         ref = communicationEncodingPresent_;
       }
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         if (communicationEncodingPresentCase_ == 1) {
@@ -1950,6 +2152,7 @@ public final class AdminPacket {
 
     public static final int SEEDS_FIELD_NUMBER = 2;
     private com.google.protobuf.ByteString seeds_;
+
     /**
      * <code>bytes seeds = 2;</code>
      */
@@ -1958,11 +2161,16 @@ public final class AdminPacket {
     }
 
     private byte memoizedIsInitialized = -1;
+
     @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized == 1) {
+        return true;
+      }
+      if (isInitialized == 0) {
+        return false;
+      }
 
       memoizedIsInitialized = 1;
       return true;
@@ -1970,9 +2178,10 @@ public final class AdminPacket {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+        throws java.io.IOException {
       if (communicationEncodingPresentCase_ == 1) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, communicationEncodingPresent_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1,
+            communicationEncodingPresent_);
       }
       if (!seeds_.isEmpty()) {
         output.writeBytes(2, seeds_);
@@ -1983,15 +2192,18 @@ public final class AdminPacket {
     @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
-      if (size != -1) return size;
+      if (size != -1) {
+        return size;
+      }
 
       size = 0;
       if (communicationEncodingPresentCase_ == 1) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, communicationEncodingPresent_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1,
+            communicationEncodingPresent_);
       }
       if (!seeds_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, seeds_);
+            .computeBytesSize(2, seeds_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2001,7 +2213,7 @@ public final class AdminPacket {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof com.alibaba.otter.canal.protocol.AdminPacket.Handshake)) {
         return super.equals(obj);
@@ -2013,7 +2225,9 @@ public final class AdminPacket {
           .equals(other.getSeeds());
       result = result && getCommunicationEncodingPresentCase().equals(
           other.getCommunicationEncodingPresentCase());
-      if (!result) return false;
+      if (!result) {
+        return false;
+      }
       switch (communicationEncodingPresentCase_) {
         case 1:
           result = result && getCommunicationEncoding()
@@ -2053,38 +2267,46 @@ public final class AdminPacket {
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Handshake parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Handshake parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Handshake parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Handshake parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Handshake parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.AdminPacket.Handshake parseFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.AdminPacket.Handshake parseFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Handshake parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2092,11 +2314,14 @@ public final class AdminPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.AdminPacket.Handshake parseDelimitedFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.AdminPacket.Handshake parseDelimitedFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Handshake parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2104,12 +2329,14 @@ public final class AdminPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Handshake parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.Handshake parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2119,13 +2346,19 @@ public final class AdminPacket {
     }
 
     @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() {
+      return newBuilder();
+    }
+
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.alibaba.otter.canal.protocol.AdminPacket.Handshake prototype) {
+
+    public static Builder newBuilder(
+        com.alibaba.otter.canal.protocol.AdminPacket.Handshake prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
@@ -2138,6 +2371,7 @@ public final class AdminPacket {
       Builder builder = new Builder(parent);
       return builder;
     }
+
     /**
      * Protobuf type {@code com.alibaba.otter.canal.protocol.Handshake}
      */
@@ -2145,17 +2379,19 @@ public final class AdminPacket {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.alibaba.otter.canal.protocol.Handshake)
         com.alibaba.otter.canal.protocol.AdminPacket.HandshakeOrBuilder {
+
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      getDescriptor() {
         return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_Handshake_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
         return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_Handshake_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.alibaba.otter.canal.protocol.AdminPacket.Handshake.class, com.alibaba.otter.canal.protocol.AdminPacket.Handshake.Builder.class);
+                com.alibaba.otter.canal.protocol.AdminPacket.Handshake.class,
+                com.alibaba.otter.canal.protocol.AdminPacket.Handshake.Builder.class);
       }
 
       // Construct using com.alibaba.otter.canal.protocol.AdminPacket.Handshake.newBuilder()
@@ -2168,11 +2404,13 @@ public final class AdminPacket {
         super(parent);
         maybeForceBuilderInitialization();
       }
+
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+            .alwaysUseFieldBuilders) {
         }
       }
+
       @java.lang.Override
       public Builder clear() {
         super.clear();
@@ -2185,7 +2423,7 @@ public final class AdminPacket {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_Handshake_descriptor;
       }
 
@@ -2205,7 +2443,8 @@ public final class AdminPacket {
 
       @java.lang.Override
       public com.alibaba.otter.canal.protocol.AdminPacket.Handshake buildPartial() {
-        com.alibaba.otter.canal.protocol.AdminPacket.Handshake result = new com.alibaba.otter.canal.protocol.AdminPacket.Handshake(this);
+        com.alibaba.otter.canal.protocol.AdminPacket.Handshake result = new com.alibaba.otter.canal.protocol.AdminPacket.Handshake(
+            this);
         if (communicationEncodingPresentCase_ == 1) {
           result.communicationEncodingPresent_ = communicationEncodingPresent_;
         }
@@ -2219,38 +2458,44 @@ public final class AdminPacket {
       public Builder clone() {
         return (Builder) super.clone();
       }
+
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
+
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
+
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
+
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
+
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.alibaba.otter.canal.protocol.AdminPacket.Handshake) {
-          return mergeFrom((com.alibaba.otter.canal.protocol.AdminPacket.Handshake)other);
+          return mergeFrom((com.alibaba.otter.canal.protocol.AdminPacket.Handshake) other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -2258,7 +2503,9 @@ public final class AdminPacket {
       }
 
       public Builder mergeFrom(com.alibaba.otter.canal.protocol.AdminPacket.Handshake other) {
-        if (other == com.alibaba.otter.canal.protocol.AdminPacket.Handshake.getDefaultInstance()) return this;
+        if (other == com.alibaba.otter.canal.protocol.AdminPacket.Handshake.getDefaultInstance()) {
+          return this;
+        }
         if (other.getSeeds() != com.google.protobuf.ByteString.EMPTY) {
           setSeeds(other.getSeeds());
         }
@@ -2301,10 +2548,12 @@ public final class AdminPacket {
         }
         return this;
       }
+
       private int communicationEncodingPresentCase_ = 0;
       private java.lang.Object communicationEncodingPresent_;
+
       public CommunicationEncodingPresentCase
-          getCommunicationEncodingPresentCase() {
+      getCommunicationEncodingPresentCase() {
         return CommunicationEncodingPresentCase.forNumber(
             communicationEncodingPresentCase_);
       }
@@ -2337,17 +2586,18 @@ public final class AdminPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <code>string communication_encoding = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getCommunicationEncodingBytes() {
+      getCommunicationEncodingBytes() {
         java.lang.Object ref = "";
         if (communicationEncodingPresentCase_ == 1) {
           ref = communicationEncodingPresent_;
         }
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           if (communicationEncodingPresentCase_ == 1) {
@@ -2358,19 +2608,21 @@ public final class AdminPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <code>string communication_encoding = 1;</code>
        */
       public Builder setCommunicationEncoding(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  communicationEncodingPresentCase_ = 1;
+          throw new NullPointerException();
+        }
+        communicationEncodingPresentCase_ = 1;
         communicationEncodingPresent_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>string communication_encoding = 1;</code>
        */
@@ -2382,15 +2634,16 @@ public final class AdminPacket {
         }
         return this;
       }
+
       /**
        * <code>string communication_encoding = 1;</code>
        */
       public Builder setCommunicationEncodingBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
         communicationEncodingPresentCase_ = 1;
         communicationEncodingPresent_ = value;
         onChanged();
@@ -2398,33 +2651,37 @@ public final class AdminPacket {
       }
 
       private com.google.protobuf.ByteString seeds_ = com.google.protobuf.ByteString.EMPTY;
+
       /**
        * <code>bytes seeds = 2;</code>
        */
       public com.google.protobuf.ByteString getSeeds() {
         return seeds_;
       }
+
       /**
        * <code>bytes seeds = 2;</code>
        */
       public Builder setSeeds(com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         seeds_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>bytes seeds = 2;</code>
        */
       public Builder clearSeeds() {
-        
+
         seeds_ = getDefaultInstance().getSeeds();
         onChanged();
         return this;
       }
+
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -2437,12 +2694,12 @@ public final class AdminPacket {
         return super.mergeUnknownFields(unknownFields);
       }
 
-
       // @@protoc_insertion_point(builder_scope:com.alibaba.otter.canal.protocol.Handshake)
     }
 
     // @@protoc_insertion_point(class_scope:com.alibaba.otter.canal.protocol.Handshake)
     private static final com.alibaba.otter.canal.protocol.AdminPacket.Handshake DEFAULT_INSTANCE;
+
     static {
       DEFAULT_INSTANCE = new com.alibaba.otter.canal.protocol.AdminPacket.Handshake();
     }
@@ -2486,11 +2743,12 @@ public final class AdminPacket {
      * <code>string username = 1;</code>
      */
     java.lang.String getUsername();
+
     /**
      * <code>string username = 1;</code>
      */
     com.google.protobuf.ByteString
-        getUsernameBytes();
+    getUsernameBytes();
 
     /**
      * <pre>
@@ -2523,6 +2781,7 @@ public final class AdminPacket {
 
     public com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth.NetWriteTimeoutPresentCase getNetWriteTimeoutPresentCase();
   }
+
   /**
    * <pre>
    * client authentication
@@ -2530,15 +2789,18 @@ public final class AdminPacket {
    *
    * Protobuf type {@code com.alibaba.otter.canal.protocol.ClientAuth}
    */
-  public  static final class ClientAuth extends
+  public static final class ClientAuth extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:com.alibaba.otter.canal.protocol.ClientAuth)
       ClientAuthOrBuilder {
-  private static final long serialVersionUID = 0L;
+
+    private static final long serialVersionUID = 0L;
+
     // Use ClientAuth.newBuilder() to construct.
     private ClientAuth(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private ClientAuth() {
       username_ = "";
       password_ = com.google.protobuf.ByteString.EMPTY;
@@ -2549,6 +2811,7 @@ public final class AdminPacket {
     getUnknownFields() {
       return this.unknownFields;
     }
+
     private ClientAuth(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2608,29 +2871,34 @@ public final class AdminPacket {
         makeExtensionsImmutable();
       }
     }
+
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    getDescriptor() {
       return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_ClientAuth_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    internalGetFieldAccessorTable() {
       return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_ClientAuth_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth.class, com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth.Builder.class);
+              com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth.class,
+              com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth.Builder.class);
     }
 
     private int netReadTimeoutPresentCase_ = 0;
     private java.lang.Object netReadTimeoutPresent_;
+
     public enum NetReadTimeoutPresentCase
         implements com.google.protobuf.Internal.EnumLite {
       NET_READ_TIMEOUT(3),
       NETREADTIMEOUTPRESENT_NOT_SET(0);
       private final int value;
+
       private NetReadTimeoutPresentCase(int value) {
         this.value = value;
       }
+
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
@@ -2641,15 +2909,21 @@ public final class AdminPacket {
 
       public static NetReadTimeoutPresentCase forNumber(int value) {
         switch (value) {
-          case 3: return NET_READ_TIMEOUT;
-          case 0: return NETREADTIMEOUTPRESENT_NOT_SET;
-          default: return null;
+          case 3:
+            return NET_READ_TIMEOUT;
+          case 0:
+            return NETREADTIMEOUTPRESENT_NOT_SET;
+          default:
+            return null;
         }
       }
+
       public int getNumber() {
         return this.value;
       }
-    };
+    }
+
+    ;
 
     public NetReadTimeoutPresentCase
     getNetReadTimeoutPresentCase() {
@@ -2659,14 +2933,17 @@ public final class AdminPacket {
 
     private int netWriteTimeoutPresentCase_ = 0;
     private java.lang.Object netWriteTimeoutPresent_;
+
     public enum NetWriteTimeoutPresentCase
         implements com.google.protobuf.Internal.EnumLite {
       NET_WRITE_TIMEOUT(4),
       NETWRITETIMEOUTPRESENT_NOT_SET(0);
       private final int value;
+
       private NetWriteTimeoutPresentCase(int value) {
         this.value = value;
       }
+
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
@@ -2677,15 +2954,21 @@ public final class AdminPacket {
 
       public static NetWriteTimeoutPresentCase forNumber(int value) {
         switch (value) {
-          case 4: return NET_WRITE_TIMEOUT;
-          case 0: return NETWRITETIMEOUTPRESENT_NOT_SET;
-          default: return null;
+          case 4:
+            return NET_WRITE_TIMEOUT;
+          case 0:
+            return NETWRITETIMEOUTPRESENT_NOT_SET;
+          default:
+            return null;
         }
       }
+
       public int getNumber() {
         return this.value;
       }
-    };
+    }
+
+    ;
 
     public NetWriteTimeoutPresentCase
     getNetWriteTimeoutPresentCase() {
@@ -2695,6 +2978,7 @@ public final class AdminPacket {
 
     public static final int USERNAME_FIELD_NUMBER = 1;
     private volatile java.lang.Object username_;
+
     /**
      * <code>string username = 1;</code>
      */
@@ -2703,21 +2987,22 @@ public final class AdminPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         username_ = s;
         return s;
       }
     }
+
     /**
      * <code>string username = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getUsernameBytes() {
+    getUsernameBytes() {
       java.lang.Object ref = username_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         username_ = b;
@@ -2729,6 +3014,7 @@ public final class AdminPacket {
 
     public static final int PASSWORD_FIELD_NUMBER = 2;
     private com.google.protobuf.ByteString password_;
+
     /**
      * <pre>
      * hashed password with seeds from Handshake message
@@ -2741,6 +3027,7 @@ public final class AdminPacket {
     }
 
     public static final int NET_READ_TIMEOUT_FIELD_NUMBER = 3;
+
     /**
      * <pre>
      * in seconds
@@ -2756,6 +3043,7 @@ public final class AdminPacket {
     }
 
     public static final int NET_WRITE_TIMEOUT_FIELD_NUMBER = 4;
+
     /**
      * <pre>
      * in seconds
@@ -2771,11 +3059,16 @@ public final class AdminPacket {
     }
 
     private byte memoizedIsInitialized = -1;
+
     @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized == 1) {
+        return true;
+      }
+      if (isInitialized == 0) {
+        return false;
+      }
 
       memoizedIsInitialized = 1;
       return true;
@@ -2783,7 +3076,7 @@ public final class AdminPacket {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+        throws java.io.IOException {
       if (!getUsernameBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
       }
@@ -2792,11 +3085,11 @@ public final class AdminPacket {
       }
       if (netReadTimeoutPresentCase_ == 3) {
         output.writeInt32(
-            3, (int)((java.lang.Integer) netReadTimeoutPresent_));
+            3, (int) ((java.lang.Integer) netReadTimeoutPresent_));
       }
       if (netWriteTimeoutPresentCase_ == 4) {
         output.writeInt32(
-            4, (int)((java.lang.Integer) netWriteTimeoutPresent_));
+            4, (int) ((java.lang.Integer) netWriteTimeoutPresent_));
       }
       unknownFields.writeTo(output);
     }
@@ -2804,7 +3097,9 @@ public final class AdminPacket {
     @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
-      if (size != -1) return size;
+      if (size != -1) {
+        return size;
+      }
 
       size = 0;
       if (!getUsernameBytes().isEmpty()) {
@@ -2812,17 +3107,17 @@ public final class AdminPacket {
       }
       if (!password_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, password_);
+            .computeBytesSize(2, password_);
       }
       if (netReadTimeoutPresentCase_ == 3) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(
-              3, (int)((java.lang.Integer) netReadTimeoutPresent_));
+            .computeInt32Size(
+                3, (int) ((java.lang.Integer) netReadTimeoutPresent_));
       }
       if (netWriteTimeoutPresentCase_ == 4) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(
-              4, (int)((java.lang.Integer) netWriteTimeoutPresent_));
+            .computeInt32Size(
+                4, (int) ((java.lang.Integer) netWriteTimeoutPresent_));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2832,7 +3127,7 @@ public final class AdminPacket {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth)) {
         return super.equals(obj);
@@ -2846,7 +3141,9 @@ public final class AdminPacket {
           .equals(other.getPassword());
       result = result && getNetReadTimeoutPresentCase().equals(
           other.getNetReadTimeoutPresentCase());
-      if (!result) return false;
+      if (!result) {
+        return false;
+      }
       switch (netReadTimeoutPresentCase_) {
         case 3:
           result = result && (getNetReadTimeout()
@@ -2857,7 +3154,9 @@ public final class AdminPacket {
       }
       result = result && getNetWriteTimeoutPresentCase().equals(
           other.getNetWriteTimeoutPresentCase());
-      if (!result) return false;
+      if (!result) {
+        return false;
+      }
       switch (netWriteTimeoutPresentCase_) {
         case 4:
           result = result && (getNetWriteTimeout()
@@ -2907,38 +3206,46 @@ public final class AdminPacket {
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth parseFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth parseFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2946,11 +3253,14 @@ public final class AdminPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth parseDelimitedFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth parseDelimitedFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2958,12 +3268,14 @@ public final class AdminPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2973,13 +3285,19 @@ public final class AdminPacket {
     }
 
     @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() {
+      return newBuilder();
+    }
+
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth prototype) {
+
+    public static Builder newBuilder(
+        com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
@@ -2992,6 +3310,7 @@ public final class AdminPacket {
       Builder builder = new Builder(parent);
       return builder;
     }
+
     /**
      * <pre>
      * client authentication
@@ -3003,17 +3322,19 @@ public final class AdminPacket {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.alibaba.otter.canal.protocol.ClientAuth)
         com.alibaba.otter.canal.protocol.AdminPacket.ClientAuthOrBuilder {
+
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      getDescriptor() {
         return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_ClientAuth_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
         return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_ClientAuth_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth.class, com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth.Builder.class);
+                com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth.class,
+                com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth.Builder.class);
       }
 
       // Construct using com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth.newBuilder()
@@ -3026,11 +3347,13 @@ public final class AdminPacket {
         super(parent);
         maybeForceBuilderInitialization();
       }
+
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+            .alwaysUseFieldBuilders) {
         }
       }
+
       @java.lang.Override
       public Builder clear() {
         super.clear();
@@ -3047,7 +3370,7 @@ public final class AdminPacket {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_ClientAuth_descriptor;
       }
 
@@ -3067,7 +3390,8 @@ public final class AdminPacket {
 
       @java.lang.Override
       public com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth buildPartial() {
-        com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth result = new com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth(this);
+        com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth result = new com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth(
+            this);
         result.username_ = username_;
         result.password_ = password_;
         if (netReadTimeoutPresentCase_ == 3) {
@@ -3086,38 +3410,44 @@ public final class AdminPacket {
       public Builder clone() {
         return (Builder) super.clone();
       }
+
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
+
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
+
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
+
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
+
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth) {
-          return mergeFrom((com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth)other);
+          return mergeFrom((com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth) other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -3125,7 +3455,9 @@ public final class AdminPacket {
       }
 
       public Builder mergeFrom(com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth other) {
-        if (other == com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth.getDefaultInstance()) return this;
+        if (other == com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth.getDefaultInstance()) {
+          return this;
+        }
         if (!other.getUsername().isEmpty()) {
           username_ = other.username_;
           onChanged();
@@ -3179,10 +3511,12 @@ public final class AdminPacket {
         }
         return this;
       }
+
       private int netReadTimeoutPresentCase_ = 0;
       private java.lang.Object netReadTimeoutPresent_;
+
       public NetReadTimeoutPresentCase
-          getNetReadTimeoutPresentCase() {
+      getNetReadTimeoutPresentCase() {
         return NetReadTimeoutPresentCase.forNumber(
             netReadTimeoutPresentCase_);
       }
@@ -3196,8 +3530,9 @@ public final class AdminPacket {
 
       private int netWriteTimeoutPresentCase_ = 0;
       private java.lang.Object netWriteTimeoutPresent_;
+
       public NetWriteTimeoutPresentCase
-          getNetWriteTimeoutPresentCase() {
+      getNetWriteTimeoutPresentCase() {
         return NetWriteTimeoutPresentCase.forNumber(
             netWriteTimeoutPresentCase_);
       }
@@ -3211,6 +3546,7 @@ public final class AdminPacket {
 
 
       private java.lang.Object username_ = "";
+
       /**
        * <code>string username = 1;</code>
        */
@@ -3226,14 +3562,15 @@ public final class AdminPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <code>string username = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getUsernameBytes() {
+      getUsernameBytes() {
         java.lang.Object ref = username_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           username_ = b;
@@ -3242,44 +3579,48 @@ public final class AdminPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <code>string username = 1;</code>
        */
       public Builder setUsername(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         username_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>string username = 1;</code>
        */
       public Builder clearUsername() {
-        
+
         username_ = getDefaultInstance().getUsername();
         onChanged();
         return this;
       }
+
       /**
        * <code>string username = 1;</code>
        */
       public Builder setUsernameBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         username_ = value;
         onChanged();
         return this;
       }
 
       private com.google.protobuf.ByteString password_ = com.google.protobuf.ByteString.EMPTY;
+
       /**
        * <pre>
        * hashed password with seeds from Handshake message
@@ -3290,6 +3631,7 @@ public final class AdminPacket {
       public com.google.protobuf.ByteString getPassword() {
         return password_;
       }
+
       /**
        * <pre>
        * hashed password with seeds from Handshake message
@@ -3299,13 +3641,14 @@ public final class AdminPacket {
        */
       public Builder setPassword(com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         password_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <pre>
        * hashed password with seeds from Handshake message
@@ -3314,7 +3657,7 @@ public final class AdminPacket {
        * <code>bytes password = 2;</code>
        */
       public Builder clearPassword() {
-        
+
         password_ = getDefaultInstance().getPassword();
         onChanged();
         return this;
@@ -3333,6 +3676,7 @@ public final class AdminPacket {
         }
         return 0;
       }
+
       /**
        * <pre>
        * in seconds
@@ -3346,6 +3690,7 @@ public final class AdminPacket {
         onChanged();
         return this;
       }
+
       /**
        * <pre>
        * in seconds
@@ -3375,6 +3720,7 @@ public final class AdminPacket {
         }
         return 0;
       }
+
       /**
        * <pre>
        * in seconds
@@ -3388,6 +3734,7 @@ public final class AdminPacket {
         onChanged();
         return this;
       }
+
       /**
        * <pre>
        * in seconds
@@ -3403,6 +3750,7 @@ public final class AdminPacket {
         }
         return this;
       }
+
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -3415,12 +3763,12 @@ public final class AdminPacket {
         return super.mergeUnknownFields(unknownFields);
       }
 
-
       // @@protoc_insertion_point(builder_scope:com.alibaba.otter.canal.protocol.ClientAuth)
     }
 
     // @@protoc_insertion_point(class_scope:com.alibaba.otter.canal.protocol.ClientAuth)
     private static final com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth DEFAULT_INSTANCE;
+
     static {
       DEFAULT_INSTANCE = new com.alibaba.otter.canal.protocol.AdminPacket.ClientAuth();
     }
@@ -3468,6 +3816,7 @@ public final class AdminPacket {
      * <code>string action = 1;</code>
      */
     java.lang.String getAction();
+
     /**
      * <pre>
      * check/start/stop/restart/list
@@ -3476,20 +3825,24 @@ public final class AdminPacket {
      * <code>string action = 1;</code>
      */
     com.google.protobuf.ByteString
-        getActionBytes();
+    getActionBytes();
   }
+
   /**
    * Protobuf type {@code com.alibaba.otter.canal.protocol.ServerAdmin}
    */
-  public  static final class ServerAdmin extends
+  public static final class ServerAdmin extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:com.alibaba.otter.canal.protocol.ServerAdmin)
       ServerAdminOrBuilder {
-  private static final long serialVersionUID = 0L;
+
+    private static final long serialVersionUID = 0L;
+
     // Use ServerAdmin.newBuilder() to construct.
     private ServerAdmin(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private ServerAdmin() {
       action_ = "";
     }
@@ -3499,6 +3852,7 @@ public final class AdminPacket {
     getUnknownFields() {
       return this.unknownFields;
     }
+
     private ServerAdmin(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3543,21 +3897,24 @@ public final class AdminPacket {
         makeExtensionsImmutable();
       }
     }
+
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    getDescriptor() {
       return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_ServerAdmin_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    internalGetFieldAccessorTable() {
       return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_ServerAdmin_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin.class, com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin.Builder.class);
+              com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin.class,
+              com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin.Builder.class);
     }
 
     public static final int ACTION_FIELD_NUMBER = 1;
     private volatile java.lang.Object action_;
+
     /**
      * <pre>
      * check/start/stop/restart/list
@@ -3570,13 +3927,14 @@ public final class AdminPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         action_ = s;
         return s;
       }
     }
+
     /**
      * <pre>
      * check/start/stop/restart/list
@@ -3585,10 +3943,10 @@ public final class AdminPacket {
      * <code>string action = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getActionBytes() {
+    getActionBytes() {
       java.lang.Object ref = action_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         action_ = b;
@@ -3599,11 +3957,16 @@ public final class AdminPacket {
     }
 
     private byte memoizedIsInitialized = -1;
+
     @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized == 1) {
+        return true;
+      }
+      if (isInitialized == 0) {
+        return false;
+      }
 
       memoizedIsInitialized = 1;
       return true;
@@ -3611,7 +3974,7 @@ public final class AdminPacket {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+        throws java.io.IOException {
       if (!getActionBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, action_);
       }
@@ -3621,7 +3984,9 @@ public final class AdminPacket {
     @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
-      if (size != -1) return size;
+      if (size != -1) {
+        return size;
+      }
 
       size = 0;
       if (!getActionBytes().isEmpty()) {
@@ -3635,7 +4000,7 @@ public final class AdminPacket {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin)) {
         return super.equals(obj);
@@ -3668,38 +4033,46 @@ public final class AdminPacket {
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin parseFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin parseFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3707,11 +4080,14 @@ public final class AdminPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin parseDelimitedFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin parseDelimitedFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3719,12 +4095,14 @@ public final class AdminPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3734,13 +4112,19 @@ public final class AdminPacket {
     }
 
     @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() {
+      return newBuilder();
+    }
+
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin prototype) {
+
+    public static Builder newBuilder(
+        com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
@@ -3753,6 +4137,7 @@ public final class AdminPacket {
       Builder builder = new Builder(parent);
       return builder;
     }
+
     /**
      * Protobuf type {@code com.alibaba.otter.canal.protocol.ServerAdmin}
      */
@@ -3760,17 +4145,19 @@ public final class AdminPacket {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.alibaba.otter.canal.protocol.ServerAdmin)
         com.alibaba.otter.canal.protocol.AdminPacket.ServerAdminOrBuilder {
+
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      getDescriptor() {
         return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_ServerAdmin_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
         return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_ServerAdmin_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin.class, com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin.Builder.class);
+                com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin.class,
+                com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin.Builder.class);
       }
 
       // Construct using com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin.newBuilder()
@@ -3783,11 +4170,13 @@ public final class AdminPacket {
         super(parent);
         maybeForceBuilderInitialization();
       }
+
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+            .alwaysUseFieldBuilders) {
         }
       }
+
       @java.lang.Override
       public Builder clear() {
         super.clear();
@@ -3798,7 +4187,7 @@ public final class AdminPacket {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_ServerAdmin_descriptor;
       }
 
@@ -3818,7 +4207,8 @@ public final class AdminPacket {
 
       @java.lang.Override
       public com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin buildPartial() {
-        com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin result = new com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin(this);
+        com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin result = new com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin(
+            this);
         result.action_ = action_;
         onBuilt();
         return result;
@@ -3828,38 +4218,44 @@ public final class AdminPacket {
       public Builder clone() {
         return (Builder) super.clone();
       }
+
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
+
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
+
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
+
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
+
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin) {
-          return mergeFrom((com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin)other);
+          return mergeFrom((com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin) other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -3867,7 +4263,10 @@ public final class AdminPacket {
       }
 
       public Builder mergeFrom(com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin other) {
-        if (other == com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin.getDefaultInstance()) return this;
+        if (other
+            == com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin.getDefaultInstance()) {
+          return this;
+        }
         if (!other.getAction().isEmpty()) {
           action_ = other.action_;
           onChanged();
@@ -3902,6 +4301,7 @@ public final class AdminPacket {
       }
 
       private java.lang.Object action_ = "";
+
       /**
        * <pre>
        * check/start/stop/restart/list
@@ -3921,6 +4321,7 @@ public final class AdminPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <pre>
        * check/start/stop/restart/list
@@ -3929,10 +4330,10 @@ public final class AdminPacket {
        * <code>string action = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getActionBytes() {
+      getActionBytes() {
         java.lang.Object ref = action_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           action_ = b;
@@ -3941,6 +4342,7 @@ public final class AdminPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <pre>
        * check/start/stop/restart/list
@@ -3951,13 +4353,14 @@ public final class AdminPacket {
       public Builder setAction(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         action_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <pre>
        * check/start/stop/restart/list
@@ -3966,11 +4369,12 @@ public final class AdminPacket {
        * <code>string action = 1;</code>
        */
       public Builder clearAction() {
-        
+
         action_ = getDefaultInstance().getAction();
         onChanged();
         return this;
       }
+
       /**
        * <pre>
        * check/start/stop/restart/list
@@ -3981,14 +4385,15 @@ public final class AdminPacket {
       public Builder setActionBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         action_ = value;
         onChanged();
         return this;
       }
+
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -4001,12 +4406,12 @@ public final class AdminPacket {
         return super.mergeUnknownFields(unknownFields);
       }
 
-
       // @@protoc_insertion_point(builder_scope:com.alibaba.otter.canal.protocol.ServerAdmin)
     }
 
     // @@protoc_insertion_point(class_scope:com.alibaba.otter.canal.protocol.ServerAdmin)
     private static final com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin DEFAULT_INSTANCE;
+
     static {
       DEFAULT_INSTANCE = new com.alibaba.otter.canal.protocol.AdminPacket.ServerAdmin();
     }
@@ -4050,11 +4455,12 @@ public final class AdminPacket {
      * <code>string destination = 1;</code>
      */
     java.lang.String getDestination();
+
     /**
      * <code>string destination = 1;</code>
      */
     com.google.protobuf.ByteString
-        getDestinationBytes();
+    getDestinationBytes();
 
     /**
      * <pre>
@@ -4064,6 +4470,7 @@ public final class AdminPacket {
      * <code>string action = 2;</code>
      */
     java.lang.String getAction();
+
     /**
      * <pre>
      * check/start/stop/reload
@@ -4072,20 +4479,24 @@ public final class AdminPacket {
      * <code>string action = 2;</code>
      */
     com.google.protobuf.ByteString
-        getActionBytes();
+    getActionBytes();
   }
+
   /**
    * Protobuf type {@code com.alibaba.otter.canal.protocol.InstanceAdmin}
    */
-  public  static final class InstanceAdmin extends
+  public static final class InstanceAdmin extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:com.alibaba.otter.canal.protocol.InstanceAdmin)
       InstanceAdminOrBuilder {
-  private static final long serialVersionUID = 0L;
+
+    private static final long serialVersionUID = 0L;
+
     // Use InstanceAdmin.newBuilder() to construct.
     private InstanceAdmin(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private InstanceAdmin() {
       destination_ = "";
       action_ = "";
@@ -4096,6 +4507,7 @@ public final class AdminPacket {
     getUnknownFields() {
       return this.unknownFields;
     }
+
     private InstanceAdmin(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4146,21 +4558,24 @@ public final class AdminPacket {
         makeExtensionsImmutable();
       }
     }
+
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    getDescriptor() {
       return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_InstanceAdmin_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    internalGetFieldAccessorTable() {
       return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_InstanceAdmin_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin.class, com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin.Builder.class);
+              com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin.class,
+              com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin.Builder.class);
     }
 
     public static final int DESTINATION_FIELD_NUMBER = 1;
     private volatile java.lang.Object destination_;
+
     /**
      * <code>string destination = 1;</code>
      */
@@ -4169,21 +4584,22 @@ public final class AdminPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         destination_ = s;
         return s;
       }
     }
+
     /**
      * <code>string destination = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getDestinationBytes() {
+    getDestinationBytes() {
       java.lang.Object ref = destination_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         destination_ = b;
@@ -4195,6 +4611,7 @@ public final class AdminPacket {
 
     public static final int ACTION_FIELD_NUMBER = 2;
     private volatile java.lang.Object action_;
+
     /**
      * <pre>
      * check/start/stop/reload
@@ -4207,13 +4624,14 @@ public final class AdminPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         action_ = s;
         return s;
       }
     }
+
     /**
      * <pre>
      * check/start/stop/reload
@@ -4222,10 +4640,10 @@ public final class AdminPacket {
      * <code>string action = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getActionBytes() {
+    getActionBytes() {
       java.lang.Object ref = action_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         action_ = b;
@@ -4236,11 +4654,16 @@ public final class AdminPacket {
     }
 
     private byte memoizedIsInitialized = -1;
+
     @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized == 1) {
+        return true;
+      }
+      if (isInitialized == 0) {
+        return false;
+      }
 
       memoizedIsInitialized = 1;
       return true;
@@ -4248,7 +4671,7 @@ public final class AdminPacket {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+        throws java.io.IOException {
       if (!getDestinationBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, destination_);
       }
@@ -4261,7 +4684,9 @@ public final class AdminPacket {
     @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
-      if (size != -1) return size;
+      if (size != -1) {
+        return size;
+      }
 
       size = 0;
       if (!getDestinationBytes().isEmpty()) {
@@ -4278,7 +4703,7 @@ public final class AdminPacket {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin)) {
         return super.equals(obj);
@@ -4315,38 +4740,46 @@ public final class AdminPacket {
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin parseFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin parseFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4354,11 +4787,14 @@ public final class AdminPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin parseDelimitedFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin parseDelimitedFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4366,12 +4802,14 @@ public final class AdminPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4381,13 +4819,19 @@ public final class AdminPacket {
     }
 
     @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() {
+      return newBuilder();
+    }
+
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin prototype) {
+
+    public static Builder newBuilder(
+        com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
@@ -4400,6 +4844,7 @@ public final class AdminPacket {
       Builder builder = new Builder(parent);
       return builder;
     }
+
     /**
      * Protobuf type {@code com.alibaba.otter.canal.protocol.InstanceAdmin}
      */
@@ -4407,17 +4852,19 @@ public final class AdminPacket {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.alibaba.otter.canal.protocol.InstanceAdmin)
         com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdminOrBuilder {
+
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      getDescriptor() {
         return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_InstanceAdmin_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
         return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_InstanceAdmin_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin.class, com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin.Builder.class);
+                com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin.class,
+                com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin.Builder.class);
       }
 
       // Construct using com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin.newBuilder()
@@ -4430,11 +4877,13 @@ public final class AdminPacket {
         super(parent);
         maybeForceBuilderInitialization();
       }
+
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+            .alwaysUseFieldBuilders) {
         }
       }
+
       @java.lang.Override
       public Builder clear() {
         super.clear();
@@ -4447,7 +4896,7 @@ public final class AdminPacket {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_InstanceAdmin_descriptor;
       }
 
@@ -4467,7 +4916,8 @@ public final class AdminPacket {
 
       @java.lang.Override
       public com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin buildPartial() {
-        com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin result = new com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin(this);
+        com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin result = new com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin(
+            this);
         result.destination_ = destination_;
         result.action_ = action_;
         onBuilt();
@@ -4478,38 +4928,44 @@ public final class AdminPacket {
       public Builder clone() {
         return (Builder) super.clone();
       }
+
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
+
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
+
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
+
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
+
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin) {
-          return mergeFrom((com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin)other);
+          return mergeFrom((com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin) other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -4517,7 +4973,10 @@ public final class AdminPacket {
       }
 
       public Builder mergeFrom(com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin other) {
-        if (other == com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin.getDefaultInstance()) return this;
+        if (other
+            == com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin.getDefaultInstance()) {
+          return this;
+        }
         if (!other.getDestination().isEmpty()) {
           destination_ = other.destination_;
           onChanged();
@@ -4556,6 +5015,7 @@ public final class AdminPacket {
       }
 
       private java.lang.Object destination_ = "";
+
       /**
        * <code>string destination = 1;</code>
        */
@@ -4571,14 +5031,15 @@ public final class AdminPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <code>string destination = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getDestinationBytes() {
+      getDestinationBytes() {
         java.lang.Object ref = destination_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           destination_ = b;
@@ -4587,44 +5048,48 @@ public final class AdminPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <code>string destination = 1;</code>
        */
       public Builder setDestination(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         destination_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>string destination = 1;</code>
        */
       public Builder clearDestination() {
-        
+
         destination_ = getDefaultInstance().getDestination();
         onChanged();
         return this;
       }
+
       /**
        * <code>string destination = 1;</code>
        */
       public Builder setDestinationBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         destination_ = value;
         onChanged();
         return this;
       }
 
       private java.lang.Object action_ = "";
+
       /**
        * <pre>
        * check/start/stop/reload
@@ -4644,6 +5109,7 @@ public final class AdminPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <pre>
        * check/start/stop/reload
@@ -4652,10 +5118,10 @@ public final class AdminPacket {
        * <code>string action = 2;</code>
        */
       public com.google.protobuf.ByteString
-          getActionBytes() {
+      getActionBytes() {
         java.lang.Object ref = action_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           action_ = b;
@@ -4664,6 +5130,7 @@ public final class AdminPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <pre>
        * check/start/stop/reload
@@ -4674,13 +5141,14 @@ public final class AdminPacket {
       public Builder setAction(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         action_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <pre>
        * check/start/stop/reload
@@ -4689,11 +5157,12 @@ public final class AdminPacket {
        * <code>string action = 2;</code>
        */
       public Builder clearAction() {
-        
+
         action_ = getDefaultInstance().getAction();
         onChanged();
         return this;
       }
+
       /**
        * <pre>
        * check/start/stop/reload
@@ -4704,14 +5173,15 @@ public final class AdminPacket {
       public Builder setActionBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         action_ = value;
         onChanged();
         return this;
       }
+
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -4724,12 +5194,12 @@ public final class AdminPacket {
         return super.mergeUnknownFields(unknownFields);
       }
 
-
       // @@protoc_insertion_point(builder_scope:com.alibaba.otter.canal.protocol.InstanceAdmin)
     }
 
     // @@protoc_insertion_point(class_scope:com.alibaba.otter.canal.protocol.InstanceAdmin)
     private static final com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin DEFAULT_INSTANCE;
+
     static {
       DEFAULT_INSTANCE = new com.alibaba.otter.canal.protocol.AdminPacket.InstanceAdmin();
     }
@@ -4777,6 +5247,7 @@ public final class AdminPacket {
      * <code>string type = 1;</code>
      */
     java.lang.String getType();
+
     /**
      * <pre>
      * canal/instance
@@ -4785,37 +5256,40 @@ public final class AdminPacket {
      * <code>string type = 1;</code>
      */
     com.google.protobuf.ByteString
-        getTypeBytes();
+    getTypeBytes();
 
     /**
      * <code>string action = 2;</code>
      */
     java.lang.String getAction();
+
     /**
      * <code>string action = 2;</code>
      */
     com.google.protobuf.ByteString
-        getActionBytes();
+    getActionBytes();
 
     /**
      * <code>string destination = 3;</code>
      */
     java.lang.String getDestination();
+
     /**
      * <code>string destination = 3;</code>
      */
     com.google.protobuf.ByteString
-        getDestinationBytes();
+    getDestinationBytes();
 
     /**
      * <code>string file = 4;</code>
      */
     java.lang.String getFile();
+
     /**
      * <code>string file = 4;</code>
      */
     com.google.protobuf.ByteString
-        getFileBytes();
+    getFileBytes();
 
     /**
      * <pre>
@@ -4832,18 +5306,22 @@ public final class AdminPacket {
 
     public com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin.CountPresentCase getCountPresentCase();
   }
+
   /**
    * Protobuf type {@code com.alibaba.otter.canal.protocol.LogAdmin}
    */
-  public  static final class LogAdmin extends
+  public static final class LogAdmin extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:com.alibaba.otter.canal.protocol.LogAdmin)
       LogAdminOrBuilder {
-  private static final long serialVersionUID = 0L;
+
+    private static final long serialVersionUID = 0L;
+
     // Use LogAdmin.newBuilder() to construct.
     private LogAdmin(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private LogAdmin() {
       type_ = "";
       action_ = "";
@@ -4854,6 +5332,7 @@ public final class AdminPacket {
     getUnknownFields() {
       return this.unknownFields;
     }
+
     private LogAdmin(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4921,29 +5400,34 @@ public final class AdminPacket {
         makeExtensionsImmutable();
       }
     }
+
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    getDescriptor() {
       return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_LogAdmin_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    internalGetFieldAccessorTable() {
       return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_LogAdmin_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin.class, com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin.Builder.class);
+              com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin.class,
+              com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin.Builder.class);
     }
 
     private int destinationPresentCase_ = 0;
     private java.lang.Object destinationPresent_;
+
     public enum DestinationPresentCase
         implements com.google.protobuf.Internal.EnumLite {
       DESTINATION(3),
       DESTINATIONPRESENT_NOT_SET(0);
       private final int value;
+
       private DestinationPresentCase(int value) {
         this.value = value;
       }
+
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
@@ -4954,15 +5438,21 @@ public final class AdminPacket {
 
       public static DestinationPresentCase forNumber(int value) {
         switch (value) {
-          case 3: return DESTINATION;
-          case 0: return DESTINATIONPRESENT_NOT_SET;
-          default: return null;
+          case 3:
+            return DESTINATION;
+          case 0:
+            return DESTINATIONPRESENT_NOT_SET;
+          default:
+            return null;
         }
       }
+
       public int getNumber() {
         return this.value;
       }
-    };
+    }
+
+    ;
 
     public DestinationPresentCase
     getDestinationPresentCase() {
@@ -4972,14 +5462,17 @@ public final class AdminPacket {
 
     private int filePresentCase_ = 0;
     private java.lang.Object filePresent_;
+
     public enum FilePresentCase
         implements com.google.protobuf.Internal.EnumLite {
       FILE(4),
       FILEPRESENT_NOT_SET(0);
       private final int value;
+
       private FilePresentCase(int value) {
         this.value = value;
       }
+
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
@@ -4990,15 +5483,21 @@ public final class AdminPacket {
 
       public static FilePresentCase forNumber(int value) {
         switch (value) {
-          case 4: return FILE;
-          case 0: return FILEPRESENT_NOT_SET;
-          default: return null;
+          case 4:
+            return FILE;
+          case 0:
+            return FILEPRESENT_NOT_SET;
+          default:
+            return null;
         }
       }
+
       public int getNumber() {
         return this.value;
       }
-    };
+    }
+
+    ;
 
     public FilePresentCase
     getFilePresentCase() {
@@ -5008,14 +5507,17 @@ public final class AdminPacket {
 
     private int countPresentCase_ = 0;
     private java.lang.Object countPresent_;
+
     public enum CountPresentCase
         implements com.google.protobuf.Internal.EnumLite {
       COUNT(5),
       COUNTPRESENT_NOT_SET(0);
       private final int value;
+
       private CountPresentCase(int value) {
         this.value = value;
       }
+
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
@@ -5026,15 +5528,21 @@ public final class AdminPacket {
 
       public static CountPresentCase forNumber(int value) {
         switch (value) {
-          case 5: return COUNT;
-          case 0: return COUNTPRESENT_NOT_SET;
-          default: return null;
+          case 5:
+            return COUNT;
+          case 0:
+            return COUNTPRESENT_NOT_SET;
+          default:
+            return null;
         }
       }
+
       public int getNumber() {
         return this.value;
       }
-    };
+    }
+
+    ;
 
     public CountPresentCase
     getCountPresentCase() {
@@ -5044,6 +5552,7 @@ public final class AdminPacket {
 
     public static final int TYPE_FIELD_NUMBER = 1;
     private volatile java.lang.Object type_;
+
     /**
      * <pre>
      * canal/instance
@@ -5056,13 +5565,14 @@ public final class AdminPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         type_ = s;
         return s;
       }
     }
+
     /**
      * <pre>
      * canal/instance
@@ -5071,10 +5581,10 @@ public final class AdminPacket {
      * <code>string type = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getTypeBytes() {
+    getTypeBytes() {
       java.lang.Object ref = type_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         type_ = b;
@@ -5086,6 +5596,7 @@ public final class AdminPacket {
 
     public static final int ACTION_FIELD_NUMBER = 2;
     private volatile java.lang.Object action_;
+
     /**
      * <code>string action = 2;</code>
      */
@@ -5094,21 +5605,22 @@ public final class AdminPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         action_ = s;
         return s;
       }
     }
+
     /**
      * <code>string action = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getActionBytes() {
+    getActionBytes() {
       java.lang.Object ref = action_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         action_ = b;
@@ -5119,6 +5631,7 @@ public final class AdminPacket {
     }
 
     public static final int DESTINATION_FIELD_NUMBER = 3;
+
     /**
      * <code>string destination = 3;</code>
      */
@@ -5130,7 +5643,7 @@ public final class AdminPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         if (destinationPresentCase_ == 3) {
@@ -5139,17 +5652,18 @@ public final class AdminPacket {
         return s;
       }
     }
+
     /**
      * <code>string destination = 3;</code>
      */
     public com.google.protobuf.ByteString
-        getDestinationBytes() {
+    getDestinationBytes() {
       java.lang.Object ref = "";
       if (destinationPresentCase_ == 3) {
         ref = destinationPresent_;
       }
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         if (destinationPresentCase_ == 3) {
@@ -5162,6 +5676,7 @@ public final class AdminPacket {
     }
 
     public static final int FILE_FIELD_NUMBER = 4;
+
     /**
      * <code>string file = 4;</code>
      */
@@ -5173,7 +5688,7 @@ public final class AdminPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         if (filePresentCase_ == 4) {
@@ -5182,17 +5697,18 @@ public final class AdminPacket {
         return s;
       }
     }
+
     /**
      * <code>string file = 4;</code>
      */
     public com.google.protobuf.ByteString
-        getFileBytes() {
+    getFileBytes() {
       java.lang.Object ref = "";
       if (filePresentCase_ == 4) {
         ref = filePresent_;
       }
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         if (filePresentCase_ == 4) {
@@ -5205,6 +5721,7 @@ public final class AdminPacket {
     }
 
     public static final int COUNT_FIELD_NUMBER = 5;
+
     /**
      * <pre>
      * 默认tail 100行，最大不超过4MB
@@ -5220,11 +5737,16 @@ public final class AdminPacket {
     }
 
     private byte memoizedIsInitialized = -1;
+
     @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized == 1) {
+        return true;
+      }
+      if (isInitialized == 0) {
+        return false;
+      }
 
       memoizedIsInitialized = 1;
       return true;
@@ -5232,7 +5754,7 @@ public final class AdminPacket {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+        throws java.io.IOException {
       if (!getTypeBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, type_);
       }
@@ -5247,7 +5769,7 @@ public final class AdminPacket {
       }
       if (countPresentCase_ == 5) {
         output.writeInt32(
-            5, (int)((java.lang.Integer) countPresent_));
+            5, (int) ((java.lang.Integer) countPresent_));
       }
       unknownFields.writeTo(output);
     }
@@ -5255,7 +5777,9 @@ public final class AdminPacket {
     @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
-      if (size != -1) return size;
+      if (size != -1) {
+        return size;
+      }
 
       size = 0;
       if (!getTypeBytes().isEmpty()) {
@@ -5272,8 +5796,8 @@ public final class AdminPacket {
       }
       if (countPresentCase_ == 5) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(
-              5, (int)((java.lang.Integer) countPresent_));
+            .computeInt32Size(
+                5, (int) ((java.lang.Integer) countPresent_));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -5283,7 +5807,7 @@ public final class AdminPacket {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin)) {
         return super.equals(obj);
@@ -5297,7 +5821,9 @@ public final class AdminPacket {
           .equals(other.getAction());
       result = result && getDestinationPresentCase().equals(
           other.getDestinationPresentCase());
-      if (!result) return false;
+      if (!result) {
+        return false;
+      }
       switch (destinationPresentCase_) {
         case 3:
           result = result && getDestination()
@@ -5308,7 +5834,9 @@ public final class AdminPacket {
       }
       result = result && getFilePresentCase().equals(
           other.getFilePresentCase());
-      if (!result) return false;
+      if (!result) {
+        return false;
+      }
       switch (filePresentCase_) {
         case 4:
           result = result && getFile()
@@ -5319,7 +5847,9 @@ public final class AdminPacket {
       }
       result = result && getCountPresentCase().equals(
           other.getCountPresentCase());
-      if (!result) return false;
+      if (!result) {
+        return false;
+      }
       switch (countPresentCase_) {
         case 5:
           result = result && (getCount()
@@ -5377,38 +5907,46 @@ public final class AdminPacket {
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin parseFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin parseFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5416,11 +5954,14 @@ public final class AdminPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin parseDelimitedFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin parseDelimitedFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5428,12 +5969,14 @@ public final class AdminPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5443,13 +5986,19 @@ public final class AdminPacket {
     }
 
     @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() {
+      return newBuilder();
+    }
+
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin prototype) {
+
+    public static Builder newBuilder(
+        com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
@@ -5462,6 +6011,7 @@ public final class AdminPacket {
       Builder builder = new Builder(parent);
       return builder;
     }
+
     /**
      * Protobuf type {@code com.alibaba.otter.canal.protocol.LogAdmin}
      */
@@ -5469,17 +6019,19 @@ public final class AdminPacket {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.alibaba.otter.canal.protocol.LogAdmin)
         com.alibaba.otter.canal.protocol.AdminPacket.LogAdminOrBuilder {
+
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      getDescriptor() {
         return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_LogAdmin_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
         return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_LogAdmin_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin.class, com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin.Builder.class);
+                com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin.class,
+                com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin.Builder.class);
       }
 
       // Construct using com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin.newBuilder()
@@ -5492,11 +6044,13 @@ public final class AdminPacket {
         super(parent);
         maybeForceBuilderInitialization();
       }
+
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+            .alwaysUseFieldBuilders) {
         }
       }
+
       @java.lang.Override
       public Builder clear() {
         super.clear();
@@ -5515,7 +6069,7 @@ public final class AdminPacket {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return com.alibaba.otter.canal.protocol.AdminPacket.internal_static_com_alibaba_otter_canal_protocol_LogAdmin_descriptor;
       }
 
@@ -5535,7 +6089,8 @@ public final class AdminPacket {
 
       @java.lang.Override
       public com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin buildPartial() {
-        com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin result = new com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin(this);
+        com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin result = new com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin(
+            this);
         result.type_ = type_;
         result.action_ = action_;
         if (destinationPresentCase_ == 3) {
@@ -5558,38 +6113,44 @@ public final class AdminPacket {
       public Builder clone() {
         return (Builder) super.clone();
       }
+
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
+
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
+
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
+
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
+
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin) {
-          return mergeFrom((com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin)other);
+          return mergeFrom((com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin) other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -5597,7 +6158,9 @@ public final class AdminPacket {
       }
 
       public Builder mergeFrom(com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin other) {
-        if (other == com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin.getDefaultInstance()) return this;
+        if (other == com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin.getDefaultInstance()) {
+          return this;
+        }
         if (!other.getType().isEmpty()) {
           type_ = other.type_;
           onChanged();
@@ -5665,10 +6228,12 @@ public final class AdminPacket {
         }
         return this;
       }
+
       private int destinationPresentCase_ = 0;
       private java.lang.Object destinationPresent_;
+
       public DestinationPresentCase
-          getDestinationPresentCase() {
+      getDestinationPresentCase() {
         return DestinationPresentCase.forNumber(
             destinationPresentCase_);
       }
@@ -5682,8 +6247,9 @@ public final class AdminPacket {
 
       private int filePresentCase_ = 0;
       private java.lang.Object filePresent_;
+
       public FilePresentCase
-          getFilePresentCase() {
+      getFilePresentCase() {
         return FilePresentCase.forNumber(
             filePresentCase_);
       }
@@ -5697,8 +6263,9 @@ public final class AdminPacket {
 
       private int countPresentCase_ = 0;
       private java.lang.Object countPresent_;
+
       public CountPresentCase
-          getCountPresentCase() {
+      getCountPresentCase() {
         return CountPresentCase.forNumber(
             countPresentCase_);
       }
@@ -5712,6 +6279,7 @@ public final class AdminPacket {
 
 
       private java.lang.Object type_ = "";
+
       /**
        * <pre>
        * canal/instance
@@ -5731,6 +6299,7 @@ public final class AdminPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <pre>
        * canal/instance
@@ -5739,10 +6308,10 @@ public final class AdminPacket {
        * <code>string type = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getTypeBytes() {
+      getTypeBytes() {
         java.lang.Object ref = type_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           type_ = b;
@@ -5751,6 +6320,7 @@ public final class AdminPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <pre>
        * canal/instance
@@ -5761,13 +6331,14 @@ public final class AdminPacket {
       public Builder setType(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         type_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <pre>
        * canal/instance
@@ -5776,11 +6347,12 @@ public final class AdminPacket {
        * <code>string type = 1;</code>
        */
       public Builder clearType() {
-        
+
         type_ = getDefaultInstance().getType();
         onChanged();
         return this;
       }
+
       /**
        * <pre>
        * canal/instance
@@ -5791,16 +6363,17 @@ public final class AdminPacket {
       public Builder setTypeBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         type_ = value;
         onChanged();
         return this;
       }
 
       private java.lang.Object action_ = "";
+
       /**
        * <code>string action = 2;</code>
        */
@@ -5816,14 +6389,15 @@ public final class AdminPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <code>string action = 2;</code>
        */
       public com.google.protobuf.ByteString
-          getActionBytes() {
+      getActionBytes() {
         java.lang.Object ref = action_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           action_ = b;
@@ -5832,38 +6406,41 @@ public final class AdminPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <code>string action = 2;</code>
        */
       public Builder setAction(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         action_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>string action = 2;</code>
        */
       public Builder clearAction() {
-        
+
         action_ = getDefaultInstance().getAction();
         onChanged();
         return this;
       }
+
       /**
        * <code>string action = 2;</code>
        */
       public Builder setActionBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         action_ = value;
         onChanged();
         return this;
@@ -5889,17 +6466,18 @@ public final class AdminPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <code>string destination = 3;</code>
        */
       public com.google.protobuf.ByteString
-          getDestinationBytes() {
+      getDestinationBytes() {
         java.lang.Object ref = "";
         if (destinationPresentCase_ == 3) {
           ref = destinationPresent_;
         }
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           if (destinationPresentCase_ == 3) {
@@ -5910,19 +6488,21 @@ public final class AdminPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <code>string destination = 3;</code>
        */
       public Builder setDestination(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  destinationPresentCase_ = 3;
+          throw new NullPointerException();
+        }
+        destinationPresentCase_ = 3;
         destinationPresent_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>string destination = 3;</code>
        */
@@ -5934,15 +6514,16 @@ public final class AdminPacket {
         }
         return this;
       }
+
       /**
        * <code>string destination = 3;</code>
        */
       public Builder setDestinationBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
         destinationPresentCase_ = 3;
         destinationPresent_ = value;
         onChanged();
@@ -5969,17 +6550,18 @@ public final class AdminPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <code>string file = 4;</code>
        */
       public com.google.protobuf.ByteString
-          getFileBytes() {
+      getFileBytes() {
         java.lang.Object ref = "";
         if (filePresentCase_ == 4) {
           ref = filePresent_;
         }
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           if (filePresentCase_ == 4) {
@@ -5990,19 +6572,21 @@ public final class AdminPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <code>string file = 4;</code>
        */
       public Builder setFile(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  filePresentCase_ = 4;
+          throw new NullPointerException();
+        }
+        filePresentCase_ = 4;
         filePresent_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>string file = 4;</code>
        */
@@ -6014,15 +6598,16 @@ public final class AdminPacket {
         }
         return this;
       }
+
       /**
        * <code>string file = 4;</code>
        */
       public Builder setFileBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
         filePresentCase_ = 4;
         filePresent_ = value;
         onChanged();
@@ -6042,6 +6627,7 @@ public final class AdminPacket {
         }
         return 0;
       }
+
       /**
        * <pre>
        * 默认tail 100行，最大不超过4MB
@@ -6055,6 +6641,7 @@ public final class AdminPacket {
         onChanged();
         return this;
       }
+
       /**
        * <pre>
        * 默认tail 100行，最大不超过4MB
@@ -6070,6 +6657,7 @@ public final class AdminPacket {
         }
         return this;
       }
+
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -6082,12 +6670,12 @@ public final class AdminPacket {
         return super.mergeUnknownFields(unknownFields);
       }
 
-
       // @@protoc_insertion_point(builder_scope:com.alibaba.otter.canal.protocol.LogAdmin)
     }
 
     // @@protoc_insertion_point(class_scope:com.alibaba.otter.canal.protocol.LogAdmin)
     private static final com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin DEFAULT_INSTANCE;
+
     static {
       DEFAULT_INSTANCE = new com.alibaba.otter.canal.protocol.AdminPacket.LogAdmin();
     }
@@ -6124,77 +6712,84 @@ public final class AdminPacket {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_alibaba_otter_canal_protocol_Packet_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_alibaba_otter_canal_protocol_Packet_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_alibaba_otter_canal_protocol_Packet_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_alibaba_otter_canal_protocol_Ack_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_alibaba_otter_canal_protocol_Ack_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_alibaba_otter_canal_protocol_Ack_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_alibaba_otter_canal_protocol_Handshake_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_alibaba_otter_canal_protocol_Handshake_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_alibaba_otter_canal_protocol_Handshake_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_alibaba_otter_canal_protocol_ClientAuth_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_alibaba_otter_canal_protocol_ClientAuth_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_alibaba_otter_canal_protocol_ClientAuth_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_alibaba_otter_canal_protocol_ServerAdmin_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_alibaba_otter_canal_protocol_ServerAdmin_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_alibaba_otter_canal_protocol_ServerAdmin_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_alibaba_otter_canal_protocol_InstanceAdmin_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_alibaba_otter_canal_protocol_InstanceAdmin_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_alibaba_otter_canal_protocol_InstanceAdmin_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_alibaba_otter_canal_protocol_LogAdmin_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_alibaba_otter_canal_protocol_LogAdmin_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_alibaba_otter_canal_protocol_LogAdmin_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
-      getDescriptor() {
+  getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+
+  private static com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
+
   static {
     java.lang.String[] descriptorData = {
-      "\n\023AdminProtocol.proto\022 com.alibaba.otter" +
-      ".canal.protocol\"\250\001\n\006Packet\022\026\n\014magic_numb" +
-      "er\030\001 \001(\005H\000\022\021\n\007version\030\002 \001(\005H\001\022:\n\004type\030\003 " +
-      "\001(\0162,.com.alibaba.otter.canal.protocol.P" +
-      "acketType\022\014\n\004body\030\004 \001(\014B\026\n\024magic_number_" +
-      "presentB\021\n\017version_present\"<\n\003Ack\022\016\n\004cod" +
-      "e\030\001 \001(\005H\000\022\017\n\007message\030\002 \001(\tB\024\n\022error_code" +
-      "_present\"^\n\tHandshake\022 \n\026communication_e" +
-      "ncoding\030\001 \001(\tH\000\022\r\n\005seeds\030\002 \001(\014B \n\036commun" +
-      "ication_encoding_present\"\242\001\n\nClientAuth\022" +
-      "\020\n\010username\030\001 \001(\t\022\020\n\010password\030\002 \001(\014\022\032\n\020n" +
-      "et_read_timeout\030\003 \001(\005H\000\022\033\n\021net_write_tim" +
-      "eout\030\004 \001(\005H\001B\032\n\030net_read_timeout_present" +
-      "B\033\n\031net_write_timeout_present\"\035\n\013ServerA" +
-      "dmin\022\016\n\006action\030\001 \001(\t\"4\n\rInstanceAdmin\022\023\n" +
-      "\013destination\030\001 \001(\t\022\016\n\006action\030\002 \001(\t\"\230\001\n\010L" +
-      "ogAdmin\022\014\n\004type\030\001 \001(\t\022\016\n\006action\030\002 \001(\t\022\025\n" +
-      "\013destination\030\003 \001(\tH\000\022\016\n\004file\030\004 \001(\tH\001\022\017\n\005" +
-      "count\030\005 \001(\005H\002B\025\n\023destination_presentB\016\n\014" +
-      "file_presentB\017\n\rcount_present*\202\001\n\nPacket" +
-      "Type\022\037\n\033PACKAGETYPECOMPATIBLEPROTO2\020\000\022\r\n" +
-      "\tHANDSHAKE\020\001\022\030\n\024CLIENTAUTHENTICATION\020\002\022\007" +
-      "\n\003ACK\020\003\022\n\n\006SERVER\020\004\022\014\n\010INSTANCE\020\005\022\007\n\003LOG" +
-      "\020\006B1\n com.alibaba.otter.canal.protocolB\013" +
-      "AdminPacketH\001b\006proto3"
+        "\n\023AdminProtocol.proto\022 com.alibaba.otter" +
+            ".canal.protocol\"\250\001\n\006Packet\022\026\n\014magic_numb" +
+            "er\030\001 \001(\005H\000\022\021\n\007version\030\002 \001(\005H\001\022:\n\004type\030\003 "
+            +
+            "\001(\0162,.com.alibaba.otter.canal.protocol.P" +
+            "acketType\022\014\n\004body\030\004 \001(\014B\026\n\024magic_number_" +
+            "presentB\021\n\017version_present\"<\n\003Ack\022\016\n\004cod" +
+            "e\030\001 \001(\005H\000\022\017\n\007message\030\002 \001(\tB\024\n\022error_code" +
+            "_present\"^\n\tHandshake\022 \n\026communication_e" +
+            "ncoding\030\001 \001(\tH\000\022\r\n\005seeds\030\002 \001(\014B \n\036commun" +
+            "ication_encoding_present\"\242\001\n\nClientAuth\022" +
+            "\020\n\010username\030\001 \001(\t\022\020\n\010password\030\002 \001(\014\022\032\n\020n"
+            +
+            "et_read_timeout\030\003 \001(\005H\000\022\033\n\021net_write_tim" +
+            "eout\030\004 \001(\005H\001B\032\n\030net_read_timeout_present" +
+            "B\033\n\031net_write_timeout_present\"\035\n\013ServerA" +
+            "dmin\022\016\n\006action\030\001 \001(\t\"4\n\rInstanceAdmin\022\023\n" +
+            "\013destination\030\001 \001(\t\022\016\n\006action\030\002 \001(\t\"\230\001\n\010L" +
+            "ogAdmin\022\014\n\004type\030\001 \001(\t\022\016\n\006action\030\002 \001(\t\022\025\n"
+            +
+            "\013destination\030\003 \001(\tH\000\022\016\n\004file\030\004 \001(\tH\001\022\017\n\005"
+            +
+            "count\030\005 \001(\005H\002B\025\n\023destination_presentB\016\n\014" +
+            "file_presentB\017\n\rcount_present*\202\001\n\nPacket" +
+            "Type\022\037\n\033PACKAGETYPECOMPATIBLEPROTO2\020\000\022\r\n" +
+            "\tHANDSHAKE\020\001\022\030\n\024CLIENTAUTHENTICATION\020\002\022\007" +
+            "\n\003ACK\020\003\022\n\n\006SERVER\020\004\022\014\n\010INSTANCE\020\005\022\007\n\003LOG"
+            +
+            "\020\006B1\n com.alibaba.otter.canal.protocolB\013" +
+            "AdminPacketH\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
+        new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
           public com.google.protobuf.ExtensionRegistry assignDescriptors(
               com.google.protobuf.Descriptors.FileDescriptor root) {
             descriptor = root;
@@ -6202,51 +6797,54 @@ public final class AdminPacket {
           }
         };
     com.google.protobuf.Descriptors.FileDescriptor
-      .internalBuildGeneratedFileFrom(descriptorData,
-        new com.google.protobuf.Descriptors.FileDescriptor[] {
-        }, assigner);
+        .internalBuildGeneratedFileFrom(descriptorData,
+            new com.google.protobuf.Descriptors.FileDescriptor[]{
+            }, assigner);
     internal_static_com_alibaba_otter_canal_protocol_Packet_descriptor =
-      getDescriptor().getMessageTypes().get(0);
+        getDescriptor().getMessageTypes().get(0);
     internal_static_com_alibaba_otter_canal_protocol_Packet_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_alibaba_otter_canal_protocol_Packet_descriptor,
-        new java.lang.String[] { "MagicNumber", "Version", "Type", "Body", "MagicNumberPresent", "VersionPresent", });
+        new java.lang.String[]{"MagicNumber", "Version", "Type", "Body", "MagicNumberPresent",
+            "VersionPresent",});
     internal_static_com_alibaba_otter_canal_protocol_Ack_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+        getDescriptor().getMessageTypes().get(1);
     internal_static_com_alibaba_otter_canal_protocol_Ack_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_alibaba_otter_canal_protocol_Ack_descriptor,
-        new java.lang.String[] { "Code", "Message", "ErrorCodePresent", });
+        new java.lang.String[]{"Code", "Message", "ErrorCodePresent",});
     internal_static_com_alibaba_otter_canal_protocol_Handshake_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+        getDescriptor().getMessageTypes().get(2);
     internal_static_com_alibaba_otter_canal_protocol_Handshake_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_alibaba_otter_canal_protocol_Handshake_descriptor,
-        new java.lang.String[] { "CommunicationEncoding", "Seeds", "CommunicationEncodingPresent", });
+        new java.lang.String[]{"CommunicationEncoding", "Seeds", "CommunicationEncodingPresent",});
     internal_static_com_alibaba_otter_canal_protocol_ClientAuth_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+        getDescriptor().getMessageTypes().get(3);
     internal_static_com_alibaba_otter_canal_protocol_ClientAuth_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_alibaba_otter_canal_protocol_ClientAuth_descriptor,
-        new java.lang.String[] { "Username", "Password", "NetReadTimeout", "NetWriteTimeout", "NetReadTimeoutPresent", "NetWriteTimeoutPresent", });
+        new java.lang.String[]{"Username", "Password", "NetReadTimeout", "NetWriteTimeout",
+            "NetReadTimeoutPresent", "NetWriteTimeoutPresent",});
     internal_static_com_alibaba_otter_canal_protocol_ServerAdmin_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+        getDescriptor().getMessageTypes().get(4);
     internal_static_com_alibaba_otter_canal_protocol_ServerAdmin_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_alibaba_otter_canal_protocol_ServerAdmin_descriptor,
-        new java.lang.String[] { "Action", });
+        new java.lang.String[]{"Action",});
     internal_static_com_alibaba_otter_canal_protocol_InstanceAdmin_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+        getDescriptor().getMessageTypes().get(5);
     internal_static_com_alibaba_otter_canal_protocol_InstanceAdmin_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_alibaba_otter_canal_protocol_InstanceAdmin_descriptor,
-        new java.lang.String[] { "Destination", "Action", });
+        new java.lang.String[]{"Destination", "Action",});
     internal_static_com_alibaba_otter_canal_protocol_LogAdmin_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+        getDescriptor().getMessageTypes().get(6);
     internal_static_com_alibaba_otter_canal_protocol_LogAdmin_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_alibaba_otter_canal_protocol_LogAdmin_descriptor,
-        new java.lang.String[] { "Type", "Action", "Destination", "File", "Count", "DestinationPresent", "FilePresent", "CountPresent", });
+        new java.lang.String[]{"Type", "Action", "Destination", "File", "Count",
+            "DestinationPresent", "FilePresent", "CountPresent",});
   }
 
   // @@protoc_insertion_point(outer_class_scope)

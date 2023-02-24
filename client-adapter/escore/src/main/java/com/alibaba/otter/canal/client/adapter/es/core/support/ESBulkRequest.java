@@ -4,40 +4,42 @@ import java.util.Map;
 
 public interface ESBulkRequest {
 
-    void resetBulk();
+  void resetBulk();
 
-    ESBulkRequest add(ESIndexRequest esIndexRequest);
+  ESBulkRequest add(ESIndexRequest esIndexRequest);
 
-    ESBulkRequest add(ESUpdateRequest esUpdateRequest);
+  ESBulkRequest add(ESUpdateRequest esUpdateRequest);
 
-    ESBulkRequest add(ESDeleteRequest esDeleteRequest);
+  ESBulkRequest add(ESDeleteRequest esDeleteRequest);
 
-    int numberOfActions();
+  int numberOfActions();
 
-    ESBulkResponse bulk();
+  ESBulkResponse bulk();
 
-    interface ESIndexRequest {
+  interface ESIndexRequest {
 
-        ESIndexRequest setSource(Map<String, ?> source);
+    ESIndexRequest setSource(Map<String, ?> source);
 
-        ESIndexRequest setRouting(String routing);
-    }
+    ESIndexRequest setRouting(String routing);
+  }
 
-    interface ESUpdateRequest {
+  interface ESUpdateRequest {
 
-        ESUpdateRequest setDoc(Map source);
+    ESUpdateRequest setDoc(Map source);
 
-        ESUpdateRequest setDocAsUpsert(boolean shouldUpsertDoc);
+    ESUpdateRequest setDocAsUpsert(boolean shouldUpsertDoc);
 
-        ESUpdateRequest setRouting(String routing);
-    }
+    ESUpdateRequest setRouting(String routing);
+  }
 
-    interface ESDeleteRequest {
-    }
+  interface ESDeleteRequest {
 
-    interface ESBulkResponse {
-        boolean hasFailures();
+  }
 
-        void processFailBulkResponse(String errorMsg);
-    }
+  interface ESBulkResponse {
+
+    boolean hasFailures();
+
+    void processFailBulkResponse(String errorMsg);
+  }
 }

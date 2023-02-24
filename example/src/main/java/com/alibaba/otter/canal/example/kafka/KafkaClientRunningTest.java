@@ -19,31 +19,32 @@ import com.alibaba.otter.canal.protocol.Message;
  */
 public class KafkaClientRunningTest extends AbstractKafkaTest {
 
-    private Logger  logger  = LoggerFactory.getLogger(KafkaClientRunningTest.class);
+  private Logger logger = LoggerFactory.getLogger(KafkaClientRunningTest.class);
 
-    private boolean running = true;
+  private boolean running = true;
 
-    public void testKafkaConsumer() {
-        final ExecutorService executor = Executors.newFixedThreadPool(1);
-        final KafkaCanalConnector connector = new KafkaCanalConnector(servers, topic, partition, groupId, null, false);
-        executor.submit(() -> {
-            connector.connect();
-            connector.subscribe();
-            while (running) {
-                List<Message> messages = connector.getList(3L, TimeUnit.SECONDS);
-                if (messages != null) {
-                    System.out.println(messages);
-                }
-                connector.ack();
-            }
-            connector.unsubscribe();
-            connector.disconnect();
-        });
+  public void testKafkaConsumer() {
+    final ExecutorService executor = Executors.newFixedThreadPool(1);
+    final KafkaCanalConnector connector = new KafkaCanalConnector(servers, topic, partition,
+        groupId, null, false);
+    executor.submit(() -> {
+      connector.connect();
+      connector.subscribe();
+      while (running) {
+        List<Message> messages = connector.getList(3L, TimeUnit.SECONDS);
+        if (messages != null) {
+          System.out.println(messages);
+        }
+        connector.ack();
+      }
+      connector.unsubscribe();
+      connector.disconnect();
+    });
 
-        sleep(60000);
-        running = false;
-        executor.shutdown();
-        logger.info("shutdown completed");
-    }
+    sleep(60000);
+    running = false;
+    executor.shutdown();
+    logger.info("shutdown completed");
+  }
 
 }

@@ -33,111 +33,114 @@ import com.alibaba.otter.canal.protocol.Message;
 @SPI("kafka")
 public class CanalKafkaConsumer implements CanalMsgConsumer {
 
-    private static final String      PREFIX_KAFKA_CONFIG = "kafka.";
+  private static final String PREFIX_KAFKA_CONFIG = "kafka.";
 
-    private KafkaConsumer<String, ?> kafkaConsumer;
-    private boolean                  flatMessage         = true;
-    private String                   topic;
+  private KafkaConsumer<String, ?> kafkaConsumer;
+  private boolean flatMessage = true;
+  private String topic;
 
-    private Map<Integer, Long>       currentOffsets      = new ConcurrentHashMap<>();
-    private Properties               kafkaProperties     = new Properties();
+  private Map<Integer, Long> currentOffsets = new ConcurrentHashMap<>();
+  private Properties kafkaProperties = new Properties();
 
-    @Override
-    public void init(Properties properties, String topic, String groupId) {
-        this.topic = topic;
+  @Override
+  public void init(Properties properties, String topic, String groupId) {
+    this.topic = topic;
 
-        Boolean flatMessage = (Boolean) properties.get(CanalConstants.CANAL_MQ_FLAT_MESSAGE);
-        if (flatMessage != null) {
-            this.flatMessage = flatMessage;
-        }
-        for (Map.Entry<Object, Object> entry : properties.entrySet()) {
-            String k = (String) entry.getKey();
-            Object v = entry.getValue();
-            if (k.startsWith(PREFIX_KAFKA_CONFIG) && v != null) {
-                // check env config
-                v = PropertiesUtils.getProperty(properties, k);
-                kafkaProperties.put(k.substring(PREFIX_KAFKA_CONFIG.length()), v);
-            }
-        }
-        kafkaProperties.put("group.id", groupId);
-        kafkaProperties.put("key.deserializer", StringDeserializer.class);
-        kafkaProperties.put("client.id", UUID.randomUUID().toString().substring(0, 6));
+    Boolean flatMessage = (Boolean) properties.get(CanalConstants.CANAL_MQ_FLAT_MESSAGE);
+    if (flatMessage != null) {
+      this.flatMessage = flatMessage;
     }
-
-    @Override
-    public void connect() {
-        if (this.flatMessage) {
-            kafkaProperties.put("value.deserializer", StringDeserializer.class);
-            this.kafkaConsumer = new KafkaConsumer<String, String>(kafkaProperties);
-        } else {
-            kafkaProperties.put("value.deserializer", KafkaMessageDeserializer.class);
-            this.kafkaConsumer = new KafkaConsumer<String, Message>(kafkaProperties);
-        }
-        kafkaConsumer.subscribe(Collections.singletonList(topic));
+    for (Map.Entry<Object, Object> entry : properties.entrySet()) {
+      String k = (String) entry.getKey();
+      Object v = entry.getValue();
+      if (k.startsWith(PREFIX_KAFKA_CONFIG) && v != null) {
+        // check env config
+        v = PropertiesUtils.getProperty(properties, k);
+        kafkaProperties.put(k.substring(PREFIX_KAFKA_CONFIG.length()), v);
+      }
     }
+    kafkaProperties.put("group.id", groupId);
+    kafkaProperties.put("key.deserializer", StringDeserializer.class);
+    kafkaProperties.put("client.id", UUID.randomUUID().toString().substring(0, 6));
+  }
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public List<CommonMessage> getMessage(Long timeout, TimeUnit unit) {
-        if (!flatMessage) {
-            ConsumerRecords<String, Message> records = (ConsumerRecords<String, Message>) kafkaConsumer.poll(unit.toMillis(timeout));
-            if (!records.isEmpty()) {
-                currentOffsets.clear();
-                List<CommonMessage> messages = new ArrayList<>();
-                for (ConsumerRecord<String, Message> record : records) {
-                    if (currentOffsets.get(record.partition()) == null) {
-                        currentOffsets.put(record.partition(), record.offset());
-                    }
-                    messages.addAll(MessageUtil.convert(record.value()));
-                }
-                return messages;
-            }
-        } else {
-            ConsumerRecords<String, String> records = (ConsumerRecords<String, String>) kafkaConsumer.poll(unit.toMillis(timeout));
-
-            if (!records.isEmpty()) {
-                List<CommonMessage> messages = new ArrayList<>();
-                currentOffsets.clear();
-                for (ConsumerRecord<String, String> record : records) {
-                    if (currentOffsets.get(record.partition()) == null) {
-                        currentOffsets.put(record.partition(), record.offset());
-                    }
-                    String flatMessageJson = record.value();
-                    CommonMessage flatMessages = JSON.parseObject(flatMessageJson, CommonMessage.class);
-                    messages.add(flatMessages);
-                }
-                return messages;
-            }
-        }
-        return null;
+  @Override
+  public void connect() {
+    if (this.flatMessage) {
+      kafkaProperties.put("value.deserializer", StringDeserializer.class);
+      this.kafkaConsumer = new KafkaConsumer<String, String>(kafkaProperties);
+    } else {
+      kafkaProperties.put("value.deserializer", KafkaMessageDeserializer.class);
+      this.kafkaConsumer = new KafkaConsumer<String, Message>(kafkaProperties);
     }
+    kafkaConsumer.subscribe(Collections.singletonList(topic));
+  }
 
-    @Override
-    public void rollback() {
-        // 回滚所有分区
-        if (kafkaConsumer != null) {
-            for (Map.Entry<Integer, Long> entry : currentOffsets.entrySet()) {
-                kafkaConsumer.seek(new TopicPartition(topic, entry.getKey()), currentOffsets.get(entry.getKey()));
-                kafkaConsumer.commitSync();
-            }
+  @SuppressWarnings("unchecked")
+  @Override
+  public List<CommonMessage> getMessage(Long timeout, TimeUnit unit) {
+    if (!flatMessage) {
+      ConsumerRecords<String, Message> records = (ConsumerRecords<String, Message>) kafkaConsumer.poll(
+          unit.toMillis(timeout));
+      if (!records.isEmpty()) {
+        currentOffsets.clear();
+        List<CommonMessage> messages = new ArrayList<>();
+        for (ConsumerRecord<String, Message> record : records) {
+          if (currentOffsets.get(record.partition()) == null) {
+            currentOffsets.put(record.partition(), record.offset());
+          }
+          messages.addAll(MessageUtil.convert(record.value()));
         }
-    }
+        return messages;
+      }
+    } else {
+      ConsumerRecords<String, String> records = (ConsumerRecords<String, String>) kafkaConsumer.poll(
+          unit.toMillis(timeout));
 
-    @Override
-    public void ack() {
-        if (kafkaConsumer != null) {
-            kafkaConsumer.commitSync();
+      if (!records.isEmpty()) {
+        List<CommonMessage> messages = new ArrayList<>();
+        currentOffsets.clear();
+        for (ConsumerRecord<String, String> record : records) {
+          if (currentOffsets.get(record.partition()) == null) {
+            currentOffsets.put(record.partition(), record.offset());
+          }
+          String flatMessageJson = record.value();
+          CommonMessage flatMessages = JSON.parseObject(flatMessageJson, CommonMessage.class);
+          messages.add(flatMessages);
         }
+        return messages;
+      }
     }
+    return null;
+  }
 
-    @Override
-    public void disconnect() {
-        if (kafkaConsumer != null) {
-            kafkaConsumer.unsubscribe();
-        }
-        if (kafkaConsumer != null) {
-            kafkaConsumer.close();
-            kafkaConsumer = null;
-        }
+  @Override
+  public void rollback() {
+    // 回滚所有分区
+    if (kafkaConsumer != null) {
+      for (Map.Entry<Integer, Long> entry : currentOffsets.entrySet()) {
+        kafkaConsumer.seek(new TopicPartition(topic, entry.getKey()),
+            currentOffsets.get(entry.getKey()));
+        kafkaConsumer.commitSync();
+      }
     }
+  }
+
+  @Override
+  public void ack() {
+    if (kafkaConsumer != null) {
+      kafkaConsumer.commitSync();
+    }
+  }
+
+  @Override
+  public void disconnect() {
+    if (kafkaConsumer != null) {
+      kafkaConsumer.unsubscribe();
+    }
+    if (kafkaConsumer != null) {
+      kafkaConsumer.close();
+      kafkaConsumer = null;
+    }
+  }
 }

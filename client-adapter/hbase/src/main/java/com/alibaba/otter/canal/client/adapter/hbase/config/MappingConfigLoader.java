@@ -18,33 +18,34 @@ import com.alibaba.otter.canal.client.adapter.support.MappingConfigsLoader;
  */
 public class MappingConfigLoader {
 
-    private static Logger logger = LoggerFactory.getLogger(MappingConfigLoader.class);
+  private static Logger logger = LoggerFactory.getLogger(MappingConfigLoader.class);
 
-    /**
-     * 加载HBase表映射配置
-     *
-     * @return 配置名/配置文件名--对象
-     */
-    public static Map<String, MappingConfig> load(Properties envProperties) {
-        logger.info("## Start loading hbase mapping config ... ");
+  /**
+   * 加载HBase表映射配置
+   *
+   * @return 配置名/配置文件名--对象
+   */
+  public static Map<String, MappingConfig> load(Properties envProperties) {
+    logger.info("## Start loading hbase mapping config ... ");
 
-        Map<String, MappingConfig> result = new LinkedHashMap<>();
+    Map<String, MappingConfig> result = new LinkedHashMap<>();
 
-        Map<String, String> configContentMap = MappingConfigsLoader.loadConfigs("hbase");
-        configContentMap.forEach((fileName, content) -> {
-            MappingConfig config = YamlUtils.ymlToObj(null, content, MappingConfig.class, null, envProperties);
-            if (config == null) {
-                return;
-            }
-            try {
-                config.validate();
-            } catch (Exception e) {
-                throw new RuntimeException("ERROR load Config: " + fileName + " " + e.getMessage(), e);
-            }
-            result.put(fileName, config);
-        });
+    Map<String, String> configContentMap = MappingConfigsLoader.loadConfigs("hbase");
+    configContentMap.forEach((fileName, content) -> {
+      MappingConfig config = YamlUtils.ymlToObj(null, content, MappingConfig.class, null,
+          envProperties);
+      if (config == null) {
+        return;
+      }
+      try {
+        config.validate();
+      } catch (Exception e) {
+        throw new RuntimeException("ERROR load Config: " + fileName + " " + e.getMessage(), e);
+      }
+      result.put(fileName, config);
+    });
 
-        logger.info("## Hbase mapping config loaded");
-        return result;
-    }
+    logger.info("## Hbase mapping config loaded");
+    return result;
+  }
 }

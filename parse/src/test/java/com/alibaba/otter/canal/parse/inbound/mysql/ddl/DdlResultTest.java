@@ -12,9 +12,11 @@ import java.lang.reflect.InvocationTargetException;
 
 public class DdlResultTest {
 
-  @Rule public final ExpectedException thrown = ExpectedException.none();
+  @Rule
+  public final ExpectedException thrown = ExpectedException.none();
 
-  @Rule public final Timeout globalTimeout = new Timeout(10000);
+  @Rule
+  public final Timeout globalTimeout = new Timeout(10000);
 
   /* testedClasses: DdlResult */
   // Test written by Diffblue Cover.

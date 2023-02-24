@@ -24,9 +24,11 @@ import java.util.Date;
 @PowerMockIgnore({"javax.management.*"})
 public class UtilTest {
 
-  @Rule public final ExpectedException thrown = ExpectedException.none();
+  @Rule
+  public final ExpectedException thrown = ExpectedException.none();
 
-  @Rule public final Timeout globalTimeout = new Timeout(10000);
+  @Rule
+  public final Timeout globalTimeout = new Timeout(10000);
 
   /* testedClasses: Util */
   // Test written by Diffblue Cover.

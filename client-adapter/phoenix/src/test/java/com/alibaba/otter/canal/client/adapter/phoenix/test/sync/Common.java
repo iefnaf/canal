@@ -14,23 +14,24 @@ import java.util.Map;
  * @Description:
  */
 public class Common {
-    public static PhoenixAdapter init() {
-        DatasourceConfig.DATA_SOURCES.put("defaultDS", TestConstant.dataSource);
 
-        OuterAdapterConfig outerAdapterConfig = new OuterAdapterConfig();
-        outerAdapterConfig.setName("phoenix");
-        outerAdapterConfig.setKey("phoenix");
-        Map<String, String> properties = new HashMap<>();
-        properties.put("jdbc.driverClassName", "org.apache.phoenix.jdbc.PhoenixDriver");
-        properties.put("jdbc.url", "jdbc:phoenix:zookeeper01,zookeeper02,zookeeper03:2181:/hbase/db");
-        outerAdapterConfig.setProperties(properties);
+  public static PhoenixAdapter init() {
+    DatasourceConfig.DATA_SOURCES.put("defaultDS", TestConstant.dataSource);
 
-        PhoenixAdapter adapter = new PhoenixAdapter();
-        adapter.init(outerAdapterConfig, null);
-        return adapter;
-    }
+    OuterAdapterConfig outerAdapterConfig = new OuterAdapterConfig();
+    outerAdapterConfig.setName("phoenix");
+    outerAdapterConfig.setKey("phoenix");
+    Map<String, String> properties = new HashMap<>();
+    properties.put("jdbc.driverClassName", "org.apache.phoenix.jdbc.PhoenixDriver");
+    properties.put("jdbc.url", "jdbc:phoenix:zookeeper01,zookeeper02,zookeeper03:2181:/hbase/db");
+    outerAdapterConfig.setProperties(properties);
 
-    public static void main(String[] args) {
-        init();
-    }
+    PhoenixAdapter adapter = new PhoenixAdapter();
+    adapter.init(outerAdapterConfig, null);
+    return adapter;
+  }
+
+  public static void main(String[] args) {
+    init();
+  }
 }

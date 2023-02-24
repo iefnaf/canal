@@ -6,13 +6,13 @@ import com.alibaba.otter.canal.admin.model.CanalCluster;
 
 public interface CanalClusterService {
 
-    void save(CanalCluster canalCluster);
+  void save(CanalCluster canalCluster);
 
-    CanalCluster detail(Long id);
+  CanalCluster detail(Long id);
 
-    void update(CanalCluster canalCluster);
+  void update(CanalCluster canalCluster);
 
-    void delete(Long id);
+  void delete(Long id);
 
-    List<CanalCluster> findList(CanalCluster canalCluster);
+  List<CanalCluster> findList(CanalCluster canalCluster);
 }

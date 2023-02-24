@@ -6,5 +6,5 @@ package com.alibaba.otter.canal.parse.inbound;
  */
 public interface ParserExceptionHandler {
 
-    void handle(Throwable e);
+  void handle(Throwable e);
 }

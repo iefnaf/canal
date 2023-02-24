@@ -23,116 +23,116 @@ import javax.persistence.Table;
 @Table(name = "canal_node_server")
 public class NodeServer extends Model {
 
-    public static final NodeServerFinder find = new NodeServerFinder();
+  public static final NodeServerFinder find = new NodeServerFinder();
 
-    public static class NodeServerFinder extends Finder<Long, NodeServer> {
+  public static class NodeServerFinder extends Finder<Long, NodeServer> {
 
-        /**
-         * Construct using the default EbeanServer.
-         */
-        public NodeServerFinder(){
-            super(NodeServer.class);
-        }
-
+    /**
+     * Construct using the default EbeanServer.
+     */
+    public NodeServerFinder() {
+      super(NodeServer.class);
     }
 
-    @Id
-    private Long         id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cluster_id", updatable = false, insertable = false)
-    private CanalCluster canalCluster;
-    @Column(name = "cluster_id")
-    private Long         clusterId;
-    private String       name;
-    private String       ip;
-    private Integer      adminPort;
-    private Integer      metricPort;
-    private Integer      tcpPort;
-    private String       status;
-    @WhenModified
-    private Date         modifiedTime;
+  }
 
-    public void init() {
-        status = "-1";
-    }
+  @Id
+  private Long id;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "cluster_id", updatable = false, insertable = false)
+  private CanalCluster canalCluster;
+  @Column(name = "cluster_id")
+  private Long clusterId;
+  private String name;
+  private String ip;
+  private Integer adminPort;
+  private Integer metricPort;
+  private Integer tcpPort;
+  private String status;
+  @WhenModified
+  private Date modifiedTime;
 
-    public Long getId() {
-        return id;
-    }
+  public void init() {
+    status = "-1";
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public CanalCluster getCanalCluster() {
-        return canalCluster;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setCanalCluster(CanalCluster canalCluster) {
-        this.canalCluster = canalCluster;
-    }
+  public CanalCluster getCanalCluster() {
+    return canalCluster;
+  }
 
-    public Long getClusterId() {
-        return clusterId;
-    }
+  public void setCanalCluster(CanalCluster canalCluster) {
+    this.canalCluster = canalCluster;
+  }
 
-    public void setClusterId(Long clusterId) {
-        this.clusterId = clusterId;
-    }
+  public Long getClusterId() {
+    return clusterId;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public void setClusterId(Long clusterId) {
+    this.clusterId = clusterId;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public String getIp() {
-        return ip;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
+  public String getIp() {
+    return ip;
+  }
 
-    public Integer getAdminPort() {
-        return adminPort;
-    }
+  public void setIp(String ip) {
+    this.ip = ip;
+  }
 
-    public void setAdminPort(Integer adminPort) {
-        this.adminPort = adminPort;
-    }
+  public Integer getAdminPort() {
+    return adminPort;
+  }
 
-    public Integer getMetricPort() {
-        return metricPort;
-    }
+  public void setAdminPort(Integer adminPort) {
+    this.adminPort = adminPort;
+  }
 
-    public void setMetricPort(Integer metricPort) {
-        this.metricPort = metricPort;
-    }
+  public Integer getMetricPort() {
+    return metricPort;
+  }
 
-    public Integer getTcpPort() {
-        return tcpPort;
-    }
+  public void setMetricPort(Integer metricPort) {
+    this.metricPort = metricPort;
+  }
 
-    public void setTcpPort(Integer tcpPort) {
-        this.tcpPort = tcpPort;
-    }
+  public Integer getTcpPort() {
+    return tcpPort;
+  }
 
-    public String getStatus() {
-        return status;
-    }
+  public void setTcpPort(Integer tcpPort) {
+    this.tcpPort = tcpPort;
+  }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+  public String getStatus() {
+    return status;
+  }
 
-    public Date getModifiedTime() {
-        return modifiedTime;
-    }
+  public void setStatus(String status) {
+    this.status = status;
+  }
 
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
-    }
+  public Date getModifiedTime() {
+    return modifiedTime;
+  }
+
+  public void setModifiedTime(Date modifiedTime) {
+    this.modifiedTime = modifiedTime;
+  }
 }

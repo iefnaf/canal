@@ -17,96 +17,96 @@ import javax.persistence.Id;
 @Entity
 public class CanalConfig extends Model {
 
-    public static final CanalConfigFinder find = new CanalConfigFinder();
+  public static final CanalConfigFinder find = new CanalConfigFinder();
 
-    public static class CanalConfigFinder extends Finder<Long, CanalConfig> {
+  public static class CanalConfigFinder extends Finder<Long, CanalConfig> {
 
-        /**
-         * Construct using the default EbeanServer.
-         */
-        public CanalConfigFinder(){
-            super(CanalConfig.class);
-        }
-
+    /**
+     * Construct using the default EbeanServer.
+     */
+    public CanalConfigFinder() {
+      super(CanalConfig.class);
     }
 
-    @Id
-    private Long   id;
-    private Long   clusterId;
-    private Long   serverId;
-    private String name;
-    private String content;
-    private String contentMd5;
-    private String status;
-    @WhenModified
-    private Date   modifiedTime;
+  }
 
-    public void init() {
-        this.name = "canal.properties";
-    }
+  @Id
+  private Long id;
+  private Long clusterId;
+  private Long serverId;
+  private String name;
+  private String content;
+  private String contentMd5;
+  private String status;
+  @WhenModified
+  private Date modifiedTime;
 
-    public Long getId() {
-        return id;
-    }
+  public void init() {
+    this.name = "canal.properties";
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public Long getClusterId() {
-        return clusterId;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setClusterId(Long clusterId) {
-        this.clusterId = clusterId;
-    }
+  public Long getClusterId() {
+    return clusterId;
+  }
 
-    public Long getServerId() {
-        return serverId;
-    }
+  public void setClusterId(Long clusterId) {
+    this.clusterId = clusterId;
+  }
 
-    public void setServerId(Long serverId) {
-        this.serverId = serverId;
-    }
+  public Long getServerId() {
+    return serverId;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public void setServerId(Long serverId) {
+    this.serverId = serverId;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public String getContent() {
-        return content;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+  public String getContent() {
+    return content;
+  }
 
-    public String getContentMd5() {
-        return contentMd5;
-    }
+  public void setContent(String content) {
+    this.content = content;
+  }
 
-    public void setContentMd5(String contentMd5) {
-        this.contentMd5 = contentMd5;
-    }
+  public String getContentMd5() {
+    return contentMd5;
+  }
 
-    public Date getModifiedTime() {
-        return modifiedTime;
-    }
+  public void setContentMd5(String contentMd5) {
+    this.contentMd5 = contentMd5;
+  }
 
-    public void setModifiedTime(Date modifiedTime) {
-        this.modifiedTime = modifiedTime;
-    }
+  public Date getModifiedTime() {
+    return modifiedTime;
+  }
 
-    public String getStatus() {
-        return status;
-    }
+  public void setModifiedTime(Date modifiedTime) {
+    this.modifiedTime = modifiedTime;
+  }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
 
 }

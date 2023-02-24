@@ -4,13 +4,13 @@ import java.util.Map;
 
 public interface MetaSnapshotMapper {
 
-    MetaSnapshotDO findByTimestamp(Map<String, Object> map);
+  MetaSnapshotDO findByTimestamp(Map<String, Object> map);
 
-    long insert(MetaSnapshotDO metaSnapshotDO);
+  long insert(MetaSnapshotDO metaSnapshotDO);
 
-    long update(MetaSnapshotDO metaSnapshotDO);
+  long update(MetaSnapshotDO metaSnapshotDO);
 
-    int deleteByName(Map<String, Object> map);
+  int deleteByName(Map<String, Object> map);
 
-    int deleteByTimestamp(Map<String, Object> map);
+  int deleteByTimestamp(Map<String, Object> map);
 }

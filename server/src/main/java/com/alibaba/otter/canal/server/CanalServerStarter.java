@@ -8,5 +8,5 @@ package com.alibaba.otter.canal.server;
  */
 public interface CanalServerStarter {
 
-    void init();
+  void init();
 }

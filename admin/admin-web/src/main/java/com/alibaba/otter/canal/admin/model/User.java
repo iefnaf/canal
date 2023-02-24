@@ -17,102 +17,102 @@ import javax.persistence.Transient;
 @Table(name = "canal_user")
 public class User extends Model {
 
-    public static final UserFinder find = new UserFinder();
+  public static final UserFinder find = new UserFinder();
 
-    public static class UserFinder extends Finder<Long, User> {
+  public static class UserFinder extends Finder<Long, User> {
 
-        /**
-         * Construct using the default EbeanServer.
-         */
-        public UserFinder(){
-            super(User.class);
-        }
-
+    /**
+     * Construct using the default EbeanServer.
+     */
+    public UserFinder() {
+      super(User.class);
     }
 
-    @Id
-    private Long   id;
-    private String username;
-    private String password;
-    private String roles;
-    private String introduction;
-    private String avatar;
-    private String name;
-    @WhenCreated
-    private Date   creationDate;
+  }
 
-    @Transient
-    private String oldPassword;
+  @Id
+  private Long id;
+  private String username;
+  private String password;
+  private String roles;
+  private String introduction;
+  private String avatar;
+  private String name;
+  @WhenCreated
+  private Date creationDate;
 
-    public Long getId() {
-        return id;
-    }
+  @Transient
+  private String oldPassword;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public String getUsername() {
-        return username;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+  public String getUsername() {
+    return username;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public void setUsername(String username) {
+    this.username = username;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public String getRoles() {
-        return roles;
-    }
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    public void setRoles(String roles) {
-        this.roles = roles;
-    }
+  public String getRoles() {
+    return roles;
+  }
 
-    public String getIntroduction() {
-        return introduction;
-    }
+  public void setRoles(String roles) {
+    this.roles = roles;
+  }
 
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction;
-    }
+  public String getIntroduction() {
+    return introduction;
+  }
 
-    public String getAvatar() {
-        return avatar;
-    }
+  public void setIntroduction(String introduction) {
+    this.introduction = introduction;
+  }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
+  public String getAvatar() {
+    return avatar;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public void setAvatar(String avatar) {
+    this.avatar = avatar;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public Date getCreationDate() {
-        return creationDate;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
+  public Date getCreationDate() {
+    return creationDate;
+  }
 
-    public String getOldPassword() {
-        return oldPassword;
-    }
+  public void setCreationDate(Date creationDate) {
+    this.creationDate = creationDate;
+  }
 
-    public void setOldPassword(String oldPassword) {
-        this.oldPassword = oldPassword;
-    }
+  public String getOldPassword() {
+    return oldPassword;
+  }
+
+  public void setOldPassword(String oldPassword) {
+    this.oldPassword = oldPassword;
+  }
 }

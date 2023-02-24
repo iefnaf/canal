@@ -22,51 +22,52 @@ import com.alibaba.otter.canal.connector.pulsarmq.config.PulsarMQConstants;
  */
 public class CanalPulsarMQConsumerTest {
 
-    private Properties            properties;
+  private Properties properties;
 
-    private CanalPulsarMQConsumer consumer;
+  private CanalPulsarMQConsumer consumer;
 
-    @Before
-    public void before() {
-        properties = new Properties();
-        properties.setProperty(CanalConstants.CANAL_MQ_FLAT_MESSAGE, String.valueOf(true));
-        properties.setProperty(CanalConstants.CANAL_MQ_CANAL_BATCH_SIZE, String.valueOf(30));
-        properties.setProperty(PulsarMQConstants.PULSARMQ_GET_BATCH_TIMEOUT_SECONDS, String.valueOf(5));
-        properties.setProperty(PulsarMQConstants.PULSARMQ_BATCH_PROCESS_TIMEOUT, String.valueOf(30));
-        properties.setProperty(PulsarMQConstants.PULSARMQ_SERVER_URL, "pulsar://192.168.1.200:6650");
-        properties.setProperty(PulsarMQConstants.PULSARMQ_ROLE_TOKEN, "123456");
-        properties.setProperty(PulsarMQConstants.PULSARMQ_SUBSCRIPT_NAME, "test-for-canal-pulsar-consumer");
-        properties.setProperty(PulsarMQConstants.PULSARMQ_REDELIVERY_DELAY_SECONDS, String.valueOf(30));
-        properties.setProperty(PulsarMQConstants.PULSARMQ_ACK_TIMEOUT_SECONDS, String.valueOf(30));
-        properties.setProperty(PulsarMQConstants.PULSARMQ_IS_RETRY, String.valueOf(true));
-        properties.setProperty(PulsarMQConstants.PULSARMQ_IS_RETRY_DLQ_UPPERCASE, String.valueOf(true));
-        properties.setProperty(PulsarMQConstants.PULSARMQ_MAX_REDELIVERY_COUNT, String.valueOf(16));
+  @Before
+  public void before() {
+    properties = new Properties();
+    properties.setProperty(CanalConstants.CANAL_MQ_FLAT_MESSAGE, String.valueOf(true));
+    properties.setProperty(CanalConstants.CANAL_MQ_CANAL_BATCH_SIZE, String.valueOf(30));
+    properties.setProperty(PulsarMQConstants.PULSARMQ_GET_BATCH_TIMEOUT_SECONDS, String.valueOf(5));
+    properties.setProperty(PulsarMQConstants.PULSARMQ_BATCH_PROCESS_TIMEOUT, String.valueOf(30));
+    properties.setProperty(PulsarMQConstants.PULSARMQ_SERVER_URL, "pulsar://192.168.1.200:6650");
+    properties.setProperty(PulsarMQConstants.PULSARMQ_ROLE_TOKEN, "123456");
+    properties.setProperty(PulsarMQConstants.PULSARMQ_SUBSCRIPT_NAME,
+        "test-for-canal-pulsar-consumer");
+    properties.setProperty(PulsarMQConstants.PULSARMQ_REDELIVERY_DELAY_SECONDS, String.valueOf(30));
+    properties.setProperty(PulsarMQConstants.PULSARMQ_ACK_TIMEOUT_SECONDS, String.valueOf(30));
+    properties.setProperty(PulsarMQConstants.PULSARMQ_IS_RETRY, String.valueOf(true));
+    properties.setProperty(PulsarMQConstants.PULSARMQ_IS_RETRY_DLQ_UPPERCASE, String.valueOf(true));
+    properties.setProperty(PulsarMQConstants.PULSARMQ_MAX_REDELIVERY_COUNT, String.valueOf(16));
 
-        consumer = new CanalPulsarMQConsumer();
-        consumer.init(this.properties, "persistent://public/canal/test-topics-partition", "groupid");
+    consumer = new CanalPulsarMQConsumer();
+    consumer.init(this.properties, "persistent://public/canal/test-topics-partition", "groupid");
+  }
+
+  @After
+  public void after() {
+    consumer.disconnect();
+  }
+
+  @Test
+  public void getMessage() {
+    consumer.connect();
+
+    while (true) {
+      List<CommonMessage> list = consumer.getMessage(-1L, TimeUnit.SECONDS);
+      String time = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+      if (null == list || list.isEmpty()) {
+        System.out.println(time + " Receive empty");
+        continue;
+      }
+      for (CommonMessage m : list) {
+        System.out.println(time + " Receive ==> " + JSON.toJSONString(m));
+      }
+
+      consumer.ack();
     }
-
-    @After
-    public void after() {
-        consumer.disconnect();
-    }
-
-    @Test
-    public void getMessage() {
-        consumer.connect();
-
-        while (true) {
-            List<CommonMessage> list = consumer.getMessage(-1L, TimeUnit.SECONDS);
-            String time = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
-            if (null == list || list.isEmpty()) {
-                System.out.println(time + " Receive empty");
-                continue;
-            }
-            for (CommonMessage m : list) {
-                System.out.println(time + " Receive ==> " + JSON.toJSONString(m));
-            }
-
-            consumer.ack();
-        }
-    }
+  }
 }

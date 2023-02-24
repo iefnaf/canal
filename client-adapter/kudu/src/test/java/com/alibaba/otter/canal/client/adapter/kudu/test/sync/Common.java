@@ -13,18 +13,18 @@ import com.alibaba.otter.canal.client.adapter.support.OuterAdapterConfig;
  */
 public class Common {
 
-    public static KuduAdapter init() {
-        DatasourceConfig.DATA_SOURCES.put("defaultDS", TestConstant.dataSource);
+  public static KuduAdapter init() {
+    DatasourceConfig.DATA_SOURCES.put("defaultDS", TestConstant.dataSource);
 
-        OuterAdapterConfig outerAdapterConfig = new OuterAdapterConfig();
-        outerAdapterConfig.setName("kudu");
-        outerAdapterConfig.setKey("kudu");
-        Map<String, String> properties = new HashMap<>();
-        properties.put("kudu.master.address", "10.6.36.102,10.6.36.187,10.6.36.229");
-        outerAdapterConfig.setProperties(properties);
+    OuterAdapterConfig outerAdapterConfig = new OuterAdapterConfig();
+    outerAdapterConfig.setName("kudu");
+    outerAdapterConfig.setKey("kudu");
+    Map<String, String> properties = new HashMap<>();
+    properties.put("kudu.master.address", "10.6.36.102,10.6.36.187,10.6.36.229");
+    outerAdapterConfig.setProperties(properties);
 
-        KuduAdapter adapter = new KuduAdapter();
-        adapter.init(outerAdapterConfig, null);
-        return adapter;
-    }
+    KuduAdapter adapter = new KuduAdapter();
+    adapter.init(outerAdapterConfig, null);
+    return adapter;
+  }
 }

@@ -20,26 +20,26 @@ import com.alibaba.otter.canal.admin.model.BaseModel;
 @ControllerAdvice(annotations = ResponseBody.class)
 public class CustomExceptionHandler {
 
-    private static Logger logger = LoggerFactory.getLogger(CustomExceptionHandler.class);
+  private static Logger logger = LoggerFactory.getLogger(CustomExceptionHandler.class);
 
-    /**
-     * 通用异常处理
-     *
-     * @param e 异常
-     * @return
-     */
-    @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
-    @ExceptionHandler(value = Exception.class)
-    public BaseModel commonExceptionHandle(Exception e) {
-        if (e instanceof ServiceException) {
-            logger.error(e.getMessage());
-        } else {
-            logger.error(e.getMessage(), e);
-        }
-        BaseModel res = new BaseModel();
-        res.setCode(50000);
-        res.setMessage(e.getMessage());
-        return res;
+  /**
+   * 通用异常处理
+   *
+   * @param e 异常
+   * @return
+   */
+  @ResponseBody
+  @ResponseStatus(HttpStatus.OK)
+  @ExceptionHandler(value = Exception.class)
+  public BaseModel commonExceptionHandle(Exception e) {
+    if (e instanceof ServiceException) {
+      logger.error(e.getMessage());
+    } else {
+      logger.error(e.getMessage(), e);
     }
+    BaseModel res = new BaseModel();
+    res.setCode(50000);
+    res.setMessage(e.getMessage());
+    return res;
+  }
 }

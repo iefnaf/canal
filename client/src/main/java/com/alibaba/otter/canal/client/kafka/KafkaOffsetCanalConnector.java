@@ -24,88 +24,91 @@ import java.util.concurrent.TimeUnit;
  */
 public class KafkaOffsetCanalConnector extends KafkaCanalConnector {
 
-    public KafkaOffsetCanalConnector(String servers, String topic, Integer partition, String groupId, boolean flatMessage) {
-        super(servers, topic, partition, groupId, 100, flatMessage);
-        // 启动时从未消费的消息位置开始
-        properties.put("auto.offset.reset", "earliest");
+  public KafkaOffsetCanalConnector(String servers, String topic, Integer partition, String groupId,
+      boolean flatMessage) {
+    super(servers, topic, partition, groupId, 100, flatMessage);
+    // 启动时从未消费的消息位置开始
+    properties.put("auto.offset.reset", "earliest");
+  }
+
+  /**
+   * 获取Kafka消息，不确认
+   *
+   * @param timeout
+   * @param unit
+   * @param offset  消息偏移地址（-1为不偏移）
+   * @return
+   * @throws CanalClientException
+   */
+  public List<KafkaMessage> getListWithoutAck(Long timeout, TimeUnit unit, long offset)
+      throws CanalClientException {
+    waitClientRunning();
+    if (!running) {
+      return new ArrayList<>();
     }
 
-    /**
-     * 获取Kafka消息，不确认
-     *
-     * @param timeout
-     * @param unit
-     * @param offset  消息偏移地址（-1为不偏移）
-     * @return
-     * @throws CanalClientException
-     */
-    public List<KafkaMessage> getListWithoutAck(Long timeout, TimeUnit unit, long offset) throws CanalClientException {
-        waitClientRunning();
-        if (!running) {
-            return new ArrayList<>();
-        }
-
-        if (offset > -1) {
-            TopicPartition tp = new TopicPartition(topic, partition == null ? 0 : partition);
-            kafkaConsumer.seek(tp, offset);
-        }
-
-        ConsumerRecords<String, Message> records = kafkaConsumer.poll(unit.toMillis(timeout));
-
-        if (!records.isEmpty()) {
-            List<KafkaMessage> messages = new ArrayList<>();
-            for (ConsumerRecord<String, Message> record : records) {
-                KafkaMessage message = new KafkaMessage(record.value(), record.offset());
-                messages.add(message);
-            }
-            return messages;
-        }
-        return new ArrayList<>();
+    if (offset > -1) {
+      TopicPartition tp = new TopicPartition(topic, partition == null ? 0 : partition);
+      kafkaConsumer.seek(tp, offset);
     }
 
-    /**
-     * 获取Kafka消息，不确认
-     *
-     * @param timeout
-     * @param unit
-     * @param offset  消息偏移地址（-1为不偏移）
-     * @return
-     * @throws CanalClientException
-     */
-    public List<KafkaFlatMessage> getFlatListWithoutAck(Long timeout, TimeUnit unit, long offset) throws CanalClientException {
-        waitClientRunning();
-        if (!running) {
-            return new ArrayList<>();
-        }
+    ConsumerRecords<String, Message> records = kafkaConsumer.poll(unit.toMillis(timeout));
 
-        if (offset > -1) {
-            TopicPartition tp = new TopicPartition(topic, partition == null ? 0 : partition);
-            kafkaConsumer2.seek(tp, offset);
-        }
+    if (!records.isEmpty()) {
+      List<KafkaMessage> messages = new ArrayList<>();
+      for (ConsumerRecord<String, Message> record : records) {
+        KafkaMessage message = new KafkaMessage(record.value(), record.offset());
+        messages.add(message);
+      }
+      return messages;
+    }
+    return new ArrayList<>();
+  }
 
-        ConsumerRecords<String, String> records = kafkaConsumer2.poll(unit.toMillis(timeout));
-        if (!records.isEmpty()) {
-            List<KafkaFlatMessage> flatMessages = new ArrayList<>();
-            for (ConsumerRecord<String, String> record : records) {
-                String flatMessageJson = record.value();
-                FlatMessage flatMessage = JSON.parseObject(flatMessageJson, FlatMessage.class);
-                KafkaFlatMessage message = new KafkaFlatMessage(flatMessage, record.offset());
-                flatMessages.add(message);
-            }
-
-            return flatMessages;
-        }
-        return new ArrayList<>();
+  /**
+   * 获取Kafka消息，不确认
+   *
+   * @param timeout
+   * @param unit
+   * @param offset  消息偏移地址（-1为不偏移）
+   * @return
+   * @throws CanalClientException
+   */
+  public List<KafkaFlatMessage> getFlatListWithoutAck(Long timeout, TimeUnit unit, long offset)
+      throws CanalClientException {
+    waitClientRunning();
+    if (!running) {
+      return new ArrayList<>();
     }
 
-    /**
-     * 重新设置AutoOffsetReset（默认 earliest ）
-     *
-     * @param value
-     */
-    public void setAutoOffsetReset(String value) {
-        if (StringUtils.isNotBlank(value)) {
-            properties.put("auto.offset.reset", value);
-        }
+    if (offset > -1) {
+      TopicPartition tp = new TopicPartition(topic, partition == null ? 0 : partition);
+      kafkaConsumer2.seek(tp, offset);
     }
+
+    ConsumerRecords<String, String> records = kafkaConsumer2.poll(unit.toMillis(timeout));
+    if (!records.isEmpty()) {
+      List<KafkaFlatMessage> flatMessages = new ArrayList<>();
+      for (ConsumerRecord<String, String> record : records) {
+        String flatMessageJson = record.value();
+        FlatMessage flatMessage = JSON.parseObject(flatMessageJson, FlatMessage.class);
+        KafkaFlatMessage message = new KafkaFlatMessage(flatMessage, record.offset());
+        flatMessages.add(message);
+      }
+
+      return flatMessages;
+    }
+    return new ArrayList<>();
+  }
+
+  /**
+   * 重新设置AutoOffsetReset（默认 earliest ）
+   *
+   * @param value
+   */
+  public void setAutoOffsetReset(String value) {
+    if (StringUtils.isNotBlank(value)) {
+      properties.put("auto.offset.reset", value);
+    }
+  }
 }

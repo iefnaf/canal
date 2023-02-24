@@ -15,15 +15,16 @@ import java.util.Map;
  * @Description:
  */
 public class TestConfigLoad {
-    @Before
-    public void before() {
-        // 加载数据源连接池
-        DatasourceConfig.DATA_SOURCES.put("defaultDS", TestConstant.dataSource);
-    }
 
-    @Test
-    public void testLoad() {
-        Map<String, MappingConfig> configMap = ConfigLoader.load(null);
-        Assert.assertFalse(configMap.isEmpty());
-    }
+  @Before
+  public void before() {
+    // 加载数据源连接池
+    DatasourceConfig.DATA_SOURCES.put("defaultDS", TestConstant.dataSource);
+  }
+
+  @Test
+  public void testLoad() {
+    Map<String, MappingConfig> configMap = ConfigLoader.load(null);
+    Assert.assertFalse(configMap.isEmpty());
+  }
 }

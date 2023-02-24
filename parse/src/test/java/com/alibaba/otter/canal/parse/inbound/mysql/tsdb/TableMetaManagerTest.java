@@ -23,26 +23,27 @@ import com.alibaba.otter.canal.protocol.position.EntryPosition;
  * @since 3.2.5
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "/tsdb/h2-tsdb.xml" })
+@ContextConfiguration(locations = {"/tsdb/h2-tsdb.xml"})
 @Ignore
 public class TableMetaManagerTest {
 
-    @Resource
-    DatabaseTableMeta tableMetaManager;
+  @Resource
+  DatabaseTableMeta tableMetaManager;
 
-    @Test
-    public void testSimple() throws FileNotFoundException, IOException {
-        tableMetaManager.init("test");
+  @Test
+  public void testSimple() throws FileNotFoundException, IOException {
+    tableMetaManager.init("test");
 
-        URL url = Thread.currentThread().getContextClassLoader().getResource("dummy.txt");
-        File dummyFile = new File(url.getFile());
-        File create = new File(dummyFile.getParent() + "/ddl", "create.sql");
-        EntryPosition position = new EntryPosition("mysql-bin.001115", 139177334L, 3065927853L, 1501660815000L);
-        String createSql = StringUtils.join(IOUtils.readLines(new FileInputStream(create)), "\n");
-        tableMetaManager.apply(position, "tddl5_00", createSql, null);
+    URL url = Thread.currentThread().getContextClassLoader().getResource("dummy.txt");
+    File dummyFile = new File(url.getFile());
+    File create = new File(dummyFile.getParent() + "/ddl", "create.sql");
+    EntryPosition position = new EntryPosition("mysql-bin.001115", 139177334L, 3065927853L,
+        1501660815000L);
+    String createSql = StringUtils.join(IOUtils.readLines(new FileInputStream(create)), "\n");
+    tableMetaManager.apply(position, "tddl5_00", createSql, null);
 
-        String alterSql = "alter table `test` add column name varchar(32) after c_varchar";
-        position = new EntryPosition("mysql-bin.001115", 139177334L, 3065927854L, 1501660815000L);
-        tableMetaManager.apply(position, "tddl5_00", alterSql, null);
-    }
+    String alterSql = "alter table `test` add column name varchar(32) after c_varchar";
+    position = new EntryPosition("mysql-bin.001115", 139177334L, 3065927854L, 1501660815000L);
+    tableMetaManager.apply(position, "tddl5_00", alterSql, null);
+  }
 }

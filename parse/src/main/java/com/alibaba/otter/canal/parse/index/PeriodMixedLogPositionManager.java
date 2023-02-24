@@ -20,96 +20,98 @@ import com.alibaba.otter.canal.protocol.position.LogPosition;
  */
 public class PeriodMixedLogPositionManager extends AbstractLogPositionManager {
 
-    private static final Logger         logger       = LoggerFactory.getLogger(PeriodMixedLogPositionManager.class);
+  private static final Logger logger = LoggerFactory.getLogger(PeriodMixedLogPositionManager.class);
 
-    private MemoryLogPositionManager    memoryLogPositionManager;
-    private ZooKeeperLogPositionManager zooKeeperLogPositionManager;
-    private ScheduledExecutorService    executorService;
+  private MemoryLogPositionManager memoryLogPositionManager;
+  private ZooKeeperLogPositionManager zooKeeperLogPositionManager;
+  private ScheduledExecutorService executorService;
 
-    private long                        period;
-    private Set<String>                 persistTasks;
+  private long period;
+  private Set<String> persistTasks;
 
-    @SuppressWarnings("serial")
-    private final LogPosition           nullPosition = new LogPosition() {
-                                                     };
+  @SuppressWarnings("serial")
+  private final LogPosition nullPosition = new LogPosition() {
+  };
 
-    public PeriodMixedLogPositionManager(MemoryLogPositionManager memoryLogPositionManager,
-                                         ZooKeeperLogPositionManager zooKeeperLogPositionManager, long period){
-        if (memoryLogPositionManager == null) {
-            throw new NullPointerException("null memoryLogPositionManager");
-        }
-
-        if (zooKeeperLogPositionManager == null) {
-            throw new NullPointerException("null zooKeeperLogPositionManager");
-        }
-
-        if (period <= 0) {
-            throw new IllegalArgumentException("period must be positive, given: " + period);
-        }
-
-        this.memoryLogPositionManager = memoryLogPositionManager;
-        this.zooKeeperLogPositionManager = zooKeeperLogPositionManager;
-        this.period = period;
-        this.persistTasks = Collections.synchronizedSet(new HashSet<>());
-        this.executorService = Executors.newScheduledThreadPool(1);
+  public PeriodMixedLogPositionManager(MemoryLogPositionManager memoryLogPositionManager,
+      ZooKeeperLogPositionManager zooKeeperLogPositionManager, long period) {
+    if (memoryLogPositionManager == null) {
+      throw new NullPointerException("null memoryLogPositionManager");
     }
 
-    @Override
-    public void stop() {
-        super.stop();
-
-        if (zooKeeperLogPositionManager.isStart()) {
-            zooKeeperLogPositionManager.stop();
-        }
-
-        if (memoryLogPositionManager.isStart()) {
-            memoryLogPositionManager.stop();
-        }
-
-        executorService.shutdown();
+    if (zooKeeperLogPositionManager == null) {
+      throw new NullPointerException("null zooKeeperLogPositionManager");
     }
 
-    @Override
-    public void start() {
-        super.start();
-
-        if (!memoryLogPositionManager.isStart()) {
-            memoryLogPositionManager.start();
-        }
-
-        if (!zooKeeperLogPositionManager.isStart()) {
-            zooKeeperLogPositionManager.start();
-        }
-
-        // 启动定时工作任务
-        executorService.scheduleAtFixedRate(() -> {
-            List<String> tasks = new ArrayList<>(persistTasks);
-            for (String destination : tasks) {
-                try {
-                    // 定时将内存中的最新值刷到zookeeper中，多次变更只刷一次
-                    zooKeeperLogPositionManager.persistLogPosition(destination, getLatestIndexBy(destination));
-                    persistTasks.remove(destination);
-                } catch (Throwable e) {
-                    // ignore
-                    logger.error("period update" + destination + " curosr failed!", e);
-                }
-            }
-        }, period, period, TimeUnit.MILLISECONDS);
+    if (period <= 0) {
+      throw new IllegalArgumentException("period must be positive, given: " + period);
     }
 
-    @Override
-    public LogPosition getLatestIndexBy(String destination) {
-        LogPosition logPosition = memoryLogPositionManager.getLatestIndexBy(destination);
-        if (logPosition == nullPosition) {
-            return null;
-        } else {
-            return logPosition;
-        }
+    this.memoryLogPositionManager = memoryLogPositionManager;
+    this.zooKeeperLogPositionManager = zooKeeperLogPositionManager;
+    this.period = period;
+    this.persistTasks = Collections.synchronizedSet(new HashSet<>());
+    this.executorService = Executors.newScheduledThreadPool(1);
+  }
+
+  @Override
+  public void stop() {
+    super.stop();
+
+    if (zooKeeperLogPositionManager.isStart()) {
+      zooKeeperLogPositionManager.stop();
     }
 
-    @Override
-    public void persistLogPosition(String destination, LogPosition logPosition) throws CanalParseException {
-        persistTasks.add(destination);
-        memoryLogPositionManager.persistLogPosition(destination, logPosition);
+    if (memoryLogPositionManager.isStart()) {
+      memoryLogPositionManager.stop();
     }
+
+    executorService.shutdown();
+  }
+
+  @Override
+  public void start() {
+    super.start();
+
+    if (!memoryLogPositionManager.isStart()) {
+      memoryLogPositionManager.start();
+    }
+
+    if (!zooKeeperLogPositionManager.isStart()) {
+      zooKeeperLogPositionManager.start();
+    }
+
+    // 启动定时工作任务
+    executorService.scheduleAtFixedRate(() -> {
+      List<String> tasks = new ArrayList<>(persistTasks);
+      for (String destination : tasks) {
+        try {
+          // 定时将内存中的最新值刷到zookeeper中，多次变更只刷一次
+          zooKeeperLogPositionManager.persistLogPosition(destination,
+              getLatestIndexBy(destination));
+          persistTasks.remove(destination);
+        } catch (Throwable e) {
+          // ignore
+          logger.error("period update" + destination + " curosr failed!", e);
+        }
+      }
+    }, period, period, TimeUnit.MILLISECONDS);
+  }
+
+  @Override
+  public LogPosition getLatestIndexBy(String destination) {
+    LogPosition logPosition = memoryLogPositionManager.getLatestIndexBy(destination);
+    if (logPosition == nullPosition) {
+      return null;
+    } else {
+      return logPosition;
+    }
+  }
+
+  @Override
+  public void persistLogPosition(String destination, LogPosition logPosition)
+      throws CanalParseException {
+    persistTasks.add(destination);
+    memoryLogPositionManager.persistLogPosition(destination, logPosition);
+  }
 }

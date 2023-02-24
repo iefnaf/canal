@@ -22,77 +22,84 @@ import com.alibaba.otter.canal.protocol.CanalPacket.Packet;
 
 public class NettyUtils {
 
-    private static final Logger logger           = LoggerFactory.getLogger(NettyUtils.class);
-    public static int           HEADER_LENGTH    = 4;
-    public static Timer         hashedWheelTimer = new HashedWheelTimer();
-    public static int           VERSION          = 1;
+  private static final Logger logger = LoggerFactory.getLogger(NettyUtils.class);
+  public static int HEADER_LENGTH = 4;
+  public static Timer hashedWheelTimer = new HashedWheelTimer();
+  public static int VERSION = 1;
 
-    public static void write(Channel channel, ByteBuffer body, ChannelFutureListener channelFutureListner) {
-        byte[] header = ByteBuffer.allocate(HEADER_LENGTH).order(ByteOrder.BIG_ENDIAN).putInt(body.limit()).array();
-        List<ChannelBuffer> components = new ArrayList<>(2);
-        components.add(ChannelBuffers.wrappedBuffer(ByteOrder.BIG_ENDIAN, header));
-        components.add(ChannelBuffers.wrappedBuffer(body));
+  public static void write(Channel channel, ByteBuffer body,
+      ChannelFutureListener channelFutureListner) {
+    byte[] header = ByteBuffer.allocate(HEADER_LENGTH).order(ByteOrder.BIG_ENDIAN)
+        .putInt(body.limit()).array();
+    List<ChannelBuffer> components = new ArrayList<>(2);
+    components.add(ChannelBuffers.wrappedBuffer(ByteOrder.BIG_ENDIAN, header));
+    components.add(ChannelBuffers.wrappedBuffer(body));
 
-        if (channelFutureListner == null) {
-            Channels.write(channel, new CompositeChannelBuffer(ByteOrder.BIG_ENDIAN, components));
-        } else {
-            Channels.write(channel, new CompositeChannelBuffer(ByteOrder.BIG_ENDIAN, components))
-                .addListener(channelFutureListner);
-        }
+    if (channelFutureListner == null) {
+      Channels.write(channel, new CompositeChannelBuffer(ByteOrder.BIG_ENDIAN, components));
+    } else {
+      Channels.write(channel, new CompositeChannelBuffer(ByteOrder.BIG_ENDIAN, components))
+          .addListener(channelFutureListner);
     }
+  }
 
-    public static void write(Channel channel, byte[] body, ChannelFutureListener channelFutureListner) {
-        byte[] header = ByteBuffer.allocate(HEADER_LENGTH).order(ByteOrder.BIG_ENDIAN).putInt(body.length).array();
-        if (channelFutureListner == null) {
-            Channels.write(channel, ChannelBuffers.wrappedBuffer(header, body));
-        } else {
-            Channels.write(channel, ChannelBuffers.wrappedBuffer(header, body)).addListener(channelFutureListner);
-        }
+  public static void write(Channel channel, byte[] body,
+      ChannelFutureListener channelFutureListner) {
+    byte[] header = ByteBuffer.allocate(HEADER_LENGTH).order(ByteOrder.BIG_ENDIAN)
+        .putInt(body.length).array();
+    if (channelFutureListner == null) {
+      Channels.write(channel, ChannelBuffers.wrappedBuffer(header, body));
+    } else {
+      Channels.write(channel, ChannelBuffers.wrappedBuffer(header, body))
+          .addListener(channelFutureListner);
     }
+  }
 
-    public static void ack(Channel channel, ChannelFutureListener channelFutureListner) {
-        write(channel,
-            Packet.newBuilder()
-                .setType(CanalPacket.PacketType.ACK)
-                .setVersion(VERSION)
-                .setBody(Ack.newBuilder().build().toByteString())
-                .build()
-                .toByteArray(),
-            channelFutureListner);
-    }
-
-    public static void error(int errorCode, String errorMessage, Channel channel,
-                             ChannelFutureListener channelFutureListener) {
-        if (channelFutureListener == null) {
-            channelFutureListener = ChannelFutureListener.CLOSE;
-        }
-
-        logger.error("ErrotCode:{} , Caused by : \n{}", errorCode, errorMessage);
-        write(channel,
-            Packet.newBuilder()
-                .setType(CanalPacket.PacketType.ACK)
-                .setVersion(VERSION)
-                .setBody(Ack.newBuilder().setErrorCode(errorCode).setErrorMessage(errorMessage).build().toByteString())
-                .build()
-                .toByteArray(),
-            channelFutureListener);
-    }
-
-    public static byte[] ackPacket() {
-        return Packet.newBuilder()
+  public static void ack(Channel channel, ChannelFutureListener channelFutureListner) {
+    write(channel,
+        Packet.newBuilder()
             .setType(CanalPacket.PacketType.ACK)
             .setVersion(VERSION)
             .setBody(Ack.newBuilder().build().toByteString())
             .build()
-            .toByteArray();
+            .toByteArray(),
+        channelFutureListner);
+  }
+
+  public static void error(int errorCode, String errorMessage, Channel channel,
+      ChannelFutureListener channelFutureListener) {
+    if (channelFutureListener == null) {
+      channelFutureListener = ChannelFutureListener.CLOSE;
     }
 
-    public static byte[] errorPacket(int errorCode, String errorMessage) {
-        return Packet.newBuilder()
+    logger.error("ErrotCode:{} , Caused by : \n{}", errorCode, errorMessage);
+    write(channel,
+        Packet.newBuilder()
             .setType(CanalPacket.PacketType.ACK)
             .setVersion(VERSION)
-            .setBody(Ack.newBuilder().setErrorCode(errorCode).setErrorMessage(errorMessage).build().toByteString())
+            .setBody(Ack.newBuilder().setErrorCode(errorCode).setErrorMessage(errorMessage).build()
+                .toByteString())
             .build()
-            .toByteArray();
-    }
+            .toByteArray(),
+        channelFutureListener);
+  }
+
+  public static byte[] ackPacket() {
+    return Packet.newBuilder()
+        .setType(CanalPacket.PacketType.ACK)
+        .setVersion(VERSION)
+        .setBody(Ack.newBuilder().build().toByteString())
+        .build()
+        .toByteArray();
+  }
+
+  public static byte[] errorPacket(int errorCode, String errorMessage) {
+    return Packet.newBuilder()
+        .setType(CanalPacket.PacketType.ACK)
+        .setVersion(VERSION)
+        .setBody(Ack.newBuilder().setErrorCode(errorCode).setErrorMessage(errorMessage).build()
+            .toByteString())
+        .build()
+        .toByteArray();
+  }
 }

@@ -10,11 +10,12 @@ import org.springframework.util.Assert;
  */
 public class TableMetaManagerBuilderTest {
 
-    @Ignore
-    @Test
-    public void testSimple() {
-        TableMetaTSDB tableMetaTSDB = TableMetaTSDBBuilder.build("test", "classpath:tsdb/mysql-tsdb.xml");
-        Assert.notNull(tableMetaTSDB);
-        TableMetaTSDBBuilder.destory("test");
-    }
+  @Ignore
+  @Test
+  public void testSimple() {
+    TableMetaTSDB tableMetaTSDB = TableMetaTSDBBuilder.build("test",
+        "classpath:tsdb/mysql-tsdb.xml");
+    Assert.notNull(tableMetaTSDB);
+    TableMetaTSDBBuilder.destory("test");
+  }
 }

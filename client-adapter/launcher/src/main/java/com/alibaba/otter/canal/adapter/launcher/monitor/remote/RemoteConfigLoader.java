@@ -8,23 +8,23 @@ package com.alibaba.otter.canal.adapter.launcher.monitor.remote;
  */
 public interface RemoteConfigLoader {
 
-    /**
-     * 加载远程application.yml配置到本地
-     */
-    void loadRemoteConfig();
+  /**
+   * 加载远程application.yml配置到本地
+   */
+  void loadRemoteConfig();
 
-    /**
-     * 加载adapter配置
-     */
-    void loadRemoteAdapterConfigs();
+  /**
+   * 加载adapter配置
+   */
+  void loadRemoteAdapterConfigs();
 
-    /**
-     * 启动监听数据库变化
-     */
-    void startMonitor();
+  /**
+   * 启动监听数据库变化
+   */
+  void startMonitor();
 
-    /**
-     * 销毁
-     */
-    void destroy();
+  /**
+   * 销毁
+   */
+  void destroy();
 }

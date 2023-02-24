@@ -6,23 +6,23 @@ package com.alibaba.otter.canal.store;
  */
 public class StoreInfo {
 
-    private String storeName;
-    private String filter;
+  private String storeName;
+  private String filter;
 
-    public String getStoreName() {
-        return storeName;
-    }
+  public String getStoreName() {
+    return storeName;
+  }
 
-    public String getFilter() {
-        return filter;
-    }
+  public String getFilter() {
+    return filter;
+  }
 
-    public void setStoreName(String storeName) {
-        this.storeName = storeName;
-    }
+  public void setStoreName(String storeName) {
+    this.storeName = storeName;
+  }
 
-    public void setFilter(String filter) {
-        this.filter = filter;
-    }
+  public void setFilter(String filter) {
+    this.filter = filter;
+  }
 
 }

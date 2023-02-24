@@ -16,93 +16,93 @@ import com.alibaba.otter.canal.sink.stub.DummyEventStore;
 
 public class GroupEventSinkTest {
 
-    private final InetSocketAddress address = new InetSocketAddress("127.0.0.1", 3306);
+  private final InetSocketAddress address = new InetSocketAddress("127.0.0.1", 3306);
 
-    @Test
-    public void testGroupTwo() {
-        final DummyEventStore eventStore = new DummyEventStore();
-        final GroupEventSink eventSink = new GroupEventSink(3);
-        eventSink.setFilterTransactionEntry(true);
-        eventSink.setEventStore(eventStore);
-        eventSink.start();
+  @Test
+  public void testGroupTwo() {
+    final DummyEventStore eventStore = new DummyEventStore();
+    final GroupEventSink eventSink = new GroupEventSink(3);
+    eventSink.setFilterTransactionEntry(true);
+    eventSink.setEventStore(eventStore);
+    eventSink.start();
 
-        ExecutorService executor = Executors.newFixedThreadPool(3);
-        final CountDownLatch latch = new CountDownLatch(1);
-        executor.submit(() -> {
-            for (int i = 0; i < 50; i++) {
-                try {
-                    eventSink.sink(Arrays.asList(buildEntry("1", 1L + i, 1L + i)), address, "ljhtest1");
-                    Thread.sleep(50L + RandomUtils.nextInt(50));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-            for (int i = 0; i < 50; i++) {
-                try {
-                    eventSink.sink(Arrays.asList(buildEntry("1", 1L + i, 30L + i)), address, "ljhtest1");
-                    Thread.sleep(50L + RandomUtils.nextInt(50));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-            System.out.println("one sink finished!");
-            latch.countDown();
-        });
-
-        executor.submit(() -> {
-            for (int i = 0; i < 50; i++) {
-                try {
-                    eventSink.sink(Arrays.asList(buildEntry("1", 1L + i, 10L + i)), address, "ljhtest2");
-                    Thread.sleep(50L + RandomUtils.nextInt(50));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-            for (int i = 0; i < 50; i++) {
-                try {
-                    eventSink.sink(Arrays.asList(buildEntry("1", 1L + i, 40L + i)), address, "ljhtest2");
-                    Thread.sleep(50L + RandomUtils.nextInt(50));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            System.out.println("tow sink finished!");
-            latch.countDown();
-        });
-
-        executor.submit(() -> {
-            for (int i = 0; i < 100; i++) {
-                try {
-                    eventSink.sink(Arrays.asList(buildEntry("1", 1L + i, 30L + i)), address, "ljhtest3");
-                    Thread.sleep(50L + RandomUtils.nextInt(50));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            System.out.println("tow sink finished!");
-            latch.countDown();
-        });
-
+    ExecutorService executor = Executors.newFixedThreadPool(3);
+    final CountDownLatch latch = new CountDownLatch(1);
+    executor.submit(() -> {
+      for (int i = 0; i < 50; i++) {
         try {
-            latch.await();
-            Thread.sleep(200L);
-        } catch (InterruptedException e) {
+          eventSink.sink(Arrays.asList(buildEntry("1", 1L + i, 1L + i)), address, "ljhtest1");
+          Thread.sleep(50L + RandomUtils.nextInt(50));
+        } catch (Exception e) {
+          e.printStackTrace();
         }
+      }
 
-        eventSink.stop();
-        executor.shutdownNow();
+      for (int i = 0; i < 50; i++) {
+        try {
+          eventSink.sink(Arrays.asList(buildEntry("1", 1L + i, 30L + i)), address, "ljhtest1");
+          Thread.sleep(50L + RandomUtils.nextInt(50));
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+      }
+
+      System.out.println("one sink finished!");
+      latch.countDown();
+    });
+
+    executor.submit(() -> {
+      for (int i = 0; i < 50; i++) {
+        try {
+          eventSink.sink(Arrays.asList(buildEntry("1", 1L + i, 10L + i)), address, "ljhtest2");
+          Thread.sleep(50L + RandomUtils.nextInt(50));
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+      }
+
+      for (int i = 0; i < 50; i++) {
+        try {
+          eventSink.sink(Arrays.asList(buildEntry("1", 1L + i, 40L + i)), address, "ljhtest2");
+          Thread.sleep(50L + RandomUtils.nextInt(50));
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+      }
+      System.out.println("tow sink finished!");
+      latch.countDown();
+    });
+
+    executor.submit(() -> {
+      for (int i = 0; i < 100; i++) {
+        try {
+          eventSink.sink(Arrays.asList(buildEntry("1", 1L + i, 30L + i)), address, "ljhtest3");
+          Thread.sleep(50L + RandomUtils.nextInt(50));
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+      }
+      System.out.println("tow sink finished!");
+      latch.countDown();
+    });
+
+    try {
+      latch.await();
+      Thread.sleep(200L);
+    } catch (InterruptedException e) {
     }
 
-    private static Entry buildEntry(String binlogFile, long offset, long timestamp) {
-        Header.Builder headerBuilder = Header.newBuilder();
-        headerBuilder.setLogfileName(binlogFile);
-        headerBuilder.setLogfileOffset(offset);
-        headerBuilder.setExecuteTime(timestamp);
-        Entry.Builder entryBuilder = Entry.newBuilder();
-        entryBuilder.setHeader(headerBuilder.build());
-        return entryBuilder.build();
-    }
+    eventSink.stop();
+    executor.shutdownNow();
+  }
+
+  private static Entry buildEntry(String binlogFile, long offset, long timestamp) {
+    Header.Builder headerBuilder = Header.newBuilder();
+    headerBuilder.setLogfileName(binlogFile);
+    headerBuilder.setLogfileOffset(offset);
+    headerBuilder.setExecuteTime(timestamp);
+    Entry.Builder entryBuilder = Entry.newBuilder();
+    entryBuilder.setHeader(headerBuilder.build());
+    return entryBuilder.build();
+  }
 }

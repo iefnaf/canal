@@ -19,52 +19,54 @@ import com.alibaba.otter.canal.protocol.SecurityUtil;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private static byte[] seeds = "canal is best!".getBytes();
+  private static byte[] seeds = "canal is best!".getBytes();
 
-    private static final Integer PASSWORD_LENGTH = 6;
+  private static final Integer PASSWORD_LENGTH = 6;
 
-    public User find4Login(String username, String password) {
-        if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
-            return null;
-        }
-        User user = User.find.query().where().eq("username", username).findOne();
-        if (user == null) {
-            throw new ServiceException("user:" + username + " auth failed!");
-        }
-        try {
-            byte[] pass = SecurityUtil.scramble411(password.getBytes(), seeds);
-            if (!SecurityUtil.scrambleServerAuth(pass, SecurityUtil.hexStr2Bytes(user.getPassword()), seeds)) {
-                throw new ServiceException("user:" + user.getName() + " passwd incorrect!");
-            }
-        } catch (NoSuchAlgorithmException e) {
-            throw new ServiceException("user:" + user.getName() + " auth failed!");
-        }
-
-        user.setPassword("");
-        return user;
+  public User find4Login(String username, String password) {
+    if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
+      return null;
+    }
+    User user = User.find.query().where().eq("username", username).findOne();
+    if (user == null) {
+      throw new ServiceException("user:" + username + " auth failed!");
+    }
+    try {
+      byte[] pass = SecurityUtil.scramble411(password.getBytes(), seeds);
+      if (!SecurityUtil.scrambleServerAuth(pass, SecurityUtil.hexStr2Bytes(user.getPassword()),
+          seeds)) {
+        throw new ServiceException("user:" + user.getName() + " passwd incorrect!");
+      }
+    } catch (NoSuchAlgorithmException e) {
+      throw new ServiceException("user:" + user.getName() + " auth failed!");
     }
 
-    public void update(User user) {
-        if (user.getPassword().length() < PASSWORD_LENGTH) {
-            throw new ServiceException("The new password is too short,must more than 6 digits");
-        }
-        User userTmp = User.find.query().where().eq("username", user.getUsername()).findOne();
-        if (userTmp == null) {
-            throw new ServiceException();
-        }
+    user.setPassword("");
+    return user;
+  }
 
-        try {
-            byte[] pass = SecurityUtil.scramble411(user.getOldPassword().getBytes(), seeds);
-            if (!SecurityUtil.scrambleServerAuth(pass, SecurityUtil.hexStr2Bytes(userTmp.getPassword()), seeds)) {
-                throw new ServiceException("old passwd is unmatch");
-            }
-
-            user.setId(userTmp.getId());
-            user.setPassword(SecurityUtil.scrambleGenPass(user.getPassword().getBytes()));
-        } catch (NoSuchAlgorithmException e) {
-            throw new ServiceException("passwd process failed");
-        }
-
-        user.update("username", "nn:password");
+  public void update(User user) {
+    if (user.getPassword().length() < PASSWORD_LENGTH) {
+      throw new ServiceException("The new password is too short,must more than 6 digits");
     }
+    User userTmp = User.find.query().where().eq("username", user.getUsername()).findOne();
+    if (userTmp == null) {
+      throw new ServiceException();
+    }
+
+    try {
+      byte[] pass = SecurityUtil.scramble411(user.getOldPassword().getBytes(), seeds);
+      if (!SecurityUtil.scrambleServerAuth(pass, SecurityUtil.hexStr2Bytes(userTmp.getPassword()),
+          seeds)) {
+        throw new ServiceException("old passwd is unmatch");
+      }
+
+      user.setId(userTmp.getId());
+      user.setPassword(SecurityUtil.scrambleGenPass(user.getPassword().getBytes()));
+    } catch (NoSuchAlgorithmException e) {
+      throw new ServiceException("passwd process failed");
+    }
+
+    user.update("username", "nn:password");
+  }
 }

@@ -15,41 +15,41 @@ import com.alibaba.otter.canal.connector.core.consumer.CommonMessage;
 @SPI("kafka")
 public interface CanalMsgConsumer {
 
-    /**
-     * 初始化
-     * 
-     * @param properties consumer properties
-     * @param topic topic/destination
-     * @param groupId mq group id
-     */
-    void init(Properties properties, String topic, String groupId);
+  /**
+   * 初始化
+   *
+   * @param properties consumer properties
+   * @param topic      topic/destination
+   * @param groupId    mq group id
+   */
+  void init(Properties properties, String topic, String groupId);
 
-    /**
-     * 连接Canal/MQ
-     */
-    void connect();
+  /**
+   * 连接Canal/MQ
+   */
+  void connect();
 
-    /**
-     * 批量拉取数据
-     * 
-     * @param timeout 超时时间
-     * @param unit 时间单位
-     * @return Message列表
-     */
-    List<CommonMessage> getMessage(Long timeout, TimeUnit unit);
+  /**
+   * 批量拉取数据
+   *
+   * @param timeout 超时时间
+   * @param unit    时间单位
+   * @return Message列表
+   */
+  List<CommonMessage> getMessage(Long timeout, TimeUnit unit);
 
-    /**
-     * 提交
-     */
-    void ack();
+  /**
+   * 提交
+   */
+  void ack();
 
-    /**
-     * 回滚
-     */
-    void rollback();
+  /**
+   * 回滚
+   */
+  void rollback();
 
-    /**
-     * 断开连接
-     */
-    void disconnect();
+  /**
+   * 断开连接
+   */
+  void disconnect();
 }

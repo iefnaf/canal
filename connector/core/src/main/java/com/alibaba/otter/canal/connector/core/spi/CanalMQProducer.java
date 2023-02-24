@@ -16,28 +16,28 @@ import com.alibaba.otter.canal.protocol.Message;
 @SPI("kafka")
 public interface CanalMQProducer {
 
-    /**
-     * Init producer.
-     */
-    void init(Properties properties);
+  /**
+   * Init producer.
+   */
+  void init(Properties properties);
 
-    /**
-     * Get base mq properties
-     * 
-     * @return MQProperties
-     */
-    MQProperties getMqProperties();
+  /**
+   * Get base mq properties
+   *
+   * @return MQProperties
+   */
+  MQProperties getMqProperties();
 
-    /**
-     * Send canal message to related topic
-     *
-     * @param canalDestination canal mq destination
-     * @param message canal message
-     */
-    void send(MQDestination canalDestination, Message message, Callback callback);
+  /**
+   * Send canal message to related topic
+   *
+   * @param canalDestination canal mq destination
+   * @param message          canal message
+   */
+  void send(MQDestination canalDestination, Message message, Callback callback);
 
-    /**
-     * Stop MQ producer service
-     */
-    void stop();
+  /**
+   * Stop MQ producer service
+   */
+  void stop();
 }

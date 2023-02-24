@@ -4,11 +4,11 @@ import com.alibaba.otter.canal.admin.model.CanalConfig;
 
 public interface CanalConfigService {
 
-    CanalConfig getCanalConfig(Long clusterId, Long serverId);
+  CanalConfig getCanalConfig(Long clusterId, Long serverId);
 
-    CanalConfig getCanalConfigSummary();
+  CanalConfig getCanalConfigSummary();
 
-    CanalConfig getAdapterConfig();
+  CanalConfig getAdapterConfig();
 
-    void updateContent(CanalConfig canalConfig);
+  void updateContent(CanalConfig canalConfig);
 }

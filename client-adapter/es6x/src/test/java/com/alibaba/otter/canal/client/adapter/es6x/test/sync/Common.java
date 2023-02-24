@@ -15,54 +15,54 @@ import com.alibaba.otter.canal.client.adapter.support.OuterAdapterConfig;
 
 public class Common {
 
-    public static ES6xAdapter init() {
-        DatasourceConfig.DATA_SOURCES.put("defaultDS", TestConstant.dataSource);
+  public static ES6xAdapter init() {
+    DatasourceConfig.DATA_SOURCES.put("defaultDS", TestConstant.dataSource);
 
-        OuterAdapterConfig outerAdapterConfig = new OuterAdapterConfig();
-        outerAdapterConfig.setName("es");
-        outerAdapterConfig.setHosts(TestConstant.esHosts);
-        Map<String, String> properties = new HashMap<>();
-        properties.put("cluster.name", TestConstant.clusterName);
-        outerAdapterConfig.setProperties(properties);
+    OuterAdapterConfig outerAdapterConfig = new OuterAdapterConfig();
+    outerAdapterConfig.setName("es");
+    outerAdapterConfig.setHosts(TestConstant.esHosts);
+    Map<String, String> properties = new HashMap<>();
+    properties.put("cluster.name", TestConstant.clusterName);
+    outerAdapterConfig.setProperties(properties);
 
-        ES6xAdapter esAdapter = new ES6xAdapter();
-        esAdapter.init(outerAdapterConfig, null);
-        return esAdapter;
-    }
+    ES6xAdapter esAdapter = new ES6xAdapter();
+    esAdapter.init(outerAdapterConfig, null);
+    return esAdapter;
+  }
 
-    public static void sqlExe(DataSource dataSource, String sql) {
-        Connection conn = null;
-        Statement stmt = null;
+  public static void sqlExe(DataSource dataSource, String sql) {
+    Connection conn = null;
+    Statement stmt = null;
+    try {
+      conn = dataSource.getConnection();
+      conn.setAutoCommit(false);
+      stmt = conn.createStatement();
+      stmt.execute(sql);
+      conn.commit();
+    } catch (Exception e) {
+      if (conn != null) {
         try {
-            conn = dataSource.getConnection();
-            conn.setAutoCommit(false);
-            stmt = conn.createStatement();
-            stmt.execute(sql);
-            conn.commit();
-        } catch (Exception e) {
-            if (conn != null) {
-                try {
-                    conn.rollback();
-                } catch (SQLException e1) {
-                    // ignore
-                }
-            }
-            e.printStackTrace();
-        } finally {
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    // ignore
-                }
-            }
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    // ignore
-                }
-            }
+          conn.rollback();
+        } catch (SQLException e1) {
+          // ignore
         }
+      }
+      e.printStackTrace();
+    } finally {
+      if (stmt != null) {
+        try {
+          stmt.close();
+        } catch (SQLException e) {
+          // ignore
+        }
+      }
+      if (conn != null) {
+        try {
+          conn.close();
+        } catch (SQLException e) {
+          // ignore
+        }
+      }
     }
+  }
 }

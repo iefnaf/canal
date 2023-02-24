@@ -10,7 +10,8 @@ import com.taobao.tddl.dbsync.binlog.LogEvent;
  */
 public class TransactionContextLogEvent extends LogEvent {
 
-    public TransactionContextLogEvent(LogHeader header, LogBuffer buffer, FormatDescriptionLogEvent descriptionEvent){
-        super(header);
-    }
+  public TransactionContextLogEvent(LogHeader header, LogBuffer buffer,
+      FormatDescriptionLogEvent descriptionEvent) {
+    super(header);
+  }
 }

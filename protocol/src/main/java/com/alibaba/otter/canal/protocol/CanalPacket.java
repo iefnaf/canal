@@ -4,7 +4,10 @@
 package com.alibaba.otter.canal.protocol;
 
 public final class CanalPacket {
-  private CanalPacket() {}
+
+  private CanalPacket() {
+  }
+
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistryLite registry) {
   }
@@ -14,6 +17,7 @@ public final class CanalPacket {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
+
   /**
    * Protobuf enum {@code com.alibaba.otter.canal.protocol.Compression}
    */
@@ -82,37 +86,46 @@ public final class CanalPacket {
 
     public static Compression forNumber(int value) {
       switch (value) {
-        case 0: return COMPRESSIONCOMPATIBLEPROTO2;
-        case 1: return NONE;
-        case 2: return ZLIB;
-        case 3: return GZIP;
-        case 4: return LZF;
-        default: return null;
+        case 0:
+          return COMPRESSIONCOMPATIBLEPROTO2;
+        case 1:
+          return NONE;
+        case 2:
+          return ZLIB;
+        case 3:
+          return GZIP;
+        case 4:
+          return LZF;
+        default:
+          return null;
       }
     }
 
     public static com.google.protobuf.Internal.EnumLiteMap<Compression>
-        internalGetValueMap() {
+    internalGetValueMap() {
       return internalValueMap;
     }
+
     private static final com.google.protobuf.Internal.EnumLiteMap<
         Compression> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<Compression>() {
-            public Compression findValueByNumber(int number) {
-              return Compression.forNumber(number);
-            }
-          };
+        new com.google.protobuf.Internal.EnumLiteMap<Compression>() {
+          public Compression findValueByNumber(int number) {
+            return Compression.forNumber(number);
+          }
+        };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
-        getValueDescriptor() {
+    getValueDescriptor() {
       return getDescriptor().getValues().get(ordinal());
     }
+
     public final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptorForType() {
+    getDescriptorForType() {
       return getDescriptor();
     }
+
     public static final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptor() {
+    getDescriptor() {
       return com.alibaba.otter.canal.protocol.CanalPacket.getDescriptor().getEnumTypes().get(0);
     }
 
@@ -122,7 +135,7 @@ public final class CanalPacket {
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
         throw new java.lang.IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
+            "EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
         return UNRECOGNIZED;
@@ -146,7 +159,7 @@ public final class CanalPacket {
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
      * <pre>
-     *compatible
+     * compatible
      * </pre>
      *
      * <code>PACKAGETYPECOMPATIBLEPROTO2 = 0;</code>
@@ -213,7 +226,7 @@ public final class CanalPacket {
 
     /**
      * <pre>
-     *compatible
+     * compatible
      * </pre>
      *
      * <code>PACKAGETYPECOMPATIBLEPROTO2 = 0;</code>
@@ -295,45 +308,62 @@ public final class CanalPacket {
 
     public static PacketType forNumber(int value) {
       switch (value) {
-        case 0: return PACKAGETYPECOMPATIBLEPROTO2;
-        case 1: return HANDSHAKE;
-        case 2: return CLIENTAUTHENTICATION;
-        case 3: return ACK;
-        case 4: return SUBSCRIPTION;
-        case 5: return UNSUBSCRIPTION;
-        case 6: return GET;
-        case 7: return MESSAGES;
-        case 8: return CLIENTACK;
-        case 9: return SHUTDOWN;
-        case 10: return DUMP;
-        case 11: return HEARTBEAT;
-        case 12: return CLIENTROLLBACK;
-        default: return null;
+        case 0:
+          return PACKAGETYPECOMPATIBLEPROTO2;
+        case 1:
+          return HANDSHAKE;
+        case 2:
+          return CLIENTAUTHENTICATION;
+        case 3:
+          return ACK;
+        case 4:
+          return SUBSCRIPTION;
+        case 5:
+          return UNSUBSCRIPTION;
+        case 6:
+          return GET;
+        case 7:
+          return MESSAGES;
+        case 8:
+          return CLIENTACK;
+        case 9:
+          return SHUTDOWN;
+        case 10:
+          return DUMP;
+        case 11:
+          return HEARTBEAT;
+        case 12:
+          return CLIENTROLLBACK;
+        default:
+          return null;
       }
     }
 
     public static com.google.protobuf.Internal.EnumLiteMap<PacketType>
-        internalGetValueMap() {
+    internalGetValueMap() {
       return internalValueMap;
     }
+
     private static final com.google.protobuf.Internal.EnumLiteMap<
         PacketType> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<PacketType>() {
-            public PacketType findValueByNumber(int number) {
-              return PacketType.forNumber(number);
-            }
-          };
+        new com.google.protobuf.Internal.EnumLiteMap<PacketType>() {
+          public PacketType findValueByNumber(int number) {
+            return PacketType.forNumber(number);
+          }
+        };
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
-        getValueDescriptor() {
+    getValueDescriptor() {
       return getDescriptor().getValues().get(ordinal());
     }
+
     public final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptorForType() {
+    getDescriptorForType() {
       return getDescriptor();
     }
+
     public static final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptor() {
+    getDescriptor() {
       return com.alibaba.otter.canal.protocol.CanalPacket.getDescriptor().getEnumTypes().get(1);
     }
 
@@ -343,7 +373,7 @@ public final class CanalPacket {
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
         throw new java.lang.IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
+            "EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
         return UNRECOGNIZED;
@@ -378,6 +408,7 @@ public final class CanalPacket {
      * <code>.com.alibaba.otter.canal.protocol.PacketType type = 3;</code>
      */
     int getTypeValue();
+
     /**
      * <code>.com.alibaba.otter.canal.protocol.PacketType type = 3;</code>
      */
@@ -387,6 +418,7 @@ public final class CanalPacket {
      * <code>.com.alibaba.otter.canal.protocol.Compression compression = 4;</code>
      */
     int getCompressionValue();
+
     /**
      * <code>.com.alibaba.otter.canal.protocol.Compression compression = 4;</code>
      */
@@ -403,18 +435,22 @@ public final class CanalPacket {
 
     public com.alibaba.otter.canal.protocol.CanalPacket.Packet.CompressionPresentCase getCompressionPresentCase();
   }
+
   /**
    * Protobuf type {@code com.alibaba.otter.canal.protocol.Packet}
    */
-  public  static final class Packet extends
+  public static final class Packet extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:com.alibaba.otter.canal.protocol.Packet)
       PacketOrBuilder {
-  private static final long serialVersionUID = 0L;
+
+    private static final long serialVersionUID = 0L;
+
     // Use Packet.newBuilder() to construct.
     private Packet(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private Packet() {
       type_ = 0;
       body_ = com.google.protobuf.ByteString.EMPTY;
@@ -425,6 +461,7 @@ public final class CanalPacket {
     getUnknownFields() {
       return this.unknownFields;
     }
+
     private Packet(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -490,29 +527,34 @@ public final class CanalPacket {
         makeExtensionsImmutable();
       }
     }
+
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    getDescriptor() {
       return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Packet_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    internalGetFieldAccessorTable() {
       return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Packet_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.alibaba.otter.canal.protocol.CanalPacket.Packet.class, com.alibaba.otter.canal.protocol.CanalPacket.Packet.Builder.class);
+              com.alibaba.otter.canal.protocol.CanalPacket.Packet.class,
+              com.alibaba.otter.canal.protocol.CanalPacket.Packet.Builder.class);
     }
 
     private int magicNumberPresentCase_ = 0;
     private java.lang.Object magicNumberPresent_;
+
     public enum MagicNumberPresentCase
         implements com.google.protobuf.Internal.EnumLite {
       MAGIC_NUMBER(1),
       MAGICNUMBERPRESENT_NOT_SET(0);
       private final int value;
+
       private MagicNumberPresentCase(int value) {
         this.value = value;
       }
+
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
@@ -523,15 +565,21 @@ public final class CanalPacket {
 
       public static MagicNumberPresentCase forNumber(int value) {
         switch (value) {
-          case 1: return MAGIC_NUMBER;
-          case 0: return MAGICNUMBERPRESENT_NOT_SET;
-          default: return null;
+          case 1:
+            return MAGIC_NUMBER;
+          case 0:
+            return MAGICNUMBERPRESENT_NOT_SET;
+          default:
+            return null;
         }
       }
+
       public int getNumber() {
         return this.value;
       }
-    };
+    }
+
+    ;
 
     public MagicNumberPresentCase
     getMagicNumberPresentCase() {
@@ -541,14 +589,17 @@ public final class CanalPacket {
 
     private int versionPresentCase_ = 0;
     private java.lang.Object versionPresent_;
+
     public enum VersionPresentCase
         implements com.google.protobuf.Internal.EnumLite {
       VERSION(2),
       VERSIONPRESENT_NOT_SET(0);
       private final int value;
+
       private VersionPresentCase(int value) {
         this.value = value;
       }
+
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
@@ -559,15 +610,21 @@ public final class CanalPacket {
 
       public static VersionPresentCase forNumber(int value) {
         switch (value) {
-          case 2: return VERSION;
-          case 0: return VERSIONPRESENT_NOT_SET;
-          default: return null;
+          case 2:
+            return VERSION;
+          case 0:
+            return VERSIONPRESENT_NOT_SET;
+          default:
+            return null;
         }
       }
+
       public int getNumber() {
         return this.value;
       }
-    };
+    }
+
+    ;
 
     public VersionPresentCase
     getVersionPresentCase() {
@@ -577,14 +634,17 @@ public final class CanalPacket {
 
     private int compressionPresentCase_ = 0;
     private java.lang.Object compressionPresent_;
+
     public enum CompressionPresentCase
         implements com.google.protobuf.Internal.EnumLite {
       COMPRESSION(4),
       COMPRESSIONPRESENT_NOT_SET(0);
       private final int value;
+
       private CompressionPresentCase(int value) {
         this.value = value;
       }
+
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
@@ -595,15 +655,21 @@ public final class CanalPacket {
 
       public static CompressionPresentCase forNumber(int value) {
         switch (value) {
-          case 4: return COMPRESSION;
-          case 0: return COMPRESSIONPRESENT_NOT_SET;
-          default: return null;
+          case 4:
+            return COMPRESSION;
+          case 0:
+            return COMPRESSIONPRESENT_NOT_SET;
+          default:
+            return null;
         }
       }
+
       public int getNumber() {
         return this.value;
       }
-    };
+    }
+
+    ;
 
     public CompressionPresentCase
     getCompressionPresentCase() {
@@ -612,6 +678,7 @@ public final class CanalPacket {
     }
 
     public static final int MAGIC_NUMBER_FIELD_NUMBER = 1;
+
     /**
      * <code>int32 magic_number = 1;</code>
      */
@@ -623,6 +690,7 @@ public final class CanalPacket {
     }
 
     public static final int VERSION_FIELD_NUMBER = 2;
+
     /**
      * <code>int32 version = 2;</code>
      */
@@ -635,22 +703,27 @@ public final class CanalPacket {
 
     public static final int TYPE_FIELD_NUMBER = 3;
     private int type_;
+
     /**
      * <code>.com.alibaba.otter.canal.protocol.PacketType type = 3;</code>
      */
     public int getTypeValue() {
       return type_;
     }
+
     /**
      * <code>.com.alibaba.otter.canal.protocol.PacketType type = 3;</code>
      */
     public com.alibaba.otter.canal.protocol.CanalPacket.PacketType getType() {
       @SuppressWarnings("deprecation")
-      com.alibaba.otter.canal.protocol.CanalPacket.PacketType result = com.alibaba.otter.canal.protocol.CanalPacket.PacketType.valueOf(type_);
-      return result == null ? com.alibaba.otter.canal.protocol.CanalPacket.PacketType.UNRECOGNIZED : result;
+      com.alibaba.otter.canal.protocol.CanalPacket.PacketType result = com.alibaba.otter.canal.protocol.CanalPacket.PacketType.valueOf(
+          type_);
+      return result == null ? com.alibaba.otter.canal.protocol.CanalPacket.PacketType.UNRECOGNIZED
+          : result;
     }
 
     public static final int COMPRESSION_FIELD_NUMBER = 4;
+
     /**
      * <code>.com.alibaba.otter.canal.protocol.Compression compression = 4;</code>
      */
@@ -660,6 +733,7 @@ public final class CanalPacket {
       }
       return 0;
     }
+
     /**
      * <code>.com.alibaba.otter.canal.protocol.Compression compression = 4;</code>
      */
@@ -668,13 +742,15 @@ public final class CanalPacket {
         @SuppressWarnings("deprecation")
         com.alibaba.otter.canal.protocol.CanalPacket.Compression result = com.alibaba.otter.canal.protocol.CanalPacket.Compression.valueOf(
             (java.lang.Integer) compressionPresent_);
-        return result == null ? com.alibaba.otter.canal.protocol.CanalPacket.Compression.UNRECOGNIZED : result;
+        return result == null
+            ? com.alibaba.otter.canal.protocol.CanalPacket.Compression.UNRECOGNIZED : result;
       }
       return com.alibaba.otter.canal.protocol.CanalPacket.Compression.COMPRESSIONCOMPATIBLEPROTO2;
     }
 
     public static final int BODY_FIELD_NUMBER = 5;
     private com.google.protobuf.ByteString body_;
+
     /**
      * <code>bytes body = 5;</code>
      */
@@ -683,11 +759,16 @@ public final class CanalPacket {
     }
 
     private byte memoizedIsInitialized = -1;
+
     @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized == 1) {
+        return true;
+      }
+      if (isInitialized == 0) {
+        return false;
+      }
 
       memoizedIsInitialized = 1;
       return true;
@@ -695,16 +776,17 @@ public final class CanalPacket {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+        throws java.io.IOException {
       if (magicNumberPresentCase_ == 1) {
         output.writeInt32(
-            1, (int)((java.lang.Integer) magicNumberPresent_));
+            1, (int) ((java.lang.Integer) magicNumberPresent_));
       }
       if (versionPresentCase_ == 2) {
         output.writeInt32(
-            2, (int)((java.lang.Integer) versionPresent_));
+            2, (int) ((java.lang.Integer) versionPresent_));
       }
-      if (type_ != com.alibaba.otter.canal.protocol.CanalPacket.PacketType.PACKAGETYPECOMPATIBLEPROTO2.getNumber()) {
+      if (type_
+          != com.alibaba.otter.canal.protocol.CanalPacket.PacketType.PACKAGETYPECOMPATIBLEPROTO2.getNumber()) {
         output.writeEnum(3, type_);
       }
       if (compressionPresentCase_ == 4) {
@@ -719,30 +801,33 @@ public final class CanalPacket {
     @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
-      if (size != -1) return size;
+      if (size != -1) {
+        return size;
+      }
 
       size = 0;
       if (magicNumberPresentCase_ == 1) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(
-              1, (int)((java.lang.Integer) magicNumberPresent_));
+            .computeInt32Size(
+                1, (int) ((java.lang.Integer) magicNumberPresent_));
       }
       if (versionPresentCase_ == 2) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(
-              2, (int)((java.lang.Integer) versionPresent_));
+            .computeInt32Size(
+                2, (int) ((java.lang.Integer) versionPresent_));
       }
-      if (type_ != com.alibaba.otter.canal.protocol.CanalPacket.PacketType.PACKAGETYPECOMPATIBLEPROTO2.getNumber()) {
+      if (type_
+          != com.alibaba.otter.canal.protocol.CanalPacket.PacketType.PACKAGETYPECOMPATIBLEPROTO2.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(3, type_);
+            .computeEnumSize(3, type_);
       }
       if (compressionPresentCase_ == 4) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(4, ((java.lang.Integer) compressionPresent_));
+            .computeEnumSize(4, ((java.lang.Integer) compressionPresent_));
       }
       if (!body_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(5, body_);
+            .computeBytesSize(5, body_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -752,7 +837,7 @@ public final class CanalPacket {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof com.alibaba.otter.canal.protocol.CanalPacket.Packet)) {
         return super.equals(obj);
@@ -765,7 +850,9 @@ public final class CanalPacket {
           .equals(other.getBody());
       result = result && getMagicNumberPresentCase().equals(
           other.getMagicNumberPresentCase());
-      if (!result) return false;
+      if (!result) {
+        return false;
+      }
       switch (magicNumberPresentCase_) {
         case 1:
           result = result && (getMagicNumber()
@@ -776,7 +863,9 @@ public final class CanalPacket {
       }
       result = result && getVersionPresentCase().equals(
           other.getVersionPresentCase());
-      if (!result) return false;
+      if (!result) {
+        return false;
+      }
       switch (versionPresentCase_) {
         case 2:
           result = result && (getVersion()
@@ -787,7 +876,9 @@ public final class CanalPacket {
       }
       result = result && getCompressionPresentCase().equals(
           other.getCompressionPresentCase());
-      if (!result) return false;
+      if (!result) {
+        return false;
+      }
       switch (compressionPresentCase_) {
         case 4:
           result = result && getCompressionValue()
@@ -845,38 +936,46 @@ public final class CanalPacket {
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Packet parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Packet parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Packet parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Packet parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Packet parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.CanalPacket.Packet parseFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.CanalPacket.Packet parseFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Packet parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -884,11 +983,14 @@ public final class CanalPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.CanalPacket.Packet parseDelimitedFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.CanalPacket.Packet parseDelimitedFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Packet parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -896,12 +998,14 @@ public final class CanalPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Packet parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Packet parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -911,13 +1015,19 @@ public final class CanalPacket {
     }
 
     @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() {
+      return newBuilder();
+    }
+
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.alibaba.otter.canal.protocol.CanalPacket.Packet prototype) {
+
+    public static Builder newBuilder(
+        com.alibaba.otter.canal.protocol.CanalPacket.Packet prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
@@ -930,6 +1040,7 @@ public final class CanalPacket {
       Builder builder = new Builder(parent);
       return builder;
     }
+
     /**
      * Protobuf type {@code com.alibaba.otter.canal.protocol.Packet}
      */
@@ -937,17 +1048,19 @@ public final class CanalPacket {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.alibaba.otter.canal.protocol.Packet)
         com.alibaba.otter.canal.protocol.CanalPacket.PacketOrBuilder {
+
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      getDescriptor() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Packet_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Packet_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.alibaba.otter.canal.protocol.CanalPacket.Packet.class, com.alibaba.otter.canal.protocol.CanalPacket.Packet.Builder.class);
+                com.alibaba.otter.canal.protocol.CanalPacket.Packet.class,
+                com.alibaba.otter.canal.protocol.CanalPacket.Packet.Builder.class);
       }
 
       // Construct using com.alibaba.otter.canal.protocol.CanalPacket.Packet.newBuilder()
@@ -960,11 +1073,13 @@ public final class CanalPacket {
         super(parent);
         maybeForceBuilderInitialization();
       }
+
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+            .alwaysUseFieldBuilders) {
         }
       }
+
       @java.lang.Override
       public Builder clear() {
         super.clear();
@@ -983,7 +1098,7 @@ public final class CanalPacket {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Packet_descriptor;
       }
 
@@ -1003,7 +1118,8 @@ public final class CanalPacket {
 
       @java.lang.Override
       public com.alibaba.otter.canal.protocol.CanalPacket.Packet buildPartial() {
-        com.alibaba.otter.canal.protocol.CanalPacket.Packet result = new com.alibaba.otter.canal.protocol.CanalPacket.Packet(this);
+        com.alibaba.otter.canal.protocol.CanalPacket.Packet result = new com.alibaba.otter.canal.protocol.CanalPacket.Packet(
+            this);
         if (magicNumberPresentCase_ == 1) {
           result.magicNumberPresent_ = magicNumberPresent_;
         }
@@ -1026,38 +1142,44 @@ public final class CanalPacket {
       public Builder clone() {
         return (Builder) super.clone();
       }
+
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
+
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
+
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
+
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
+
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.alibaba.otter.canal.protocol.CanalPacket.Packet) {
-          return mergeFrom((com.alibaba.otter.canal.protocol.CanalPacket.Packet)other);
+          return mergeFrom((com.alibaba.otter.canal.protocol.CanalPacket.Packet) other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -1065,7 +1187,9 @@ public final class CanalPacket {
       }
 
       public Builder mergeFrom(com.alibaba.otter.canal.protocol.CanalPacket.Packet other) {
-        if (other == com.alibaba.otter.canal.protocol.CanalPacket.Packet.getDefaultInstance()) return this;
+        if (other == com.alibaba.otter.canal.protocol.CanalPacket.Packet.getDefaultInstance()) {
+          return this;
+        }
         if (other.type_ != 0) {
           setTypeValue(other.getTypeValue());
         }
@@ -1127,10 +1251,12 @@ public final class CanalPacket {
         }
         return this;
       }
+
       private int magicNumberPresentCase_ = 0;
       private java.lang.Object magicNumberPresent_;
+
       public MagicNumberPresentCase
-          getMagicNumberPresentCase() {
+      getMagicNumberPresentCase() {
         return MagicNumberPresentCase.forNumber(
             magicNumberPresentCase_);
       }
@@ -1144,8 +1270,9 @@ public final class CanalPacket {
 
       private int versionPresentCase_ = 0;
       private java.lang.Object versionPresent_;
+
       public VersionPresentCase
-          getVersionPresentCase() {
+      getVersionPresentCase() {
         return VersionPresentCase.forNumber(
             versionPresentCase_);
       }
@@ -1159,8 +1286,9 @@ public final class CanalPacket {
 
       private int compressionPresentCase_ = 0;
       private java.lang.Object compressionPresent_;
+
       public CompressionPresentCase
-          getCompressionPresentCase() {
+      getCompressionPresentCase() {
         return CompressionPresentCase.forNumber(
             compressionPresentCase_);
       }
@@ -1182,6 +1310,7 @@ public final class CanalPacket {
         }
         return 0;
       }
+
       /**
        * <code>int32 magic_number = 1;</code>
        */
@@ -1191,6 +1320,7 @@ public final class CanalPacket {
         onChanged();
         return this;
       }
+
       /**
        * <code>int32 magic_number = 1;</code>
        */
@@ -1212,6 +1342,7 @@ public final class CanalPacket {
         }
         return 0;
       }
+
       /**
        * <code>int32 version = 2;</code>
        */
@@ -1221,6 +1352,7 @@ public final class CanalPacket {
         onChanged();
         return this;
       }
+
       /**
        * <code>int32 version = 2;</code>
        */
@@ -1234,12 +1366,14 @@ public final class CanalPacket {
       }
 
       private int type_ = 0;
+
       /**
        * <code>.com.alibaba.otter.canal.protocol.PacketType type = 3;</code>
        */
       public int getTypeValue() {
         return type_;
       }
+
       /**
        * <code>.com.alibaba.otter.canal.protocol.PacketType type = 3;</code>
        */
@@ -1248,14 +1382,18 @@ public final class CanalPacket {
         onChanged();
         return this;
       }
+
       /**
        * <code>.com.alibaba.otter.canal.protocol.PacketType type = 3;</code>
        */
       public com.alibaba.otter.canal.protocol.CanalPacket.PacketType getType() {
         @SuppressWarnings("deprecation")
-        com.alibaba.otter.canal.protocol.CanalPacket.PacketType result = com.alibaba.otter.canal.protocol.CanalPacket.PacketType.valueOf(type_);
-        return result == null ? com.alibaba.otter.canal.protocol.CanalPacket.PacketType.UNRECOGNIZED : result;
+        com.alibaba.otter.canal.protocol.CanalPacket.PacketType result = com.alibaba.otter.canal.protocol.CanalPacket.PacketType.valueOf(
+            type_);
+        return result == null ? com.alibaba.otter.canal.protocol.CanalPacket.PacketType.UNRECOGNIZED
+            : result;
       }
+
       /**
        * <code>.com.alibaba.otter.canal.protocol.PacketType type = 3;</code>
        */
@@ -1263,16 +1401,17 @@ public final class CanalPacket {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+
         type_ = value.getNumber();
         onChanged();
         return this;
       }
+
       /**
        * <code>.com.alibaba.otter.canal.protocol.PacketType type = 3;</code>
        */
       public Builder clearType() {
-        
+
         type_ = 0;
         onChanged();
         return this;
@@ -1287,6 +1426,7 @@ public final class CanalPacket {
         }
         return 0;
       }
+
       /**
        * <code>.com.alibaba.otter.canal.protocol.Compression compression = 4;</code>
        */
@@ -1296,6 +1436,7 @@ public final class CanalPacket {
         onChanged();
         return this;
       }
+
       /**
        * <code>.com.alibaba.otter.canal.protocol.Compression compression = 4;</code>
        */
@@ -1304,14 +1445,17 @@ public final class CanalPacket {
           @SuppressWarnings("deprecation")
           com.alibaba.otter.canal.protocol.CanalPacket.Compression result = com.alibaba.otter.canal.protocol.CanalPacket.Compression.valueOf(
               (java.lang.Integer) compressionPresent_);
-          return result == null ? com.alibaba.otter.canal.protocol.CanalPacket.Compression.UNRECOGNIZED : result;
+          return result == null
+              ? com.alibaba.otter.canal.protocol.CanalPacket.Compression.UNRECOGNIZED : result;
         }
         return com.alibaba.otter.canal.protocol.CanalPacket.Compression.COMPRESSIONCOMPATIBLEPROTO2;
       }
+
       /**
        * <code>.com.alibaba.otter.canal.protocol.Compression compression = 4;</code>
        */
-      public Builder setCompression(com.alibaba.otter.canal.protocol.CanalPacket.Compression value) {
+      public Builder setCompression(
+          com.alibaba.otter.canal.protocol.CanalPacket.Compression value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -1320,6 +1464,7 @@ public final class CanalPacket {
         onChanged();
         return this;
       }
+
       /**
        * <code>.com.alibaba.otter.canal.protocol.Compression compression = 4;</code>
        */
@@ -1333,33 +1478,37 @@ public final class CanalPacket {
       }
 
       private com.google.protobuf.ByteString body_ = com.google.protobuf.ByteString.EMPTY;
+
       /**
        * <code>bytes body = 5;</code>
        */
       public com.google.protobuf.ByteString getBody() {
         return body_;
       }
+
       /**
        * <code>bytes body = 5;</code>
        */
       public Builder setBody(com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         body_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>bytes body = 5;</code>
        */
       public Builder clearBody() {
-        
+
         body_ = getDefaultInstance().getBody();
         onChanged();
         return this;
       }
+
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -1372,12 +1521,12 @@ public final class CanalPacket {
         return super.mergeUnknownFields(unknownFields);
       }
 
-
       // @@protoc_insertion_point(builder_scope:com.alibaba.otter.canal.protocol.Packet)
     }
 
     // @@protoc_insertion_point(class_scope:com.alibaba.otter.canal.protocol.Packet)
     private static final com.alibaba.otter.canal.protocol.CanalPacket.Packet DEFAULT_INSTANCE;
+
     static {
       DEFAULT_INSTANCE = new com.alibaba.otter.canal.protocol.CanalPacket.Packet();
     }
@@ -1427,18 +1576,22 @@ public final class CanalPacket {
      */
     long getStartTimestamp();
   }
+
   /**
    * Protobuf type {@code com.alibaba.otter.canal.protocol.HeartBeat}
    */
-  public  static final class HeartBeat extends
+  public static final class HeartBeat extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:com.alibaba.otter.canal.protocol.HeartBeat)
       HeartBeatOrBuilder {
-  private static final long serialVersionUID = 0L;
+
+    private static final long serialVersionUID = 0L;
+
     // Use HeartBeat.newBuilder() to construct.
     private HeartBeat(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private HeartBeat() {
       sendTimestamp_ = 0L;
       startTimestamp_ = 0L;
@@ -1449,6 +1602,7 @@ public final class CanalPacket {
     getUnknownFields() {
       return this.unknownFields;
     }
+
     private HeartBeat(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1497,21 +1651,24 @@ public final class CanalPacket {
         makeExtensionsImmutable();
       }
     }
+
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    getDescriptor() {
       return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_HeartBeat_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    internalGetFieldAccessorTable() {
       return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_HeartBeat_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat.class, com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat.Builder.class);
+              com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat.class,
+              com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat.Builder.class);
     }
 
     public static final int SEND_TIMESTAMP_FIELD_NUMBER = 1;
     private long sendTimestamp_;
+
     /**
      * <code>int64 send_timestamp = 1;</code>
      */
@@ -1521,6 +1678,7 @@ public final class CanalPacket {
 
     public static final int START_TIMESTAMP_FIELD_NUMBER = 2;
     private long startTimestamp_;
+
     /**
      * <code>int64 start_timestamp = 2;</code>
      */
@@ -1529,11 +1687,16 @@ public final class CanalPacket {
     }
 
     private byte memoizedIsInitialized = -1;
+
     @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized == 1) {
+        return true;
+      }
+      if (isInitialized == 0) {
+        return false;
+      }
 
       memoizedIsInitialized = 1;
       return true;
@@ -1541,7 +1704,7 @@ public final class CanalPacket {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+        throws java.io.IOException {
       if (sendTimestamp_ != 0L) {
         output.writeInt64(1, sendTimestamp_);
       }
@@ -1554,16 +1717,18 @@ public final class CanalPacket {
     @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
-      if (size != -1) return size;
+      if (size != -1) {
+        return size;
+      }
 
       size = 0;
       if (sendTimestamp_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, sendTimestamp_);
+            .computeInt64Size(1, sendTimestamp_);
       }
       if (startTimestamp_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(2, startTimestamp_);
+            .computeInt64Size(2, startTimestamp_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1573,7 +1738,7 @@ public final class CanalPacket {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat)) {
         return super.equals(obj);
@@ -1612,38 +1777,46 @@ public final class CanalPacket {
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat parseFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat parseFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1651,11 +1824,14 @@ public final class CanalPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat parseDelimitedFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat parseDelimitedFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1663,12 +1839,14 @@ public final class CanalPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1678,13 +1856,19 @@ public final class CanalPacket {
     }
 
     @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() {
+      return newBuilder();
+    }
+
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat prototype) {
+
+    public static Builder newBuilder(
+        com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
@@ -1697,6 +1881,7 @@ public final class CanalPacket {
       Builder builder = new Builder(parent);
       return builder;
     }
+
     /**
      * Protobuf type {@code com.alibaba.otter.canal.protocol.HeartBeat}
      */
@@ -1704,17 +1889,19 @@ public final class CanalPacket {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.alibaba.otter.canal.protocol.HeartBeat)
         com.alibaba.otter.canal.protocol.CanalPacket.HeartBeatOrBuilder {
+
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      getDescriptor() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_HeartBeat_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_HeartBeat_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat.class, com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat.Builder.class);
+                com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat.class,
+                com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat.Builder.class);
       }
 
       // Construct using com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat.newBuilder()
@@ -1727,11 +1914,13 @@ public final class CanalPacket {
         super(parent);
         maybeForceBuilderInitialization();
       }
+
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+            .alwaysUseFieldBuilders) {
         }
       }
+
       @java.lang.Override
       public Builder clear() {
         super.clear();
@@ -1744,7 +1933,7 @@ public final class CanalPacket {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_HeartBeat_descriptor;
       }
 
@@ -1764,7 +1953,8 @@ public final class CanalPacket {
 
       @java.lang.Override
       public com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat buildPartial() {
-        com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat result = new com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat(this);
+        com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat result = new com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat(
+            this);
         result.sendTimestamp_ = sendTimestamp_;
         result.startTimestamp_ = startTimestamp_;
         onBuilt();
@@ -1775,38 +1965,44 @@ public final class CanalPacket {
       public Builder clone() {
         return (Builder) super.clone();
       }
+
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
+
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
+
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
+
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
+
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat) {
-          return mergeFrom((com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat)other);
+          return mergeFrom((com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat) other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -1814,7 +2010,9 @@ public final class CanalPacket {
       }
 
       public Builder mergeFrom(com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat other) {
-        if (other == com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat.getDefaultInstance()) return this;
+        if (other == com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat.getDefaultInstance()) {
+          return this;
+        }
         if (other.getSendTimestamp() != 0L) {
           setSendTimestamp(other.getSendTimestamp());
         }
@@ -1850,57 +2048,64 @@ public final class CanalPacket {
         return this;
       }
 
-      private long sendTimestamp_ ;
+      private long sendTimestamp_;
+
       /**
        * <code>int64 send_timestamp = 1;</code>
        */
       public long getSendTimestamp() {
         return sendTimestamp_;
       }
+
       /**
        * <code>int64 send_timestamp = 1;</code>
        */
       public Builder setSendTimestamp(long value) {
-        
+
         sendTimestamp_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>int64 send_timestamp = 1;</code>
        */
       public Builder clearSendTimestamp() {
-        
+
         sendTimestamp_ = 0L;
         onChanged();
         return this;
       }
 
-      private long startTimestamp_ ;
+      private long startTimestamp_;
+
       /**
        * <code>int64 start_timestamp = 2;</code>
        */
       public long getStartTimestamp() {
         return startTimestamp_;
       }
+
       /**
        * <code>int64 start_timestamp = 2;</code>
        */
       public Builder setStartTimestamp(long value) {
-        
+
         startTimestamp_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>int64 start_timestamp = 2;</code>
        */
       public Builder clearStartTimestamp() {
-        
+
         startTimestamp_ = 0L;
         onChanged();
         return this;
       }
+
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -1913,12 +2118,12 @@ public final class CanalPacket {
         return super.mergeUnknownFields(unknownFields);
       }
 
-
       // @@protoc_insertion_point(builder_scope:com.alibaba.otter.canal.protocol.HeartBeat)
     }
 
     // @@protoc_insertion_point(class_scope:com.alibaba.otter.canal.protocol.HeartBeat)
     private static final com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat DEFAULT_INSTANCE;
+
     static {
       DEFAULT_INSTANCE = new com.alibaba.otter.canal.protocol.CanalPacket.HeartBeat();
     }
@@ -1962,11 +2167,12 @@ public final class CanalPacket {
      * <code>string communication_encoding = 1;</code>
      */
     java.lang.String getCommunicationEncoding();
+
     /**
      * <code>string communication_encoding = 1;</code>
      */
     com.google.protobuf.ByteString
-        getCommunicationEncodingBytes();
+    getCommunicationEncodingBytes();
 
     /**
      * <code>bytes seeds = 2;</code>
@@ -1977,6 +2183,7 @@ public final class CanalPacket {
      * <code>.com.alibaba.otter.canal.protocol.Compression supported_compressions = 3;</code>
      */
     int getSupportedCompressionsValue();
+
     /**
      * <code>.com.alibaba.otter.canal.protocol.Compression supported_compressions = 3;</code>
      */
@@ -1984,18 +2191,22 @@ public final class CanalPacket {
 
     public com.alibaba.otter.canal.protocol.CanalPacket.Handshake.CommunicationEncodingPresentCase getCommunicationEncodingPresentCase();
   }
+
   /**
    * Protobuf type {@code com.alibaba.otter.canal.protocol.Handshake}
    */
-  public  static final class Handshake extends
+  public static final class Handshake extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:com.alibaba.otter.canal.protocol.Handshake)
       HandshakeOrBuilder {
-  private static final long serialVersionUID = 0L;
+
+    private static final long serialVersionUID = 0L;
+
     // Use Handshake.newBuilder() to construct.
     private Handshake(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private Handshake() {
       seeds_ = com.google.protobuf.ByteString.EMPTY;
       supportedCompressions_ = 0;
@@ -2006,6 +2217,7 @@ public final class CanalPacket {
     getUnknownFields() {
       return this.unknownFields;
     }
+
     private Handshake(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2061,29 +2273,34 @@ public final class CanalPacket {
         makeExtensionsImmutable();
       }
     }
+
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    getDescriptor() {
       return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Handshake_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    internalGetFieldAccessorTable() {
       return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Handshake_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.alibaba.otter.canal.protocol.CanalPacket.Handshake.class, com.alibaba.otter.canal.protocol.CanalPacket.Handshake.Builder.class);
+              com.alibaba.otter.canal.protocol.CanalPacket.Handshake.class,
+              com.alibaba.otter.canal.protocol.CanalPacket.Handshake.Builder.class);
     }
 
     private int communicationEncodingPresentCase_ = 0;
     private java.lang.Object communicationEncodingPresent_;
+
     public enum CommunicationEncodingPresentCase
         implements com.google.protobuf.Internal.EnumLite {
       COMMUNICATION_ENCODING(1),
       COMMUNICATIONENCODINGPRESENT_NOT_SET(0);
       private final int value;
+
       private CommunicationEncodingPresentCase(int value) {
         this.value = value;
       }
+
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
@@ -2094,15 +2311,21 @@ public final class CanalPacket {
 
       public static CommunicationEncodingPresentCase forNumber(int value) {
         switch (value) {
-          case 1: return COMMUNICATION_ENCODING;
-          case 0: return COMMUNICATIONENCODINGPRESENT_NOT_SET;
-          default: return null;
+          case 1:
+            return COMMUNICATION_ENCODING;
+          case 0:
+            return COMMUNICATIONENCODINGPRESENT_NOT_SET;
+          default:
+            return null;
         }
       }
+
       public int getNumber() {
         return this.value;
       }
-    };
+    }
+
+    ;
 
     public CommunicationEncodingPresentCase
     getCommunicationEncodingPresentCase() {
@@ -2111,6 +2334,7 @@ public final class CanalPacket {
     }
 
     public static final int COMMUNICATION_ENCODING_FIELD_NUMBER = 1;
+
     /**
      * <code>string communication_encoding = 1;</code>
      */
@@ -2122,7 +2346,7 @@ public final class CanalPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         if (communicationEncodingPresentCase_ == 1) {
@@ -2131,17 +2355,18 @@ public final class CanalPacket {
         return s;
       }
     }
+
     /**
      * <code>string communication_encoding = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getCommunicationEncodingBytes() {
+    getCommunicationEncodingBytes() {
       java.lang.Object ref = "";
       if (communicationEncodingPresentCase_ == 1) {
         ref = communicationEncodingPresent_;
       }
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         if (communicationEncodingPresentCase_ == 1) {
@@ -2155,6 +2380,7 @@ public final class CanalPacket {
 
     public static final int SEEDS_FIELD_NUMBER = 2;
     private com.google.protobuf.ByteString seeds_;
+
     /**
      * <code>bytes seeds = 2;</code>
      */
@@ -2164,27 +2390,36 @@ public final class CanalPacket {
 
     public static final int SUPPORTED_COMPRESSIONS_FIELD_NUMBER = 3;
     private int supportedCompressions_;
+
     /**
      * <code>.com.alibaba.otter.canal.protocol.Compression supported_compressions = 3;</code>
      */
     public int getSupportedCompressionsValue() {
       return supportedCompressions_;
     }
+
     /**
      * <code>.com.alibaba.otter.canal.protocol.Compression supported_compressions = 3;</code>
      */
     public com.alibaba.otter.canal.protocol.CanalPacket.Compression getSupportedCompressions() {
       @SuppressWarnings("deprecation")
-      com.alibaba.otter.canal.protocol.CanalPacket.Compression result = com.alibaba.otter.canal.protocol.CanalPacket.Compression.valueOf(supportedCompressions_);
-      return result == null ? com.alibaba.otter.canal.protocol.CanalPacket.Compression.UNRECOGNIZED : result;
+      com.alibaba.otter.canal.protocol.CanalPacket.Compression result = com.alibaba.otter.canal.protocol.CanalPacket.Compression.valueOf(
+          supportedCompressions_);
+      return result == null ? com.alibaba.otter.canal.protocol.CanalPacket.Compression.UNRECOGNIZED
+          : result;
     }
 
     private byte memoizedIsInitialized = -1;
+
     @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized == 1) {
+        return true;
+      }
+      if (isInitialized == 0) {
+        return false;
+      }
 
       memoizedIsInitialized = 1;
       return true;
@@ -2192,14 +2427,16 @@ public final class CanalPacket {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+        throws java.io.IOException {
       if (communicationEncodingPresentCase_ == 1) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, communicationEncodingPresent_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1,
+            communicationEncodingPresent_);
       }
       if (!seeds_.isEmpty()) {
         output.writeBytes(2, seeds_);
       }
-      if (supportedCompressions_ != com.alibaba.otter.canal.protocol.CanalPacket.Compression.COMPRESSIONCOMPATIBLEPROTO2.getNumber()) {
+      if (supportedCompressions_
+          != com.alibaba.otter.canal.protocol.CanalPacket.Compression.COMPRESSIONCOMPATIBLEPROTO2.getNumber()) {
         output.writeEnum(3, supportedCompressions_);
       }
       unknownFields.writeTo(output);
@@ -2208,19 +2445,23 @@ public final class CanalPacket {
     @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
-      if (size != -1) return size;
+      if (size != -1) {
+        return size;
+      }
 
       size = 0;
       if (communicationEncodingPresentCase_ == 1) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, communicationEncodingPresent_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1,
+            communicationEncodingPresent_);
       }
       if (!seeds_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, seeds_);
+            .computeBytesSize(2, seeds_);
       }
-      if (supportedCompressions_ != com.alibaba.otter.canal.protocol.CanalPacket.Compression.COMPRESSIONCOMPATIBLEPROTO2.getNumber()) {
+      if (supportedCompressions_
+          != com.alibaba.otter.canal.protocol.CanalPacket.Compression.COMPRESSIONCOMPATIBLEPROTO2.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(3, supportedCompressions_);
+            .computeEnumSize(3, supportedCompressions_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2230,7 +2471,7 @@ public final class CanalPacket {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof com.alibaba.otter.canal.protocol.CanalPacket.Handshake)) {
         return super.equals(obj);
@@ -2243,7 +2484,9 @@ public final class CanalPacket {
       result = result && supportedCompressions_ == other.supportedCompressions_;
       result = result && getCommunicationEncodingPresentCase().equals(
           other.getCommunicationEncodingPresentCase());
-      if (!result) return false;
+      if (!result) {
+        return false;
+      }
       switch (communicationEncodingPresentCase_) {
         case 1:
           result = result && getCommunicationEncoding()
@@ -2285,38 +2528,46 @@ public final class CanalPacket {
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Handshake parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Handshake parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Handshake parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Handshake parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Handshake parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.CanalPacket.Handshake parseFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.CanalPacket.Handshake parseFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Handshake parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2324,11 +2575,14 @@ public final class CanalPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.CanalPacket.Handshake parseDelimitedFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.CanalPacket.Handshake parseDelimitedFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Handshake parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2336,12 +2590,14 @@ public final class CanalPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Handshake parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Handshake parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2351,13 +2607,19 @@ public final class CanalPacket {
     }
 
     @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() {
+      return newBuilder();
+    }
+
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.alibaba.otter.canal.protocol.CanalPacket.Handshake prototype) {
+
+    public static Builder newBuilder(
+        com.alibaba.otter.canal.protocol.CanalPacket.Handshake prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
@@ -2370,6 +2632,7 @@ public final class CanalPacket {
       Builder builder = new Builder(parent);
       return builder;
     }
+
     /**
      * Protobuf type {@code com.alibaba.otter.canal.protocol.Handshake}
      */
@@ -2377,17 +2640,19 @@ public final class CanalPacket {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.alibaba.otter.canal.protocol.Handshake)
         com.alibaba.otter.canal.protocol.CanalPacket.HandshakeOrBuilder {
+
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      getDescriptor() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Handshake_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Handshake_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.alibaba.otter.canal.protocol.CanalPacket.Handshake.class, com.alibaba.otter.canal.protocol.CanalPacket.Handshake.Builder.class);
+                com.alibaba.otter.canal.protocol.CanalPacket.Handshake.class,
+                com.alibaba.otter.canal.protocol.CanalPacket.Handshake.Builder.class);
       }
 
       // Construct using com.alibaba.otter.canal.protocol.CanalPacket.Handshake.newBuilder()
@@ -2400,11 +2665,13 @@ public final class CanalPacket {
         super(parent);
         maybeForceBuilderInitialization();
       }
+
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+            .alwaysUseFieldBuilders) {
         }
       }
+
       @java.lang.Override
       public Builder clear() {
         super.clear();
@@ -2419,7 +2686,7 @@ public final class CanalPacket {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Handshake_descriptor;
       }
 
@@ -2439,7 +2706,8 @@ public final class CanalPacket {
 
       @java.lang.Override
       public com.alibaba.otter.canal.protocol.CanalPacket.Handshake buildPartial() {
-        com.alibaba.otter.canal.protocol.CanalPacket.Handshake result = new com.alibaba.otter.canal.protocol.CanalPacket.Handshake(this);
+        com.alibaba.otter.canal.protocol.CanalPacket.Handshake result = new com.alibaba.otter.canal.protocol.CanalPacket.Handshake(
+            this);
         if (communicationEncodingPresentCase_ == 1) {
           result.communicationEncodingPresent_ = communicationEncodingPresent_;
         }
@@ -2454,38 +2722,44 @@ public final class CanalPacket {
       public Builder clone() {
         return (Builder) super.clone();
       }
+
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
+
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
+
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
+
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
+
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.alibaba.otter.canal.protocol.CanalPacket.Handshake) {
-          return mergeFrom((com.alibaba.otter.canal.protocol.CanalPacket.Handshake)other);
+          return mergeFrom((com.alibaba.otter.canal.protocol.CanalPacket.Handshake) other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -2493,7 +2767,9 @@ public final class CanalPacket {
       }
 
       public Builder mergeFrom(com.alibaba.otter.canal.protocol.CanalPacket.Handshake other) {
-        if (other == com.alibaba.otter.canal.protocol.CanalPacket.Handshake.getDefaultInstance()) return this;
+        if (other == com.alibaba.otter.canal.protocol.CanalPacket.Handshake.getDefaultInstance()) {
+          return this;
+        }
         if (other.getSeeds() != com.google.protobuf.ByteString.EMPTY) {
           setSeeds(other.getSeeds());
         }
@@ -2539,10 +2815,12 @@ public final class CanalPacket {
         }
         return this;
       }
+
       private int communicationEncodingPresentCase_ = 0;
       private java.lang.Object communicationEncodingPresent_;
+
       public CommunicationEncodingPresentCase
-          getCommunicationEncodingPresentCase() {
+      getCommunicationEncodingPresentCase() {
         return CommunicationEncodingPresentCase.forNumber(
             communicationEncodingPresentCase_);
       }
@@ -2575,17 +2853,18 @@ public final class CanalPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <code>string communication_encoding = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getCommunicationEncodingBytes() {
+      getCommunicationEncodingBytes() {
         java.lang.Object ref = "";
         if (communicationEncodingPresentCase_ == 1) {
           ref = communicationEncodingPresent_;
         }
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           if (communicationEncodingPresentCase_ == 1) {
@@ -2596,19 +2875,21 @@ public final class CanalPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <code>string communication_encoding = 1;</code>
        */
       public Builder setCommunicationEncoding(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  communicationEncodingPresentCase_ = 1;
+          throw new NullPointerException();
+        }
+        communicationEncodingPresentCase_ = 1;
         communicationEncodingPresent_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>string communication_encoding = 1;</code>
        */
@@ -2620,15 +2901,16 @@ public final class CanalPacket {
         }
         return this;
       }
+
       /**
        * <code>string communication_encoding = 1;</code>
        */
       public Builder setCommunicationEncodingBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
         communicationEncodingPresentCase_ = 1;
         communicationEncodingPresent_ = value;
         onChanged();
@@ -2636,41 +2918,46 @@ public final class CanalPacket {
       }
 
       private com.google.protobuf.ByteString seeds_ = com.google.protobuf.ByteString.EMPTY;
+
       /**
        * <code>bytes seeds = 2;</code>
        */
       public com.google.protobuf.ByteString getSeeds() {
         return seeds_;
       }
+
       /**
        * <code>bytes seeds = 2;</code>
        */
       public Builder setSeeds(com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         seeds_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>bytes seeds = 2;</code>
        */
       public Builder clearSeeds() {
-        
+
         seeds_ = getDefaultInstance().getSeeds();
         onChanged();
         return this;
       }
 
       private int supportedCompressions_ = 0;
+
       /**
        * <code>.com.alibaba.otter.canal.protocol.Compression supported_compressions = 3;</code>
        */
       public int getSupportedCompressionsValue() {
         return supportedCompressions_;
       }
+
       /**
        * <code>.com.alibaba.otter.canal.protocol.Compression supported_compressions = 3;</code>
        */
@@ -2679,35 +2966,42 @@ public final class CanalPacket {
         onChanged();
         return this;
       }
+
       /**
        * <code>.com.alibaba.otter.canal.protocol.Compression supported_compressions = 3;</code>
        */
       public com.alibaba.otter.canal.protocol.CanalPacket.Compression getSupportedCompressions() {
         @SuppressWarnings("deprecation")
-        com.alibaba.otter.canal.protocol.CanalPacket.Compression result = com.alibaba.otter.canal.protocol.CanalPacket.Compression.valueOf(supportedCompressions_);
-        return result == null ? com.alibaba.otter.canal.protocol.CanalPacket.Compression.UNRECOGNIZED : result;
+        com.alibaba.otter.canal.protocol.CanalPacket.Compression result = com.alibaba.otter.canal.protocol.CanalPacket.Compression.valueOf(
+            supportedCompressions_);
+        return result == null
+            ? com.alibaba.otter.canal.protocol.CanalPacket.Compression.UNRECOGNIZED : result;
       }
+
       /**
        * <code>.com.alibaba.otter.canal.protocol.Compression supported_compressions = 3;</code>
        */
-      public Builder setSupportedCompressions(com.alibaba.otter.canal.protocol.CanalPacket.Compression value) {
+      public Builder setSupportedCompressions(
+          com.alibaba.otter.canal.protocol.CanalPacket.Compression value) {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+
         supportedCompressions_ = value.getNumber();
         onChanged();
         return this;
       }
+
       /**
        * <code>.com.alibaba.otter.canal.protocol.Compression supported_compressions = 3;</code>
        */
       public Builder clearSupportedCompressions() {
-        
+
         supportedCompressions_ = 0;
         onChanged();
         return this;
       }
+
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -2720,12 +3014,12 @@ public final class CanalPacket {
         return super.mergeUnknownFields(unknownFields);
       }
 
-
       // @@protoc_insertion_point(builder_scope:com.alibaba.otter.canal.protocol.Handshake)
     }
 
     // @@protoc_insertion_point(class_scope:com.alibaba.otter.canal.protocol.Handshake)
     private static final com.alibaba.otter.canal.protocol.CanalPacket.Handshake DEFAULT_INSTANCE;
+
     static {
       DEFAULT_INSTANCE = new com.alibaba.otter.canal.protocol.CanalPacket.Handshake();
     }
@@ -2769,11 +3063,12 @@ public final class CanalPacket {
      * <code>string username = 1;</code>
      */
     java.lang.String getUsername();
+
     /**
      * <code>string username = 1;</code>
      */
     com.google.protobuf.ByteString
-        getUsernameBytes();
+    getUsernameBytes();
 
     /**
      * <pre>
@@ -2806,31 +3101,34 @@ public final class CanalPacket {
      * <code>string destination = 5;</code>
      */
     java.lang.String getDestination();
+
     /**
      * <code>string destination = 5;</code>
      */
     com.google.protobuf.ByteString
-        getDestinationBytes();
+    getDestinationBytes();
 
     /**
      * <code>string client_id = 6;</code>
      */
     java.lang.String getClientId();
+
     /**
      * <code>string client_id = 6;</code>
      */
     com.google.protobuf.ByteString
-        getClientIdBytes();
+    getClientIdBytes();
 
     /**
      * <code>string filter = 7;</code>
      */
     java.lang.String getFilter();
+
     /**
      * <code>string filter = 7;</code>
      */
     com.google.protobuf.ByteString
-        getFilterBytes();
+    getFilterBytes();
 
     /**
      * <code>int64 start_timestamp = 8;</code>
@@ -2841,6 +3139,7 @@ public final class CanalPacket {
 
     public com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth.NetWriteTimeoutPresentCase getNetWriteTimeoutPresentCase();
   }
+
   /**
    * <pre>
    * client authentication
@@ -2848,15 +3147,18 @@ public final class CanalPacket {
    *
    * Protobuf type {@code com.alibaba.otter.canal.protocol.ClientAuth}
    */
-  public  static final class ClientAuth extends
+  public static final class ClientAuth extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:com.alibaba.otter.canal.protocol.ClientAuth)
       ClientAuthOrBuilder {
-  private static final long serialVersionUID = 0L;
+
+    private static final long serialVersionUID = 0L;
+
     // Use ClientAuth.newBuilder() to construct.
     private ClientAuth(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private ClientAuth() {
       username_ = "";
       password_ = com.google.protobuf.ByteString.EMPTY;
@@ -2871,6 +3173,7 @@ public final class CanalPacket {
     getUnknownFields() {
       return this.unknownFields;
     }
+
     private ClientAuth(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2953,29 +3256,34 @@ public final class CanalPacket {
         makeExtensionsImmutable();
       }
     }
+
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    getDescriptor() {
       return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_ClientAuth_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    internalGetFieldAccessorTable() {
       return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_ClientAuth_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth.class, com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth.Builder.class);
+              com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth.class,
+              com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth.Builder.class);
     }
 
     private int netReadTimeoutPresentCase_ = 0;
     private java.lang.Object netReadTimeoutPresent_;
+
     public enum NetReadTimeoutPresentCase
         implements com.google.protobuf.Internal.EnumLite {
       NET_READ_TIMEOUT(3),
       NETREADTIMEOUTPRESENT_NOT_SET(0);
       private final int value;
+
       private NetReadTimeoutPresentCase(int value) {
         this.value = value;
       }
+
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
@@ -2986,15 +3294,21 @@ public final class CanalPacket {
 
       public static NetReadTimeoutPresentCase forNumber(int value) {
         switch (value) {
-          case 3: return NET_READ_TIMEOUT;
-          case 0: return NETREADTIMEOUTPRESENT_NOT_SET;
-          default: return null;
+          case 3:
+            return NET_READ_TIMEOUT;
+          case 0:
+            return NETREADTIMEOUTPRESENT_NOT_SET;
+          default:
+            return null;
         }
       }
+
       public int getNumber() {
         return this.value;
       }
-    };
+    }
+
+    ;
 
     public NetReadTimeoutPresentCase
     getNetReadTimeoutPresentCase() {
@@ -3004,14 +3318,17 @@ public final class CanalPacket {
 
     private int netWriteTimeoutPresentCase_ = 0;
     private java.lang.Object netWriteTimeoutPresent_;
+
     public enum NetWriteTimeoutPresentCase
         implements com.google.protobuf.Internal.EnumLite {
       NET_WRITE_TIMEOUT(4),
       NETWRITETIMEOUTPRESENT_NOT_SET(0);
       private final int value;
+
       private NetWriteTimeoutPresentCase(int value) {
         this.value = value;
       }
+
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
@@ -3022,15 +3339,21 @@ public final class CanalPacket {
 
       public static NetWriteTimeoutPresentCase forNumber(int value) {
         switch (value) {
-          case 4: return NET_WRITE_TIMEOUT;
-          case 0: return NETWRITETIMEOUTPRESENT_NOT_SET;
-          default: return null;
+          case 4:
+            return NET_WRITE_TIMEOUT;
+          case 0:
+            return NETWRITETIMEOUTPRESENT_NOT_SET;
+          default:
+            return null;
         }
       }
+
       public int getNumber() {
         return this.value;
       }
-    };
+    }
+
+    ;
 
     public NetWriteTimeoutPresentCase
     getNetWriteTimeoutPresentCase() {
@@ -3040,6 +3363,7 @@ public final class CanalPacket {
 
     public static final int USERNAME_FIELD_NUMBER = 1;
     private volatile java.lang.Object username_;
+
     /**
      * <code>string username = 1;</code>
      */
@@ -3048,21 +3372,22 @@ public final class CanalPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         username_ = s;
         return s;
       }
     }
+
     /**
      * <code>string username = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getUsernameBytes() {
+    getUsernameBytes() {
       java.lang.Object ref = username_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         username_ = b;
@@ -3074,6 +3399,7 @@ public final class CanalPacket {
 
     public static final int PASSWORD_FIELD_NUMBER = 2;
     private com.google.protobuf.ByteString password_;
+
     /**
      * <pre>
      * hashed password with seeds from Handshake message
@@ -3086,6 +3412,7 @@ public final class CanalPacket {
     }
 
     public static final int NET_READ_TIMEOUT_FIELD_NUMBER = 3;
+
     /**
      * <pre>
      * in seconds
@@ -3101,6 +3428,7 @@ public final class CanalPacket {
     }
 
     public static final int NET_WRITE_TIMEOUT_FIELD_NUMBER = 4;
+
     /**
      * <pre>
      * in seconds
@@ -3117,6 +3445,7 @@ public final class CanalPacket {
 
     public static final int DESTINATION_FIELD_NUMBER = 5;
     private volatile java.lang.Object destination_;
+
     /**
      * <code>string destination = 5;</code>
      */
@@ -3125,21 +3454,22 @@ public final class CanalPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         destination_ = s;
         return s;
       }
     }
+
     /**
      * <code>string destination = 5;</code>
      */
     public com.google.protobuf.ByteString
-        getDestinationBytes() {
+    getDestinationBytes() {
       java.lang.Object ref = destination_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         destination_ = b;
@@ -3151,6 +3481,7 @@ public final class CanalPacket {
 
     public static final int CLIENT_ID_FIELD_NUMBER = 6;
     private volatile java.lang.Object clientId_;
+
     /**
      * <code>string client_id = 6;</code>
      */
@@ -3159,21 +3490,22 @@ public final class CanalPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         clientId_ = s;
         return s;
       }
     }
+
     /**
      * <code>string client_id = 6;</code>
      */
     public com.google.protobuf.ByteString
-        getClientIdBytes() {
+    getClientIdBytes() {
       java.lang.Object ref = clientId_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         clientId_ = b;
@@ -3185,6 +3517,7 @@ public final class CanalPacket {
 
     public static final int FILTER_FIELD_NUMBER = 7;
     private volatile java.lang.Object filter_;
+
     /**
      * <code>string filter = 7;</code>
      */
@@ -3193,21 +3526,22 @@ public final class CanalPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         filter_ = s;
         return s;
       }
     }
+
     /**
      * <code>string filter = 7;</code>
      */
     public com.google.protobuf.ByteString
-        getFilterBytes() {
+    getFilterBytes() {
       java.lang.Object ref = filter_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         filter_ = b;
@@ -3219,6 +3553,7 @@ public final class CanalPacket {
 
     public static final int START_TIMESTAMP_FIELD_NUMBER = 8;
     private long startTimestamp_;
+
     /**
      * <code>int64 start_timestamp = 8;</code>
      */
@@ -3227,11 +3562,16 @@ public final class CanalPacket {
     }
 
     private byte memoizedIsInitialized = -1;
+
     @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized == 1) {
+        return true;
+      }
+      if (isInitialized == 0) {
+        return false;
+      }
 
       memoizedIsInitialized = 1;
       return true;
@@ -3239,7 +3579,7 @@ public final class CanalPacket {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+        throws java.io.IOException {
       if (!getUsernameBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
       }
@@ -3248,11 +3588,11 @@ public final class CanalPacket {
       }
       if (netReadTimeoutPresentCase_ == 3) {
         output.writeInt32(
-            3, (int)((java.lang.Integer) netReadTimeoutPresent_));
+            3, (int) ((java.lang.Integer) netReadTimeoutPresent_));
       }
       if (netWriteTimeoutPresentCase_ == 4) {
         output.writeInt32(
-            4, (int)((java.lang.Integer) netWriteTimeoutPresent_));
+            4, (int) ((java.lang.Integer) netWriteTimeoutPresent_));
       }
       if (!getDestinationBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, destination_);
@@ -3272,7 +3612,9 @@ public final class CanalPacket {
     @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
-      if (size != -1) return size;
+      if (size != -1) {
+        return size;
+      }
 
       size = 0;
       if (!getUsernameBytes().isEmpty()) {
@@ -3280,17 +3622,17 @@ public final class CanalPacket {
       }
       if (!password_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, password_);
+            .computeBytesSize(2, password_);
       }
       if (netReadTimeoutPresentCase_ == 3) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(
-              3, (int)((java.lang.Integer) netReadTimeoutPresent_));
+            .computeInt32Size(
+                3, (int) ((java.lang.Integer) netReadTimeoutPresent_));
       }
       if (netWriteTimeoutPresentCase_ == 4) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(
-              4, (int)((java.lang.Integer) netWriteTimeoutPresent_));
+            .computeInt32Size(
+                4, (int) ((java.lang.Integer) netWriteTimeoutPresent_));
       }
       if (!getDestinationBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, destination_);
@@ -3303,7 +3645,7 @@ public final class CanalPacket {
       }
       if (startTimestamp_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(8, startTimestamp_);
+            .computeInt64Size(8, startTimestamp_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -3313,7 +3655,7 @@ public final class CanalPacket {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth)) {
         return super.equals(obj);
@@ -3335,7 +3677,9 @@ public final class CanalPacket {
           == other.getStartTimestamp());
       result = result && getNetReadTimeoutPresentCase().equals(
           other.getNetReadTimeoutPresentCase());
-      if (!result) return false;
+      if (!result) {
+        return false;
+      }
       switch (netReadTimeoutPresentCase_) {
         case 3:
           result = result && (getNetReadTimeout()
@@ -3346,7 +3690,9 @@ public final class CanalPacket {
       }
       result = result && getNetWriteTimeoutPresentCase().equals(
           other.getNetWriteTimeoutPresentCase());
-      if (!result) return false;
+      if (!result) {
+        return false;
+      }
       switch (netWriteTimeoutPresentCase_) {
         case 4:
           result = result && (getNetWriteTimeout()
@@ -3405,38 +3751,46 @@ public final class CanalPacket {
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth parseFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth parseFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3444,11 +3798,14 @@ public final class CanalPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth parseDelimitedFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth parseDelimitedFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3456,12 +3813,14 @@ public final class CanalPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3471,13 +3830,19 @@ public final class CanalPacket {
     }
 
     @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() {
+      return newBuilder();
+    }
+
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth prototype) {
+
+    public static Builder newBuilder(
+        com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
@@ -3490,6 +3855,7 @@ public final class CanalPacket {
       Builder builder = new Builder(parent);
       return builder;
     }
+
     /**
      * <pre>
      * client authentication
@@ -3501,17 +3867,19 @@ public final class CanalPacket {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.alibaba.otter.canal.protocol.ClientAuth)
         com.alibaba.otter.canal.protocol.CanalPacket.ClientAuthOrBuilder {
+
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      getDescriptor() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_ClientAuth_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_ClientAuth_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth.class, com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth.Builder.class);
+                com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth.class,
+                com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth.Builder.class);
       }
 
       // Construct using com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth.newBuilder()
@@ -3524,11 +3892,13 @@ public final class CanalPacket {
         super(parent);
         maybeForceBuilderInitialization();
       }
+
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+            .alwaysUseFieldBuilders) {
         }
       }
+
       @java.lang.Override
       public Builder clear() {
         super.clear();
@@ -3553,7 +3923,7 @@ public final class CanalPacket {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_ClientAuth_descriptor;
       }
 
@@ -3573,7 +3943,8 @@ public final class CanalPacket {
 
       @java.lang.Override
       public com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth buildPartial() {
-        com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth result = new com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth(this);
+        com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth result = new com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth(
+            this);
         result.username_ = username_;
         result.password_ = password_;
         if (netReadTimeoutPresentCase_ == 3) {
@@ -3596,38 +3967,44 @@ public final class CanalPacket {
       public Builder clone() {
         return (Builder) super.clone();
       }
+
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
+
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
+
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
+
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
+
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth) {
-          return mergeFrom((com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth)other);
+          return mergeFrom((com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth) other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -3635,7 +4012,9 @@ public final class CanalPacket {
       }
 
       public Builder mergeFrom(com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth other) {
-        if (other == com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth.getDefaultInstance()) return this;
+        if (other == com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth.getDefaultInstance()) {
+          return this;
+        }
         if (!other.getUsername().isEmpty()) {
           username_ = other.username_;
           onChanged();
@@ -3704,10 +4083,12 @@ public final class CanalPacket {
         }
         return this;
       }
+
       private int netReadTimeoutPresentCase_ = 0;
       private java.lang.Object netReadTimeoutPresent_;
+
       public NetReadTimeoutPresentCase
-          getNetReadTimeoutPresentCase() {
+      getNetReadTimeoutPresentCase() {
         return NetReadTimeoutPresentCase.forNumber(
             netReadTimeoutPresentCase_);
       }
@@ -3721,8 +4102,9 @@ public final class CanalPacket {
 
       private int netWriteTimeoutPresentCase_ = 0;
       private java.lang.Object netWriteTimeoutPresent_;
+
       public NetWriteTimeoutPresentCase
-          getNetWriteTimeoutPresentCase() {
+      getNetWriteTimeoutPresentCase() {
         return NetWriteTimeoutPresentCase.forNumber(
             netWriteTimeoutPresentCase_);
       }
@@ -3736,6 +4118,7 @@ public final class CanalPacket {
 
 
       private java.lang.Object username_ = "";
+
       /**
        * <code>string username = 1;</code>
        */
@@ -3751,14 +4134,15 @@ public final class CanalPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <code>string username = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getUsernameBytes() {
+      getUsernameBytes() {
         java.lang.Object ref = username_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           username_ = b;
@@ -3767,44 +4151,48 @@ public final class CanalPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <code>string username = 1;</code>
        */
       public Builder setUsername(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         username_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>string username = 1;</code>
        */
       public Builder clearUsername() {
-        
+
         username_ = getDefaultInstance().getUsername();
         onChanged();
         return this;
       }
+
       /**
        * <code>string username = 1;</code>
        */
       public Builder setUsernameBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         username_ = value;
         onChanged();
         return this;
       }
 
       private com.google.protobuf.ByteString password_ = com.google.protobuf.ByteString.EMPTY;
+
       /**
        * <pre>
        * hashed password with seeds from Handshake message
@@ -3815,6 +4203,7 @@ public final class CanalPacket {
       public com.google.protobuf.ByteString getPassword() {
         return password_;
       }
+
       /**
        * <pre>
        * hashed password with seeds from Handshake message
@@ -3824,13 +4213,14 @@ public final class CanalPacket {
        */
       public Builder setPassword(com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         password_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <pre>
        * hashed password with seeds from Handshake message
@@ -3839,7 +4229,7 @@ public final class CanalPacket {
        * <code>bytes password = 2;</code>
        */
       public Builder clearPassword() {
-        
+
         password_ = getDefaultInstance().getPassword();
         onChanged();
         return this;
@@ -3858,6 +4248,7 @@ public final class CanalPacket {
         }
         return 0;
       }
+
       /**
        * <pre>
        * in seconds
@@ -3871,6 +4262,7 @@ public final class CanalPacket {
         onChanged();
         return this;
       }
+
       /**
        * <pre>
        * in seconds
@@ -3900,6 +4292,7 @@ public final class CanalPacket {
         }
         return 0;
       }
+
       /**
        * <pre>
        * in seconds
@@ -3913,6 +4306,7 @@ public final class CanalPacket {
         onChanged();
         return this;
       }
+
       /**
        * <pre>
        * in seconds
@@ -3930,6 +4324,7 @@ public final class CanalPacket {
       }
 
       private java.lang.Object destination_ = "";
+
       /**
        * <code>string destination = 5;</code>
        */
@@ -3945,14 +4340,15 @@ public final class CanalPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <code>string destination = 5;</code>
        */
       public com.google.protobuf.ByteString
-          getDestinationBytes() {
+      getDestinationBytes() {
         java.lang.Object ref = destination_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           destination_ = b;
@@ -3961,44 +4357,48 @@ public final class CanalPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <code>string destination = 5;</code>
        */
       public Builder setDestination(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         destination_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>string destination = 5;</code>
        */
       public Builder clearDestination() {
-        
+
         destination_ = getDefaultInstance().getDestination();
         onChanged();
         return this;
       }
+
       /**
        * <code>string destination = 5;</code>
        */
       public Builder setDestinationBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         destination_ = value;
         onChanged();
         return this;
       }
 
       private java.lang.Object clientId_ = "";
+
       /**
        * <code>string client_id = 6;</code>
        */
@@ -4014,14 +4414,15 @@ public final class CanalPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <code>string client_id = 6;</code>
        */
       public com.google.protobuf.ByteString
-          getClientIdBytes() {
+      getClientIdBytes() {
         java.lang.Object ref = clientId_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           clientId_ = b;
@@ -4030,44 +4431,48 @@ public final class CanalPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <code>string client_id = 6;</code>
        */
       public Builder setClientId(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         clientId_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>string client_id = 6;</code>
        */
       public Builder clearClientId() {
-        
+
         clientId_ = getDefaultInstance().getClientId();
         onChanged();
         return this;
       }
+
       /**
        * <code>string client_id = 6;</code>
        */
       public Builder setClientIdBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         clientId_ = value;
         onChanged();
         return this;
       }
 
       private java.lang.Object filter_ = "";
+
       /**
        * <code>string filter = 7;</code>
        */
@@ -4083,14 +4488,15 @@ public final class CanalPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <code>string filter = 7;</code>
        */
       public com.google.protobuf.ByteString
-          getFilterBytes() {
+      getFilterBytes() {
         java.lang.Object ref = filter_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           filter_ = b;
@@ -4099,68 +4505,75 @@ public final class CanalPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <code>string filter = 7;</code>
        */
       public Builder setFilter(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         filter_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>string filter = 7;</code>
        */
       public Builder clearFilter() {
-        
+
         filter_ = getDefaultInstance().getFilter();
         onChanged();
         return this;
       }
+
       /**
        * <code>string filter = 7;</code>
        */
       public Builder setFilterBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         filter_ = value;
         onChanged();
         return this;
       }
 
-      private long startTimestamp_ ;
+      private long startTimestamp_;
+
       /**
        * <code>int64 start_timestamp = 8;</code>
        */
       public long getStartTimestamp() {
         return startTimestamp_;
       }
+
       /**
        * <code>int64 start_timestamp = 8;</code>
        */
       public Builder setStartTimestamp(long value) {
-        
+
         startTimestamp_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>int64 start_timestamp = 8;</code>
        */
       public Builder clearStartTimestamp() {
-        
+
         startTimestamp_ = 0L;
         onChanged();
         return this;
       }
+
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -4173,12 +4586,12 @@ public final class CanalPacket {
         return super.mergeUnknownFields(unknownFields);
       }
 
-
       // @@protoc_insertion_point(builder_scope:com.alibaba.otter.canal.protocol.ClientAuth)
     }
 
     // @@protoc_insertion_point(class_scope:com.alibaba.otter.canal.protocol.ClientAuth)
     private static final com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth DEFAULT_INSTANCE;
+
     static {
       DEFAULT_INSTANCE = new com.alibaba.otter.canal.protocol.CanalPacket.ClientAuth();
     }
@@ -4231,6 +4644,7 @@ public final class CanalPacket {
      * <code>string error_message = 2;</code>
      */
     java.lang.String getErrorMessage();
+
     /**
      * <pre>
      * if something like compression is not supported, erorr_message will tell about it.
@@ -4239,22 +4653,26 @@ public final class CanalPacket {
      * <code>string error_message = 2;</code>
      */
     com.google.protobuf.ByteString
-        getErrorMessageBytes();
+    getErrorMessageBytes();
 
     public com.alibaba.otter.canal.protocol.CanalPacket.Ack.ErrorCodePresentCase getErrorCodePresentCase();
   }
+
   /**
    * Protobuf type {@code com.alibaba.otter.canal.protocol.Ack}
    */
-  public  static final class Ack extends
+  public static final class Ack extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:com.alibaba.otter.canal.protocol.Ack)
       AckOrBuilder {
-  private static final long serialVersionUID = 0L;
+
+    private static final long serialVersionUID = 0L;
+
     // Use Ack.newBuilder() to construct.
     private Ack(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private Ack() {
       errorMessage_ = "";
     }
@@ -4264,6 +4682,7 @@ public final class CanalPacket {
     getUnknownFields() {
       return this.unknownFields;
     }
+
     private Ack(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4313,29 +4732,34 @@ public final class CanalPacket {
         makeExtensionsImmutable();
       }
     }
+
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    getDescriptor() {
       return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Ack_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    internalGetFieldAccessorTable() {
       return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Ack_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.alibaba.otter.canal.protocol.CanalPacket.Ack.class, com.alibaba.otter.canal.protocol.CanalPacket.Ack.Builder.class);
+              com.alibaba.otter.canal.protocol.CanalPacket.Ack.class,
+              com.alibaba.otter.canal.protocol.CanalPacket.Ack.Builder.class);
     }
 
     private int errorCodePresentCase_ = 0;
     private java.lang.Object errorCodePresent_;
+
     public enum ErrorCodePresentCase
         implements com.google.protobuf.Internal.EnumLite {
       ERROR_CODE(1),
       ERRORCODEPRESENT_NOT_SET(0);
       private final int value;
+
       private ErrorCodePresentCase(int value) {
         this.value = value;
       }
+
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
@@ -4346,15 +4770,21 @@ public final class CanalPacket {
 
       public static ErrorCodePresentCase forNumber(int value) {
         switch (value) {
-          case 1: return ERROR_CODE;
-          case 0: return ERRORCODEPRESENT_NOT_SET;
-          default: return null;
+          case 1:
+            return ERROR_CODE;
+          case 0:
+            return ERRORCODEPRESENT_NOT_SET;
+          default:
+            return null;
         }
       }
+
       public int getNumber() {
         return this.value;
       }
-    };
+    }
+
+    ;
 
     public ErrorCodePresentCase
     getErrorCodePresentCase() {
@@ -4363,6 +4793,7 @@ public final class CanalPacket {
     }
 
     public static final int ERROR_CODE_FIELD_NUMBER = 1;
+
     /**
      * <code>int32 error_code = 1;</code>
      */
@@ -4375,6 +4806,7 @@ public final class CanalPacket {
 
     public static final int ERROR_MESSAGE_FIELD_NUMBER = 2;
     private volatile java.lang.Object errorMessage_;
+
     /**
      * <pre>
      * if something like compression is not supported, erorr_message will tell about it.
@@ -4387,13 +4819,14 @@ public final class CanalPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         errorMessage_ = s;
         return s;
       }
     }
+
     /**
      * <pre>
      * if something like compression is not supported, erorr_message will tell about it.
@@ -4402,10 +4835,10 @@ public final class CanalPacket {
      * <code>string error_message = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getErrorMessageBytes() {
+    getErrorMessageBytes() {
       java.lang.Object ref = errorMessage_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         errorMessage_ = b;
@@ -4416,11 +4849,16 @@ public final class CanalPacket {
     }
 
     private byte memoizedIsInitialized = -1;
+
     @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized == 1) {
+        return true;
+      }
+      if (isInitialized == 0) {
+        return false;
+      }
 
       memoizedIsInitialized = 1;
       return true;
@@ -4428,10 +4866,10 @@ public final class CanalPacket {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+        throws java.io.IOException {
       if (errorCodePresentCase_ == 1) {
         output.writeInt32(
-            1, (int)((java.lang.Integer) errorCodePresent_));
+            1, (int) ((java.lang.Integer) errorCodePresent_));
       }
       if (!getErrorMessageBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, errorMessage_);
@@ -4442,13 +4880,15 @@ public final class CanalPacket {
     @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
-      if (size != -1) return size;
+      if (size != -1) {
+        return size;
+      }
 
       size = 0;
       if (errorCodePresentCase_ == 1) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(
-              1, (int)((java.lang.Integer) errorCodePresent_));
+            .computeInt32Size(
+                1, (int) ((java.lang.Integer) errorCodePresent_));
       }
       if (!getErrorMessageBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, errorMessage_);
@@ -4461,7 +4901,7 @@ public final class CanalPacket {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof com.alibaba.otter.canal.protocol.CanalPacket.Ack)) {
         return super.equals(obj);
@@ -4473,7 +4913,9 @@ public final class CanalPacket {
           .equals(other.getErrorMessage());
       result = result && getErrorCodePresentCase().equals(
           other.getErrorCodePresentCase());
-      if (!result) return false;
+      if (!result) {
+        return false;
+      }
       switch (errorCodePresentCase_) {
         case 1:
           result = result && (getErrorCode()
@@ -4513,38 +4955,46 @@ public final class CanalPacket {
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Ack parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Ack parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Ack parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Ack parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Ack parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.CanalPacket.Ack parseFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.CanalPacket.Ack parseFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Ack parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4552,11 +5002,14 @@ public final class CanalPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.CanalPacket.Ack parseDelimitedFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.CanalPacket.Ack parseDelimitedFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Ack parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4564,12 +5017,14 @@ public final class CanalPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Ack parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Ack parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4579,13 +5034,18 @@ public final class CanalPacket {
     }
 
     @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() {
+      return newBuilder();
+    }
+
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
+
     public static Builder newBuilder(com.alibaba.otter.canal.protocol.CanalPacket.Ack prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
@@ -4598,6 +5058,7 @@ public final class CanalPacket {
       Builder builder = new Builder(parent);
       return builder;
     }
+
     /**
      * Protobuf type {@code com.alibaba.otter.canal.protocol.Ack}
      */
@@ -4605,17 +5066,19 @@ public final class CanalPacket {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.alibaba.otter.canal.protocol.Ack)
         com.alibaba.otter.canal.protocol.CanalPacket.AckOrBuilder {
+
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      getDescriptor() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Ack_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Ack_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.alibaba.otter.canal.protocol.CanalPacket.Ack.class, com.alibaba.otter.canal.protocol.CanalPacket.Ack.Builder.class);
+                com.alibaba.otter.canal.protocol.CanalPacket.Ack.class,
+                com.alibaba.otter.canal.protocol.CanalPacket.Ack.Builder.class);
       }
 
       // Construct using com.alibaba.otter.canal.protocol.CanalPacket.Ack.newBuilder()
@@ -4628,11 +5091,13 @@ public final class CanalPacket {
         super(parent);
         maybeForceBuilderInitialization();
       }
+
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+            .alwaysUseFieldBuilders) {
         }
       }
+
       @java.lang.Override
       public Builder clear() {
         super.clear();
@@ -4645,7 +5110,7 @@ public final class CanalPacket {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Ack_descriptor;
       }
 
@@ -4665,7 +5130,8 @@ public final class CanalPacket {
 
       @java.lang.Override
       public com.alibaba.otter.canal.protocol.CanalPacket.Ack buildPartial() {
-        com.alibaba.otter.canal.protocol.CanalPacket.Ack result = new com.alibaba.otter.canal.protocol.CanalPacket.Ack(this);
+        com.alibaba.otter.canal.protocol.CanalPacket.Ack result = new com.alibaba.otter.canal.protocol.CanalPacket.Ack(
+            this);
         if (errorCodePresentCase_ == 1) {
           result.errorCodePresent_ = errorCodePresent_;
         }
@@ -4679,38 +5145,44 @@ public final class CanalPacket {
       public Builder clone() {
         return (Builder) super.clone();
       }
+
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
+
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
+
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
+
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
+
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.alibaba.otter.canal.protocol.CanalPacket.Ack) {
-          return mergeFrom((com.alibaba.otter.canal.protocol.CanalPacket.Ack)other);
+          return mergeFrom((com.alibaba.otter.canal.protocol.CanalPacket.Ack) other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -4718,7 +5190,9 @@ public final class CanalPacket {
       }
 
       public Builder mergeFrom(com.alibaba.otter.canal.protocol.CanalPacket.Ack other) {
-        if (other == com.alibaba.otter.canal.protocol.CanalPacket.Ack.getDefaultInstance()) return this;
+        if (other == com.alibaba.otter.canal.protocol.CanalPacket.Ack.getDefaultInstance()) {
+          return this;
+        }
         if (!other.getErrorMessage().isEmpty()) {
           errorMessage_ = other.errorMessage_;
           onChanged();
@@ -4760,10 +5234,12 @@ public final class CanalPacket {
         }
         return this;
       }
+
       private int errorCodePresentCase_ = 0;
       private java.lang.Object errorCodePresent_;
+
       public ErrorCodePresentCase
-          getErrorCodePresentCase() {
+      getErrorCodePresentCase() {
         return ErrorCodePresentCase.forNumber(
             errorCodePresentCase_);
       }
@@ -4785,6 +5261,7 @@ public final class CanalPacket {
         }
         return 0;
       }
+
       /**
        * <code>int32 error_code = 1;</code>
        */
@@ -4794,6 +5271,7 @@ public final class CanalPacket {
         onChanged();
         return this;
       }
+
       /**
        * <code>int32 error_code = 1;</code>
        */
@@ -4807,6 +5285,7 @@ public final class CanalPacket {
       }
 
       private java.lang.Object errorMessage_ = "";
+
       /**
        * <pre>
        * if something like compression is not supported, erorr_message will tell about it.
@@ -4826,6 +5305,7 @@ public final class CanalPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <pre>
        * if something like compression is not supported, erorr_message will tell about it.
@@ -4834,10 +5314,10 @@ public final class CanalPacket {
        * <code>string error_message = 2;</code>
        */
       public com.google.protobuf.ByteString
-          getErrorMessageBytes() {
+      getErrorMessageBytes() {
         java.lang.Object ref = errorMessage_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           errorMessage_ = b;
@@ -4846,6 +5326,7 @@ public final class CanalPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <pre>
        * if something like compression is not supported, erorr_message will tell about it.
@@ -4856,13 +5337,14 @@ public final class CanalPacket {
       public Builder setErrorMessage(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         errorMessage_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <pre>
        * if something like compression is not supported, erorr_message will tell about it.
@@ -4871,11 +5353,12 @@ public final class CanalPacket {
        * <code>string error_message = 2;</code>
        */
       public Builder clearErrorMessage() {
-        
+
         errorMessage_ = getDefaultInstance().getErrorMessage();
         onChanged();
         return this;
       }
+
       /**
        * <pre>
        * if something like compression is not supported, erorr_message will tell about it.
@@ -4886,14 +5369,15 @@ public final class CanalPacket {
       public Builder setErrorMessageBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         errorMessage_ = value;
         onChanged();
         return this;
       }
+
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -4906,12 +5390,12 @@ public final class CanalPacket {
         return super.mergeUnknownFields(unknownFields);
       }
 
-
       // @@protoc_insertion_point(builder_scope:com.alibaba.otter.canal.protocol.Ack)
     }
 
     // @@protoc_insertion_point(class_scope:com.alibaba.otter.canal.protocol.Ack)
     private static final com.alibaba.otter.canal.protocol.CanalPacket.Ack DEFAULT_INSTANCE;
+
     static {
       DEFAULT_INSTANCE = new com.alibaba.otter.canal.protocol.CanalPacket.Ack();
     }
@@ -4955,39 +5439,45 @@ public final class CanalPacket {
      * <code>string destination = 1;</code>
      */
     java.lang.String getDestination();
+
     /**
      * <code>string destination = 1;</code>
      */
     com.google.protobuf.ByteString
-        getDestinationBytes();
+    getDestinationBytes();
 
     /**
      * <code>string client_id = 2;</code>
      */
     java.lang.String getClientId();
+
     /**
      * <code>string client_id = 2;</code>
      */
     com.google.protobuf.ByteString
-        getClientIdBytes();
+    getClientIdBytes();
 
     /**
      * <code>int64 batch_id = 3;</code>
      */
     long getBatchId();
   }
+
   /**
    * Protobuf type {@code com.alibaba.otter.canal.protocol.ClientAck}
    */
-  public  static final class ClientAck extends
+  public static final class ClientAck extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:com.alibaba.otter.canal.protocol.ClientAck)
       ClientAckOrBuilder {
-  private static final long serialVersionUID = 0L;
+
+    private static final long serialVersionUID = 0L;
+
     // Use ClientAck.newBuilder() to construct.
     private ClientAck(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private ClientAck() {
       destination_ = "";
       clientId_ = "";
@@ -4999,6 +5489,7 @@ public final class CanalPacket {
     getUnknownFields() {
       return this.unknownFields;
     }
+
     private ClientAck(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5054,21 +5545,24 @@ public final class CanalPacket {
         makeExtensionsImmutable();
       }
     }
+
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    getDescriptor() {
       return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_ClientAck_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    internalGetFieldAccessorTable() {
       return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_ClientAck_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.alibaba.otter.canal.protocol.CanalPacket.ClientAck.class, com.alibaba.otter.canal.protocol.CanalPacket.ClientAck.Builder.class);
+              com.alibaba.otter.canal.protocol.CanalPacket.ClientAck.class,
+              com.alibaba.otter.canal.protocol.CanalPacket.ClientAck.Builder.class);
     }
 
     public static final int DESTINATION_FIELD_NUMBER = 1;
     private volatile java.lang.Object destination_;
+
     /**
      * <code>string destination = 1;</code>
      */
@@ -5077,21 +5571,22 @@ public final class CanalPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         destination_ = s;
         return s;
       }
     }
+
     /**
      * <code>string destination = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getDestinationBytes() {
+    getDestinationBytes() {
       java.lang.Object ref = destination_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         destination_ = b;
@@ -5103,6 +5598,7 @@ public final class CanalPacket {
 
     public static final int CLIENT_ID_FIELD_NUMBER = 2;
     private volatile java.lang.Object clientId_;
+
     /**
      * <code>string client_id = 2;</code>
      */
@@ -5111,21 +5607,22 @@ public final class CanalPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         clientId_ = s;
         return s;
       }
     }
+
     /**
      * <code>string client_id = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getClientIdBytes() {
+    getClientIdBytes() {
       java.lang.Object ref = clientId_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         clientId_ = b;
@@ -5137,6 +5634,7 @@ public final class CanalPacket {
 
     public static final int BATCH_ID_FIELD_NUMBER = 3;
     private long batchId_;
+
     /**
      * <code>int64 batch_id = 3;</code>
      */
@@ -5145,11 +5643,16 @@ public final class CanalPacket {
     }
 
     private byte memoizedIsInitialized = -1;
+
     @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized == 1) {
+        return true;
+      }
+      if (isInitialized == 0) {
+        return false;
+      }
 
       memoizedIsInitialized = 1;
       return true;
@@ -5157,7 +5660,7 @@ public final class CanalPacket {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+        throws java.io.IOException {
       if (!getDestinationBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, destination_);
       }
@@ -5173,7 +5676,9 @@ public final class CanalPacket {
     @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
-      if (size != -1) return size;
+      if (size != -1) {
+        return size;
+      }
 
       size = 0;
       if (!getDestinationBytes().isEmpty()) {
@@ -5184,7 +5689,7 @@ public final class CanalPacket {
       }
       if (batchId_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(3, batchId_);
+            .computeInt64Size(3, batchId_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -5194,7 +5699,7 @@ public final class CanalPacket {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof com.alibaba.otter.canal.protocol.CanalPacket.ClientAck)) {
         return super.equals(obj);
@@ -5236,38 +5741,46 @@ public final class CanalPacket {
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAck parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAck parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAck parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAck parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAck parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAck parseFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAck parseFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAck parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5275,11 +5788,14 @@ public final class CanalPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAck parseDelimitedFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAck parseDelimitedFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAck parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5287,12 +5803,14 @@ public final class CanalPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAck parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientAck parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5302,13 +5820,19 @@ public final class CanalPacket {
     }
 
     @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() {
+      return newBuilder();
+    }
+
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.alibaba.otter.canal.protocol.CanalPacket.ClientAck prototype) {
+
+    public static Builder newBuilder(
+        com.alibaba.otter.canal.protocol.CanalPacket.ClientAck prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
@@ -5321,6 +5845,7 @@ public final class CanalPacket {
       Builder builder = new Builder(parent);
       return builder;
     }
+
     /**
      * Protobuf type {@code com.alibaba.otter.canal.protocol.ClientAck}
      */
@@ -5328,17 +5853,19 @@ public final class CanalPacket {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.alibaba.otter.canal.protocol.ClientAck)
         com.alibaba.otter.canal.protocol.CanalPacket.ClientAckOrBuilder {
+
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      getDescriptor() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_ClientAck_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_ClientAck_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.alibaba.otter.canal.protocol.CanalPacket.ClientAck.class, com.alibaba.otter.canal.protocol.CanalPacket.ClientAck.Builder.class);
+                com.alibaba.otter.canal.protocol.CanalPacket.ClientAck.class,
+                com.alibaba.otter.canal.protocol.CanalPacket.ClientAck.Builder.class);
       }
 
       // Construct using com.alibaba.otter.canal.protocol.CanalPacket.ClientAck.newBuilder()
@@ -5351,11 +5878,13 @@ public final class CanalPacket {
         super(parent);
         maybeForceBuilderInitialization();
       }
+
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+            .alwaysUseFieldBuilders) {
         }
       }
+
       @java.lang.Override
       public Builder clear() {
         super.clear();
@@ -5370,7 +5899,7 @@ public final class CanalPacket {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_ClientAck_descriptor;
       }
 
@@ -5390,7 +5919,8 @@ public final class CanalPacket {
 
       @java.lang.Override
       public com.alibaba.otter.canal.protocol.CanalPacket.ClientAck buildPartial() {
-        com.alibaba.otter.canal.protocol.CanalPacket.ClientAck result = new com.alibaba.otter.canal.protocol.CanalPacket.ClientAck(this);
+        com.alibaba.otter.canal.protocol.CanalPacket.ClientAck result = new com.alibaba.otter.canal.protocol.CanalPacket.ClientAck(
+            this);
         result.destination_ = destination_;
         result.clientId_ = clientId_;
         result.batchId_ = batchId_;
@@ -5402,38 +5932,44 @@ public final class CanalPacket {
       public Builder clone() {
         return (Builder) super.clone();
       }
+
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
+
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
+
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
+
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
+
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.alibaba.otter.canal.protocol.CanalPacket.ClientAck) {
-          return mergeFrom((com.alibaba.otter.canal.protocol.CanalPacket.ClientAck)other);
+          return mergeFrom((com.alibaba.otter.canal.protocol.CanalPacket.ClientAck) other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -5441,7 +5977,9 @@ public final class CanalPacket {
       }
 
       public Builder mergeFrom(com.alibaba.otter.canal.protocol.CanalPacket.ClientAck other) {
-        if (other == com.alibaba.otter.canal.protocol.CanalPacket.ClientAck.getDefaultInstance()) return this;
+        if (other == com.alibaba.otter.canal.protocol.CanalPacket.ClientAck.getDefaultInstance()) {
+          return this;
+        }
         if (!other.getDestination().isEmpty()) {
           destination_ = other.destination_;
           onChanged();
@@ -5483,6 +6021,7 @@ public final class CanalPacket {
       }
 
       private java.lang.Object destination_ = "";
+
       /**
        * <code>string destination = 1;</code>
        */
@@ -5498,14 +6037,15 @@ public final class CanalPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <code>string destination = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getDestinationBytes() {
+      getDestinationBytes() {
         java.lang.Object ref = destination_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           destination_ = b;
@@ -5514,44 +6054,48 @@ public final class CanalPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <code>string destination = 1;</code>
        */
       public Builder setDestination(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         destination_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>string destination = 1;</code>
        */
       public Builder clearDestination() {
-        
+
         destination_ = getDefaultInstance().getDestination();
         onChanged();
         return this;
       }
+
       /**
        * <code>string destination = 1;</code>
        */
       public Builder setDestinationBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         destination_ = value;
         onChanged();
         return this;
       }
 
       private java.lang.Object clientId_ = "";
+
       /**
        * <code>string client_id = 2;</code>
        */
@@ -5567,14 +6111,15 @@ public final class CanalPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <code>string client_id = 2;</code>
        */
       public com.google.protobuf.ByteString
-          getClientIdBytes() {
+      getClientIdBytes() {
         java.lang.Object ref = clientId_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           clientId_ = b;
@@ -5583,68 +6128,75 @@ public final class CanalPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <code>string client_id = 2;</code>
        */
       public Builder setClientId(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         clientId_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>string client_id = 2;</code>
        */
       public Builder clearClientId() {
-        
+
         clientId_ = getDefaultInstance().getClientId();
         onChanged();
         return this;
       }
+
       /**
        * <code>string client_id = 2;</code>
        */
       public Builder setClientIdBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         clientId_ = value;
         onChanged();
         return this;
       }
 
-      private long batchId_ ;
+      private long batchId_;
+
       /**
        * <code>int64 batch_id = 3;</code>
        */
       public long getBatchId() {
         return batchId_;
       }
+
       /**
        * <code>int64 batch_id = 3;</code>
        */
       public Builder setBatchId(long value) {
-        
+
         batchId_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>int64 batch_id = 3;</code>
        */
       public Builder clearBatchId() {
-        
+
         batchId_ = 0L;
         onChanged();
         return this;
       }
+
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -5657,12 +6209,12 @@ public final class CanalPacket {
         return super.mergeUnknownFields(unknownFields);
       }
 
-
       // @@protoc_insertion_point(builder_scope:com.alibaba.otter.canal.protocol.ClientAck)
     }
 
     // @@protoc_insertion_point(class_scope:com.alibaba.otter.canal.protocol.ClientAck)
     private static final com.alibaba.otter.canal.protocol.CanalPacket.ClientAck DEFAULT_INSTANCE;
+
     static {
       DEFAULT_INSTANCE = new com.alibaba.otter.canal.protocol.CanalPacket.ClientAck();
     }
@@ -5706,32 +6258,36 @@ public final class CanalPacket {
      * <code>string destination = 1;</code>
      */
     java.lang.String getDestination();
+
     /**
      * <code>string destination = 1;</code>
      */
     com.google.protobuf.ByteString
-        getDestinationBytes();
+    getDestinationBytes();
 
     /**
      * <code>string client_id = 2;</code>
      */
     java.lang.String getClientId();
+
     /**
      * <code>string client_id = 2;</code>
      */
     com.google.protobuf.ByteString
-        getClientIdBytes();
+    getClientIdBytes();
 
     /**
      * <code>string filter = 7;</code>
      */
     java.lang.String getFilter();
+
     /**
      * <code>string filter = 7;</code>
      */
     com.google.protobuf.ByteString
-        getFilterBytes();
+    getFilterBytes();
   }
+
   /**
    * <pre>
    * subscription
@@ -5739,15 +6295,18 @@ public final class CanalPacket {
    *
    * Protobuf type {@code com.alibaba.otter.canal.protocol.Sub}
    */
-  public  static final class Sub extends
+  public static final class Sub extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:com.alibaba.otter.canal.protocol.Sub)
       SubOrBuilder {
-  private static final long serialVersionUID = 0L;
+
+    private static final long serialVersionUID = 0L;
+
     // Use Sub.newBuilder() to construct.
     private Sub(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private Sub() {
       destination_ = "";
       clientId_ = "";
@@ -5759,6 +6318,7 @@ public final class CanalPacket {
     getUnknownFields() {
       return this.unknownFields;
     }
+
     private Sub(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5815,21 +6375,24 @@ public final class CanalPacket {
         makeExtensionsImmutable();
       }
     }
+
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    getDescriptor() {
       return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Sub_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    internalGetFieldAccessorTable() {
       return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Sub_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.alibaba.otter.canal.protocol.CanalPacket.Sub.class, com.alibaba.otter.canal.protocol.CanalPacket.Sub.Builder.class);
+              com.alibaba.otter.canal.protocol.CanalPacket.Sub.class,
+              com.alibaba.otter.canal.protocol.CanalPacket.Sub.Builder.class);
     }
 
     public static final int DESTINATION_FIELD_NUMBER = 1;
     private volatile java.lang.Object destination_;
+
     /**
      * <code>string destination = 1;</code>
      */
@@ -5838,21 +6401,22 @@ public final class CanalPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         destination_ = s;
         return s;
       }
     }
+
     /**
      * <code>string destination = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getDestinationBytes() {
+    getDestinationBytes() {
       java.lang.Object ref = destination_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         destination_ = b;
@@ -5864,6 +6428,7 @@ public final class CanalPacket {
 
     public static final int CLIENT_ID_FIELD_NUMBER = 2;
     private volatile java.lang.Object clientId_;
+
     /**
      * <code>string client_id = 2;</code>
      */
@@ -5872,21 +6437,22 @@ public final class CanalPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         clientId_ = s;
         return s;
       }
     }
+
     /**
      * <code>string client_id = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getClientIdBytes() {
+    getClientIdBytes() {
       java.lang.Object ref = clientId_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         clientId_ = b;
@@ -5898,6 +6464,7 @@ public final class CanalPacket {
 
     public static final int FILTER_FIELD_NUMBER = 7;
     private volatile java.lang.Object filter_;
+
     /**
      * <code>string filter = 7;</code>
      */
@@ -5906,21 +6473,22 @@ public final class CanalPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         filter_ = s;
         return s;
       }
     }
+
     /**
      * <code>string filter = 7;</code>
      */
     public com.google.protobuf.ByteString
-        getFilterBytes() {
+    getFilterBytes() {
       java.lang.Object ref = filter_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         filter_ = b;
@@ -5931,11 +6499,16 @@ public final class CanalPacket {
     }
 
     private byte memoizedIsInitialized = -1;
+
     @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized == 1) {
+        return true;
+      }
+      if (isInitialized == 0) {
+        return false;
+      }
 
       memoizedIsInitialized = 1;
       return true;
@@ -5943,7 +6516,7 @@ public final class CanalPacket {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+        throws java.io.IOException {
       if (!getDestinationBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, destination_);
       }
@@ -5959,7 +6532,9 @@ public final class CanalPacket {
     @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
-      if (size != -1) return size;
+      if (size != -1) {
+        return size;
+      }
 
       size = 0;
       if (!getDestinationBytes().isEmpty()) {
@@ -5979,7 +6554,7 @@ public final class CanalPacket {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof com.alibaba.otter.canal.protocol.CanalPacket.Sub)) {
         return super.equals(obj);
@@ -6020,38 +6595,46 @@ public final class CanalPacket {
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Sub parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Sub parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Sub parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Sub parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Sub parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.CanalPacket.Sub parseFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.CanalPacket.Sub parseFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Sub parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -6059,11 +6642,14 @@ public final class CanalPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.CanalPacket.Sub parseDelimitedFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.CanalPacket.Sub parseDelimitedFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Sub parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -6071,12 +6657,14 @@ public final class CanalPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Sub parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Sub parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -6086,13 +6674,18 @@ public final class CanalPacket {
     }
 
     @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() {
+      return newBuilder();
+    }
+
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
+
     public static Builder newBuilder(com.alibaba.otter.canal.protocol.CanalPacket.Sub prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
@@ -6105,6 +6698,7 @@ public final class CanalPacket {
       Builder builder = new Builder(parent);
       return builder;
     }
+
     /**
      * <pre>
      * subscription
@@ -6116,17 +6710,19 @@ public final class CanalPacket {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.alibaba.otter.canal.protocol.Sub)
         com.alibaba.otter.canal.protocol.CanalPacket.SubOrBuilder {
+
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      getDescriptor() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Sub_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Sub_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.alibaba.otter.canal.protocol.CanalPacket.Sub.class, com.alibaba.otter.canal.protocol.CanalPacket.Sub.Builder.class);
+                com.alibaba.otter.canal.protocol.CanalPacket.Sub.class,
+                com.alibaba.otter.canal.protocol.CanalPacket.Sub.Builder.class);
       }
 
       // Construct using com.alibaba.otter.canal.protocol.CanalPacket.Sub.newBuilder()
@@ -6139,11 +6735,13 @@ public final class CanalPacket {
         super(parent);
         maybeForceBuilderInitialization();
       }
+
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+            .alwaysUseFieldBuilders) {
         }
       }
+
       @java.lang.Override
       public Builder clear() {
         super.clear();
@@ -6158,7 +6756,7 @@ public final class CanalPacket {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Sub_descriptor;
       }
 
@@ -6178,7 +6776,8 @@ public final class CanalPacket {
 
       @java.lang.Override
       public com.alibaba.otter.canal.protocol.CanalPacket.Sub buildPartial() {
-        com.alibaba.otter.canal.protocol.CanalPacket.Sub result = new com.alibaba.otter.canal.protocol.CanalPacket.Sub(this);
+        com.alibaba.otter.canal.protocol.CanalPacket.Sub result = new com.alibaba.otter.canal.protocol.CanalPacket.Sub(
+            this);
         result.destination_ = destination_;
         result.clientId_ = clientId_;
         result.filter_ = filter_;
@@ -6190,38 +6789,44 @@ public final class CanalPacket {
       public Builder clone() {
         return (Builder) super.clone();
       }
+
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
+
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
+
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
+
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
+
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.alibaba.otter.canal.protocol.CanalPacket.Sub) {
-          return mergeFrom((com.alibaba.otter.canal.protocol.CanalPacket.Sub)other);
+          return mergeFrom((com.alibaba.otter.canal.protocol.CanalPacket.Sub) other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -6229,7 +6834,9 @@ public final class CanalPacket {
       }
 
       public Builder mergeFrom(com.alibaba.otter.canal.protocol.CanalPacket.Sub other) {
-        if (other == com.alibaba.otter.canal.protocol.CanalPacket.Sub.getDefaultInstance()) return this;
+        if (other == com.alibaba.otter.canal.protocol.CanalPacket.Sub.getDefaultInstance()) {
+          return this;
+        }
         if (!other.getDestination().isEmpty()) {
           destination_ = other.destination_;
           onChanged();
@@ -6272,6 +6879,7 @@ public final class CanalPacket {
       }
 
       private java.lang.Object destination_ = "";
+
       /**
        * <code>string destination = 1;</code>
        */
@@ -6287,14 +6895,15 @@ public final class CanalPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <code>string destination = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getDestinationBytes() {
+      getDestinationBytes() {
         java.lang.Object ref = destination_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           destination_ = b;
@@ -6303,44 +6912,48 @@ public final class CanalPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <code>string destination = 1;</code>
        */
       public Builder setDestination(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         destination_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>string destination = 1;</code>
        */
       public Builder clearDestination() {
-        
+
         destination_ = getDefaultInstance().getDestination();
         onChanged();
         return this;
       }
+
       /**
        * <code>string destination = 1;</code>
        */
       public Builder setDestinationBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         destination_ = value;
         onChanged();
         return this;
       }
 
       private java.lang.Object clientId_ = "";
+
       /**
        * <code>string client_id = 2;</code>
        */
@@ -6356,14 +6969,15 @@ public final class CanalPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <code>string client_id = 2;</code>
        */
       public com.google.protobuf.ByteString
-          getClientIdBytes() {
+      getClientIdBytes() {
         java.lang.Object ref = clientId_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           clientId_ = b;
@@ -6372,44 +6986,48 @@ public final class CanalPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <code>string client_id = 2;</code>
        */
       public Builder setClientId(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         clientId_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>string client_id = 2;</code>
        */
       public Builder clearClientId() {
-        
+
         clientId_ = getDefaultInstance().getClientId();
         onChanged();
         return this;
       }
+
       /**
        * <code>string client_id = 2;</code>
        */
       public Builder setClientIdBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         clientId_ = value;
         onChanged();
         return this;
       }
 
       private java.lang.Object filter_ = "";
+
       /**
        * <code>string filter = 7;</code>
        */
@@ -6425,14 +7043,15 @@ public final class CanalPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <code>string filter = 7;</code>
        */
       public com.google.protobuf.ByteString
-          getFilterBytes() {
+      getFilterBytes() {
         java.lang.Object ref = filter_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           filter_ = b;
@@ -6441,42 +7060,46 @@ public final class CanalPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <code>string filter = 7;</code>
        */
       public Builder setFilter(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         filter_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>string filter = 7;</code>
        */
       public Builder clearFilter() {
-        
+
         filter_ = getDefaultInstance().getFilter();
         onChanged();
         return this;
       }
+
       /**
        * <code>string filter = 7;</code>
        */
       public Builder setFilterBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         filter_ = value;
         onChanged();
         return this;
       }
+
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -6489,12 +7112,12 @@ public final class CanalPacket {
         return super.mergeUnknownFields(unknownFields);
       }
 
-
       // @@protoc_insertion_point(builder_scope:com.alibaba.otter.canal.protocol.Sub)
     }
 
     // @@protoc_insertion_point(class_scope:com.alibaba.otter.canal.protocol.Sub)
     private static final com.alibaba.otter.canal.protocol.CanalPacket.Sub DEFAULT_INSTANCE;
+
     static {
       DEFAULT_INSTANCE = new com.alibaba.otter.canal.protocol.CanalPacket.Sub();
     }
@@ -6538,32 +7161,36 @@ public final class CanalPacket {
      * <code>string destination = 1;</code>
      */
     java.lang.String getDestination();
+
     /**
      * <code>string destination = 1;</code>
      */
     com.google.protobuf.ByteString
-        getDestinationBytes();
+    getDestinationBytes();
 
     /**
      * <code>string client_id = 2;</code>
      */
     java.lang.String getClientId();
+
     /**
      * <code>string client_id = 2;</code>
      */
     com.google.protobuf.ByteString
-        getClientIdBytes();
+    getClientIdBytes();
 
     /**
      * <code>string filter = 7;</code>
      */
     java.lang.String getFilter();
+
     /**
      * <code>string filter = 7;</code>
      */
     com.google.protobuf.ByteString
-        getFilterBytes();
+    getFilterBytes();
   }
+
   /**
    * <pre>
    * Unsubscription
@@ -6571,15 +7198,18 @@ public final class CanalPacket {
    *
    * Protobuf type {@code com.alibaba.otter.canal.protocol.Unsub}
    */
-  public  static final class Unsub extends
+  public static final class Unsub extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:com.alibaba.otter.canal.protocol.Unsub)
       UnsubOrBuilder {
-  private static final long serialVersionUID = 0L;
+
+    private static final long serialVersionUID = 0L;
+
     // Use Unsub.newBuilder() to construct.
     private Unsub(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private Unsub() {
       destination_ = "";
       clientId_ = "";
@@ -6591,6 +7221,7 @@ public final class CanalPacket {
     getUnknownFields() {
       return this.unknownFields;
     }
+
     private Unsub(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -6647,21 +7278,24 @@ public final class CanalPacket {
         makeExtensionsImmutable();
       }
     }
+
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    getDescriptor() {
       return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Unsub_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    internalGetFieldAccessorTable() {
       return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Unsub_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.alibaba.otter.canal.protocol.CanalPacket.Unsub.class, com.alibaba.otter.canal.protocol.CanalPacket.Unsub.Builder.class);
+              com.alibaba.otter.canal.protocol.CanalPacket.Unsub.class,
+              com.alibaba.otter.canal.protocol.CanalPacket.Unsub.Builder.class);
     }
 
     public static final int DESTINATION_FIELD_NUMBER = 1;
     private volatile java.lang.Object destination_;
+
     /**
      * <code>string destination = 1;</code>
      */
@@ -6670,21 +7304,22 @@ public final class CanalPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         destination_ = s;
         return s;
       }
     }
+
     /**
      * <code>string destination = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getDestinationBytes() {
+    getDestinationBytes() {
       java.lang.Object ref = destination_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         destination_ = b;
@@ -6696,6 +7331,7 @@ public final class CanalPacket {
 
     public static final int CLIENT_ID_FIELD_NUMBER = 2;
     private volatile java.lang.Object clientId_;
+
     /**
      * <code>string client_id = 2;</code>
      */
@@ -6704,21 +7340,22 @@ public final class CanalPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         clientId_ = s;
         return s;
       }
     }
+
     /**
      * <code>string client_id = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getClientIdBytes() {
+    getClientIdBytes() {
       java.lang.Object ref = clientId_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         clientId_ = b;
@@ -6730,6 +7367,7 @@ public final class CanalPacket {
 
     public static final int FILTER_FIELD_NUMBER = 7;
     private volatile java.lang.Object filter_;
+
     /**
      * <code>string filter = 7;</code>
      */
@@ -6738,21 +7376,22 @@ public final class CanalPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         filter_ = s;
         return s;
       }
     }
+
     /**
      * <code>string filter = 7;</code>
      */
     public com.google.protobuf.ByteString
-        getFilterBytes() {
+    getFilterBytes() {
       java.lang.Object ref = filter_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         filter_ = b;
@@ -6763,11 +7402,16 @@ public final class CanalPacket {
     }
 
     private byte memoizedIsInitialized = -1;
+
     @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized == 1) {
+        return true;
+      }
+      if (isInitialized == 0) {
+        return false;
+      }
 
       memoizedIsInitialized = 1;
       return true;
@@ -6775,7 +7419,7 @@ public final class CanalPacket {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+        throws java.io.IOException {
       if (!getDestinationBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, destination_);
       }
@@ -6791,7 +7435,9 @@ public final class CanalPacket {
     @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
-      if (size != -1) return size;
+      if (size != -1) {
+        return size;
+      }
 
       size = 0;
       if (!getDestinationBytes().isEmpty()) {
@@ -6811,7 +7457,7 @@ public final class CanalPacket {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof com.alibaba.otter.canal.protocol.CanalPacket.Unsub)) {
         return super.equals(obj);
@@ -6852,38 +7498,46 @@ public final class CanalPacket {
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Unsub parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Unsub parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Unsub parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Unsub parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Unsub parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.CanalPacket.Unsub parseFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.CanalPacket.Unsub parseFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Unsub parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -6891,11 +7545,14 @@ public final class CanalPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.CanalPacket.Unsub parseDelimitedFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.CanalPacket.Unsub parseDelimitedFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Unsub parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -6903,12 +7560,14 @@ public final class CanalPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Unsub parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Unsub parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -6918,13 +7577,18 @@ public final class CanalPacket {
     }
 
     @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() {
+      return newBuilder();
+    }
+
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
+
     public static Builder newBuilder(com.alibaba.otter.canal.protocol.CanalPacket.Unsub prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
@@ -6937,6 +7601,7 @@ public final class CanalPacket {
       Builder builder = new Builder(parent);
       return builder;
     }
+
     /**
      * <pre>
      * Unsubscription
@@ -6948,17 +7613,19 @@ public final class CanalPacket {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.alibaba.otter.canal.protocol.Unsub)
         com.alibaba.otter.canal.protocol.CanalPacket.UnsubOrBuilder {
+
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      getDescriptor() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Unsub_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Unsub_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.alibaba.otter.canal.protocol.CanalPacket.Unsub.class, com.alibaba.otter.canal.protocol.CanalPacket.Unsub.Builder.class);
+                com.alibaba.otter.canal.protocol.CanalPacket.Unsub.class,
+                com.alibaba.otter.canal.protocol.CanalPacket.Unsub.Builder.class);
       }
 
       // Construct using com.alibaba.otter.canal.protocol.CanalPacket.Unsub.newBuilder()
@@ -6971,11 +7638,13 @@ public final class CanalPacket {
         super(parent);
         maybeForceBuilderInitialization();
       }
+
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+            .alwaysUseFieldBuilders) {
         }
       }
+
       @java.lang.Override
       public Builder clear() {
         super.clear();
@@ -6990,7 +7659,7 @@ public final class CanalPacket {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Unsub_descriptor;
       }
 
@@ -7010,7 +7679,8 @@ public final class CanalPacket {
 
       @java.lang.Override
       public com.alibaba.otter.canal.protocol.CanalPacket.Unsub buildPartial() {
-        com.alibaba.otter.canal.protocol.CanalPacket.Unsub result = new com.alibaba.otter.canal.protocol.CanalPacket.Unsub(this);
+        com.alibaba.otter.canal.protocol.CanalPacket.Unsub result = new com.alibaba.otter.canal.protocol.CanalPacket.Unsub(
+            this);
         result.destination_ = destination_;
         result.clientId_ = clientId_;
         result.filter_ = filter_;
@@ -7022,38 +7692,44 @@ public final class CanalPacket {
       public Builder clone() {
         return (Builder) super.clone();
       }
+
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
+
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
+
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
+
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
+
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.alibaba.otter.canal.protocol.CanalPacket.Unsub) {
-          return mergeFrom((com.alibaba.otter.canal.protocol.CanalPacket.Unsub)other);
+          return mergeFrom((com.alibaba.otter.canal.protocol.CanalPacket.Unsub) other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -7061,7 +7737,9 @@ public final class CanalPacket {
       }
 
       public Builder mergeFrom(com.alibaba.otter.canal.protocol.CanalPacket.Unsub other) {
-        if (other == com.alibaba.otter.canal.protocol.CanalPacket.Unsub.getDefaultInstance()) return this;
+        if (other == com.alibaba.otter.canal.protocol.CanalPacket.Unsub.getDefaultInstance()) {
+          return this;
+        }
         if (!other.getDestination().isEmpty()) {
           destination_ = other.destination_;
           onChanged();
@@ -7104,6 +7782,7 @@ public final class CanalPacket {
       }
 
       private java.lang.Object destination_ = "";
+
       /**
        * <code>string destination = 1;</code>
        */
@@ -7119,14 +7798,15 @@ public final class CanalPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <code>string destination = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getDestinationBytes() {
+      getDestinationBytes() {
         java.lang.Object ref = destination_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           destination_ = b;
@@ -7135,44 +7815,48 @@ public final class CanalPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <code>string destination = 1;</code>
        */
       public Builder setDestination(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         destination_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>string destination = 1;</code>
        */
       public Builder clearDestination() {
-        
+
         destination_ = getDefaultInstance().getDestination();
         onChanged();
         return this;
       }
+
       /**
        * <code>string destination = 1;</code>
        */
       public Builder setDestinationBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         destination_ = value;
         onChanged();
         return this;
       }
 
       private java.lang.Object clientId_ = "";
+
       /**
        * <code>string client_id = 2;</code>
        */
@@ -7188,14 +7872,15 @@ public final class CanalPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <code>string client_id = 2;</code>
        */
       public com.google.protobuf.ByteString
-          getClientIdBytes() {
+      getClientIdBytes() {
         java.lang.Object ref = clientId_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           clientId_ = b;
@@ -7204,44 +7889,48 @@ public final class CanalPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <code>string client_id = 2;</code>
        */
       public Builder setClientId(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         clientId_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>string client_id = 2;</code>
        */
       public Builder clearClientId() {
-        
+
         clientId_ = getDefaultInstance().getClientId();
         onChanged();
         return this;
       }
+
       /**
        * <code>string client_id = 2;</code>
        */
       public Builder setClientIdBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         clientId_ = value;
         onChanged();
         return this;
       }
 
       private java.lang.Object filter_ = "";
+
       /**
        * <code>string filter = 7;</code>
        */
@@ -7257,14 +7946,15 @@ public final class CanalPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <code>string filter = 7;</code>
        */
       public com.google.protobuf.ByteString
-          getFilterBytes() {
+      getFilterBytes() {
         java.lang.Object ref = filter_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           filter_ = b;
@@ -7273,42 +7963,46 @@ public final class CanalPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <code>string filter = 7;</code>
        */
       public Builder setFilter(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         filter_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>string filter = 7;</code>
        */
       public Builder clearFilter() {
-        
+
         filter_ = getDefaultInstance().getFilter();
         onChanged();
         return this;
       }
+
       /**
        * <code>string filter = 7;</code>
        */
       public Builder setFilterBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         filter_ = value;
         onChanged();
         return this;
       }
+
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -7321,12 +8015,12 @@ public final class CanalPacket {
         return super.mergeUnknownFields(unknownFields);
       }
 
-
       // @@protoc_insertion_point(builder_scope:com.alibaba.otter.canal.protocol.Unsub)
     }
 
     // @@protoc_insertion_point(class_scope:com.alibaba.otter.canal.protocol.Unsub)
     private static final com.alibaba.otter.canal.protocol.CanalPacket.Unsub DEFAULT_INSTANCE;
+
     static {
       DEFAULT_INSTANCE = new com.alibaba.otter.canal.protocol.CanalPacket.Unsub();
     }
@@ -7370,21 +8064,23 @@ public final class CanalPacket {
      * <code>string destination = 1;</code>
      */
     java.lang.String getDestination();
+
     /**
      * <code>string destination = 1;</code>
      */
     com.google.protobuf.ByteString
-        getDestinationBytes();
+    getDestinationBytes();
 
     /**
      * <code>string client_id = 2;</code>
      */
     java.lang.String getClientId();
+
     /**
      * <code>string client_id = 2;</code>
      */
     com.google.protobuf.ByteString
-        getClientIdBytes();
+    getClientIdBytes();
 
     /**
      * <code>int32 fetch_size = 3;</code>
@@ -7424,6 +8120,7 @@ public final class CanalPacket {
 
     public com.alibaba.otter.canal.protocol.CanalPacket.Get.AutoAckPresentCase getAutoAckPresentCase();
   }
+
   /**
    * <pre>
    *  PullRequest
@@ -7431,15 +8128,18 @@ public final class CanalPacket {
    *
    * Protobuf type {@code com.alibaba.otter.canal.protocol.Get}
    */
-  public  static final class Get extends
+  public static final class Get extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:com.alibaba.otter.canal.protocol.Get)
       GetOrBuilder {
-  private static final long serialVersionUID = 0L;
+
+    private static final long serialVersionUID = 0L;
+
     // Use Get.newBuilder() to construct.
     private Get(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private Get() {
       destination_ = "";
       clientId_ = "";
@@ -7451,6 +8151,7 @@ public final class CanalPacket {
     getUnknownFields() {
       return this.unknownFields;
     }
+
     private Get(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -7521,29 +8222,34 @@ public final class CanalPacket {
         makeExtensionsImmutable();
       }
     }
+
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    getDescriptor() {
       return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Get_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    internalGetFieldAccessorTable() {
       return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Get_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.alibaba.otter.canal.protocol.CanalPacket.Get.class, com.alibaba.otter.canal.protocol.CanalPacket.Get.Builder.class);
+              com.alibaba.otter.canal.protocol.CanalPacket.Get.class,
+              com.alibaba.otter.canal.protocol.CanalPacket.Get.Builder.class);
     }
 
     private int timeoutPresentCase_ = 0;
     private java.lang.Object timeoutPresent_;
+
     public enum TimeoutPresentCase
         implements com.google.protobuf.Internal.EnumLite {
       TIMEOUT(4),
       TIMEOUTPRESENT_NOT_SET(0);
       private final int value;
+
       private TimeoutPresentCase(int value) {
         this.value = value;
       }
+
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
@@ -7554,15 +8260,21 @@ public final class CanalPacket {
 
       public static TimeoutPresentCase forNumber(int value) {
         switch (value) {
-          case 4: return TIMEOUT;
-          case 0: return TIMEOUTPRESENT_NOT_SET;
-          default: return null;
+          case 4:
+            return TIMEOUT;
+          case 0:
+            return TIMEOUTPRESENT_NOT_SET;
+          default:
+            return null;
         }
       }
+
       public int getNumber() {
         return this.value;
       }
-    };
+    }
+
+    ;
 
     public TimeoutPresentCase
     getTimeoutPresentCase() {
@@ -7572,14 +8284,17 @@ public final class CanalPacket {
 
     private int unitPresentCase_ = 0;
     private java.lang.Object unitPresent_;
+
     public enum UnitPresentCase
         implements com.google.protobuf.Internal.EnumLite {
       UNIT(5),
       UNITPRESENT_NOT_SET(0);
       private final int value;
+
       private UnitPresentCase(int value) {
         this.value = value;
       }
+
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
@@ -7590,15 +8305,21 @@ public final class CanalPacket {
 
       public static UnitPresentCase forNumber(int value) {
         switch (value) {
-          case 5: return UNIT;
-          case 0: return UNITPRESENT_NOT_SET;
-          default: return null;
+          case 5:
+            return UNIT;
+          case 0:
+            return UNITPRESENT_NOT_SET;
+          default:
+            return null;
         }
       }
+
       public int getNumber() {
         return this.value;
       }
-    };
+    }
+
+    ;
 
     public UnitPresentCase
     getUnitPresentCase() {
@@ -7608,14 +8329,17 @@ public final class CanalPacket {
 
     private int autoAckPresentCase_ = 0;
     private java.lang.Object autoAckPresent_;
+
     public enum AutoAckPresentCase
         implements com.google.protobuf.Internal.EnumLite {
       AUTO_ACK(6),
       AUTOACKPRESENT_NOT_SET(0);
       private final int value;
+
       private AutoAckPresentCase(int value) {
         this.value = value;
       }
+
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
@@ -7626,15 +8350,21 @@ public final class CanalPacket {
 
       public static AutoAckPresentCase forNumber(int value) {
         switch (value) {
-          case 6: return AUTO_ACK;
-          case 0: return AUTOACKPRESENT_NOT_SET;
-          default: return null;
+          case 6:
+            return AUTO_ACK;
+          case 0:
+            return AUTOACKPRESENT_NOT_SET;
+          default:
+            return null;
         }
       }
+
       public int getNumber() {
         return this.value;
       }
-    };
+    }
+
+    ;
 
     public AutoAckPresentCase
     getAutoAckPresentCase() {
@@ -7644,6 +8374,7 @@ public final class CanalPacket {
 
     public static final int DESTINATION_FIELD_NUMBER = 1;
     private volatile java.lang.Object destination_;
+
     /**
      * <code>string destination = 1;</code>
      */
@@ -7652,21 +8383,22 @@ public final class CanalPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         destination_ = s;
         return s;
       }
     }
+
     /**
      * <code>string destination = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getDestinationBytes() {
+    getDestinationBytes() {
       java.lang.Object ref = destination_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         destination_ = b;
@@ -7678,6 +8410,7 @@ public final class CanalPacket {
 
     public static final int CLIENT_ID_FIELD_NUMBER = 2;
     private volatile java.lang.Object clientId_;
+
     /**
      * <code>string client_id = 2;</code>
      */
@@ -7686,21 +8419,22 @@ public final class CanalPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         clientId_ = s;
         return s;
       }
     }
+
     /**
      * <code>string client_id = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getClientIdBytes() {
+    getClientIdBytes() {
       java.lang.Object ref = clientId_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         clientId_ = b;
@@ -7712,6 +8446,7 @@ public final class CanalPacket {
 
     public static final int FETCH_SIZE_FIELD_NUMBER = 3;
     private int fetchSize_;
+
     /**
      * <code>int32 fetch_size = 3;</code>
      */
@@ -7720,6 +8455,7 @@ public final class CanalPacket {
     }
 
     public static final int TIMEOUT_FIELD_NUMBER = 4;
+
     /**
      * <pre>
      * 默认-1时代表不控制
@@ -7735,6 +8471,7 @@ public final class CanalPacket {
     }
 
     public static final int UNIT_FIELD_NUMBER = 5;
+
     /**
      * <pre>
      * 数字类型，0:纳秒,1:毫秒,2:微秒,3:秒,4:分钟,5:小时,6:天
@@ -7750,6 +8487,7 @@ public final class CanalPacket {
     }
 
     public static final int AUTO_ACK_FIELD_NUMBER = 6;
+
     /**
      * <pre>
      * 是否自动ack
@@ -7765,11 +8503,16 @@ public final class CanalPacket {
     }
 
     private byte memoizedIsInitialized = -1;
+
     @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized == 1) {
+        return true;
+      }
+      if (isInitialized == 0) {
+        return false;
+      }
 
       memoizedIsInitialized = 1;
       return true;
@@ -7777,7 +8520,7 @@ public final class CanalPacket {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+        throws java.io.IOException {
       if (!getDestinationBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, destination_);
       }
@@ -7789,15 +8532,15 @@ public final class CanalPacket {
       }
       if (timeoutPresentCase_ == 4) {
         output.writeInt64(
-            4, (long)((java.lang.Long) timeoutPresent_));
+            4, (long) ((java.lang.Long) timeoutPresent_));
       }
       if (unitPresentCase_ == 5) {
         output.writeInt32(
-            5, (int)((java.lang.Integer) unitPresent_));
+            5, (int) ((java.lang.Integer) unitPresent_));
       }
       if (autoAckPresentCase_ == 6) {
         output.writeBool(
-            6, (boolean)((java.lang.Boolean) autoAckPresent_));
+            6, (boolean) ((java.lang.Boolean) autoAckPresent_));
       }
       unknownFields.writeTo(output);
     }
@@ -7805,7 +8548,9 @@ public final class CanalPacket {
     @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
-      if (size != -1) return size;
+      if (size != -1) {
+        return size;
+      }
 
       size = 0;
       if (!getDestinationBytes().isEmpty()) {
@@ -7816,22 +8561,22 @@ public final class CanalPacket {
       }
       if (fetchSize_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, fetchSize_);
+            .computeInt32Size(3, fetchSize_);
       }
       if (timeoutPresentCase_ == 4) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(
-              4, (long)((java.lang.Long) timeoutPresent_));
+            .computeInt64Size(
+                4, (long) ((java.lang.Long) timeoutPresent_));
       }
       if (unitPresentCase_ == 5) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(
-              5, (int)((java.lang.Integer) unitPresent_));
+            .computeInt32Size(
+                5, (int) ((java.lang.Integer) unitPresent_));
       }
       if (autoAckPresentCase_ == 6) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(
-              6, (boolean)((java.lang.Boolean) autoAckPresent_));
+            .computeBoolSize(
+                6, (boolean) ((java.lang.Boolean) autoAckPresent_));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -7841,7 +8586,7 @@ public final class CanalPacket {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof com.alibaba.otter.canal.protocol.CanalPacket.Get)) {
         return super.equals(obj);
@@ -7857,7 +8602,9 @@ public final class CanalPacket {
           == other.getFetchSize());
       result = result && getTimeoutPresentCase().equals(
           other.getTimeoutPresentCase());
-      if (!result) return false;
+      if (!result) {
+        return false;
+      }
       switch (timeoutPresentCase_) {
         case 4:
           result = result && (getTimeout()
@@ -7868,7 +8615,9 @@ public final class CanalPacket {
       }
       result = result && getUnitPresentCase().equals(
           other.getUnitPresentCase());
-      if (!result) return false;
+      if (!result) {
+        return false;
+      }
       switch (unitPresentCase_) {
         case 5:
           result = result && (getUnit()
@@ -7879,7 +8628,9 @@ public final class CanalPacket {
       }
       result = result && getAutoAckPresentCase().equals(
           other.getAutoAckPresentCase());
-      if (!result) return false;
+      if (!result) {
+        return false;
+      }
       switch (autoAckPresentCase_) {
         case 6:
           result = result && (getAutoAck()
@@ -7941,38 +8692,46 @@ public final class CanalPacket {
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Get parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Get parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Get parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Get parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Get parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.CanalPacket.Get parseFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.CanalPacket.Get parseFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Get parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -7980,11 +8739,14 @@ public final class CanalPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.CanalPacket.Get parseDelimitedFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.CanalPacket.Get parseDelimitedFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Get parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -7992,12 +8754,14 @@ public final class CanalPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Get parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Get parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -8007,13 +8771,18 @@ public final class CanalPacket {
     }
 
     @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() {
+      return newBuilder();
+    }
+
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
+
     public static Builder newBuilder(com.alibaba.otter.canal.protocol.CanalPacket.Get prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
@@ -8026,6 +8795,7 @@ public final class CanalPacket {
       Builder builder = new Builder(parent);
       return builder;
     }
+
     /**
      * <pre>
      *  PullRequest
@@ -8037,17 +8807,19 @@ public final class CanalPacket {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.alibaba.otter.canal.protocol.Get)
         com.alibaba.otter.canal.protocol.CanalPacket.GetOrBuilder {
+
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      getDescriptor() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Get_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Get_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.alibaba.otter.canal.protocol.CanalPacket.Get.class, com.alibaba.otter.canal.protocol.CanalPacket.Get.Builder.class);
+                com.alibaba.otter.canal.protocol.CanalPacket.Get.class,
+                com.alibaba.otter.canal.protocol.CanalPacket.Get.Builder.class);
       }
 
       // Construct using com.alibaba.otter.canal.protocol.CanalPacket.Get.newBuilder()
@@ -8060,11 +8832,13 @@ public final class CanalPacket {
         super(parent);
         maybeForceBuilderInitialization();
       }
+
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+            .alwaysUseFieldBuilders) {
         }
       }
+
       @java.lang.Override
       public Builder clear() {
         super.clear();
@@ -8085,7 +8859,7 @@ public final class CanalPacket {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Get_descriptor;
       }
 
@@ -8105,7 +8879,8 @@ public final class CanalPacket {
 
       @java.lang.Override
       public com.alibaba.otter.canal.protocol.CanalPacket.Get buildPartial() {
-        com.alibaba.otter.canal.protocol.CanalPacket.Get result = new com.alibaba.otter.canal.protocol.CanalPacket.Get(this);
+        com.alibaba.otter.canal.protocol.CanalPacket.Get result = new com.alibaba.otter.canal.protocol.CanalPacket.Get(
+            this);
         result.destination_ = destination_;
         result.clientId_ = clientId_;
         result.fetchSize_ = fetchSize_;
@@ -8129,38 +8904,44 @@ public final class CanalPacket {
       public Builder clone() {
         return (Builder) super.clone();
       }
+
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
+
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
+
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
+
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
+
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.alibaba.otter.canal.protocol.CanalPacket.Get) {
-          return mergeFrom((com.alibaba.otter.canal.protocol.CanalPacket.Get)other);
+          return mergeFrom((com.alibaba.otter.canal.protocol.CanalPacket.Get) other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -8168,7 +8949,9 @@ public final class CanalPacket {
       }
 
       public Builder mergeFrom(com.alibaba.otter.canal.protocol.CanalPacket.Get other) {
-        if (other == com.alibaba.otter.canal.protocol.CanalPacket.Get.getDefaultInstance()) return this;
+        if (other == com.alibaba.otter.canal.protocol.CanalPacket.Get.getDefaultInstance()) {
+          return this;
+        }
         if (!other.getDestination().isEmpty()) {
           destination_ = other.destination_;
           onChanged();
@@ -8235,10 +9018,12 @@ public final class CanalPacket {
         }
         return this;
       }
+
       private int timeoutPresentCase_ = 0;
       private java.lang.Object timeoutPresent_;
+
       public TimeoutPresentCase
-          getTimeoutPresentCase() {
+      getTimeoutPresentCase() {
         return TimeoutPresentCase.forNumber(
             timeoutPresentCase_);
       }
@@ -8252,8 +9037,9 @@ public final class CanalPacket {
 
       private int unitPresentCase_ = 0;
       private java.lang.Object unitPresent_;
+
       public UnitPresentCase
-          getUnitPresentCase() {
+      getUnitPresentCase() {
         return UnitPresentCase.forNumber(
             unitPresentCase_);
       }
@@ -8267,8 +9053,9 @@ public final class CanalPacket {
 
       private int autoAckPresentCase_ = 0;
       private java.lang.Object autoAckPresent_;
+
       public AutoAckPresentCase
-          getAutoAckPresentCase() {
+      getAutoAckPresentCase() {
         return AutoAckPresentCase.forNumber(
             autoAckPresentCase_);
       }
@@ -8282,6 +9069,7 @@ public final class CanalPacket {
 
 
       private java.lang.Object destination_ = "";
+
       /**
        * <code>string destination = 1;</code>
        */
@@ -8297,14 +9085,15 @@ public final class CanalPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <code>string destination = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getDestinationBytes() {
+      getDestinationBytes() {
         java.lang.Object ref = destination_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           destination_ = b;
@@ -8313,44 +9102,48 @@ public final class CanalPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <code>string destination = 1;</code>
        */
       public Builder setDestination(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         destination_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>string destination = 1;</code>
        */
       public Builder clearDestination() {
-        
+
         destination_ = getDefaultInstance().getDestination();
         onChanged();
         return this;
       }
+
       /**
        * <code>string destination = 1;</code>
        */
       public Builder setDestinationBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         destination_ = value;
         onChanged();
         return this;
       }
 
       private java.lang.Object clientId_ = "";
+
       /**
        * <code>string client_id = 2;</code>
        */
@@ -8366,14 +9159,15 @@ public final class CanalPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <code>string client_id = 2;</code>
        */
       public com.google.protobuf.ByteString
-          getClientIdBytes() {
+      getClientIdBytes() {
         java.lang.Object ref = clientId_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           clientId_ = b;
@@ -8382,64 +9176,70 @@ public final class CanalPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <code>string client_id = 2;</code>
        */
       public Builder setClientId(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         clientId_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>string client_id = 2;</code>
        */
       public Builder clearClientId() {
-        
+
         clientId_ = getDefaultInstance().getClientId();
         onChanged();
         return this;
       }
+
       /**
        * <code>string client_id = 2;</code>
        */
       public Builder setClientIdBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         clientId_ = value;
         onChanged();
         return this;
       }
 
-      private int fetchSize_ ;
+      private int fetchSize_;
+
       /**
        * <code>int32 fetch_size = 3;</code>
        */
       public int getFetchSize() {
         return fetchSize_;
       }
+
       /**
        * <code>int32 fetch_size = 3;</code>
        */
       public Builder setFetchSize(int value) {
-        
+
         fetchSize_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>int32 fetch_size = 3;</code>
        */
       public Builder clearFetchSize() {
-        
+
         fetchSize_ = 0;
         onChanged();
         return this;
@@ -8458,6 +9258,7 @@ public final class CanalPacket {
         }
         return 0L;
       }
+
       /**
        * <pre>
        * 默认-1时代表不控制
@@ -8471,6 +9272,7 @@ public final class CanalPacket {
         onChanged();
         return this;
       }
+
       /**
        * <pre>
        * 默认-1时代表不控制
@@ -8500,6 +9302,7 @@ public final class CanalPacket {
         }
         return 0;
       }
+
       /**
        * <pre>
        * 数字类型，0:纳秒,1:毫秒,2:微秒,3:秒,4:分钟,5:小时,6:天
@@ -8513,6 +9316,7 @@ public final class CanalPacket {
         onChanged();
         return this;
       }
+
       /**
        * <pre>
        * 数字类型，0:纳秒,1:毫秒,2:微秒,3:秒,4:分钟,5:小时,6:天
@@ -8542,6 +9346,7 @@ public final class CanalPacket {
         }
         return false;
       }
+
       /**
        * <pre>
        * 是否自动ack
@@ -8555,6 +9360,7 @@ public final class CanalPacket {
         onChanged();
         return this;
       }
+
       /**
        * <pre>
        * 是否自动ack
@@ -8570,6 +9376,7 @@ public final class CanalPacket {
         }
         return this;
       }
+
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -8582,12 +9389,12 @@ public final class CanalPacket {
         return super.mergeUnknownFields(unknownFields);
       }
 
-
       // @@protoc_insertion_point(builder_scope:com.alibaba.otter.canal.protocol.Get)
     }
 
     // @@protoc_insertion_point(class_scope:com.alibaba.otter.canal.protocol.Get)
     private static final com.alibaba.otter.canal.protocol.CanalPacket.Get DEFAULT_INSTANCE;
+
     static {
       DEFAULT_INSTANCE = new com.alibaba.otter.canal.protocol.CanalPacket.Get();
     }
@@ -8636,30 +9443,36 @@ public final class CanalPacket {
      * <code>repeated bytes messages = 2;</code>
      */
     java.util.List<com.google.protobuf.ByteString> getMessagesList();
+
     /**
      * <code>repeated bytes messages = 2;</code>
      */
     int getMessagesCount();
+
     /**
      * <code>repeated bytes messages = 2;</code>
      */
     com.google.protobuf.ByteString getMessages(int index);
   }
+
   /**
    * <pre>
    * </pre>
    *
    * Protobuf type {@code com.alibaba.otter.canal.protocol.Messages}
    */
-  public  static final class Messages extends
+  public static final class Messages extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:com.alibaba.otter.canal.protocol.Messages)
       MessagesOrBuilder {
-  private static final long serialVersionUID = 0L;
+
+    private static final long serialVersionUID = 0L;
+
     // Use Messages.newBuilder() to construct.
     private Messages(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private Messages() {
       batchId_ = 0L;
       messages_ = java.util.Collections.emptyList();
@@ -8670,6 +9483,7 @@ public final class CanalPacket {
     getUnknownFields() {
       return this.unknownFields;
     }
+
     private Messages(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -8724,22 +9538,25 @@ public final class CanalPacket {
         makeExtensionsImmutable();
       }
     }
+
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    getDescriptor() {
       return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Messages_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    internalGetFieldAccessorTable() {
       return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Messages_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.alibaba.otter.canal.protocol.CanalPacket.Messages.class, com.alibaba.otter.canal.protocol.CanalPacket.Messages.Builder.class);
+              com.alibaba.otter.canal.protocol.CanalPacket.Messages.class,
+              com.alibaba.otter.canal.protocol.CanalPacket.Messages.Builder.class);
     }
 
     private int bitField0_;
     public static final int BATCH_ID_FIELD_NUMBER = 1;
     private long batchId_;
+
     /**
      * <code>int64 batch_id = 1;</code>
      */
@@ -8749,19 +9566,22 @@ public final class CanalPacket {
 
     public static final int MESSAGES_FIELD_NUMBER = 2;
     private java.util.List<com.google.protobuf.ByteString> messages_;
+
     /**
      * <code>repeated bytes messages = 2;</code>
      */
     public java.util.List<com.google.protobuf.ByteString>
-        getMessagesList() {
+    getMessagesList() {
       return messages_;
     }
+
     /**
      * <code>repeated bytes messages = 2;</code>
      */
     public int getMessagesCount() {
       return messages_.size();
     }
+
     /**
      * <code>repeated bytes messages = 2;</code>
      */
@@ -8770,11 +9590,16 @@ public final class CanalPacket {
     }
 
     private byte memoizedIsInitialized = -1;
+
     @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized == 1) {
+        return true;
+      }
+      if (isInitialized == 0) {
+        return false;
+      }
 
       memoizedIsInitialized = 1;
       return true;
@@ -8782,7 +9607,7 @@ public final class CanalPacket {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+        throws java.io.IOException {
       if (batchId_ != 0L) {
         output.writeInt64(1, batchId_);
       }
@@ -8795,18 +9620,20 @@ public final class CanalPacket {
     @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
-      if (size != -1) return size;
+      if (size != -1) {
+        return size;
+      }
 
       size = 0;
       if (batchId_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, batchId_);
+            .computeInt64Size(1, batchId_);
       }
       {
         int dataSize = 0;
         for (int i = 0; i < messages_.size(); i++) {
           dataSize += com.google.protobuf.CodedOutputStream
-            .computeBytesSizeNoTag(messages_.get(i));
+              .computeBytesSizeNoTag(messages_.get(i));
         }
         size += dataSize;
         size += 1 * getMessagesList().size();
@@ -8819,7 +9646,7 @@ public final class CanalPacket {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof com.alibaba.otter.canal.protocol.CanalPacket.Messages)) {
         return super.equals(obj);
@@ -8859,38 +9686,46 @@ public final class CanalPacket {
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Messages parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Messages parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Messages parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Messages parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Messages parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.CanalPacket.Messages parseFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.CanalPacket.Messages parseFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Messages parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -8898,11 +9733,14 @@ public final class CanalPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.CanalPacket.Messages parseDelimitedFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.CanalPacket.Messages parseDelimitedFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Messages parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -8910,12 +9748,14 @@ public final class CanalPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Messages parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Messages parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -8925,13 +9765,19 @@ public final class CanalPacket {
     }
 
     @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() {
+      return newBuilder();
+    }
+
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.alibaba.otter.canal.protocol.CanalPacket.Messages prototype) {
+
+    public static Builder newBuilder(
+        com.alibaba.otter.canal.protocol.CanalPacket.Messages prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
@@ -8944,6 +9790,7 @@ public final class CanalPacket {
       Builder builder = new Builder(parent);
       return builder;
     }
+
     /**
      * <pre>
      * </pre>
@@ -8954,17 +9801,19 @@ public final class CanalPacket {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.alibaba.otter.canal.protocol.Messages)
         com.alibaba.otter.canal.protocol.CanalPacket.MessagesOrBuilder {
+
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      getDescriptor() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Messages_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Messages_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.alibaba.otter.canal.protocol.CanalPacket.Messages.class, com.alibaba.otter.canal.protocol.CanalPacket.Messages.Builder.class);
+                com.alibaba.otter.canal.protocol.CanalPacket.Messages.class,
+                com.alibaba.otter.canal.protocol.CanalPacket.Messages.Builder.class);
       }
 
       // Construct using com.alibaba.otter.canal.protocol.CanalPacket.Messages.newBuilder()
@@ -8977,11 +9826,13 @@ public final class CanalPacket {
         super(parent);
         maybeForceBuilderInitialization();
       }
+
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+            .alwaysUseFieldBuilders) {
         }
       }
+
       @java.lang.Override
       public Builder clear() {
         super.clear();
@@ -8994,7 +9845,7 @@ public final class CanalPacket {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Messages_descriptor;
       }
 
@@ -9014,7 +9865,8 @@ public final class CanalPacket {
 
       @java.lang.Override
       public com.alibaba.otter.canal.protocol.CanalPacket.Messages buildPartial() {
-        com.alibaba.otter.canal.protocol.CanalPacket.Messages result = new com.alibaba.otter.canal.protocol.CanalPacket.Messages(this);
+        com.alibaba.otter.canal.protocol.CanalPacket.Messages result = new com.alibaba.otter.canal.protocol.CanalPacket.Messages(
+            this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         result.batchId_ = batchId_;
@@ -9032,38 +9884,44 @@ public final class CanalPacket {
       public Builder clone() {
         return (Builder) super.clone();
       }
+
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
+
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
+
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
+
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
+
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.alibaba.otter.canal.protocol.CanalPacket.Messages) {
-          return mergeFrom((com.alibaba.otter.canal.protocol.CanalPacket.Messages)other);
+          return mergeFrom((com.alibaba.otter.canal.protocol.CanalPacket.Messages) other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -9071,7 +9929,9 @@ public final class CanalPacket {
       }
 
       public Builder mergeFrom(com.alibaba.otter.canal.protocol.CanalPacket.Messages other) {
-        if (other == com.alibaba.otter.canal.protocol.CanalPacket.Messages.getDefaultInstance()) return this;
+        if (other == com.alibaba.otter.canal.protocol.CanalPacket.Messages.getDefaultInstance()) {
+          return this;
+        }
         if (other.getBatchId() != 0L) {
           setBatchId(other.getBatchId());
         }
@@ -9113,85 +9973,96 @@ public final class CanalPacket {
         }
         return this;
       }
+
       private int bitField0_;
 
-      private long batchId_ ;
+      private long batchId_;
+
       /**
        * <code>int64 batch_id = 1;</code>
        */
       public long getBatchId() {
         return batchId_;
       }
+
       /**
        * <code>int64 batch_id = 1;</code>
        */
       public Builder setBatchId(long value) {
-        
+
         batchId_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>int64 batch_id = 1;</code>
        */
       public Builder clearBatchId() {
-        
+
         batchId_ = 0L;
         onChanged();
         return this;
       }
 
       private java.util.List<com.google.protobuf.ByteString> messages_ = java.util.Collections.emptyList();
+
       private void ensureMessagesIsMutable() {
         if (!((bitField0_ & 0x00000002) == 0x00000002)) {
           messages_ = new java.util.ArrayList<com.google.protobuf.ByteString>(messages_);
           bitField0_ |= 0x00000002;
-         }
+        }
       }
+
       /**
        * <code>repeated bytes messages = 2;</code>
        */
       public java.util.List<com.google.protobuf.ByteString>
-          getMessagesList() {
+      getMessagesList() {
         return java.util.Collections.unmodifiableList(messages_);
       }
+
       /**
        * <code>repeated bytes messages = 2;</code>
        */
       public int getMessagesCount() {
         return messages_.size();
       }
+
       /**
        * <code>repeated bytes messages = 2;</code>
        */
       public com.google.protobuf.ByteString getMessages(int index) {
         return messages_.get(index);
       }
+
       /**
        * <code>repeated bytes messages = 2;</code>
        */
       public Builder setMessages(
           int index, com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureMessagesIsMutable();
+          throw new NullPointerException();
+        }
+        ensureMessagesIsMutable();
         messages_.set(index, value);
         onChanged();
         return this;
       }
+
       /**
        * <code>repeated bytes messages = 2;</code>
        */
       public Builder addMessages(com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureMessagesIsMutable();
+          throw new NullPointerException();
+        }
+        ensureMessagesIsMutable();
         messages_.add(value);
         onChanged();
         return this;
       }
+
       /**
        * <code>repeated bytes messages = 2;</code>
        */
@@ -9203,6 +10074,7 @@ public final class CanalPacket {
         onChanged();
         return this;
       }
+
       /**
        * <code>repeated bytes messages = 2;</code>
        */
@@ -9212,6 +10084,7 @@ public final class CanalPacket {
         onChanged();
         return this;
       }
+
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -9224,12 +10097,12 @@ public final class CanalPacket {
         return super.mergeUnknownFields(unknownFields);
       }
 
-
       // @@protoc_insertion_point(builder_scope:com.alibaba.otter.canal.protocol.Messages)
     }
 
     // @@protoc_insertion_point(class_scope:com.alibaba.otter.canal.protocol.Messages)
     private static final com.alibaba.otter.canal.protocol.CanalPacket.Messages DEFAULT_INSTANCE;
+
     static {
       DEFAULT_INSTANCE = new com.alibaba.otter.canal.protocol.CanalPacket.Messages();
     }
@@ -9273,11 +10146,12 @@ public final class CanalPacket {
      * <code>string journal = 1;</code>
      */
     java.lang.String getJournal();
+
     /**
      * <code>string journal = 1;</code>
      */
     com.google.protobuf.ByteString
-        getJournalBytes();
+    getJournalBytes();
 
     /**
      * <code>int64 position = 2;</code>
@@ -9291,6 +10165,7 @@ public final class CanalPacket {
 
     public com.alibaba.otter.canal.protocol.CanalPacket.Dump.TimestampPresentCase getTimestampPresentCase();
   }
+
   /**
    * <pre>
    * TBD when new packets are required
@@ -9298,15 +10173,18 @@ public final class CanalPacket {
    *
    * Protobuf type {@code com.alibaba.otter.canal.protocol.Dump}
    */
-  public  static final class Dump extends
+  public static final class Dump extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:com.alibaba.otter.canal.protocol.Dump)
       DumpOrBuilder {
-  private static final long serialVersionUID = 0L;
+
+    private static final long serialVersionUID = 0L;
+
     // Use Dump.newBuilder() to construct.
     private Dump(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private Dump() {
       journal_ = "";
       position_ = 0L;
@@ -9317,6 +10195,7 @@ public final class CanalPacket {
     getUnknownFields() {
       return this.unknownFields;
     }
+
     private Dump(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -9371,29 +10250,34 @@ public final class CanalPacket {
         makeExtensionsImmutable();
       }
     }
+
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    getDescriptor() {
       return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Dump_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    internalGetFieldAccessorTable() {
       return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Dump_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.alibaba.otter.canal.protocol.CanalPacket.Dump.class, com.alibaba.otter.canal.protocol.CanalPacket.Dump.Builder.class);
+              com.alibaba.otter.canal.protocol.CanalPacket.Dump.class,
+              com.alibaba.otter.canal.protocol.CanalPacket.Dump.Builder.class);
     }
 
     private int timestampPresentCase_ = 0;
     private java.lang.Object timestampPresent_;
+
     public enum TimestampPresentCase
         implements com.google.protobuf.Internal.EnumLite {
       TIMESTAMP(3),
       TIMESTAMPPRESENT_NOT_SET(0);
       private final int value;
+
       private TimestampPresentCase(int value) {
         this.value = value;
       }
+
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
@@ -9404,15 +10288,21 @@ public final class CanalPacket {
 
       public static TimestampPresentCase forNumber(int value) {
         switch (value) {
-          case 3: return TIMESTAMP;
-          case 0: return TIMESTAMPPRESENT_NOT_SET;
-          default: return null;
+          case 3:
+            return TIMESTAMP;
+          case 0:
+            return TIMESTAMPPRESENT_NOT_SET;
+          default:
+            return null;
         }
       }
+
       public int getNumber() {
         return this.value;
       }
-    };
+    }
+
+    ;
 
     public TimestampPresentCase
     getTimestampPresentCase() {
@@ -9422,6 +10312,7 @@ public final class CanalPacket {
 
     public static final int JOURNAL_FIELD_NUMBER = 1;
     private volatile java.lang.Object journal_;
+
     /**
      * <code>string journal = 1;</code>
      */
@@ -9430,21 +10321,22 @@ public final class CanalPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         journal_ = s;
         return s;
       }
     }
+
     /**
      * <code>string journal = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getJournalBytes() {
+    getJournalBytes() {
       java.lang.Object ref = journal_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         journal_ = b;
@@ -9456,6 +10348,7 @@ public final class CanalPacket {
 
     public static final int POSITION_FIELD_NUMBER = 2;
     private long position_;
+
     /**
      * <code>int64 position = 2;</code>
      */
@@ -9464,6 +10357,7 @@ public final class CanalPacket {
     }
 
     public static final int TIMESTAMP_FIELD_NUMBER = 3;
+
     /**
      * <code>int64 timestamp = 3;</code>
      */
@@ -9475,11 +10369,16 @@ public final class CanalPacket {
     }
 
     private byte memoizedIsInitialized = -1;
+
     @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized == 1) {
+        return true;
+      }
+      if (isInitialized == 0) {
+        return false;
+      }
 
       memoizedIsInitialized = 1;
       return true;
@@ -9487,7 +10386,7 @@ public final class CanalPacket {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+        throws java.io.IOException {
       if (!getJournalBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, journal_);
       }
@@ -9496,7 +10395,7 @@ public final class CanalPacket {
       }
       if (timestampPresentCase_ == 3) {
         output.writeInt64(
-            3, (long)((java.lang.Long) timestampPresent_));
+            3, (long) ((java.lang.Long) timestampPresent_));
       }
       unknownFields.writeTo(output);
     }
@@ -9504,7 +10403,9 @@ public final class CanalPacket {
     @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
-      if (size != -1) return size;
+      if (size != -1) {
+        return size;
+      }
 
       size = 0;
       if (!getJournalBytes().isEmpty()) {
@@ -9512,12 +10413,12 @@ public final class CanalPacket {
       }
       if (position_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(2, position_);
+            .computeInt64Size(2, position_);
       }
       if (timestampPresentCase_ == 3) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(
-              3, (long)((java.lang.Long) timestampPresent_));
+            .computeInt64Size(
+                3, (long) ((java.lang.Long) timestampPresent_));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -9527,7 +10428,7 @@ public final class CanalPacket {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof com.alibaba.otter.canal.protocol.CanalPacket.Dump)) {
         return super.equals(obj);
@@ -9541,7 +10442,9 @@ public final class CanalPacket {
           == other.getPosition());
       result = result && getTimestampPresentCase().equals(
           other.getTimestampPresentCase());
-      if (!result) return false;
+      if (!result) {
+        return false;
+      }
       switch (timestampPresentCase_) {
         case 3:
           result = result && (getTimestamp()
@@ -9585,38 +10488,46 @@ public final class CanalPacket {
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Dump parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Dump parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Dump parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Dump parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Dump parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.CanalPacket.Dump parseFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.CanalPacket.Dump parseFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Dump parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -9624,11 +10535,14 @@ public final class CanalPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.CanalPacket.Dump parseDelimitedFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.CanalPacket.Dump parseDelimitedFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Dump parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -9636,12 +10550,14 @@ public final class CanalPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Dump parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.Dump parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -9651,13 +10567,18 @@ public final class CanalPacket {
     }
 
     @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() {
+      return newBuilder();
+    }
+
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
+
     public static Builder newBuilder(com.alibaba.otter.canal.protocol.CanalPacket.Dump prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
@@ -9670,6 +10591,7 @@ public final class CanalPacket {
       Builder builder = new Builder(parent);
       return builder;
     }
+
     /**
      * <pre>
      * TBD when new packets are required
@@ -9681,17 +10603,19 @@ public final class CanalPacket {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.alibaba.otter.canal.protocol.Dump)
         com.alibaba.otter.canal.protocol.CanalPacket.DumpOrBuilder {
+
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      getDescriptor() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Dump_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Dump_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.alibaba.otter.canal.protocol.CanalPacket.Dump.class, com.alibaba.otter.canal.protocol.CanalPacket.Dump.Builder.class);
+                com.alibaba.otter.canal.protocol.CanalPacket.Dump.class,
+                com.alibaba.otter.canal.protocol.CanalPacket.Dump.Builder.class);
       }
 
       // Construct using com.alibaba.otter.canal.protocol.CanalPacket.Dump.newBuilder()
@@ -9704,11 +10628,13 @@ public final class CanalPacket {
         super(parent);
         maybeForceBuilderInitialization();
       }
+
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+            .alwaysUseFieldBuilders) {
         }
       }
+
       @java.lang.Override
       public Builder clear() {
         super.clear();
@@ -9723,7 +10649,7 @@ public final class CanalPacket {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_Dump_descriptor;
       }
 
@@ -9743,7 +10669,8 @@ public final class CanalPacket {
 
       @java.lang.Override
       public com.alibaba.otter.canal.protocol.CanalPacket.Dump buildPartial() {
-        com.alibaba.otter.canal.protocol.CanalPacket.Dump result = new com.alibaba.otter.canal.protocol.CanalPacket.Dump(this);
+        com.alibaba.otter.canal.protocol.CanalPacket.Dump result = new com.alibaba.otter.canal.protocol.CanalPacket.Dump(
+            this);
         result.journal_ = journal_;
         result.position_ = position_;
         if (timestampPresentCase_ == 3) {
@@ -9758,38 +10685,44 @@ public final class CanalPacket {
       public Builder clone() {
         return (Builder) super.clone();
       }
+
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
+
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
+
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
+
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
+
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.alibaba.otter.canal.protocol.CanalPacket.Dump) {
-          return mergeFrom((com.alibaba.otter.canal.protocol.CanalPacket.Dump)other);
+          return mergeFrom((com.alibaba.otter.canal.protocol.CanalPacket.Dump) other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -9797,7 +10730,9 @@ public final class CanalPacket {
       }
 
       public Builder mergeFrom(com.alibaba.otter.canal.protocol.CanalPacket.Dump other) {
-        if (other == com.alibaba.otter.canal.protocol.CanalPacket.Dump.getDefaultInstance()) return this;
+        if (other == com.alibaba.otter.canal.protocol.CanalPacket.Dump.getDefaultInstance()) {
+          return this;
+        }
         if (!other.getJournal().isEmpty()) {
           journal_ = other.journal_;
           onChanged();
@@ -9842,10 +10777,12 @@ public final class CanalPacket {
         }
         return this;
       }
+
       private int timestampPresentCase_ = 0;
       private java.lang.Object timestampPresent_;
+
       public TimestampPresentCase
-          getTimestampPresentCase() {
+      getTimestampPresentCase() {
         return TimestampPresentCase.forNumber(
             timestampPresentCase_);
       }
@@ -9859,6 +10796,7 @@ public final class CanalPacket {
 
 
       private java.lang.Object journal_ = "";
+
       /**
        * <code>string journal = 1;</code>
        */
@@ -9874,14 +10812,15 @@ public final class CanalPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <code>string journal = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getJournalBytes() {
+      getJournalBytes() {
         java.lang.Object ref = journal_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           journal_ = b;
@@ -9890,64 +10829,70 @@ public final class CanalPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <code>string journal = 1;</code>
        */
       public Builder setJournal(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         journal_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>string journal = 1;</code>
        */
       public Builder clearJournal() {
-        
+
         journal_ = getDefaultInstance().getJournal();
         onChanged();
         return this;
       }
+
       /**
        * <code>string journal = 1;</code>
        */
       public Builder setJournalBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         journal_ = value;
         onChanged();
         return this;
       }
 
-      private long position_ ;
+      private long position_;
+
       /**
        * <code>int64 position = 2;</code>
        */
       public long getPosition() {
         return position_;
       }
+
       /**
        * <code>int64 position = 2;</code>
        */
       public Builder setPosition(long value) {
-        
+
         position_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>int64 position = 2;</code>
        */
       public Builder clearPosition() {
-        
+
         position_ = 0L;
         onChanged();
         return this;
@@ -9962,6 +10907,7 @@ public final class CanalPacket {
         }
         return 0L;
       }
+
       /**
        * <code>int64 timestamp = 3;</code>
        */
@@ -9971,6 +10917,7 @@ public final class CanalPacket {
         onChanged();
         return this;
       }
+
       /**
        * <code>int64 timestamp = 3;</code>
        */
@@ -9982,6 +10929,7 @@ public final class CanalPacket {
         }
         return this;
       }
+
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -9994,12 +10942,12 @@ public final class CanalPacket {
         return super.mergeUnknownFields(unknownFields);
       }
 
-
       // @@protoc_insertion_point(builder_scope:com.alibaba.otter.canal.protocol.Dump)
     }
 
     // @@protoc_insertion_point(class_scope:com.alibaba.otter.canal.protocol.Dump)
     private static final com.alibaba.otter.canal.protocol.CanalPacket.Dump DEFAULT_INSTANCE;
+
     static {
       DEFAULT_INSTANCE = new com.alibaba.otter.canal.protocol.CanalPacket.Dump();
     }
@@ -10043,39 +10991,45 @@ public final class CanalPacket {
      * <code>string destination = 1;</code>
      */
     java.lang.String getDestination();
+
     /**
      * <code>string destination = 1;</code>
      */
     com.google.protobuf.ByteString
-        getDestinationBytes();
+    getDestinationBytes();
 
     /**
      * <code>string client_id = 2;</code>
      */
     java.lang.String getClientId();
+
     /**
      * <code>string client_id = 2;</code>
      */
     com.google.protobuf.ByteString
-        getClientIdBytes();
+    getClientIdBytes();
 
     /**
      * <code>int64 batch_id = 3;</code>
      */
     long getBatchId();
   }
+
   /**
    * Protobuf type {@code com.alibaba.otter.canal.protocol.ClientRollback}
    */
-  public  static final class ClientRollback extends
+  public static final class ClientRollback extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:com.alibaba.otter.canal.protocol.ClientRollback)
       ClientRollbackOrBuilder {
-  private static final long serialVersionUID = 0L;
+
+    private static final long serialVersionUID = 0L;
+
     // Use ClientRollback.newBuilder() to construct.
     private ClientRollback(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
+
     private ClientRollback() {
       destination_ = "";
       clientId_ = "";
@@ -10087,6 +11041,7 @@ public final class CanalPacket {
     getUnknownFields() {
       return this.unknownFields;
     }
+
     private ClientRollback(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -10142,21 +11097,24 @@ public final class CanalPacket {
         makeExtensionsImmutable();
       }
     }
+
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    getDescriptor() {
       return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_ClientRollback_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    internalGetFieldAccessorTable() {
       return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_ClientRollback_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback.class, com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback.Builder.class);
+              com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback.class,
+              com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback.Builder.class);
     }
 
     public static final int DESTINATION_FIELD_NUMBER = 1;
     private volatile java.lang.Object destination_;
+
     /**
      * <code>string destination = 1;</code>
      */
@@ -10165,21 +11123,22 @@ public final class CanalPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         destination_ = s;
         return s;
       }
     }
+
     /**
      * <code>string destination = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getDestinationBytes() {
+    getDestinationBytes() {
       java.lang.Object ref = destination_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         destination_ = b;
@@ -10191,6 +11150,7 @@ public final class CanalPacket {
 
     public static final int CLIENT_ID_FIELD_NUMBER = 2;
     private volatile java.lang.Object clientId_;
+
     /**
      * <code>string client_id = 2;</code>
      */
@@ -10199,21 +11159,22 @@ public final class CanalPacket {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         clientId_ = s;
         return s;
       }
     }
+
     /**
      * <code>string client_id = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getClientIdBytes() {
+    getClientIdBytes() {
       java.lang.Object ref = clientId_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         clientId_ = b;
@@ -10225,6 +11186,7 @@ public final class CanalPacket {
 
     public static final int BATCH_ID_FIELD_NUMBER = 3;
     private long batchId_;
+
     /**
      * <code>int64 batch_id = 3;</code>
      */
@@ -10233,11 +11195,16 @@ public final class CanalPacket {
     }
 
     private byte memoizedIsInitialized = -1;
+
     @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized == 1) {
+        return true;
+      }
+      if (isInitialized == 0) {
+        return false;
+      }
 
       memoizedIsInitialized = 1;
       return true;
@@ -10245,7 +11212,7 @@ public final class CanalPacket {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+        throws java.io.IOException {
       if (!getDestinationBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, destination_);
       }
@@ -10261,7 +11228,9 @@ public final class CanalPacket {
     @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
-      if (size != -1) return size;
+      if (size != -1) {
+        return size;
+      }
 
       size = 0;
       if (!getDestinationBytes().isEmpty()) {
@@ -10272,7 +11241,7 @@ public final class CanalPacket {
       }
       if (batchId_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(3, batchId_);
+            .computeInt64Size(3, batchId_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -10282,7 +11251,7 @@ public final class CanalPacket {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback)) {
         return super.equals(obj);
@@ -10324,38 +11293,46 @@ public final class CanalPacket {
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback parseFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback parseFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -10363,11 +11340,14 @@ public final class CanalPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback parseDelimitedFrom(java.io.InputStream input)
+
+    public static com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback parseDelimitedFrom(
+        java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -10375,12 +11355,14 @@ public final class CanalPacket {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
+
     public static com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -10390,13 +11372,19 @@ public final class CanalPacket {
     }
 
     @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
+    public Builder newBuilderForType() {
+      return newBuilder();
+    }
+
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback prototype) {
+
+    public static Builder newBuilder(
+        com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
+
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
@@ -10409,6 +11397,7 @@ public final class CanalPacket {
       Builder builder = new Builder(parent);
       return builder;
     }
+
     /**
      * Protobuf type {@code com.alibaba.otter.canal.protocol.ClientRollback}
      */
@@ -10416,17 +11405,19 @@ public final class CanalPacket {
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.alibaba.otter.canal.protocol.ClientRollback)
         com.alibaba.otter.canal.protocol.CanalPacket.ClientRollbackOrBuilder {
+
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      getDescriptor() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_ClientRollback_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_ClientRollback_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback.class, com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback.Builder.class);
+                com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback.class,
+                com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback.Builder.class);
       }
 
       // Construct using com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback.newBuilder()
@@ -10439,11 +11430,13 @@ public final class CanalPacket {
         super(parent);
         maybeForceBuilderInitialization();
       }
+
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+            .alwaysUseFieldBuilders) {
         }
       }
+
       @java.lang.Override
       public Builder clear() {
         super.clear();
@@ -10458,7 +11451,7 @@ public final class CanalPacket {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return com.alibaba.otter.canal.protocol.CanalPacket.internal_static_com_alibaba_otter_canal_protocol_ClientRollback_descriptor;
       }
 
@@ -10478,7 +11471,8 @@ public final class CanalPacket {
 
       @java.lang.Override
       public com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback buildPartial() {
-        com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback result = new com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback(this);
+        com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback result = new com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback(
+            this);
         result.destination_ = destination_;
         result.clientId_ = clientId_;
         result.batchId_ = batchId_;
@@ -10490,38 +11484,44 @@ public final class CanalPacket {
       public Builder clone() {
         return (Builder) super.clone();
       }
+
       @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
+
       @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
+
       @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
+
       @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
+
       @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
           java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
+
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback) {
-          return mergeFrom((com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback)other);
+          return mergeFrom((com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback) other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -10529,7 +11529,10 @@ public final class CanalPacket {
       }
 
       public Builder mergeFrom(com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback other) {
-        if (other == com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback.getDefaultInstance()) return this;
+        if (other
+            == com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback.getDefaultInstance()) {
+          return this;
+        }
         if (!other.getDestination().isEmpty()) {
           destination_ = other.destination_;
           onChanged();
@@ -10571,6 +11574,7 @@ public final class CanalPacket {
       }
 
       private java.lang.Object destination_ = "";
+
       /**
        * <code>string destination = 1;</code>
        */
@@ -10586,14 +11590,15 @@ public final class CanalPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <code>string destination = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getDestinationBytes() {
+      getDestinationBytes() {
         java.lang.Object ref = destination_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           destination_ = b;
@@ -10602,44 +11607,48 @@ public final class CanalPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <code>string destination = 1;</code>
        */
       public Builder setDestination(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         destination_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>string destination = 1;</code>
        */
       public Builder clearDestination() {
-        
+
         destination_ = getDefaultInstance().getDestination();
         onChanged();
         return this;
       }
+
       /**
        * <code>string destination = 1;</code>
        */
       public Builder setDestinationBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         destination_ = value;
         onChanged();
         return this;
       }
 
       private java.lang.Object clientId_ = "";
+
       /**
        * <code>string client_id = 2;</code>
        */
@@ -10655,14 +11664,15 @@ public final class CanalPacket {
           return (java.lang.String) ref;
         }
       }
+
       /**
        * <code>string client_id = 2;</code>
        */
       public com.google.protobuf.ByteString
-          getClientIdBytes() {
+      getClientIdBytes() {
         java.lang.Object ref = clientId_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           clientId_ = b;
@@ -10671,68 +11681,75 @@ public final class CanalPacket {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /**
        * <code>string client_id = 2;</code>
        */
       public Builder setClientId(
           java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         clientId_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>string client_id = 2;</code>
        */
       public Builder clearClientId() {
-        
+
         clientId_ = getDefaultInstance().getClientId();
         onChanged();
         return this;
       }
+
       /**
        * <code>string client_id = 2;</code>
        */
       public Builder setClientIdBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         clientId_ = value;
         onChanged();
         return this;
       }
 
-      private long batchId_ ;
+      private long batchId_;
+
       /**
        * <code>int64 batch_id = 3;</code>
        */
       public long getBatchId() {
         return batchId_;
       }
+
       /**
        * <code>int64 batch_id = 3;</code>
        */
       public Builder setBatchId(long value) {
-        
+
         batchId_ = value;
         onChanged();
         return this;
       }
+
       /**
        * <code>int64 batch_id = 3;</code>
        */
       public Builder clearBatchId() {
-        
+
         batchId_ = 0L;
         onChanged();
         return this;
       }
+
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -10745,12 +11762,12 @@ public final class CanalPacket {
         return super.mergeUnknownFields(unknownFields);
       }
 
-
       // @@protoc_insertion_point(builder_scope:com.alibaba.otter.canal.protocol.ClientRollback)
     }
 
     // @@protoc_insertion_point(class_scope:com.alibaba.otter.canal.protocol.ClientRollback)
     private static final com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback DEFAULT_INSTANCE;
+
     static {
       DEFAULT_INSTANCE = new com.alibaba.otter.canal.protocol.CanalPacket.ClientRollback();
     }
@@ -10787,124 +11804,134 @@ public final class CanalPacket {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_alibaba_otter_canal_protocol_Packet_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_alibaba_otter_canal_protocol_Packet_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_alibaba_otter_canal_protocol_Packet_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_alibaba_otter_canal_protocol_HeartBeat_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_alibaba_otter_canal_protocol_HeartBeat_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_alibaba_otter_canal_protocol_HeartBeat_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_alibaba_otter_canal_protocol_Handshake_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_alibaba_otter_canal_protocol_Handshake_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_alibaba_otter_canal_protocol_Handshake_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_alibaba_otter_canal_protocol_ClientAuth_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_alibaba_otter_canal_protocol_ClientAuth_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_alibaba_otter_canal_protocol_ClientAuth_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_alibaba_otter_canal_protocol_Ack_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_alibaba_otter_canal_protocol_Ack_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_alibaba_otter_canal_protocol_Ack_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_alibaba_otter_canal_protocol_ClientAck_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_alibaba_otter_canal_protocol_ClientAck_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_alibaba_otter_canal_protocol_ClientAck_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_alibaba_otter_canal_protocol_Sub_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_alibaba_otter_canal_protocol_Sub_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_alibaba_otter_canal_protocol_Sub_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_alibaba_otter_canal_protocol_Unsub_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_alibaba_otter_canal_protocol_Unsub_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_alibaba_otter_canal_protocol_Unsub_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_alibaba_otter_canal_protocol_Get_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_alibaba_otter_canal_protocol_Get_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_alibaba_otter_canal_protocol_Get_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_alibaba_otter_canal_protocol_Messages_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_alibaba_otter_canal_protocol_Messages_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_alibaba_otter_canal_protocol_Messages_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_alibaba_otter_canal_protocol_Dump_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_alibaba_otter_canal_protocol_Dump_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_alibaba_otter_canal_protocol_Dump_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_alibaba_otter_canal_protocol_ClientRollback_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_alibaba_otter_canal_protocol_ClientRollback_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_alibaba_otter_canal_protocol_ClientRollback_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
-      getDescriptor() {
+  getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+
+  private static com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
+
   static {
     java.lang.String[] descriptorData = {
-      "\n\023CanalProtocol.proto\022 com.alibaba.otter" +
-      ".canal.protocol\"\205\002\n\006Packet\022\026\n\014magic_numb" +
-      "er\030\001 \001(\005H\000\022\021\n\007version\030\002 \001(\005H\001\022:\n\004type\030\003 " +
-      "\001(\0162,.com.alibaba.otter.canal.protocol.P" +
-      "acketType\022D\n\013compression\030\004 \001(\0162-.com.ali" +
-      "baba.otter.canal.protocol.CompressionH\002\022" +
-      "\014\n\004body\030\005 \001(\014B\026\n\024magic_number_presentB\021\n" +
-      "\017version_presentB\025\n\023compression_present\"" +
-      "<\n\tHeartBeat\022\026\n\016send_timestamp\030\001 \001(\003\022\027\n\017" +
-      "start_timestamp\030\002 \001(\003\"\255\001\n\tHandshake\022 \n\026c" +
-      "ommunication_encoding\030\001 \001(\tH\000\022\r\n\005seeds\030\002" +
-      " \001(\014\022M\n\026supported_compressions\030\003 \001(\0162-.c" +
-      "om.alibaba.otter.canal.protocol.Compress" +
-      "ionB \n\036communication_encoding_present\"\363\001" +
-      "\n\nClientAuth\022\020\n\010username\030\001 \001(\t\022\020\n\010passwo" +
-      "rd\030\002 \001(\014\022\032\n\020net_read_timeout\030\003 \001(\005H\000\022\033\n\021" +
-      "net_write_timeout\030\004 \001(\005H\001\022\023\n\013destination" +
-      "\030\005 \001(\t\022\021\n\tclient_id\030\006 \001(\t\022\016\n\006filter\030\007 \001(" +
-      "\t\022\027\n\017start_timestamp\030\010 \001(\003B\032\n\030net_read_t" +
-      "imeout_presentB\033\n\031net_write_timeout_pres" +
-      "ent\"H\n\003Ack\022\024\n\nerror_code\030\001 \001(\005H\000\022\025\n\rerro" +
-      "r_message\030\002 \001(\tB\024\n\022error_code_present\"E\n" +
-      "\tClientAck\022\023\n\013destination\030\001 \001(\t\022\021\n\tclien" +
-      "t_id\030\002 \001(\t\022\020\n\010batch_id\030\003 \001(\003\"=\n\003Sub\022\023\n\013d" +
-      "estination\030\001 \001(\t\022\021\n\tclient_id\030\002 \001(\t\022\016\n\006f" +
-      "ilter\030\007 \001(\t\"?\n\005Unsub\022\023\n\013destination\030\001 \001(" +
-      "\t\022\021\n\tclient_id\030\002 \001(\t\022\016\n\006filter\030\007 \001(\t\"\257\001\n" +
-      "\003Get\022\023\n\013destination\030\001 \001(\t\022\021\n\tclient_id\030\002" +
-      " \001(\t\022\022\n\nfetch_size\030\003 \001(\005\022\021\n\007timeout\030\004 \001(" +
-      "\003H\000\022\016\n\004unit\030\005 \001(\005H\001\022\022\n\010auto_ack\030\006 \001(\010H\002B" +
-      "\021\n\017timeout_presentB\016\n\014unit_presentB\022\n\020au" +
-      "to_ack_present\".\n\010Messages\022\020\n\010batch_id\030\001" +
-      " \001(\003\022\020\n\010messages\030\002 \003(\014\"S\n\004Dump\022\017\n\007journa" +
-      "l\030\001 \001(\t\022\020\n\010position\030\002 \001(\003\022\023\n\ttimestamp\030\003" +
-      " \001(\003H\000B\023\n\021timestamp_present\"J\n\016ClientRol" +
-      "lback\022\023\n\013destination\030\001 \001(\t\022\021\n\tclient_id\030" +
-      "\002 \001(\t\022\020\n\010batch_id\030\003 \001(\003*U\n\013Compression\022\037" +
-      "\n\033COMPRESSIONCOMPATIBLEPROTO2\020\000\022\010\n\004NONE\020" +
-      "\001\022\010\n\004ZLIB\020\002\022\010\n\004GZIP\020\003\022\007\n\003LZF\020\004*\346\001\n\nPacke" +
-      "tType\022\037\n\033PACKAGETYPECOMPATIBLEPROTO2\020\000\022\r" +
-      "\n\tHANDSHAKE\020\001\022\030\n\024CLIENTAUTHENTICATION\020\002\022" +
-      "\007\n\003ACK\020\003\022\020\n\014SUBSCRIPTION\020\004\022\022\n\016UNSUBSCRIP" +
-      "TION\020\005\022\007\n\003GET\020\006\022\014\n\010MESSAGES\020\007\022\r\n\tCLIENTA" +
-      "CK\020\010\022\014\n\010SHUTDOWN\020\t\022\010\n\004DUMP\020\n\022\r\n\tHEARTBEA" +
-      "T\020\013\022\022\n\016CLIENTROLLBACK\020\014B1\n com.alibaba.o" +
-      "tter.canal.protocolB\013CanalPacketH\001b\006prot" +
-      "o3"
+        "\n\023CanalProtocol.proto\022 com.alibaba.otter" +
+            ".canal.protocol\"\205\002\n\006Packet\022\026\n\014magic_numb" +
+            "er\030\001 \001(\005H\000\022\021\n\007version\030\002 \001(\005H\001\022:\n\004type\030\003 "
+            +
+            "\001(\0162,.com.alibaba.otter.canal.protocol.P" +
+            "acketType\022D\n\013compression\030\004 \001(\0162-.com.ali" +
+            "baba.otter.canal.protocol.CompressionH\002\022" +
+            "\014\n\004body\030\005 \001(\014B\026\n\024magic_number_presentB\021\n" +
+            "\017version_presentB\025\n\023compression_present\"" +
+            "<\n\tHeartBeat\022\026\n\016send_timestamp\030\001 \001(\003\022\027\n\017" +
+            "start_timestamp\030\002 \001(\003\"\255\001\n\tHandshake\022 \n\026c" +
+            "ommunication_encoding\030\001 \001(\tH\000\022\r\n\005seeds\030\002" +
+            " \001(\014\022M\n\026supported_compressions\030\003 \001(\0162-.c" +
+            "om.alibaba.otter.canal.protocol.Compress" +
+            "ionB \n\036communication_encoding_present\"\363\001" +
+            "\n\nClientAuth\022\020\n\010username\030\001 \001(\t\022\020\n\010passwo" +
+            "rd\030\002 \001(\014\022\032\n\020net_read_timeout\030\003 \001(\005H\000\022\033\n\021"
+            +
+            "net_write_timeout\030\004 \001(\005H\001\022\023\n\013destination" +
+            "\030\005 \001(\t\022\021\n\tclient_id\030\006 \001(\t\022\016\n\006filter\030\007 \001("
+            +
+            "\t\022\027\n\017start_timestamp\030\010 \001(\003B\032\n\030net_read_t" +
+            "imeout_presentB\033\n\031net_write_timeout_pres" +
+            "ent\"H\n\003Ack\022\024\n\nerror_code\030\001 \001(\005H\000\022\025\n\rerro" +
+            "r_message\030\002 \001(\tB\024\n\022error_code_present\"E\n" +
+            "\tClientAck\022\023\n\013destination\030\001 \001(\t\022\021\n\tclien" +
+            "t_id\030\002 \001(\t\022\020\n\010batch_id\030\003 \001(\003\"=\n\003Sub\022\023\n\013d"
+            +
+            "estination\030\001 \001(\t\022\021\n\tclient_id\030\002 \001(\t\022\016\n\006f" +
+            "ilter\030\007 \001(\t\"?\n\005Unsub\022\023\n\013destination\030\001 \001(" +
+            "\t\022\021\n\tclient_id\030\002 \001(\t\022\016\n\006filter\030\007 \001(\t\"\257\001\n"
+            +
+            "\003Get\022\023\n\013destination\030\001 \001(\t\022\021\n\tclient_id\030\002" +
+            " \001(\t\022\022\n\nfetch_size\030\003 \001(\005\022\021\n\007timeout\030\004 \001(" +
+            "\003H\000\022\016\n\004unit\030\005 \001(\005H\001\022\022\n\010auto_ack\030\006 \001(\010H\002B"
+            +
+            "\021\n\017timeout_presentB\016\n\014unit_presentB\022\n\020au" +
+            "to_ack_present\".\n\010Messages\022\020\n\010batch_id\030\001" +
+            " \001(\003\022\020\n\010messages\030\002 \003(\014\"S\n\004Dump\022\017\n\007journa" +
+            "l\030\001 \001(\t\022\020\n\010position\030\002 \001(\003\022\023\n\ttimestamp\030\003"
+            +
+            " \001(\003H\000B\023\n\021timestamp_present\"J\n\016ClientRol" +
+            "lback\022\023\n\013destination\030\001 \001(\t\022\021\n\tclient_id\030" +
+            "\002 \001(\t\022\020\n\010batch_id\030\003 \001(\003*U\n\013Compression\022\037" +
+            "\n\033COMPRESSIONCOMPATIBLEPROTO2\020\000\022\010\n\004NONE\020" +
+            "\001\022\010\n\004ZLIB\020\002\022\010\n\004GZIP\020\003\022\007\n\003LZF\020\004*\346\001\n\nPacke"
+            +
+            "tType\022\037\n\033PACKAGETYPECOMPATIBLEPROTO2\020\000\022\r" +
+            "\n\tHANDSHAKE\020\001\022\030\n\024CLIENTAUTHENTICATION\020\002\022" +
+            "\007\n\003ACK\020\003\022\020\n\014SUBSCRIPTION\020\004\022\022\n\016UNSUBSCRIP" +
+            "TION\020\005\022\007\n\003GET\020\006\022\014\n\010MESSAGES\020\007\022\r\n\tCLIENTA" +
+            "CK\020\010\022\014\n\010SHUTDOWN\020\t\022\010\n\004DUMP\020\n\022\r\n\tHEARTBEA" +
+            "T\020\013\022\022\n\016CLIENTROLLBACK\020\014B1\n com.alibaba.o" +
+            "tter.canal.protocolB\013CanalPacketH\001b\006prot" +
+            "o3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
+        new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
           public com.google.protobuf.ExtensionRegistry assignDescriptors(
               com.google.protobuf.Descriptors.FileDescriptor root) {
             descriptor = root;
@@ -10912,81 +11939,86 @@ public final class CanalPacket {
           }
         };
     com.google.protobuf.Descriptors.FileDescriptor
-      .internalBuildGeneratedFileFrom(descriptorData,
-        new com.google.protobuf.Descriptors.FileDescriptor[] {
-        }, assigner);
+        .internalBuildGeneratedFileFrom(descriptorData,
+            new com.google.protobuf.Descriptors.FileDescriptor[]{
+            }, assigner);
     internal_static_com_alibaba_otter_canal_protocol_Packet_descriptor =
-      getDescriptor().getMessageTypes().get(0);
+        getDescriptor().getMessageTypes().get(0);
     internal_static_com_alibaba_otter_canal_protocol_Packet_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_alibaba_otter_canal_protocol_Packet_descriptor,
-        new java.lang.String[] { "MagicNumber", "Version", "Type", "Compression", "Body", "MagicNumberPresent", "VersionPresent", "CompressionPresent", });
+        new java.lang.String[]{"MagicNumber", "Version", "Type", "Compression", "Body",
+            "MagicNumberPresent", "VersionPresent", "CompressionPresent",});
     internal_static_com_alibaba_otter_canal_protocol_HeartBeat_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+        getDescriptor().getMessageTypes().get(1);
     internal_static_com_alibaba_otter_canal_protocol_HeartBeat_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_alibaba_otter_canal_protocol_HeartBeat_descriptor,
-        new java.lang.String[] { "SendTimestamp", "StartTimestamp", });
+        new java.lang.String[]{"SendTimestamp", "StartTimestamp",});
     internal_static_com_alibaba_otter_canal_protocol_Handshake_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+        getDescriptor().getMessageTypes().get(2);
     internal_static_com_alibaba_otter_canal_protocol_Handshake_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_alibaba_otter_canal_protocol_Handshake_descriptor,
-        new java.lang.String[] { "CommunicationEncoding", "Seeds", "SupportedCompressions", "CommunicationEncodingPresent", });
+        new java.lang.String[]{"CommunicationEncoding", "Seeds", "SupportedCompressions",
+            "CommunicationEncodingPresent",});
     internal_static_com_alibaba_otter_canal_protocol_ClientAuth_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+        getDescriptor().getMessageTypes().get(3);
     internal_static_com_alibaba_otter_canal_protocol_ClientAuth_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_alibaba_otter_canal_protocol_ClientAuth_descriptor,
-        new java.lang.String[] { "Username", "Password", "NetReadTimeout", "NetWriteTimeout", "Destination", "ClientId", "Filter", "StartTimestamp", "NetReadTimeoutPresent", "NetWriteTimeoutPresent", });
+        new java.lang.String[]{"Username", "Password", "NetReadTimeout", "NetWriteTimeout",
+            "Destination", "ClientId", "Filter", "StartTimestamp", "NetReadTimeoutPresent",
+            "NetWriteTimeoutPresent",});
     internal_static_com_alibaba_otter_canal_protocol_Ack_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+        getDescriptor().getMessageTypes().get(4);
     internal_static_com_alibaba_otter_canal_protocol_Ack_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_alibaba_otter_canal_protocol_Ack_descriptor,
-        new java.lang.String[] { "ErrorCode", "ErrorMessage", "ErrorCodePresent", });
+        new java.lang.String[]{"ErrorCode", "ErrorMessage", "ErrorCodePresent",});
     internal_static_com_alibaba_otter_canal_protocol_ClientAck_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+        getDescriptor().getMessageTypes().get(5);
     internal_static_com_alibaba_otter_canal_protocol_ClientAck_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_alibaba_otter_canal_protocol_ClientAck_descriptor,
-        new java.lang.String[] { "Destination", "ClientId", "BatchId", });
+        new java.lang.String[]{"Destination", "ClientId", "BatchId",});
     internal_static_com_alibaba_otter_canal_protocol_Sub_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+        getDescriptor().getMessageTypes().get(6);
     internal_static_com_alibaba_otter_canal_protocol_Sub_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_alibaba_otter_canal_protocol_Sub_descriptor,
-        new java.lang.String[] { "Destination", "ClientId", "Filter", });
+        new java.lang.String[]{"Destination", "ClientId", "Filter",});
     internal_static_com_alibaba_otter_canal_protocol_Unsub_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+        getDescriptor().getMessageTypes().get(7);
     internal_static_com_alibaba_otter_canal_protocol_Unsub_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_alibaba_otter_canal_protocol_Unsub_descriptor,
-        new java.lang.String[] { "Destination", "ClientId", "Filter", });
+        new java.lang.String[]{"Destination", "ClientId", "Filter",});
     internal_static_com_alibaba_otter_canal_protocol_Get_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+        getDescriptor().getMessageTypes().get(8);
     internal_static_com_alibaba_otter_canal_protocol_Get_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_alibaba_otter_canal_protocol_Get_descriptor,
-        new java.lang.String[] { "Destination", "ClientId", "FetchSize", "Timeout", "Unit", "AutoAck", "TimeoutPresent", "UnitPresent", "AutoAckPresent", });
+        new java.lang.String[]{"Destination", "ClientId", "FetchSize", "Timeout", "Unit", "AutoAck",
+            "TimeoutPresent", "UnitPresent", "AutoAckPresent",});
     internal_static_com_alibaba_otter_canal_protocol_Messages_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+        getDescriptor().getMessageTypes().get(9);
     internal_static_com_alibaba_otter_canal_protocol_Messages_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_alibaba_otter_canal_protocol_Messages_descriptor,
-        new java.lang.String[] { "BatchId", "Messages", });
+        new java.lang.String[]{"BatchId", "Messages",});
     internal_static_com_alibaba_otter_canal_protocol_Dump_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+        getDescriptor().getMessageTypes().get(10);
     internal_static_com_alibaba_otter_canal_protocol_Dump_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_alibaba_otter_canal_protocol_Dump_descriptor,
-        new java.lang.String[] { "Journal", "Position", "Timestamp", "TimestampPresent", });
+        new java.lang.String[]{"Journal", "Position", "Timestamp", "TimestampPresent",});
     internal_static_com_alibaba_otter_canal_protocol_ClientRollback_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+        getDescriptor().getMessageTypes().get(11);
     internal_static_com_alibaba_otter_canal_protocol_ClientRollback_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_alibaba_otter_canal_protocol_ClientRollback_descriptor,
-        new java.lang.String[] { "Destination", "ClientId", "BatchId", });
+        new java.lang.String[]{"Destination", "ClientId", "BatchId",});
   }
 
   // @@protoc_insertion_point(outer_class_scope)

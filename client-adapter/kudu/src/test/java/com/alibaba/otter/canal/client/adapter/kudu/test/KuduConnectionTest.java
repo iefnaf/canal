@@ -10,20 +10,22 @@ import org.junit.Test;
 
 public class KuduConnectionTest {
 
-    @Test
-    public void test01() {
-        List<String> masterList = Arrays.asList("10.6.36.102:7051,10.6.36.187:7051,10.6.36.229:7051".split(","));
-        KuduClient kuduClient = new KuduClient.KuduClientBuilder(masterList).defaultOperationTimeoutMs(60000)
-            .defaultSocketReadTimeoutMs(30000)
-            .defaultAdminOperationTimeoutMs(60000)
-            .build();
-        try {
-            List<String> tablesList = kuduClient.getTablesList().getTablesList();
-            System.out.println(tablesList.toString());
-            KuduTable web_white_list = kuduClient.openTable("web_white_list");
+  @Test
+  public void test01() {
+    List<String> masterList = Arrays.asList(
+        "10.6.36.102:7051,10.6.36.187:7051,10.6.36.229:7051".split(","));
+    KuduClient kuduClient = new KuduClient.KuduClientBuilder(masterList).defaultOperationTimeoutMs(
+            60000)
+        .defaultSocketReadTimeoutMs(30000)
+        .defaultAdminOperationTimeoutMs(60000)
+        .build();
+    try {
+      List<String> tablesList = kuduClient.getTablesList().getTablesList();
+      System.out.println(tablesList.toString());
+      KuduTable web_white_list = kuduClient.openTable("web_white_list");
 
-        } catch (KuduException e) {
-            e.printStackTrace();
-        }
+    } catch (KuduException e) {
+      e.printStackTrace();
     }
+  }
 }

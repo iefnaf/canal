@@ -5,11 +5,11 @@ import java.util.Map;
 
 public interface MetaHistoryMapper {
 
-    List<MetaHistoryDO> findByTimestamp(Map<String, Object> map);
+  List<MetaHistoryDO> findByTimestamp(Map<String, Object> map);
 
-    long insert(MetaHistoryDO metaHistoryDO);
+  long insert(MetaHistoryDO metaHistoryDO);
 
-    int deleteByName(Map<String, Object> map);
+  int deleteByName(Map<String, Object> map);
 
-    int deleteByTimestamp(Map<String, Object> map);
+  int deleteByTimestamp(Map<String, Object> map);
 }

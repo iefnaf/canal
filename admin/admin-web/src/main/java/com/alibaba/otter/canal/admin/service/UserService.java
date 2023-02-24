@@ -4,7 +4,7 @@ import com.alibaba.otter.canal.admin.model.User;
 
 public interface UserService {
 
-    User find4Login(String username, String password);
+  User find4Login(String username, String password);
 
-    void update(User user);
+  void update(User user);
 }

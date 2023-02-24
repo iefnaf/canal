@@ -23,36 +23,38 @@ import com.alibaba.otter.canal.admin.service.CanalConfigService;
 @RequestMapping("/api/{env}/canal")
 public class CanalConfigController {
 
-    @Autowired
-    CanalConfigService canalConfigService;
+  @Autowired
+  CanalConfigService canalConfigService;
 
-    /**
-     * 获取配置信息
-     *
-     * @param env 环境变量
-     * @return 配置信息
-     */
-    @GetMapping(value = "/config/{clusterId}/{serverId}")
-    public BaseModel<CanalConfig> canalConfig(@PathVariable Long clusterId, @PathVariable Long serverId,
-                                              @PathVariable String env) {
-        return BaseModel.getInstance(canalConfigService.getCanalConfig(clusterId, serverId));
-    }
+  /**
+   * 获取配置信息
+   *
+   * @param env 环境变量
+   * @return 配置信息
+   */
+  @GetMapping(value = "/config/{clusterId}/{serverId}")
+  public BaseModel<CanalConfig> canalConfig(@PathVariable Long clusterId,
+      @PathVariable Long serverId,
+      @PathVariable String env) {
+    return BaseModel.getInstance(canalConfigService.getCanalConfig(clusterId, serverId));
+  }
 
-    /**
-     * 修改配置
-     *
-     * @param canalConfig 配置信息对象
-     * @param env 环境变量
-     * @return 是否成功
-     */
-    @PutMapping(value = "/config")
-    public BaseModel<String> updateConfig(@RequestBody CanalConfig canalConfig, @PathVariable String env) {
-        canalConfigService.updateContent(canalConfig);
-        return BaseModel.getInstance("success");
-    }
+  /**
+   * 修改配置
+   *
+   * @param canalConfig 配置信息对象
+   * @param env         环境变量
+   * @return 是否成功
+   */
+  @PutMapping(value = "/config")
+  public BaseModel<String> updateConfig(@RequestBody CanalConfig canalConfig,
+      @PathVariable String env) {
+    canalConfigService.updateContent(canalConfig);
+    return BaseModel.getInstance("success");
+  }
 
-    @GetMapping(value = "/config/template")
-    public BaseModel<String> template(@PathVariable String env) {
-        return BaseModel.getInstance(TemplateConfigLoader.loadCanalConfig());
-    }
+  @GetMapping(value = "/config/template")
+  public BaseModel<String> template(@PathVariable String env) {
+    return BaseModel.getInstance(TemplateConfigLoader.loadCanalConfig());
+  }
 }

@@ -17,38 +17,38 @@ import com.alibaba.otter.canal.parse.CanalEventParser;
  */
 public class SpringCanalInstanceGenerator implements CanalInstanceGenerator {
 
-    private static final Logger logger      = LoggerFactory.getLogger(SpringCanalInstanceGenerator.class);
-    private String              springXml;
-    private String              defaultName = "instance";
-    private BeanFactory         beanFactory;
+  private static final Logger logger = LoggerFactory.getLogger(SpringCanalInstanceGenerator.class);
+  private String springXml;
+  private String defaultName = "instance";
+  private BeanFactory beanFactory;
 
-    public CanalInstance generate(String destination) {
-        synchronized (CanalEventParser.class) {
-            try {
-                // 设置当前正在加载的通道，加载spring查找文件时会用到该变量
-                System.setProperty("canal.instance.destination", destination);
-                this.beanFactory = getBeanFactory(springXml);
-                String beanName = destination;
-                if (!beanFactory.containsBean(beanName)) {
-                    beanName = defaultName;
-                }
-
-                return (CanalInstance) beanFactory.getBean(beanName);
-            } catch (Throwable e) {
-                logger.error("generator instance failed.", e);
-                throw new CanalException(e);
-            } finally {
-                System.setProperty("canal.instance.destination", "");
-            }
+  public CanalInstance generate(String destination) {
+    synchronized (CanalEventParser.class) {
+      try {
+        // 设置当前正在加载的通道，加载spring查找文件时会用到该变量
+        System.setProperty("canal.instance.destination", destination);
+        this.beanFactory = getBeanFactory(springXml);
+        String beanName = destination;
+        if (!beanFactory.containsBean(beanName)) {
+          beanName = defaultName;
         }
-    }
 
-    private BeanFactory getBeanFactory(String springXml) {
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext(springXml);
-        return applicationContext;
+        return (CanalInstance) beanFactory.getBean(beanName);
+      } catch (Throwable e) {
+        logger.error("generator instance failed.", e);
+        throw new CanalException(e);
+      } finally {
+        System.setProperty("canal.instance.destination", "");
+      }
     }
+  }
 
-    public void setSpringXml(String springXml) {
-        this.springXml = springXml;
-    }
+  private BeanFactory getBeanFactory(String springXml) {
+    ApplicationContext applicationContext = new ClassPathXmlApplicationContext(springXml);
+    return applicationContext;
+  }
+
+  public void setSpringXml(String springXml) {
+    this.springXml = springXml;
+  }
 }

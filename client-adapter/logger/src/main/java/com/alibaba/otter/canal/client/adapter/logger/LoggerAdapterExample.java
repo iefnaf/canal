@@ -23,23 +23,23 @@ import com.alibaba.otter.canal.client.adapter.support.SPI;
 // logger参数对应CanalOuterAdapterConfiguration配置中的name
 public class LoggerAdapterExample implements OuterAdapter {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+  private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Override
-    public void init(OuterAdapterConfig configuration, Properties envProperties) {
-    }
+  @Override
+  public void init(OuterAdapterConfig configuration, Properties envProperties) {
+  }
 
-    public void sync(List<Dml> dmls) {
-        for (Dml dml : dmls) {
-            sync(dml);
-        }
+  public void sync(List<Dml> dmls) {
+    for (Dml dml : dmls) {
+      sync(dml);
     }
+  }
 
-    public void sync(Dml dml) {
-        logger.info("DML: {}", JSON.toJSONString(dml, Feature.WriteNulls));
-    }
+  public void sync(Dml dml) {
+    logger.info("DML: {}", JSON.toJSONString(dml, Feature.WriteNulls));
+  }
 
-    @Override
-    public void destroy() {
-    }
+  @Override
+  public void destroy() {
+  }
 }

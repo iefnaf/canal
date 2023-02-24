@@ -22,19 +22,19 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class EbeanConfig {
 
-    @Bean("ebeanServer")
-    public EbeanServer ebeanServer(DataSource dataSource) {
-        ServerConfig serverConfig = new ServerConfig();
-        serverConfig.setDefaultServer(true);
-        serverConfig.setNamingConvention(new UnderscoreNamingConvention());
-        List<String> packages = new ArrayList<>();
-        packages.add("com.alibaba.otter.canal.admin.model");
-        serverConfig.setPackages(packages);
-        serverConfig.setName("ebeanServer");
-        serverConfig.setDataSource(dataSource);
-        serverConfig.setDatabaseSequenceBatchSize(1);
-        serverConfig.setDdlGenerate(false);
-        serverConfig.setDdlRun(false);
-        return EbeanServerFactory.create(serverConfig);
-    }
+  @Bean("ebeanServer")
+  public EbeanServer ebeanServer(DataSource dataSource) {
+    ServerConfig serverConfig = new ServerConfig();
+    serverConfig.setDefaultServer(true);
+    serverConfig.setNamingConvention(new UnderscoreNamingConvention());
+    List<String> packages = new ArrayList<>();
+    packages.add("com.alibaba.otter.canal.admin.model");
+    serverConfig.setPackages(packages);
+    serverConfig.setName("ebeanServer");
+    serverConfig.setDataSource(dataSource);
+    serverConfig.setDatabaseSequenceBatchSize(1);
+    serverConfig.setDdlGenerate(false);
+    serverConfig.setDdlRun(false);
+    return EbeanServerFactory.create(serverConfig);
+  }
 }

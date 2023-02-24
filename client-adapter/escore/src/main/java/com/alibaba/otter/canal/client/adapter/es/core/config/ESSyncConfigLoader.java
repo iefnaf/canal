@@ -18,30 +18,31 @@ import com.alibaba.otter.canal.client.adapter.support.MappingConfigsLoader;
  */
 public class ESSyncConfigLoader {
 
-    private static Logger logger = LoggerFactory.getLogger(ESSyncConfigLoader.class);
+  private static Logger logger = LoggerFactory.getLogger(ESSyncConfigLoader.class);
 
-    public static synchronized Map<String, ESSyncConfig> load(Properties envProperties) {
-        logger.info("## Start loading es mapping config ... ");
+  public static synchronized Map<String, ESSyncConfig> load(Properties envProperties) {
+    logger.info("## Start loading es mapping config ... ");
 
-        Map<String, ESSyncConfig> esSyncConfig = new LinkedHashMap<>();
+    Map<String, ESSyncConfig> esSyncConfig = new LinkedHashMap<>();
 
-        String esv = envProperties.getProperty("es.version");
-        Map<String, String> configContentMap = MappingConfigsLoader.loadConfigs(esv);
-        configContentMap.forEach((fileName, content) -> {
-            ESSyncConfig config = YamlUtils.ymlToObj(null, content, ESSyncConfig.class, null, envProperties);
-            if (config == null) {
-                return;
-            }
-            config.setEsVersion(esv);
-            try {
-                config.validate();
-            } catch (Exception e) {
-                throw new RuntimeException("ERROR Config: " + fileName + " " + e.getMessage(), e);
-            }
-            esSyncConfig.put(fileName, config);
-        });
+    String esv = envProperties.getProperty("es.version");
+    Map<String, String> configContentMap = MappingConfigsLoader.loadConfigs(esv);
+    configContentMap.forEach((fileName, content) -> {
+      ESSyncConfig config = YamlUtils.ymlToObj(null, content, ESSyncConfig.class, null,
+          envProperties);
+      if (config == null) {
+        return;
+      }
+      config.setEsVersion(esv);
+      try {
+        config.validate();
+      } catch (Exception e) {
+        throw new RuntimeException("ERROR Config: " + fileName + " " + e.getMessage(), e);
+      }
+      esSyncConfig.put(fileName, config);
+    });
 
-        logger.info("## ES mapping config loaded");
-        return esSyncConfig;
-    }
+    logger.info("## ES mapping config loaded");
+    return esSyncConfig;
+  }
 }

@@ -14,34 +14,35 @@ import java.util.Properties;
  */
 public class ConfigLoader {
 
-    private static Logger logger = LoggerFactory.getLogger(ConfigLoader.class);
+  private static Logger logger = LoggerFactory.getLogger(ConfigLoader.class);
 
-    /**
-     * 加载Phoenix表映射配置
-     *
-     * @return 配置名/配置文件名--对象
-     */
-    public static Map<String, MappingConfig> load(Properties envProperties) {
-        logger.info("## Start loading phoenix mapping config ... ");
+  /**
+   * 加载Phoenix表映射配置
+   *
+   * @return 配置名/配置文件名--对象
+   */
+  public static Map<String, MappingConfig> load(Properties envProperties) {
+    logger.info("## Start loading phoenix mapping config ... ");
 
-        Map<String, MappingConfig> result = new LinkedHashMap<>();
+    Map<String, MappingConfig> result = new LinkedHashMap<>();
 
-        Map<String, String> configContentMap = MappingConfigsLoader.loadConfigs("phoenix");
-        configContentMap.forEach((fileName, content) -> {
-            MappingConfig config = YamlUtils.ymlToObj(null, content, MappingConfig.class, null, envProperties);
-            if (config == null) {
-                return;
-            }
-            try {
-                config.validate();
-            } catch (Exception e) {
-                throw new RuntimeException("ERROR Config: " + fileName + " " + e.getMessage(), e);
-            }
-            result.put(fileName, config);
-        });
+    Map<String, String> configContentMap = MappingConfigsLoader.loadConfigs("phoenix");
+    configContentMap.forEach((fileName, content) -> {
+      MappingConfig config = YamlUtils.ymlToObj(null, content, MappingConfig.class, null,
+          envProperties);
+      if (config == null) {
+        return;
+      }
+      try {
+        config.validate();
+      } catch (Exception e) {
+        throw new RuntimeException("ERROR Config: " + fileName + " " + e.getMessage(), e);
+      }
+      result.put(fileName, config);
+    });
 
-        logger.info("## Phoenix mapping config loaded");
-        logger.info("## Phoenix sync threads: " + ConfigurationManager.getInteger("threads"));
-        return result;
-    }
+    logger.info("## Phoenix mapping config loaded");
+    logger.info("## Phoenix sync threads: " + ConfigurationManager.getInteger("threads"));
+    return result;
+  }
 }
